@@ -1,6 +1,6 @@
 import type { Project } from '@/lib/types';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { X, User, Calendar, ArrowLeft, ArrowRight } from 'lucide-react';
+import { User, Calendar, ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { Badge } from './ui/badge';
 
@@ -23,10 +23,10 @@ function ProjectNavigationLink({ project, type, onClick }: ProjectNavigationLink
           src={imageSrc}
           alt={project.title}
           fill
-          className="object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+          className="object-cover opacity-20 group-hover:opacity-30 transition-opacity duration-300"
           sizes="50vw"
       />
-      <div className="absolute inset-0 bg-background/60 group-hover:bg-background/40 transition-all duration-300" />
+      <div className="absolute inset-0 bg-background/70 group-hover:bg-background/60 transition-all duration-300" />
       <div className={`relative z-10 h-full flex flex-col justify-center p-8 text-foreground ${isPrev ? 'items-start' : 'items-end'}`}>
           <div className={`flex items-center gap-4 ${isPrev ? 'flex-row' : 'flex-row-reverse'}`}>
               <div className="flex-shrink-0">
@@ -62,9 +62,17 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
 
   return (
     <Dialog open={!!project} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-none w-full h-full p-0 bg-background border-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0">
+      <DialogContent showCloseButton={false} className="max-w-none w-full h-full p-0 bg-background border-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0">
         
         <div className="h-full w-full overflow-y-auto scroll-smooth">
+          <button 
+            onClick={onClose} 
+            className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20 flex items-center gap-2 text-white hover:text-primary transition-colors duration-300"
+            aria-label="Volver al portfolio"
+          >
+            <ArrowLeft className="w-6 h-6" />
+            <span className="font-medium">Volver al portfolio</span>
+          </button>
           {/* Hero Section */}
           <header className="relative h-[70vh] w-full">
             <div className="absolute inset-0">
