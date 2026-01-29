@@ -1,12 +1,12 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 import { sendEmail } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useActionState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 
@@ -23,7 +23,7 @@ function SubmitButton() {
 
 export function ContactForm() {
   const initialState = { message: null, errors: {} };
-  const [state, dispatch] = useFormState(sendEmail, initialState);
+  const [state, dispatch] = useActionState(sendEmail, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 
