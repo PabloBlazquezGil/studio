@@ -42,7 +42,7 @@ export default function AboutSection() {
               Desde campañas comerciales hasta proyectos personales, abordo cada fotograma con intención y el deseo de conectar con el espectador a un nivel más profundo. Creemos algo inolvidable juntos.
             </p>
             <Button asChild size="lg" className="mt-8">
-              <Link href="#contact" id="contact">Ponte en Contacto</Link>
+              <Link href="#contact">Ponte en Contacto</Link>
             </Button>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { Copyright } from "lucide-react";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="w-full bg-secondary border-t border-border/20" id="contact">
+    <footer className="w-full bg-secondary border-t border-border/20 scroll-mt-24" id="contact">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-headline text-4xl sm:text-5xl text-foreground">
