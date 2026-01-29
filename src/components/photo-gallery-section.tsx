@@ -1,0 +1,51 @@
+import type { Project } from '@/lib/types';
+import Image from 'next/image';
+import ScrollReveal from './scroll-reveal';
+import { Plus } from 'lucide-react';
+
+interface PhotoGallerySectionProps {
+  projects: Project[];
+  onProjectClick: (project: Project) => void;
+}
+
+export default function PhotoGallerySection({ projects, onProjectClick }: PhotoGallerySectionProps) {
+  return (
+    <section className="py-24 sm:py-32 bg-background">
+      <ScrollReveal className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground">Featured Work</h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">A curated selection of projects that define my creative journey and technical expertise.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {projects.map((project, index) => (
+            <ScrollReveal 
+              key={project.id} 
+              delay={index * 100} 
+              className="group relative overflow-hidden rounded-lg aspect-[2/3] cursor-pointer shadow-lg"
+              onClick={() => onProjectClick(project)}
+            >
+              <Image
+                src={project.imageUrl}
+                alt={project.title}
+                fill
+                className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                data-ai-hint="photo gallery"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
+                  <h3 className="font-headline text-2xl">{project.title}</h3>
+                  <p className="text-sm uppercase tracking-wider opacity-80">{project.category}</p>
+                </div>
+                <div className="absolute top-4 right-4 w-10 h-10 bg-primary/80 rounded-full flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-300">
+                  <Plus className="w-6 h-6 text-primary-foreground" />
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </ScrollReveal>
+    </section>
+  );
+}
