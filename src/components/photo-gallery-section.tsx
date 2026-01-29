@@ -13,8 +13,8 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
     <section className="py-24 sm:py-32 bg-background">
       <ScrollReveal className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground">Featured Work</h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">A curated selection of projects that define my creative journey and technical expertise.</p>
+          <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground">Trabajos Destacados</h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">Una cuidada selección de proyectos que definen mi trayectoria creativa y mi experiencia técnica.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project, index) => (

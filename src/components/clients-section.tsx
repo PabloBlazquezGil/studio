@@ -9,7 +9,7 @@ export default function ClientsSection() {
   return (
     <section className="py-24 sm:py-32 bg-background">
       <ScrollReveal className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center font-headline text-3xl text-foreground mb-12">Trusted by Industry Leaders</h2>
+        <h2 className="text-center font-headline text-3xl text-foreground mb-12">Con la Confianza de Líderes de la Industria</h2>
         <div className="relative w-full overflow-hidden mask-image-[linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]">
           <div className="flex animate-marquee-slow">
             {allLogos.map((logo, index) => (

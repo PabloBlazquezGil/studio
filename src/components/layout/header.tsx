@@ -11,13 +11,13 @@ export default function Header() {
           <AnimatedLogo />
         </Link>
         <nav className="hidden md:flex items-center space-x-8">
-          <Link href="#gallery" className="hover:text-primary transition-colors">Work</Link>
-          <Link href="#about" className="hover:text-primary transition-colors">About</Link>
-          <Link href="#contact" className="hover:text-primary transition-colors">Contact</Link>
+          <Link href="#gallery" className="hover:text-primary transition-colors">Trabajos</Link>
+          <Link href="#about" className="hover:text-primary transition-colors">Sobre mí</Link>
+          <Link href="#contact" className="hover:text-primary transition-colors">Contacto</Link>
         </nav>
         <Button variant="ghost" size="icon" className="md:hidden">
           <Menu />
-          <span className="sr-only">Open menu</span>
+          <span className="sr-only">Abrir menú</span>
         </Button>
       </div>
     </header>

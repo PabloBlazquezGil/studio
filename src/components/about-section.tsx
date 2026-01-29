@@ -33,16 +33,16 @@ export default function AboutSection() {
           </div>
           <div className="lg:col-span-3">
             <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground">
-              A Storyteller Behind The Lens
+              Un Narrador Detrás del Lente
             </h2>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              My name is Pablo Blázquez Gil. With a passion for visual narrative, I've spent over a decade honing my craft, transforming fleeting moments into timeless stories. My work is a blend of cinematic artistry and authentic emotion, seeking beauty in both the grand and the subtle.
+              Mi nombre es Pablo Blázquez Gil. Con una pasión por la narrativa visual, he pasado más de una década perfeccionando mi arte, transformando momentos fugaces en historias atemporales. Mi trabajo es una mezcla de arte cinematográfico y emoción auténtica, buscando la belleza tanto en lo grandioso como en lo sutil.
             </p>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              From commercial campaigns to personal projects, I approach every frame with intention and a desire to connect with the viewer on a deeper level. Let's create something unforgettable together.
+              Desde campañas comerciales hasta proyectos personales, abordo cada fotograma con intención y el deseo de conectar con el espectador a un nivel más profundo. Creemos algo inolvidable juntos.
             </p>
             <Button asChild size="lg" className="mt-8">
-              <Link href="#contact" id="contact">Get In Touch</Link>
+              <Link href="#contact" id="contact">Ponte en Contacto</Link>
             </Button>
           </div>
         </div>

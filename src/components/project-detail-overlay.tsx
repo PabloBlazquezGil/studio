@@ -61,11 +61,11 @@ export default function ProjectDetailOverlay({ project, onClose }: ProjectDetail
             <p className="text-lg leading-relaxed">{project.description}</p>
             <div className="mt-8 space-y-4 text-sm">
               <div className="flex justify-between">
-                <span className="font-bold text-muted-foreground">Client:</span>
+                <span className="font-bold text-muted-foreground">Cliente:</span>
                 <span className="text-right">{project.client}</span>
               </div>
               <div className="flex justify-between">
-                <span className="font-bold text-muted-foreground">Year:</span>
+                <span className="font-bold text-muted-foreground">Año:</span>
                 <span className="text-right">{project.year}</span>
               </div>
             </div>

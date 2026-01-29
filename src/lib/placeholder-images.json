@@ -2,97 +2,97 @@
   "placeholderImages": [
     {
       "id": "hero-video",
-      "description": "Abstract moving particles",
+      "description": "Partículas abstractas en movimiento",
       "imageUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "imageHint": "abstract particles"
     },
     {
       "id": "gallery-1",
-      "description": "Mountain landscape",
+      "description": "Paisaje de montaña",
       "imageUrl": "https://images.unsplash.com/photo-1612539473441-dfc1cefd5e1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bW91bnRhaW4lMjBsYW5kc2NhcGV8ZW58MHx8fHwxNzY5NjY2ODA0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "mountain landscape"
     },
     {
       "id": "gallery-2",
-      "description": "City street at night",
+      "description": "Calle de ciudad de noche",
       "imageUrl": "https://images.unsplash.com/photo-1506606401543-2e73709cebb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaXR5JTIwbmlnaHR8ZW58MHx8fHwxNzY5NjkzODU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "city night"
     },
     {
       "id": "gallery-3",
-      "description": "Woman portrait",
+      "description": "Retrato de mujer",
       "imageUrl": "https://images.unsplash.com/photo-1557053910-d9eadeed1c58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2OTYzMjI1MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "woman portrait"
     },
     {
       "id": "gallery-4",
-      "description": "Abstract architecture",
+      "description": "Arquitectura abstracta",
       "imageUrl": "https://images.unsplash.com/photo-1617761141732-d481912af1a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhYnN0cmFjdCUyMGFyY2hpdGVjdHVyZXxlbnwwfHx8fDE3Njk2MzMzMDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "abstract architecture"
     },
     {
       "id": "gallery-5",
-      "description": "Forested path",
+      "description": "Camino en el bosque",
       "imageUrl": "https://images.unsplash.com/photo-1623967680551-3e4694e2c9ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmb3Jlc3QlMjBwYXRofGVufDB8fHx8MTc2OTU4NDYxMHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "forest path"
     },
     {
       "id": "gallery-6",
-      "description": "Ocean waves",
+      "description": "Olas del mar",
       "imageUrl": "https://images.unsplash.com/photo-1615472768508-9db82090f4c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxvY2VhbiUyMHdhdmVzfGVufDB8fHx8MTc2OTYyMTAzOXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "ocean waves"
     },
     {
       "id": "video-card-1",
-      "description": "Big Buck Bunny trailer",
+      "description": "Tráiler de Big Buck Bunny",
       "imageUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
       "imageHint": "animation character"
     },
     {
       "id": "video-card-2",
-      "description": "Elephants Dream trailer",
+      "description": "Tráiler de Elephants Dream",
       "imageUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
       "imageHint": "sci-fi character"
     },
     {
       "id": "about-author",
-      "description": "Portrait of a man",
+      "description": "Retrato de un hombre",
       "imageUrl": "https://images.unsplash.com/photo-1607031542107-f6f46b5d54e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3Njk2MjcxNjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "man portrait"
     },
     {
       "id": "client-logo-1",
-      "description": "Logo for client 1",
+      "description": "Logo para cliente 1",
       "imageUrl": "https://images.unsplash.com/photo-1761223956853-7c7c12ebff18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bG9nbyUyMGFic3RyYWN0fGVufDB8fHx8MTc2OTYzMDI4MHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "logo abstract"
     },
     {
       "id": "client-logo-2",
-      "description": "Logo for client 2",
+      "description": "Logo para cliente 2",
       "imageUrl": "https://images.unsplash.com/photo-1744390166851-82056c6552d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsb2dvJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzY5NjMwMjgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "logo abstract"
     },
     {
       "id": "client-logo-3",
-      "description": "Logo for client 3",
+      "description": "Logo para cliente 3",
       "imageUrl": "https://images.unsplash.com/photo-1744390166851-82056c6552d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsb2dvJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzY5NjMwMjgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "logo abstract"
     },
     {
       "id": "client-logo-4",
-      "description": "Logo for client 4",
+      "description": "Logo para cliente 4",
       "imageUrl": "https://images.unsplash.com/photo-1761223956853-7c7c12ebff18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bG9nbyUyMGFic3RyYWN0fGVufDB8fHx8MTc2OTYzMDI4MHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "logo abstract"
     },
     {
       "id": "client-logo-5",
-      "description": "Logo for client 5",
+      "description": "Logo para cliente 5",
       "imageUrl": "https://images.unsplash.com/photo-1747862712521-e4a37b12a039?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsb2dvJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzY5NjMwMjgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "logo abstract"
     },
     {
       "id": "client-logo-6",
-      "description": "Logo for client 6",
+      "description": "Logo para cliente 6",
       "imageUrl": "https://images.unsplash.com/photo-1748326650737-33500fdfda30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsb2dvJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzY5NjMwMjgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "logo abstract"
     }
