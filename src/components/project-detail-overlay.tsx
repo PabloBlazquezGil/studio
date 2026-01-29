@@ -12,8 +12,7 @@ interface ProjectNavigationLinkProps {
 
 function ProjectNavigationLink({ project, type, onClick }: ProjectNavigationLinkProps) {
   const isPrev = type === 'prev';
-  const isVideo = project.imageUrl.endsWith('.mp4');
-  const imageSrc = isVideo ? `https://picsum.photos/seed/${project.id}/800/600` : project.imageUrl;
+  const imageSrc = project.imageUrl;
 
   return (
     <button
@@ -24,10 +23,10 @@ function ProjectNavigationLink({ project, type, onClick }: ProjectNavigationLink
           src={imageSrc}
           alt={project.title}
           fill
-          className="object-cover"
+          className="object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-300"
           sizes="50vw"
       />
-      <div className="absolute inset-0 bg-background/70 group-hover:bg-background/40 transition-all duration-300" />
+      <div className="absolute inset-0 bg-background/60 group-hover:bg-background/40 transition-all duration-300" />
       <div className={`relative z-10 h-full flex flex-col justify-center p-8 text-foreground ${isPrev ? 'items-start' : 'items-end'}`}>
           <div className={`flex items-center gap-4 ${isPrev ? 'flex-row' : 'flex-row-reverse'}`}>
               <div className="flex-shrink-0">

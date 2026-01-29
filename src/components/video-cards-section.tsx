@@ -13,6 +13,7 @@ interface VideoCardProps {
 function VideoCard({ project, onProjectClick }: VideoCardProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isHovering, setIsHovering] = useState(false);
+    const videoUrl = project.media.find(m => m.type === 'video')?.url || '';
 
     useEffect(() => {
         const video = videoRef.current;
@@ -38,12 +39,12 @@ function VideoCard({ project, onProjectClick }: VideoCardProps) {
         >
             <video
                 ref={videoRef}
-                src={project.imageUrl}
+                src={videoUrl}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
                 loop
                 muted
                 playsInline
-                poster={`https://picsum.photos/seed/${project.id}/1280/720`}
+                poster={project.imageUrl}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
             

@@ -71,7 +71,7 @@ export const projects: Project[] = [
     description: 'Un conejo grande y adorable llamado Big Buck se despierta en su madriguera y se enfrenta a tres molestos roedores: Frank, Rinky y Gamera.',
     year: 2008,
     client: 'Blender Foundation',
-    imageUrl: getUrl('video-card-1'), 
+    imageUrl: `https://picsum.photos/seed/proj-7/1280/720`,
     media: [{ type: 'video', url: getUrl('video-card-1') }],
   },
   {
@@ -81,7 +81,7 @@ export const projects: Project[] = [
     description: 'Emo y Proog, dos personas con visiones muy diferentes del mundo, exploran un extraño y surrealista mundo mecánico que reacciona a sus pensamientos y emociones.',
     year: 2006,
     client: 'Blender Foundation',
-    imageUrl: getUrl('video-card-2'),
+    imageUrl: `https://picsum.photos/seed/proj-8/1280/720`,
     media: [{ type: 'video', url: getUrl('video-card-2') }],
   },
 ];
