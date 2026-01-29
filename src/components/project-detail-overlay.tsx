@@ -1,8 +1,8 @@
 import type { Project } from '@/lib/types';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { X } from 'lucide-react';
+import { X, User, Calendar } from 'lucide-react';
 import Image from 'next/image';
+import { Badge } from './ui/badge';
 
 interface ProjectDetailOverlayProps {
   project: Project | null;
@@ -12,67 +12,105 @@ interface ProjectDetailOverlayProps {
 export default function ProjectDetailOverlay({ project, onClose }: ProjectDetailOverlayProps) {
   if (!project) return null;
 
+  const mainMedia = project.media[0];
+
   return (
     <Dialog open={!!project} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-none w-full h-full p-0 bg-background/95 backdrop-blur-sm border-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0">
-        <DialogTitle className="sr-only">{project.title}</DialogTitle>
-        <DialogDescription className="sr-only">{project.description}</DialogDescription>
-        <button onClick={onClose} className="absolute top-4 right-4 z-50 text-foreground hover:text-primary transition-colors" aria-label="Cerrar">
-          <X className="w-8 h-8" />
+      <DialogContent className="max-w-none w-full h-full p-0 bg-background border-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0">
+        
+        <button 
+          onClick={onClose} 
+          className="fixed top-4 right-4 z-[60] text-white bg-black/50 rounded-full p-2 hover:bg-primary transition-colors" 
+          aria-label="Cerrar"
+        >
+          <X className="w-6 h-6" />
         </button>
-        <div className="grid grid-cols-1 lg:grid-cols-3 h-full overflow-y-auto lg:overflow-hidden">
-          <div className="lg:col-span-2 h-full min-h-[50vh] flex items-center justify-center p-4">
-            <Carousel className="w-full h-full">
-              <CarouselContent className="h-full">
-                {project.media.map((mediaItem, index) => (
-                  <CarouselItem key={index} className="h-full flex items-center justify-center">
-                    <div className="relative w-full h-full max-h-[90vh]">
-                      {mediaItem.type === 'image' ? (
-                        <Image
-                          src={mediaItem.url}
-                          alt={`${project.title} media ${index + 1}`}
-                          fill
-                          className="object-contain"
-                          sizes="100vw"
-                        />
-                      ) : (
-                        <video
-                          src={mediaItem.url}
-                          className="w-full h-full object-contain"
-                          controls
-                          autoPlay
-                          loop
-                        />
-                      )}
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              {project.media.length > 1 && (
-                <>
-                  <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10" />
-                  <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10" />
-                </>
+
+        <div className="h-full w-full overflow-y-auto scroll-smooth">
+          {/* Hero Section */}
+          <header className="relative h-[70vh] w-full">
+            <div className="absolute inset-0">
+              {mainMedia.type === 'image' ? (
+                <Image
+                  src={mainMedia.url}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  priority
+                />
+              ) : (
+                <video
+                  src={mainMedia.url}
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
               )}
-            </Carousel>
-          </div>
-          <div className="lg:col-span-1 p-8 sm:p-12 flex flex-col justify-center border-l border-border/20">
-            <h2 className="font-headline text-4xl sm:text-5xl text-primary">{project.title}</h2>
-            <p className="mt-2 text-lg font-semibold uppercase tracking-wider text-muted-foreground">{project.category}</p>
-            <div className="w-16 h-1 bg-primary my-8" />
-            <p className="text-lg leading-relaxed">{project.description}</p>
-            <div className="mt-8 space-y-4 text-sm">
-              <div className="flex justify-between">
-                <span className="font-bold text-muted-foreground">Cliente:</span>
-                <span className="text-right">{project.client}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-bold text-muted-foreground">Año:</span>
-                <span className="text-right">{project.year}</span>
-              </div>
             </div>
-          </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+            <div className="relative z-10 flex flex-col justify-end h-full text-white p-8 md:p-12">
+              <Badge variant="secondary" className="mb-4 w-fit">{project.category}</Badge>
+              <h1 className="font-headline text-4xl sm:text-5xl lg:text-7xl text-white">
+                 <DialogTitle>{project.title}</DialogTitle>
+              </h1>
+            </div>
+          </header>
+          
+          {/* Content Section */}
+          <main className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 border-b border-border pb-8">
+                <div className="flex items-center gap-3 text-muted-foreground">
+                    <User className="w-5 h-5 text-primary" />
+                    <div>
+                        <p className="font-bold text-foreground">Cliente</p>
+                        <p>{project.client}</p>
+                    </div>
+                </div>
+                <div className="flex items-center gap-3 text-muted-foreground">
+                    <Calendar className="w-5 h-5 text-primary" />
+                    <div>
+                        <p className="font-bold text-foreground">Año</p>
+                        <p>{project.year}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="text-lg leading-relaxed text-muted-foreground max-w-3xl">
+              <DialogDescription>{project.description}</DialogDescription>
+            </div>
+            
+            {project.media.length > 0 && (
+                <div className="mt-16">
+                    <h2 className="font-headline text-3xl sm:text-4xl text-foreground mb-8">Galería del Proyecto</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                        {project.media.map((mediaItem, index) => (
+                            <div key={index} className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-lg bg-muted">
+                                {mediaItem.type === 'image' ? (
+                                <Image
+                                    src={mediaItem.url}
+                                    alt={`${project.title} media ${index + 1}`}
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                />
+                                ) : (
+                                <video
+                                    src={mediaItem.url}
+                                    className="w-full h-full object-cover"
+                                    controls
+                                />
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+          </main>
         </div>
+
       </DialogContent>
     </Dialog>
   );
