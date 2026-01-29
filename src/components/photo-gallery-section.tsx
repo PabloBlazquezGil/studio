@@ -38,9 +38,6 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
                   <h3 className="font-headline text-2xl">{project.title}</h3>
                   <p className="text-sm uppercase tracking-wider opacity-80">{project.category}</p>
                 </div>
-                <div className="absolute top-4 right-4 w-10 h-10 bg-primary/80 rounded-full flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-300">
-                  <Plus className="w-6 h-6 text-primary-foreground" />
-                </div>
               </div>
             </ScrollReveal>
           ))}

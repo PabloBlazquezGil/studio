@@ -64,14 +64,6 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
     <Dialog open={!!project} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-none w-full h-full p-0 bg-background border-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0">
         
-        <button 
-          onClick={onClose} 
-          className="fixed top-4 right-4 z-[60] text-white bg-black/50 rounded-full p-2 hover:bg-primary transition-colors" 
-          aria-label="Cerrar"
-        >
-          <X className="w-6 h-6" />
-        </button>
-
         <div className="h-full w-full overflow-y-auto scroll-smooth">
           {/* Hero Section */}
           <header className="relative h-[70vh] w-full">
