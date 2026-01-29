@@ -24,10 +24,10 @@ function ProjectNavigationLink({ project, type, onClick }: ProjectNavigationLink
           src={imageSrc}
           alt={project.title}
           fill
-          className="object-cover transition-all duration-500 ease-in-out opacity-25 group-hover:opacity-35 group-hover:scale-105"
+          className="object-cover"
           sizes="50vw"
       />
-      <div className="absolute inset-0 bg-background/60 group-hover:bg-background/75 transition-colors duration-300" />
+      <div className="absolute inset-0 bg-background/70 group-hover:bg-background/40 transition-all duration-300" />
       <div className={`relative z-10 h-full flex flex-col justify-center p-8 text-foreground ${isPrev ? 'items-start' : 'items-end'}`}>
           <div className={`flex items-center gap-4 ${isPrev ? 'flex-row' : 'flex-row-reverse'}`}>
               <div className="flex-shrink-0">
