@@ -12,13 +12,16 @@ interface ProjectNavigationLinkProps {
 
 function ProjectNavigationLink({ project, type, onClick }: ProjectNavigationLinkProps) {
   const isPrev = type === 'prev';
+  const isVideo = project.imageUrl.endsWith('.mp4');
+  const imageSrc = isVideo ? `https://picsum.photos/seed/${project.id}/800/600` : project.imageUrl;
+
   return (
     <button
         onClick={onClick}
         className={`relative h-56 sm:h-64 group cursor-pointer text-left w-full ${isPrev ? 'sm:border-r' : ''} border-border/20`}
     >
       <Image
-          src={project.imageUrl}
+          src={imageSrc}
           alt={project.title}
           fill
           className="object-cover transition-all duration-500 ease-in-out opacity-10 group-hover:opacity-20 group-hover:scale-105"
