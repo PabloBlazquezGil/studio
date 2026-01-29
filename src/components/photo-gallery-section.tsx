@@ -1,7 +1,6 @@
 import type { Project } from '@/lib/types';
 import Image from 'next/image';
 import ScrollReveal from './scroll-reveal';
-import { Plus } from 'lucide-react';
 
 interface PhotoGallerySectionProps {
   projects: Project[];
@@ -16,7 +15,7 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
           <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground">Trabajos Destacados</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">Una cuidada selección de proyectos que definen mi trayectoria creativa y mi experiencia técnica.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project, index) => (
             <ScrollReveal 
               key={project.id} 
@@ -29,7 +28,7 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
                 alt={project.title}
                 fill
                 className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 data-ai-hint="photo gallery"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />

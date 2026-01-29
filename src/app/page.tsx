@@ -2,13 +2,11 @@
 
 import { useState } from 'react';
 import type { Project } from '@/lib/types';
-import Header from '@/components/layout/header';
 import HeroSection from '@/components/hero-section';
 import PhotoGallerySection from '@/components/photo-gallery-section';
 import VideoCardsSection from '@/components/video-cards-section';
 import AboutSection from '@/components/about-section';
 import ClientsSection from '@/components/clients-section';
-import Footer from '@/components/layout/footer';
 import ProjectDetailOverlay from '@/components/project-detail-overlay';
 import { projects as mockProjects } from '@/lib/data';
 
@@ -24,8 +22,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-start">
-      <Header />
+    <>
       <HeroSection />
       
       <div id="gallery">
@@ -40,14 +37,12 @@ export default function Home() {
 
       <ClientsSection />
       
-      <Footer />
-
       <ProjectDetailOverlay
         project={selectedProject}
         onClose={handleCloseOverlay}
         allProjects={mockProjects}
         onProjectChange={handleProjectClick}
       />
-    </div>
+    </>
   );
 }

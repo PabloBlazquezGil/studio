@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 import { cn } from '@/lib/utils';
+import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
 
 export const metadata: Metadata = {
   title: 'Pablo Blázquez Gil',
@@ -24,7 +26,9 @@ export default function RootLayout({
         'font-body antialiased film-grain',
         'selection:bg-primary selection:text-primary-foreground'
       )}>
+        <Header />
         <main>{children}</main>
+        <Footer />
         <Toaster />
       </body>
     </html>
