@@ -1,5 +1,5 @@
 import type { Project } from '@/lib/types';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { X } from 'lucide-react';
 import Image from 'next/image';
@@ -15,7 +15,9 @@ export default function ProjectDetailOverlay({ project, onClose }: ProjectDetail
   return (
     <Dialog open={!!project} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-none w-full h-full p-0 bg-background/95 backdrop-blur-sm border-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0">
-        <button onClick={onClose} className="absolute top-4 right-4 z-50 text-foreground hover:text-primary transition-colors">
+        <DialogTitle className="sr-only">{project.title}</DialogTitle>
+        <DialogDescription className="sr-only">{project.description}</DialogDescription>
+        <button onClick={onClose} className="absolute top-4 right-4 z-50 text-foreground hover:text-primary transition-colors" aria-label="Cerrar">
           <X className="w-8 h-8" />
         </button>
         <div className="grid grid-cols-1 lg:grid-cols-3 h-full overflow-y-auto lg:overflow-hidden">
