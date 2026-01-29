@@ -45,6 +45,8 @@ export default function Home() {
       <ProjectDetailOverlay
         project={selectedProject}
         onClose={handleCloseOverlay}
+        allProjects={mockProjects}
+        onProjectChange={handleProjectClick}
       />
     </div>
   );

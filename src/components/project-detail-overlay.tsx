@@ -1,18 +1,62 @@
 import type { Project } from '@/lib/types';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { X, User, Calendar } from 'lucide-react';
+import { X, User, Calendar, ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { Badge } from './ui/badge';
+
+interface ProjectNavigationLinkProps {
+  project: Project;
+  type: 'prev' | 'next';
+  onClick: () => void;
+}
+
+function ProjectNavigationLink({ project, type, onClick }: ProjectNavigationLinkProps) {
+  const isPrev = type === 'prev';
+  return (
+    <button
+        onClick={onClick}
+        className={`relative h-56 sm:h-64 group cursor-pointer text-left w-full ${isPrev ? 'sm:border-r' : ''} border-border/20`}
+    >
+      <Image
+          src={project.imageUrl}
+          alt={project.title}
+          fill
+          className="object-cover transition-all duration-500 ease-in-out opacity-10 group-hover:opacity-20 group-hover:scale-105"
+          sizes="50vw"
+      />
+      <div className={`absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background`} />
+      <div className={`relative z-10 h-full flex flex-col justify-center p-8 text-foreground ${isPrev ? 'items-start' : 'items-end'}`}>
+          <div className={`flex items-center gap-4 ${isPrev ? 'flex-row' : 'flex-row-reverse'}`}>
+              <div className="flex-shrink-0">
+                  {isPrev 
+                    ? <ArrowLeft className="w-8 h-8 text-primary transition-transform group-hover:-translate-x-2" /> 
+                    : <ArrowRight className="w-8 h-8 text-primary transition-transform group-hover:translate-x-2" />}
+              </div>
+              <div className={isPrev ? 'text-left' : 'text-right'}>
+                  <p className="text-sm uppercase tracking-wider text-muted-foreground">{isPrev ? 'Anterior' : 'Siguiente'}</p>
+                  <h3 className="font-headline text-2xl mt-1">{project.title}</h3>
+              </div>
+          </div>
+      </div>
+    </button>
+  );
+}
 
 interface ProjectDetailOverlayProps {
   project: Project | null;
   onClose: () => void;
+  allProjects: Project[];
+  onProjectChange: (project: Project) => void;
 }
 
-export default function ProjectDetailOverlay({ project, onClose }: ProjectDetailOverlayProps) {
+export default function ProjectDetailOverlay({ project, onClose, allProjects, onProjectChange }: ProjectDetailOverlayProps) {
   if (!project) return null;
 
   const mainMedia = project.media[0];
+  
+  const currentIndex = allProjects.findIndex(p => p.id === project.id);
+  const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length];
+  const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
 
   return (
     <Dialog open={!!project} onOpenChange={(open) => !open && onClose()}>
@@ -109,6 +153,14 @@ export default function ProjectDetailOverlay({ project, onClose }: ProjectDetail
                 </div>
             )}
           </main>
+
+          {/* Navigation Section */}
+          <footer className="w-full border-t border-border/20 mt-16 sm:mt-24">
+            <div className="grid grid-cols-1 sm:grid-cols-2">
+              <ProjectNavigationLink project={prevProject} type="prev" onClick={() => onProjectChange(prevProject)} />
+              <ProjectNavigationLink project={nextProject} type="next" onClick={() => onProjectChange(nextProject)} />
+            </div>
+          </footer>
         </div>
 
       </DialogContent>
