@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
-import CustomCursor from '@/components/custom-cursor';
 import './globals.css';
 import { cn } from '@/lib/utils';
 
@@ -25,7 +24,6 @@ export default function RootLayout({
         'font-body antialiased film-grain',
         'selection:bg-primary selection:text-primary-foreground'
       )}>
-        <CustomCursor />
         <main>{children}</main>
         <Toaster />
       </body>
