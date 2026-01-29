@@ -53,9 +53,9 @@ export default function ProjectDetailOverlay({ project, onClose }: ProjectDetail
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
             <div className="relative z-10 flex flex-col justify-end h-full text-white p-8 md:p-12">
               <Badge variant="secondary" className="mb-4 w-fit">{project.category}</Badge>
-              <h1 className="font-headline text-4xl sm:text-5xl lg:text-7xl text-white">
-                 <DialogTitle>{project.title}</DialogTitle>
-              </h1>
+              <DialogTitle className="font-headline text-4xl sm:text-5xl lg:text-7xl text-white">
+                 {project.title}
+              </DialogTitle>
             </div>
           </header>
           
