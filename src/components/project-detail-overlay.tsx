@@ -100,6 +100,7 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
               <DialogTitle className="font-headline text-4xl sm:text-5xl lg:text-7xl text-white">
                  {project.title}
               </DialogTitle>
+              <DialogDescription className="sr-only">{project.description}</DialogDescription>
             </div>
           </header>
           
@@ -123,7 +124,7 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
             </div>
 
             <div className="text-lg leading-relaxed text-muted-foreground max-w-3xl">
-              <DialogDescription>{project.description}</DialogDescription>
+              <p>{project.description}</p>
             </div>
             
             {project.media.length > 0 && (

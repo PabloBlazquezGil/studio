@@ -18,6 +18,9 @@ export default function AboutSection() {
         </p>
       </div>
       <ScrollReveal className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground">Sobre Mí</h2>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
           <div className="lg:col-span-2">
             <ScrollReveal className="relative aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
@@ -32,9 +35,9 @@ export default function AboutSection() {
             </ScrollReveal>
           </div>
           <div className="lg:col-span-3">
-            <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground">
+            <h3 className="font-headline text-3xl sm:text-4xl text-foreground">
               Un Narrador Detrás del Lente
-            </h2>
+            </h3>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
               Mi nombre es Pablo Blázquez Gil. Con una pasión por la narrativa visual, he pasado más de una década perfeccionando mi arte, transformando momentos fugaces en historias atemporales. Mi trabajo es una mezcla de arte cinematográfico y emoción auténtica, buscando la belleza tanto en lo grandioso como en lo sutil.
             </p>
