@@ -30,16 +30,16 @@ export default function Header() {
         <Link href="/" className="text-xl font-bold tracking-tighter">
           <AnimatedLogo />
         </Link>
-        <nav className="hidden md:flex items-center space-x-8">
-          <Link href="/#gallery" className="hover:text-primary transition-colors">Trabajos</Link>
-          <Link href="/#about" className="hover:text-primary transition-colors">Sobre mí</Link>
-          <Link href="/#contact" className="hover:text-primary transition-colors">Contacto</Link>
-        </nav>
-        <div className='flex items-center gap-4'>
-            <Button variant="ghost" size="icon" className="md:hidden">
-            <Menu />
-            <span className="sr-only">Abrir menú</span>
-            </Button>
+        <div className="flex items-center gap-4">
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link href="/#gallery" className="hover:text-primary transition-colors">Trabajos</Link>
+            <Link href="/#about" className="hover:text-primary transition-colors">Sobre mí</Link>
+            <Link href="/#contact" className="hover:text-primary transition-colors">Contacto</Link>
+          </nav>
+          <Button variant="ghost" size="icon" className="md:hidden">
+          <Menu />
+          <span className="sr-only">Abrir menú</span>
+          </Button>
         </div>
       </div>
     </header>
