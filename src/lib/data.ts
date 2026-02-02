@@ -20,15 +20,6 @@ const videoUrls = [
     "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
 ];
 
-const clientLogoImages = [
-    'https://picsum.photos/seed/logo1/150/75',
-    'https://picsum.photos/seed/logo2/150/75',
-    'https://picsum.photos/seed/logo3/150/75',
-    'https://picsum.photos/seed/logo4/150/75',
-    'https://picsum.photos/seed/logo5/150/75',
-];
-
-
 export const projects: Project[] = [
   { id: '1', title: 'Montañas Serenas', category: 'Paisaje', year: 2023, client: 'Revista Aventura', imageUrl: photoProjectImages[0], description: 'Una exploración fotográfica de los picos más remotos.', media: [{ type: 'image', url: photoProjectImages[0] }] },
   { id: '2', title: 'Noches de Neón', category: 'Urbano', year: 2022, client: 'Galería Urbana', imageUrl: photoProjectImages[1], description: 'Capturando la vibrante energía de la ciudad después del anochecer.', media: [{ type: 'image', url: photoProjectImages[1] }] },
@@ -55,9 +46,8 @@ export const siteSettings: SiteSettings = {
 };
 
 export const clientLogos: ClientLogo[] = [
-    { id: '1', clientName: 'Empresa Creativa', logoUrl: clientLogoImages[0] },
-    { id: '2', clientName: 'Soluciones Innovadoras', logoUrl: clientLogoImages[1] },
-    { id: '3', clientName: 'Diseño Global', logoUrl: clientLogoImages[2] },
-    { id: '4', clientName: 'Estudio Futuro', logoUrl: clientLogoImages[3] },
-    { id: '5', clientName: 'Marca de Lujo', logoUrl: clientLogoImages[4] },
+    { id: '1', clientName: 'Cliente 1', logoUrl: 'https://thundershoot.com/wp-content/uploads/2025/02/0.png' },
+    { id: '2', clientName: 'Cliente 2', logoUrl: 'https://thundershoot.com/wp-content/uploads/2025/01/LOGO_PNG.png' },
+    { id: '3', clientName: 'Cliente 3', logoUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/images-2.png' },
+    { id: '4', clientName: 'Cliente 4', logoUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/EANA_logo-2.png' },
 ];
