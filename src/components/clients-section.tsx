@@ -11,7 +11,7 @@ export default function ClientsSection() {
     return null;
   }
   
-  const allLogos = [...clientLogos, ...clientLogos]; // Duplicate for infinite scroll effect
+  const allLogos = [...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos]; // Duplicate for infinite scroll effect
 
   return (
     <section className="py-24 sm:py-32 bg-background">
@@ -20,12 +20,12 @@ export default function ClientsSection() {
         <div className="relative w-full overflow-hidden mask-image-[linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
           <div className="flex animate-marquee-slow">
             {allLogos.map((logo, index) => (
-              <div key={`${logo.id}-${index}`} className="flex-shrink-0 mx-12 flex items-center justify-center h-24">
+              <div key={`${logo.id}-${index}`} className="flex-shrink-0 mx-10 flex items-center justify-center h-32">
                 <Image
                   src={logo.logoUrl}
                   alt={logo.clientName}
-                  width={160}
-                  height={80}
+                  width={200}
+                  height={100}
                   className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                 />
               </div>
