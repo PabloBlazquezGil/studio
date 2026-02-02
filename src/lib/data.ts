@@ -12,12 +12,14 @@ const photoProjectImages = [
 
 const videoProjectPosterImages = [
     'https://images.unsplash.com/photo-1518976029348-1031398939b7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
-    'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3'
+    'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+    'https://images.unsplash.com/photo-1614926120485-0c58971f11e8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3'
 ]
 
 const videoUrls = [
     "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+    "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    "https://thundershoot.com/wp-content/uploads/2024/11/Dia-de-la-Mujer-y-la-Nina-en-la-Ciencia-11_02_2024-Centro-de-Astrobiologia-CAB-CSIC-INTA.mp4"
 ];
 
 export const projects: Project[] = [
@@ -29,6 +31,7 @@ export const projects: Project[] = [
   { id: '6', title: 'Fuerza del Mar', category: 'Marítimo', year: 2023, client: 'Marca de Surf', imageUrl: photoProjectImages[5], description: 'El poder indomable de las olas del océano.', media: [{ type: 'image', url: photoProjectImages[5] }] },
   { id: '7', title: 'Big Buck Bunny', category: 'Animación', year: 2008, client: 'Blender Foundation', imageUrl: videoProjectPosterImages[0], description: 'Un cortometraje animado sobre un conejo gigante y sus amigos del bosque.', media: [{ type: 'video', url: videoUrls[0] }, {type: 'image', url: videoProjectPosterImages[0]}] },
   { id: '8', title: 'Elephants Dream', category: 'Ciencia Ficción', year: 2006, client: 'Blender Foundation', imageUrl: videoProjectPosterImages[1], description: 'Dos personajes exploran un mundo surrealista y cambiante.', media: [{ type: 'video', url: videoUrls[1] }, {type: 'image', url: videoProjectPosterImages[1]}] },
+  { id: '9', title: 'Día de la Mujer y la Niña en la Ciencia', category: 'Divulgación Científica', year: 2024, client: 'Centro de Astrobiología (CAB, CSIC-INTA)', imageUrl: videoProjectPosterImages[2], description: 'Un vídeo conmemorativo para el Centro de Astrobiología con motivo del Día Internacional de la Mujer y la Niña en la Ciencia, buscando inspirar a nuevas generaciones y visibilizar el papel de las mujeres en la investigación espacial.', media: [{ type: 'video', url: videoUrls[2] }, {type: 'image', url: videoProjectPosterImages[2]}] },
 ];
 
 export const author: Author = {
