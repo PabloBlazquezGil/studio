@@ -1,46 +1,10 @@
 'use client';
-import { useDoc, useFirestore, useMemoFirebase } from '@/firebase';
-import { doc } from 'firebase/firestore';
-import type { SiteSettings } from '@/lib/types';
+import { siteSettings } from '@/lib/data';
 import { ArrowDown } from 'lucide-react';
 import Link from 'next/link';
-import { Skeleton } from './ui/skeleton';
-
-function HeroSkeleton() {
-    return (
-        <section className="relative h-screen w-full overflow-hidden">
-            <Skeleton className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2" />
-            <div className="absolute inset-0 bg-background/70" />
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-foreground p-4">
-                <Skeleton className="h-20 w-3/4" />
-                <Skeleton className="h-8 w-1/2 mt-4" />
-            </div>
-        </section>
-    )
-}
 
 export default function HeroSection() {
-  const firestore = useFirestore();
-  const settingsDocRef = useMemoFirebase(() => {
-    if (!firestore) return null;
-    return doc(firestore, 'site_settings', 'main');
-  }, [firestore]);
-  const { data: settings, isLoading } = useDoc<SiteSettings>(settingsDocRef);
-
-  if (isLoading) {
-    return <HeroSkeleton />;
-  }
-
-  if (!settings) {
-    return (
-        <section className="relative h-screen w-full overflow-hidden bg-muted flex items-center justify-center">
-            <div className="text-center p-4">
-                 <p className='font-bold text-lg mb-2'>Vídeo de cabecera no encontrado.</p>
-                 <p className='text-muted-foreground'>Por favor, configúralo en la pestaña "Ajustes Generales" del panel de administración.</p>
-            </div>
-        </section>
-    );
-  }
+  const settings = siteSettings;
 
   return (
     <section className="relative h-screen w-full overflow-hidden">

@@ -1,4 +1,4 @@
-import type { Project } from './types';
+import type { Project, Author, SiteSettings } from './types';
 import { PlaceHolderImages } from './placeholder-images';
 
 const getUrl = (id: string) => PlaceHolderImages.find(p => p.id === id)?.imageUrl || '';
@@ -85,3 +85,17 @@ export const projects: Project[] = [
     media: [{ type: 'video', url: getUrl('video-card-2') }],
   },
 ];
+
+export const author: Author = {
+  id: 'main-author',
+  name: 'Pablo Blázquez Gil',
+  title: 'Un Narrador Detrás del Lente',
+  bio: `Mi nombre es Pablo Blázquez Gil. Con una pasión por la narrativa visual, he pasado más de una década perfeccionando mi arte, transformando momentos fugaces en historias atemporales. Mi trabajo es una mezcla de arte cinematográfico y emoción auténtica, buscando la belleza tanto en lo grandioso como en lo sutil.\n\nDesde campañas comerciales hasta proyectos personales, abordo cada fotograma con intención y el deseo de conectar con el espectador a un nivel más profundo. Creemos algo inolvidable juntos.`,
+  imageUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwb3J0cmFpdCUyMG1hbnxlbnwwfHx8fDE3Njk2NzE4OTd8MA&ixlib=rb-4.1.0&q=80&w=1080',
+};
+
+export const siteSettings: SiteSettings = {
+  id: 'main',
+  heroVideoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+  heroPosterUrl: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjaW5lbWF8ZW58MHx8fHwxNzY5NzU1MTYyfDA&ixlib=rb-4.1.0&q=80&w=1080'
+};
