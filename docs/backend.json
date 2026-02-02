@@ -1,0 +1,198 @@
+{
+  "entities": {
+    "Project": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Project",
+      "type": "object",
+      "description": "Represents a project showcased on the portfolio.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the project."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the project."
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the project (e.g., Web Design, Branding)."
+        },
+        "shortDescription": {
+          "type": "string",
+          "description": "A brief description of the project."
+        },
+        "longDescription": {
+          "type": "string",
+          "description": "A detailed description of the project."
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "description": "URL of the project's thumbnail image.",
+          "format": "uri"
+        },
+        "videoUrl": {
+          "type": "string",
+          "description": "URL of the project's video (if any).",
+          "format": "uri"
+        },
+        "imageUrls": {
+          "type": "array",
+          "description": "URLs of the project's images.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "client": {
+          "type": "string",
+          "description": "Name of the client the project was created for."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "category",
+        "shortDescription",
+        "longDescription",
+        "thumbnailUrl"
+      ]
+    },
+    "ClientLogo": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ClientLogo",
+      "type": "object",
+      "description": "Represents a client logo to be displayed in the carousel.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the client logo."
+        },
+        "logoUrl": {
+          "type": "string",
+          "description": "URL of the client logo image.",
+          "format": "uri"
+        },
+        "clientName": {
+          "type": "string",
+          "description": "Name of the client."
+        }
+      },
+      "required": [
+        "id",
+        "logoUrl",
+        "clientName"
+      ]
+    },
+    "Author": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Author",
+      "type": "object",
+      "description": "Represents the author of the portfolio.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the author."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the author."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the author (e.g., Web Developer, Designer)."
+        },
+        "bio": {
+          "type": "string",
+          "description": "Biography of the author."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the author's profile image.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "title",
+        "bio",
+        "imageUrl"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/projects/{projectId}",
+        "definition": {
+          "entityName": "Project",
+          "schema": {
+            "$ref": "#/backend/entities/Project"
+          },
+          "description": "Stores project data. All projects are publicly readable. Administrative write access is managed through the /roles_admin/{uid} collection.",
+          "params": [
+            {
+              "name": "projectId",
+              "description": "Unique identifier for the project."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/client_logos/{clientLogoId}",
+        "definition": {
+          "entityName": "ClientLogo",
+          "schema": {
+            "$ref": "#/backend/entities/ClientLogo"
+          },
+          "description": "Stores client logo data. All client logos are publicly readable. Administrative write access is managed through the /roles_admin/{uid} collection.",
+          "params": [
+            {
+              "name": "clientLogoId",
+              "description": "Unique identifier for the client logo."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/author/{authorId}",
+        "definition": {
+          "entityName": "Author",
+          "schema": {
+            "$ref": "#/backend/entities/Author"
+          },
+          "description": "Stores author data. All author data is publicly readable. Administrative write access is managed through the /roles_admin/{uid} collection.",
+          "params": [
+            {
+              "name": "authorId",
+              "description": "Unique identifier for the author."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/roles_admin/{uid}",
+        "definition": {
+          "entityName": "roles_admin",
+          "schema": {
+            "$ref": "#/backend/entities/roles_admin"
+          },
+          "description": "Collection to store UIDs of administrative users. Existence of a document indicates admin privileges. This facilitates secure write operations to other collections.",
+          "params": [
+            {
+              "name": "uid",
+              "description": "User ID of the administrative user."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to store portfolio-related data, including projects, client logos, and author information. The structure prioritizes clarity, security, and scalability, with specific emphasis on achieving Authorization Independence. Since the application does not specify user-specific data or collaborative features, the data structure primarily focuses on storing global, publicly accessible content. This simplifies security rules significantly, as authorization is not dependent on user roles or ownership.\n\nAuthorization Independence: This is achieved by ensuring that all data is publicly readable, thereby removing the need for complex authorization logic based on user identity or roles. Since there is no write access for unauthenticated users, only administrative access needs to be considered.\n\nQAPs: Secure list operations are inherently supported due to the public readability of the data. Administrative access is secured via a separate role-based access collection (roles_admin), leveraging the 'existence over content' principle. This allows secure management of content by authorized administrators."
+  }
+}
