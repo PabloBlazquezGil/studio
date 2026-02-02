@@ -4,13 +4,11 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AnimatedLogo from '@/components/animated-logo';
 import { Button } from '@/components/ui/button';
-import { Menu, User as UserIcon } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useUser } from '@/firebase';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const { user } = useUser();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,11 +34,6 @@ export default function Header() {
           <Link href="/#gallery" className="hover:text-primary transition-colors">Trabajos</Link>
           <Link href="/#about" className="hover:text-primary transition-colors">Sobre mí</Link>
           <Link href="/#contact" className="hover:text-primary transition-colors">Contacto</Link>
-          {user && (
-            <Link href="/admin" className="hover:text-primary transition-colors">
-              <UserIcon />
-            </Link>
-          )}
         </nav>
         <Button variant="ghost" size="icon" className="md:hidden">
           <Menu />
