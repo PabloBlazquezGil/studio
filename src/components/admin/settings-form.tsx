@@ -52,6 +52,7 @@ export default function SettingsForm() {
   const handleFileUpload = async (file: File, fieldName: 'heroVideoUrl' | 'heroPosterUrl') => {
     if (!file || !storage) return;
     
+    setUploadProgress(prev => ({ ...prev, [fieldName]: 0 }));
     const storageRef = ref(storage, `settings/${fieldName}_${Date.now()}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 

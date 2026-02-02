@@ -22,3 +22,9 @@ export type SiteSettings = {
     heroVideoUrl: string;
     heroPosterUrl: string;
 };
+
+export type ClientLogo = {
+    id: string;
+    logoUrl: string;
+    clientName: string;
+};

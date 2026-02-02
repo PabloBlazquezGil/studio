@@ -78,6 +78,7 @@ export default function AuthorForm({ author }: AuthorFormProps) {
   const onSubmit = async (data: AuthorFormValues) => {
     if (!firestore) return;
     setIsLoading(true);
+    setUploadProgress(0);
 
     try {
       let imageUrl = data.imageUrl;

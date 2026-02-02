@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AnimatedLogo from '@/components/animated-logo';
 import { Button } from '@/components/ui/button';
-import { Menu } from 'lucide-react';
+import { Menu, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useUser } from '@/firebase';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const { user } = useUser();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,10 +37,12 @@ export default function Header() {
           <Link href="/#about" className="hover:text-primary transition-colors">Sobre mí</Link>
           <Link href="/#contact" className="hover:text-primary transition-colors">Contacto</Link>
         </nav>
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu />
-          <span className="sr-only">Abrir menú</span>
-        </Button>
+        <div className='flex items-center gap-4'>
+            <Button variant="ghost" size="icon" className="md:hidden">
+            <Menu />
+            <span className="sr-only">Abrir menú</span>
+            </Button>
+        </div>
       </div>
     </header>
   );

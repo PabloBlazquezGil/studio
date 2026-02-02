@@ -64,7 +64,7 @@ export default function ProjectForm({ project, onFinished }: ProjectFormProps) {
   });
 
   const handleFileUpload = async (file: File, fieldName: string, index?: number) => {
-    if (!file) return;
+    if (!file || !storage) return;
     const uniqueId = fieldName + (index !== undefined ? `-${index}` : '');
     
     const storageRef = ref(storage, `projects/${Date.now()}_${file.name}`);
@@ -98,6 +98,7 @@ export default function ProjectForm({ project, onFinished }: ProjectFormProps) {
   };
 
   const onSubmit = async (data: ProjectFormValues) => {
+    if (!firestore) return;
     setIsLoading(true);
 
     try {
@@ -168,14 +169,14 @@ export default function ProjectForm({ project, onFinished }: ProjectFormProps) {
         </div>
 
       <div className="space-y-2">
-        <Label htmlFor="imageUrl">Imagen Principal</Label>
+        <Label htmlFor="imageUrl">Imagen Principal (para la galería)</Label>
         <Input id="imageUrl" type="file" {...register('imageUrl')} />
         {uploadProgress['imageUrl'] > 0 && uploadProgress['imageUrl'] < 100 && <Progress value={uploadProgress['imageUrl']} className="w-full mt-2" />}
         {typeof project?.imageUrl === 'string' && project.imageUrl && <img src={project.imageUrl} alt="preview" className="mt-2 h-24 w-auto rounded-md" />}
       </div>
 
       <div className="space-y-4">
-          <Label>Galería de Medios</Label>
+          <Label>Galería de Medios (para la vista de detalle)</Label>
           {fields.map((field, index) => (
               <div key={field.id} className="flex items-end gap-4 p-4 border rounded-md">
                   <div className='flex-grow space-y-2'>
