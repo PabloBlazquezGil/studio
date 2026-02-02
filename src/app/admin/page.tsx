@@ -2,8 +2,8 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth, useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
-import { collection } from 'firebase/firestore';
+import { useAuth, useUser, useCollection, useFirestore, useMemoFirebase, useDoc } from '@/firebase';
+import { collection, doc } from 'firebase/firestore';
 import type { Project, Author } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { signOut } from 'firebase/auth';
@@ -19,16 +19,22 @@ export default function AdminPage() {
   const router = useRouter();
   const firestore = useFirestore();
   
+  const adminRoleDocRef = useMemoFirebase(() => {
+    if (!firestore || !user) return null;
+    return doc(firestore, 'roles_admin', user.uid);
+  }, [firestore, user]);
+  const { data: adminRole, isLoading: isAdminLoading } = useDoc(adminRoleDocRef);
+
   const projectsQuery = useMemoFirebase(() => {
-    if (!firestore) return null;
+    if (!firestore || !adminRole) return null; // Fetch only if admin
     return collection(firestore, 'projects');
-  }, [firestore]);
+  }, [firestore, adminRole]);
   const { data: projects, isLoading: projectsLoading } = useCollection<Project>(projectsQuery);
 
   const authorQuery = useMemoFirebase(() => {
-      if (!firestore) return null;
+      if (!firestore || !adminRole) return null; // Fetch only if admin
       return collection(firestore, 'author');
-  }, [firestore]);
+  }, [firestore, adminRole]);
   const { data: authors, isLoading: authorLoading } = useCollection<Author>(authorQuery);
   const author = authors?.[0];
 
@@ -43,13 +49,32 @@ export default function AdminPage() {
     router.push('/login');
   };
 
-  if (isUserLoading || !user) {
+  if (isUserLoading || isAdminLoading) {
     return (
       <div className="flex h-screen items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin" />
       </div>
     );
   }
+  
+  if (!user) {
+    // This is handled by the useEffect redirect, but it's a good safeguard.
+    return null;
+  }
+
+  if (!adminRole) {
+    return (
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 text-center">
+            <h1 className="font-headline text-4xl">Acceso Denegado</h1>
+            <p className="mt-4 text-lg text-muted-foreground">No tienes permisos de administrador.</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+                Por favor, sigue las instrucciones para configurar tu rol de administrador en la consola de Firebase.
+            </p>
+            <Button onClick={handleLogout} variant="outline" className="mt-8">Cerrar Sesión</Button>
+        </div>
+    );
+  }
+
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
