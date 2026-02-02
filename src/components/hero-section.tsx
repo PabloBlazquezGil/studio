@@ -1,39 +1,18 @@
 'use client';
 import { ArrowDown } from 'lucide-react';
 import Link from 'next/link';
-import { useDoc, useFirestore, useMemoFirebase } from '@/firebase';
-import type { SiteSettings } from '@/lib/types';
-import { doc } from 'firebase/firestore';
-import { Skeleton } from './ui/skeleton';
+import { siteSettings } from '@/lib/data';
 
 export default function HeroSection() {
-  const firestore = useFirestore();
-  const settingsDocRef = useMemoFirebase(() => {
-    if (!firestore) return null;
-    return doc(firestore, 'site_settings', 'main');
-  }, [firestore]);
-  const { data: settings, isLoading } = useDoc<SiteSettings>(settingsDocRef);
 
-  if (isLoading) {
-      return (
-          <section className="relative h-screen w-full overflow-hidden">
-              <Skeleton className="absolute inset-0" />
-              <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-foreground p-4">
-                  <Skeleton className="h-20 w-3/4" />
-                  <Skeleton className="h-6 w-1/2 mt-4" />
-              </div>
-          </section>
-      )
-  }
-
-  if (!settings) {
+  if (!siteSettings) {
     // This could be a skeleton or a fallback static hero
     return (
       <section className="relative h-screen w-full overflow-hidden bg-secondary">
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-foreground p-4">
           <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl">Contenido no disponible</h1>
           <p className="mt-4 text-lg md:text-xl max-w-2xl">
-            La configuración del sitio aún no ha sido establecida. Por favor, configura el vídeo de cabecera en el panel de administración.
+            La configuración del sitio aún no ha sido establecida.
           </p>
         </div>
       </section>
@@ -43,14 +22,14 @@ export default function HeroSection() {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       <video
-        key={settings.heroVideoUrl}
-        src={settings.heroVideoUrl}
+        key={siteSettings.heroVideoUrl}
+        src={siteSettings.heroVideoUrl}
         className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2"
         autoPlay
         loop
         muted
         playsInline
-        poster={settings.heroPosterUrl}
+        poster={siteSettings.heroPosterUrl}
       />
       <div className="absolute inset-0 bg-background/70" />
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-foreground p-4">

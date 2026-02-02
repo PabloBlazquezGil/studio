@@ -1,14 +1,63 @@
-// This file is no longer the primary source of truth for content.
-// The website now fetches data dynamically from Firebase Firestore.
-// You can manage your content from the /admin panel after logging in.
+import type { Project, Author, SiteSettings, ClientLogo } from './types';
 
-// The data below is kept as a reference or for fallback purposes if needed.
+// URLs de imágenes de marcador de posición. Reemplázalas con las URLs de tu propio hosting.
+const photoProjectImages = [
+  'https://images.unsplash.com/photo-1612539473441-dfc1cefd5e1e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3',
+  'https://images.unsplash.com/photo-1506606401543-2e73709cebb4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+  'https://images.unsplash.com/photo-1557053910-d9eadeed1c58?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3',
+  'https://images.unsplash.com/photo-1617761141732-d481912af1a9?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3',
+  'https://images.unsplash.com/photo-1623967680551-3e4694e2c9ad?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3',
+  'https://images.unsplash.com/photo-1615472768508-9db82090f4c6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3'
+];
 
-import type { Project, Author, SiteSettings } from './types';
-import { PlaceHolderImages } from './placeholder-images';
+const videoProjectPosterImages = [
+    'https://images.unsplash.com/photo-1518976029348-1031398939b7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+    'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3'
+]
 
-const getUrl = (id: string) => PlaceHolderImages.find(p => p.id === id)?.imageUrl || '';
+const videoUrls = [
+    "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+];
 
-export const projects: Project[] = [];
-export const author: Author | null = null;
-export const siteSettings: SiteSettings | null = null;
+const clientLogoImages = [
+    'https://picsum.photos/seed/logo1/150/75',
+    'https://picsum.photos/seed/logo2/150/75',
+    'https://picsum.photos/seed/logo3/150/75',
+    'https://picsum.photos/seed/logo4/150/75',
+    'https://picsum.photos/seed/logo5/150/75',
+];
+
+
+export const projects: Project[] = [
+  { id: '1', title: 'Montañas Serenas', category: 'Paisaje', year: 2023, client: 'Revista Aventura', imageUrl: photoProjectImages[0], description: 'Una exploración fotográfica de los picos más remotos.', media: [{ type: 'image', url: photoProjectImages[0] }] },
+  { id: '2', title: 'Noches de Neón', category: 'Urbano', year: 2022, client: 'Galería Urbana', imageUrl: photoProjectImages[1], description: 'Capturando la vibrante energía de la ciudad después del anochecer.', media: [{ type: 'image', url: photoProjectImages[1] }] },
+  { id: '3', title: 'Retrato Íntimo', category: 'Retrato', year: 2024, client: 'Cliente Privado', imageUrl: photoProjectImages[2], description: 'Un estudio sobre la expresión y la emoción humana.', media: [{ type: 'image', url: photoProjectImages[2] }] },
+  { id: '4', title: 'Formas y Sombras', category: 'Arquitectura', year: 2023, client: 'Estudio de Arquitectos', imageUrl: photoProjectImages[3], description: 'Juego de luces y sombras en la arquitectura moderna.', media: [{ type: 'image', url: photoProjectImages[3] }] },
+  { id: '5', title: 'El Sendero Verde', category: 'Naturaleza', year: 2022, client: 'Fundación Ecológica', imageUrl: photoProjectImages[4], description: 'Un viaje a través de los bosques más frondosos.', media: [{ type: 'image', url: photoProjectImages[4] }] },
+  { id: '6', title: 'Fuerza del Mar', category: 'Marítimo', year: 2023, client: 'Marca de Surf', imageUrl: photoProjectImages[5], description: 'El poder indomable de las olas del océano.', media: [{ type: 'image', url: photoProjectImages[5] }] },
+  { id: '7', title: 'Big Buck Bunny', category: 'Animación', year: 2008, client: 'Blender Foundation', imageUrl: videoProjectPosterImages[0], description: 'Un cortometraje animado sobre un conejo gigante y sus amigos del bosque.', media: [{ type: 'video', url: videoUrls[0] }, {type: 'image', url: videoProjectPosterImages[0]}] },
+  { id: '8', title: 'Elephants Dream', category: 'Ciencia Ficción', year: 2006, client: 'Blender Foundation', imageUrl: videoProjectPosterImages[1], description: 'Dos personajes exploran un mundo surrealista y cambiante.', media: [{ type: 'video', url: videoUrls[1] }, {type: 'image', url: videoProjectPosterImages[1]}] },
+];
+
+export const author: Author = {
+  id: 'main-author',
+  name: 'Pablo Blázquez Gil',
+  title: 'Un Narrador Detrás del Lente',
+  bio: `Mi nombre es Pablo Blázquez Gil. Con una pasión por la narrativa visual, he pasado más de una década perfeccionando mi arte, transformando momentos fugaces en historias atemporales. Mi trabajo es una mezcla de arte cinematográfico y emoción auténtica, buscando la belleza tanto en lo grandioso como en lo sutil.\n\nDesde campañas comerciales hasta proyectos personales, abordo cada fotograma con intención y el deseo de conectar con el espectador a un nivel más profundo. Creemos algo inolvidable juntos.`,
+  imageUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3',
+};
+
+export const siteSettings: SiteSettings = {
+    id: 'main',
+    heroVideoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+    heroPosterUrl: 'https://images.unsplash.com/photo-1483921106514-950b736868a1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3'
+};
+
+export const clientLogos: ClientLogo[] = [
+    { id: '1', clientName: 'Empresa Creativa', logoUrl: clientLogoImages[0] },
+    { id: '2', clientName: 'Soluciones Innovadoras', logoUrl: clientLogoImages[1] },
+    { id: '3', clientName: 'Diseño Global', logoUrl: clientLogoImages[2] },
+    { id: '4', clientName: 'Estudio Futuro', logoUrl: clientLogoImages[3] },
+    { id: '5', clientName: 'Marca de Lujo', logoUrl: clientLogoImages[4] },
+];

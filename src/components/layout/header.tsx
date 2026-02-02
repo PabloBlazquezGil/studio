@@ -4,13 +4,11 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import AnimatedLogo from '@/components/animated-logo';
 import { Button } from '@/components/ui/button';
-import { Menu, User } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useUser } from '@/firebase';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const { user } = useUser();
 
   useEffect(() => {
     const handleScroll = () => {
