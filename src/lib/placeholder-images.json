@@ -1,12 +1,6 @@
 {
   "placeholderImages": [
     {
-      "id": "hero-video",
-      "description": "Partículas abstractas en movimiento",
-      "imageUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-      "imageHint": "abstract particles"
-    },
-    {
       "id": "gallery-1",
       "description": "Paisaje de montaña",
       "imageUrl": "https://images.unsplash.com/photo-1612539473441-dfc1cefd5e1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bW91bnRhaW4lMjBsYW5kc2NhcGV8ZW58MHx8fHwxNzY5NjY2ODA0fDA&ixlib=rb-4.1.0&q=80&w=1080",
@@ -53,12 +47,6 @@
       "description": "Tráiler de Elephants Dream",
       "imageUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
       "imageHint": "sci-fi character"
-    },
-    {
-      "id": "about-author",
-      "description": "Retrato de Pablo Blázquez Gil",
-      "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3Njk5NzExNzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "man portrait"
     },
     {
       "id": "client-logo-1",

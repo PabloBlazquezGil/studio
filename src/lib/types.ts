@@ -8,3 +8,17 @@ export type Project = {
   imageUrl: string;
   media: { type: 'image' | 'video'; url: string }[];
 };
+
+export type Author = {
+  id: string;
+  name: string;
+  title: string;
+  bio: string;
+  imageUrl: string;
+};
+
+export type SiteSettings = {
+    id: string;
+    heroVideoUrl: string;
+    heroPosterUrl: string;
+};

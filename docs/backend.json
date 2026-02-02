@@ -51,6 +51,17 @@
       },
       "required": ["id", "name", "title", "bio", "imageUrl"]
     },
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "type": "object",
+      "description": "Global settings for the website.",
+      "properties": {
+        "id": { "type": "string" },
+        "heroVideoUrl": { "type": "string", "format": "uri" },
+        "heroPosterUrl": { "type": "string", "format": "uri" }
+      },
+      "required": ["id", "heroVideoUrl", "heroPosterUrl"]
+    },
     "roles_admin": {
         "title": "Admin Role",
         "type": "object",
@@ -79,6 +90,10 @@
     "/author/{authorId}": {
         "schema": { "$ref": "#/entities/Author" },
         "description": "Stores author data. All author data is publicly readable. Administrative write access is managed through the /roles_admin/{uid} collection."
+    },
+    "/site_settings/{settingsId}": {
+      "schema": { "$ref": "#/entities/SiteSettings" },
+      "description": "Stores global site settings. Publicly readable, admin write."
     },
     "/roles_admin/{uid}": {
         "schema": { "$ref": "#/entities/roles_admin" },

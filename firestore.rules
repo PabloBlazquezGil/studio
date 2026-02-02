@@ -101,6 +101,20 @@ service cloud.firestore {
       allow update: if isAdmin() && resource != null;
       allow delete: if isAdmin() && resource != null;
     }
+
+    /**
+     * @description Rules for 'site_settings'. Global settings are
+     *   publicly readable. Only administrators can modify them.
+     * @path /site_settings/{settingsId}
+     * @principle Implements a "Public Read, Admin Write" model for singleton global content.
+     */
+    match /site_settings/{settingsId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if isAdmin();
+      allow update: if isAdmin() && resource != null;
+      allow delete: if isAdmin() && resource != null;
+    }
     
     /**
      * @description Rules for the 'roles_admin' collection. This collection manages
