@@ -24,17 +24,15 @@ export const projects: Project[] = [
     ] 
   },
   { 
-    id: '2', 
-    title: 'Noches de Neón', 
-    category: 'Urbano', 
-    year: 2022, 
-    client: 'Galería Urbana', 
-    imageUrl: photoProjectImages[1], 
-    description: 'Capturando la vibrante energía de la ciudad después del anochecer.', 
+    id: '12', 
+    title: 'Sesión de Surf en Malpica', 
+    category: 'Fotografía Deportiva', 
+    year: 2024, 
+    client: 'Cliente Privado', 
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/02/Surf-07245.jpg', 
+    description: 'Capturando la energía y la pasión del surf en las olas de Malpica.',
     media: [
-      { type: 'image', url: photoProjectImages[1] },
-      { type: 'image', url: 'https://images.unsplash.com/photo-1535224206242-487f7084b6da?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3' },
-      { type: 'image', url: 'https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3' }
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/Surf-07245.jpg' }
     ] 
   },
   { 
