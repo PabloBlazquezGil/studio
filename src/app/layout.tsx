@@ -6,8 +6,23 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 
 export const metadata: Metadata = {
-  title: 'Pablo Blázquez Gil',
-  description: 'Portafolio de Pablo Blázquez Gil',
+  title: 'Pablo Blázquez Gil | Fotógrafo y Videógrafo',
+  description: 'Portafolio de Pablo Blázquez Gil. Fotógrafo y videógrafo especializado en narrativa visual, eventos y proyectos corporativos.',
+  openGraph: {
+    title: 'Pablo Blázquez Gil | Fotógrafo y Videógrafo',
+    description: 'Portafolio de Pablo Blázquez Gil. Fotógrafo y videógrafo especializado en narrativa visual, eventos y proyectos corporativos.',
+    siteName: 'Pablo Blázquez Gil',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1506606401543-2e73709cebb4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+        width: 1200,
+        height: 630,
+        alt: 'Una de las imágenes del portafolio de Pablo Blázquez Gil',
+      },
+    ],
+    locale: 'es_ES',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({

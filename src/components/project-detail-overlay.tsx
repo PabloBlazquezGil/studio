@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/compone
 import { User, Calendar, ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { Badge } from './ui/badge';
+import { Button } from './ui/button';
 
 interface ProjectNavigationLinkProps {
   project: Project;
@@ -65,14 +66,15 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
       <DialogContent showCloseButton={false} className="max-w-none w-full h-full p-0 bg-background border-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0">
         
         <div className="h-full w-full overflow-y-auto scroll-smooth">
-          <button 
+          <Button 
+            variant="ghost"
             onClick={onClose} 
-            className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20 flex items-center gap-2 text-white hover:text-primary transition-colors duration-300"
+            className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20 text-white hover:text-primary hover:bg-white/10"
             aria-label="Volver al portfolio"
           >
-            <ArrowLeft className="w-6 h-6" />
+            <ArrowLeft className="w-5 h-5 mr-2" />
             <span className="font-medium">Volver al portfolio</span>
-          </button>
+          </Button>
           {/* Hero Section */}
           <header className="relative h-[70vh] w-full">
             <div className="absolute inset-0">
@@ -97,7 +99,9 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                 />
               )}
             </div>
-            {mainMedia.type === 'image' && <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />}
+            
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
+
             <div className="relative z-10 flex flex-col justify-end h-full text-white p-8 md:p-12">
               <Badge variant="secondary" className="mb-4 w-fit">{project.category}</Badge>
               <DialogTitle className="font-headline text-4xl sm:text-5xl lg:text-7xl text-white">
