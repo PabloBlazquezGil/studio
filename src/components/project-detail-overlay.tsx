@@ -87,16 +87,17 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                 />
               ) : (
                 <video
-                  src={mainMedia.url.split('#')[0]}
+                  src={mainMedia.url}
                   className="w-full h-full object-cover bg-black"
-                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   poster={project.imageUrl}
                 />
               )}
             </div>
-            {mainMedia.type === 'image' && (
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
             <div className="relative z-10 flex flex-col justify-end h-full text-white p-8 md:p-12">
               <Badge variant="secondary" className="mb-4 w-fit">{project.category}</Badge>
               <DialogTitle className="font-headline text-4xl sm:text-5xl lg:text-7xl text-white">
@@ -131,7 +132,21 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
               <p>{project.description}</p>
             </div>
             
-            {project.media.length > 1 && (
+            {mainMedia.type === 'video' && (
+              <div className="mt-16">
+                  <h2 className="font-headline text-3xl sm:text-4xl text-foreground mb-8">Vídeo Completo</h2>
+                  <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg bg-muted">
+                      <video
+                          src={mainMedia.url.split('#')[0]}
+                          className="w-full h-full object-cover"
+                          controls
+                          poster={project.imageUrl}
+                      />
+                  </div>
+              </div>
+            )}
+            
+            {mainMedia.type === 'image' && project.media.length > 1 && (
                 <div className="mt-16">
                     <h2 className="font-headline text-3xl sm:text-4xl text-foreground mb-8">Galería del Proyecto</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">

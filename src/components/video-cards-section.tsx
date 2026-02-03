@@ -26,7 +26,6 @@ function VideoCard({ project, onProjectClick }: VideoCardProps) {
             });
         } else {
             video.pause();
-            video.load(); // Reset video to show poster
         }
     }, [isHovering]);
 
@@ -34,7 +33,7 @@ function VideoCard({ project, onProjectClick }: VideoCardProps) {
         <div
             onMouseEnter={() => {
                 const video = videoRef.current;
-                if (video && video.currentTime < 5) {
+                if (video) {
                     video.currentTime = 5;
                 }
                 setIsHovering(true);
@@ -50,7 +49,7 @@ function VideoCard({ project, onProjectClick }: VideoCardProps) {
                 loop
                 muted
                 playsInline
-                poster={project.imageUrl}
+                preload="metadata"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
             
