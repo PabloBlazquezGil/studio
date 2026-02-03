@@ -87,16 +87,16 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                 />
               ) : (
                 <video
-                  src={mainMedia.url}
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
+                  src={mainMedia.url.split('#')[0]}
+                  className="w-full h-full object-cover bg-black"
+                  controls
+                  poster={project.imageUrl}
                 />
               )}
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+            {mainMedia.type === 'image' && (
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+            )}
             <div className="relative z-10 flex flex-col justify-end h-full text-white p-8 md:p-12">
               <Badge variant="secondary" className="mb-4 w-fit">{project.category}</Badge>
               <DialogTitle className="font-headline text-4xl sm:text-5xl lg:text-7xl text-white">
