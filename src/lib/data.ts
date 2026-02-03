@@ -27,7 +27,7 @@ export const projects: Project[] = [
     id: '12', 
     title: 'Sesión de Surf en Malpica', 
     category: 'Fotografía Deportiva', 
-    year: 2024, 
+    year: 2026, 
     client: 'Cliente Privado', 
     imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px.avif', 
     description: 'Capturando la energía y la pasión del surf en las olas de Malpica.',
@@ -37,7 +37,7 @@ export const projects: Project[] = [
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07002_2048px.avif' },
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07096_2048px.avif' },
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07176_2048px.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px.avif' }
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px.jpg' }
     ] 
   },
   { 
