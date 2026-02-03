@@ -23,12 +23,90 @@ export const projects: Project[] = [
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2024/11/Cartel-A0-final-scaled.jpg.webp' }
     ] 
   },
-  { id: '1', title: 'Montañas Serenas', category: 'Paisaje', year: 2023, client: 'Revista Aventura', imageUrl: photoProjectImages[0], description: 'Una exploración fotográfica de los picos más remotos.', media: [{ type: 'image', url: photoProjectImages[0] }] },
-  { id: '2', title: 'Noches de Neón', category: 'Urbano', year: 2022, client: 'Galería Urbana', imageUrl: photoProjectImages[1], description: 'Capturando la vibrante energía de la ciudad después del anochecer.', media: [{ type: 'image', url: photoProjectImages[1] }] },
-  { id: '3', title: 'Retrato Íntimo', category: 'Retrato', year: 2024, client: 'Cliente Privado', imageUrl: photoProjectImages[2], description: 'Un estudio sobre la expresión y la emoción humana.', media: [{ type: 'image', url: photoProjectImages[2] }] },
-  { id: '4', title: 'Formas y Sombras', category: 'Arquitectura', year: 2023, client: 'Estudio de Arquitectos', imageUrl: photoProjectImages[3], description: 'Juego de luces y sombras en la arquitectura moderna.', media: [{ type: 'image', url: photoProjectImages[3] }] },
-  { id: '5', title: 'El Sendero Verde', category: 'Naturaleza', year: 2022, client: 'Fundación Ecológica', imageUrl: photoProjectImages[4], description: 'Un viaje a través de los bosques más frondosos.', media: [{ type: 'image', url: photoProjectImages[4] }] },
-  { id: '6', title: 'Fuerza del Mar', category: 'Marítimo', year: 2023, client: 'Marca de Surf', imageUrl: photoProjectImages[5], description: 'El poder indomable de las olas del océano.', media: [{ type: 'image', url: photoProjectImages[5] }] },
+  { 
+    id: '1', 
+    title: 'Montañas Serenas', 
+    category: 'Paisaje', 
+    year: 2023, 
+    client: 'Revista Aventura', 
+    imageUrl: photoProjectImages[0], 
+    description: 'Una exploración fotográfica de los picos más remotos.', 
+    media: [
+        { type: 'image', url: photoProjectImages[0] },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3' },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1483728642387-6c351b4d6788?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3' }
+    ] 
+  },
+  { 
+    id: '2', 
+    title: 'Noches de Neón', 
+    category: 'Urbano', 
+    year: 2022, 
+    client: 'Galería Urbana', 
+    imageUrl: photoProjectImages[1], 
+    description: 'Capturando la vibrante energía de la ciudad después del anochecer.', 
+    media: [
+      { type: 'image', url: photoProjectImages[1] },
+      { type: 'image', url: 'https://images.unsplash.com/photo-1535224206242-487f7084b6da?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3' },
+      { type: 'image', url: 'https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3' }
+    ] 
+  },
+  { 
+    id: '3', 
+    title: 'Retrato Íntimo', 
+    category: 'Retrato', 
+    year: 2024, 
+    client: 'Cliente Privado', 
+    imageUrl: photoProjectImages[2], 
+    description: 'Un estudio sobre la expresión y la emoción humana.', 
+    media: [
+      { type: 'image', url: photoProjectImages[2] },
+      { type: 'image', url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3' },
+      { type: 'image', url: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3' }
+    ] 
+  },
+  { 
+    id: '4', 
+    title: 'Formas y Sombras', 
+    category: 'Arquitectura', 
+    year: 2023, 
+    client: 'Estudio de Arquitectos', 
+    imageUrl: photoProjectImages[3], 
+    description: 'Juego de luces y sombras en la arquitectura moderna.', 
+    media: [
+      { type: 'image', url: photoProjectImages[3] },
+      { type: 'image', url: 'https://images.unsplash.com/photo-1511818963242-b3ce524b6164?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3' },
+      { type: 'image', url: 'https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3' }
+    ]
+  },
+  { 
+    id: '5', 
+    title: 'El Sendero Verde', 
+    category: 'Naturaleza', 
+    year: 2022, 
+    client: 'Fundación Ecológica', 
+    imageUrl: photoProjectImages[4], 
+    description: 'Un viaje a través de los bosques más frondosos.', 
+    media: [
+      { type: 'image', url: photoProjectImages[4] },
+      { type: 'image', url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3' },
+      { type: 'image', url: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3' }
+    ]
+  },
+  { 
+    id: '6', 
+    title: 'Fuerza del Mar', 
+    category: 'Marítimo', 
+    year: 2023, 
+    client: 'Marca de Surf', 
+    imageUrl: photoProjectImages[5], 
+    description: 'El poder indomable de las olas del océano.', 
+    media: [
+      { type: 'image', url: photoProjectImages[5] },
+      { type: 'image', url: 'https://images.unsplash.com/photo-1536733121544-7156f4cf4e72?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3' },
+      { type: 'image', url: 'https://images.unsplash.com/photo-1542281286-9e0e16bb7366?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3' }
+    ]
+  },
   { 
     id: '9', 
     title: 'PhDays', 
