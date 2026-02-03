@@ -4,6 +4,19 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import { Playfair_Display, Manrope } from 'next/font/google';
+
+const fontHeadline = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-headline',
+  weight: ['400', '700'],
+});
+
+const fontBody = Manrope({
+  subsets: ['latin'],
+  variable: '--font-body',
+  weight: ['300', '400', '700'],
+});
 
 export const metadata: Metadata = {
   title: 'Pablo Blázquez Gil | Fotógrafo y Videógrafo',
@@ -31,12 +44,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Manrope:wght@300;400;700&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="es" className={cn("dark", fontHeadline.variable, fontBody.variable)}>
+      <head />
       <body className={cn(
         'font-body antialiased film-grain',
         'selection:bg-primary selection:text-primary-foreground'

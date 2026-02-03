@@ -8,7 +8,11 @@ import PhotoGallerySection from '@/components/photo-gallery-section';
 import VideoCardsSection from '@/components/video-cards-section';
 import AboutSection from '@/components/about-section';
 import ClientsSection from '@/components/clients-section';
-import ProjectDetailOverlay from '@/components/project-detail-overlay';
+import dynamic from 'next/dynamic';
+
+const ProjectDetailOverlay = dynamic(() => import('@/components/project-detail-overlay'), {
+  ssr: false
+});
 
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -42,12 +46,14 @@ export default function Home() {
 
       <ClientsSection />
       
-      <ProjectDetailOverlay
-        project={selectedProject}
-        onClose={handleCloseOverlay}
-        allProjects={allProjects}
-        onProjectChange={handleProjectClick}
-      />
+      {selectedProject && (
+        <ProjectDetailOverlay
+          project={selectedProject}
+          onClose={handleCloseOverlay}
+          allProjects={allProjects}
+          onProjectChange={handleProjectClick}
+        />
+      )}
     </>
   );
 }
