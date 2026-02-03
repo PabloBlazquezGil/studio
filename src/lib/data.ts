@@ -81,20 +81,6 @@ export const projects: Project[] = [
     ]
   },
   { 
-    id: '6', 
-    title: 'Fuerza del Mar', 
-    category: 'Marítimo', 
-    year: 2023, 
-    client: 'Marca de Surf', 
-    imageUrl: photoProjectImages[5], 
-    description: 'El poder indomable de las olas del océano.', 
-    media: [
-      { type: 'image', url: photoProjectImages[5] },
-      { type: 'image', url: 'https://images.unsplash.com/photo-1536733121544-7156f4cf4e72?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3' },
-      { type: 'image', url: 'https://images.unsplash.com/photo-1542281286-9e0e16bb7366?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3' }
-    ]
-  },
-  { 
     id: '9', 
     title: 'PhDays', 
     category: 'Evento Científico', 
@@ -129,7 +115,7 @@ export const author: Author = {
 
 export const siteSettings: SiteSettings = {
     id: 'main',
-    heroVideoUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/Trailer-PhDays2023-Centro-de-Astrobiologia.mp4#t=5',
+    heroVideoUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/Dia-de-la-Mujer-y-la-Nina-en-la-Ciencia-11_02_2024-Centro-de-Astrobiologia-CAB-CSIC-INTA.mp4#t=5',
     heroPosterUrl: ''
 };
 
