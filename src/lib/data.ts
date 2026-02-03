@@ -20,7 +20,6 @@ export const projects: Project[] = [
     imageUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/Cartel-A0-final-scaled.jpg.webp', 
     description: 'Diseño del cartel para la EANA Conference, un congreso internacional para jóvenes astrobiólogos organizado en la Universidad Carlos III de Madrid.',
     media: [
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2024/11/Cartel-A0-final-scaled.jpg.webp' },
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2024/11/Cartel-A0-final-scaled.jpg.webp' }
     ] 
   },
