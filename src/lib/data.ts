@@ -29,10 +29,10 @@ export const projects: Project[] = [
     category: 'Fotografía Deportiva', 
     year: 2024, 
     client: 'Cliente Privado', 
-    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/02/Surf-07245.jpg', 
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px-4.avif', 
     description: 'Capturando la energía y la pasión del surf en las olas de Malpica.',
     media: [
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/Surf-07245.jpg' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px-4.avif' },
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/Surf-06887-scaled.jpg' },
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/Surf-07002-scaled.jpg' },
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/Surf-06897-2-scaled.jpg' },
