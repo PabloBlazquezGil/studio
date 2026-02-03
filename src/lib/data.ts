@@ -15,7 +15,7 @@ export const projects: Project[] = [
     id: '11', 
     title: 'Cartel EANA Conference', 
     category: 'Diseño de Cartel',
-    year: 2024,
+    year: 2023, 
     client: 'EANA', 
     imageUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/Cartel-A0-final-scaled.jpg.webp', 
     description: 'Diseño del cartel para la EANA Conference, un congreso internacional para jóvenes astrobiólogos organizado en la Universidad Carlos III de Madrid.',
