@@ -140,7 +140,6 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                           src={mainMedia.url.split('#')[0]}
                           className="w-full h-full object-cover"
                           controls
-                          poster={project.imageUrl}
                       />
                   </div>
               </div>

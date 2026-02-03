@@ -19,11 +19,11 @@ export const projects: Project[] = [
   { id: '6', title: 'Fuerza del Mar', category: 'Marítimo', year: 2023, client: 'Marca de Surf', imageUrl: photoProjectImages[5], description: 'El poder indomable de las olas del océano.', media: [{ type: 'image', url: photoProjectImages[5] }] },
   { 
     id: '9', 
-    title: 'PhDays 2023', 
+    title: 'PhDays', 
     category: 'Evento Científico', 
     client: 'Centro de Astrobiología (CAB, CSIC-INTA)', 
     imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3', 
-    description: 'Tráiler del congreso PhDays 2023, un evento que reúne a estudiantes de doctorado para presentar sus investigaciones de vanguardia en el campo de la astrobiología.', 
+    description: 'Tráiler del congreso PhDays, un evento que reúne a estudiantes de doctorado para presentar sus investigaciones de vanguardia en el campo de la astrobiología.', 
     media: [
       { type: 'video', url: 'https://thundershoot.com/wp-content/uploads/2024/11/Trailer-PhDays2023-Centro-de-Astrobiologia.mp4#t=5' },
     ]
@@ -57,8 +57,8 @@ export const siteSettings: SiteSettings = {
 };
 
 export const clientLogos: ClientLogo[] = [
-    { id: '1', clientName: 'Cliente 1', logoUrl: 'https://thundershoot.com/wp-content/uploads/2025/02/0.png' },
-    { id: '2', clientName: 'Cliente 2', logoUrl: 'https://thundershoot.com/wp-content/uploads/2025/01/LOGO_PNG.png' },
-    { id: '3', clientName: 'Cliente 3', logoUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/images-2.png' },
-    { id: '4', clientName: 'Cliente 4', logoUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/EANA_logo-2.png' },
+    { id: '1', clientName: 'Centro de Astrobiología', logoUrl: 'https://thundershoot.com/wp-content/uploads/2025/02/0.png' },
+    { id: '2', clientName: 'CSIC', logoUrl: 'https://thundershoot.com/wp-content/uploads/2025/01/LOGO_PNG.png' },
+    { id: '3', clientName: 'INTA', logoUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/images-2.png' },
+    { id: '4', clientName: 'EANA', logoUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/EANA_logo-2.png' },
 ];
