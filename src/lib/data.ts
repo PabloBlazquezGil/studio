@@ -21,7 +21,6 @@ export const projects: Project[] = [
     id: '9', 
     title: 'PhDays 2023', 
     category: 'Evento Científico', 
-    year: 2023, 
     client: 'Centro de Astrobiología (CAB, CSIC-INTA)', 
     imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3', 
     description: 'Tráiler del congreso PhDays 2023, un evento que reúne a estudiantes de doctorado para presentar sus investigaciones de vanguardia en el campo de la astrobiología.', 

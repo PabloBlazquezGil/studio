@@ -116,13 +116,15 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                         <p>{project.client}</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-3 text-muted-foreground">
-                    <Calendar className="w-5 h-5 text-primary" />
-                    <div>
-                        <p className="font-bold text-foreground">Año</p>
-                        <p>{project.year}</p>
-                    </div>
-                </div>
+                {project.year && (
+                  <div className="flex items-center gap-3 text-muted-foreground">
+                      <Calendar className="w-5 h-5 text-primary" />
+                      <div>
+                          <p className="font-bold text-foreground">Año</p>
+                          <p>{project.year}</p>
+                      </div>
+                  </div>
+                )}
             </div>
 
             <div className="text-lg leading-relaxed text-muted-foreground max-w-3xl">

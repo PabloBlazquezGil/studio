@@ -26,13 +26,19 @@ function VideoCard({ project, onProjectClick }: VideoCardProps) {
             });
         } else {
             video.pause();
-            video.currentTime = 0; // Reset video to the beginning
+            video.currentTime = 0; // Reset video to the beginning to show poster
         }
     }, [isHovering]);
 
     return (
         <div
-            onMouseEnter={() => setIsHovering(true)}
+            onMouseEnter={() => {
+                const video = videoRef.current;
+                if (video && video.currentTime < 5) {
+                    video.currentTime = 5;
+                }
+                setIsHovering(true);
+            }}
             onMouseLeave={() => setIsHovering(false)}
             onClick={() => onProjectClick(project)}
             className="group relative aspect-video w-full rounded-lg overflow-hidden shadow-2xl cursor-pointer"

@@ -3,7 +3,7 @@ export type Project = {
   title: string;
   category: string;
   description: string;
-  year: number;
+  year?: number;
   client: string;
   imageUrl: string;
   media: { type: 'image' | 'video'; url: string }[];
