@@ -131,11 +131,11 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
               <p>{project.description}</p>
             </div>
             
-            {project.media.length > 0 && (
+            {project.media.length > 1 && (
                 <div className="mt-16">
                     <h2 className="font-headline text-3xl sm:text-4xl text-foreground mb-8">Galería del Proyecto</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                        {project.media.map((mediaItem, index) => (
+                        {project.media.slice(1).map((mediaItem, index) => (
                             <div key={index} className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-lg bg-muted">
                                 {mediaItem.type === 'image' ? (
                                 <Image

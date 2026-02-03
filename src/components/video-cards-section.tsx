@@ -26,7 +26,7 @@ function VideoCard({ project, onProjectClick }: VideoCardProps) {
             });
         } else {
             video.pause();
-            video.currentTime = 0; // Reset video to the beginning to show poster
+            video.load(); // Reset video to show poster
         }
     }, [isHovering]);
 
