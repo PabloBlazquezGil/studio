@@ -29,15 +29,15 @@ export const projects: Project[] = [
     category: 'Fotografía Deportiva', 
     year: 2024, 
     client: 'Cliente Privado', 
-    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px-4.avif', 
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px.jpg', 
     description: 'Capturando la energía y la pasión del surf en las olas de Malpica.',
     media: [
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px-4.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/Surf-06887-scaled.jpg' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/Surf-07002-scaled.jpg' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/Surf-06897-2-scaled.jpg' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/Surf-07096-scaled.jpg' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/Surf-07176-scaled.jpg' }
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG06897_2048px-2.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px.jpg' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG06887_2048px.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07002_2048px.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07096_2048px.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07176_2048px.avif' }
     ] 
   },
   { 
