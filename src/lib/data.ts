@@ -25,20 +25,6 @@ export const projects: Project[] = [
     ] 
   },
   { 
-    id: '1', 
-    title: 'Montañas Serenas', 
-    category: 'Paisaje', 
-    year: 2023, 
-    client: 'Revista Aventura', 
-    imageUrl: photoProjectImages[0], 
-    description: 'Una exploración fotográfica de los picos más remotos.', 
-    media: [
-        { type: 'image', url: photoProjectImages[0] },
-        { type: 'image', url: 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3' },
-        { type: 'image', url: 'https://images.unsplash.com/photo-1483728642387-6c351b4d6788?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3' }
-    ] 
-  },
-  { 
     id: '2', 
     title: 'Noches de Neón', 
     category: 'Urbano', 
@@ -113,7 +99,7 @@ export const projects: Project[] = [
     title: 'PhDays', 
     category: 'Evento Científico', 
     client: 'Centro de Astrobiología (CAB, CSIC-INTA)', 
-    imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3', 
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/Trailer-PhDays2023-Centro-de-Astrobiologia.mp4', 
     description: 'Tráiler del congreso PhDays, un evento que reúne a estudiantes de doctorado para presentar sus investigaciones de vanguardia en el campo de la astrobiología.', 
     media: [
       { type: 'video', url: 'https://thundershoot.com/wp-content/uploads/2024/11/Trailer-PhDays2023-Centro-de-Astrobiologia.mp4#t=5' },
@@ -125,7 +111,7 @@ export const projects: Project[] = [
     category: 'Evento de Divulgación',
     year: 2024,
     client: 'Centro de Astrobiología (CAB, CSIC-INTA)',
-    imageUrl: 'https://images.unsplash.com/photo-1574610758891-5b809b6e6e2e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/Dia-de-la-Mujer-y-la-Nina-en-la-Ciencia-11_02_2024-Centro-de-Astrobiologia-CAB-CSIC-INTA.mp4',
     description: 'Vídeo conmemorativo para el Día Internacional de la Mujer y la Niña en la Ciencia, destacando el crucial papel de las mujeres en la astrobiología y la investigación espacial. Creado para el Centro de Astrobiología (CAB, CSIC-INTA).',
     media: [
       { type: 'video', url: 'https://thundershoot.com/wp-content/uploads/2024/11/Dia-de-la-Mujer-y-la-Nina-en-la-Ciencia-11_02_2024-Centro-de-Astrobiologia-CAB-CSIC-INTA.mp4#t=5' },
