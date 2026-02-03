@@ -97,7 +97,7 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                 />
               )}
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+            {mainMedia.type === 'image' && <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />}
             <div className="relative z-10 flex flex-col justify-end h-full text-white p-8 md:p-12">
               <Badge variant="secondary" className="mb-4 w-fit">{project.category}</Badge>
               <DialogTitle className="font-headline text-4xl sm:text-5xl lg:text-7xl text-white">
@@ -140,6 +140,7 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                           src={mainMedia.url.split('#')[0]}
                           className="w-full h-full object-cover"
                           controls
+                          poster={project.imageUrl}
                       />
                   </div>
               </div>
@@ -152,13 +153,15 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                         {project.media.slice(1).map((mediaItem, index) => (
                             <div key={index} className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-lg bg-muted">
                                 {mediaItem.type === 'image' ? (
-                                <Image
-                                    src={mediaItem.url}
-                                    alt={`${project.title} media ${index + 1}`}
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                />
+                                <a href={mediaItem.url} target="_blank" rel="noopener noreferrer">
+                                  <Image
+                                      src={mediaItem.url}
+                                      alt={`${project.title} media ${index + 1}`}
+                                      fill
+                                      className="object-cover"
+                                      sizes="(max-width: 768px) 100vw, 50vw"
+                                  />
+                                </a>
                                 ) : (
                                 <video
                                     src={mediaItem.url}
