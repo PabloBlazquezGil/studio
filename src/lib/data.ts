@@ -51,7 +51,16 @@ export const projects: Project[] = [
     description: 'Sesión de photobook para la actriz HelenaJes, capturando su versatilidad y esencia para su portfolio profesional.', 
     media: [
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07394-scaled.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07352-Editar-scaled.avif' }
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07352-Editar-scaled.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07289-Editar-scaled.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07294-Editar-scaled.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07343-Editar-scaled.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07275-Editar-scaled.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07358-Editar-scaled.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07376-Editar-scaled.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07389-Editar-scaled.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07390-Editar-scaled.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07393-Editar-scaled.avif' }
     ] 
   },
   { 
