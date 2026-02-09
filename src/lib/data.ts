@@ -42,16 +42,14 @@ export const projects: Project[] = [
   },
   { 
     id: '3', 
-    title: 'Retrato Íntimo', 
+    title: 'Sesión Photobook Actriz', 
     category: 'Retrato', 
-    year: 2024, 
-    client: 'Cliente Privado', 
-    imageUrl: photoProjectImages[2], 
-    description: 'Un estudio sobre la expresión y la emoción humana.', 
+    year: 2026, 
+    client: 'HelenaJes', 
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07394-scaled.avif', 
+    description: 'Sesión de photobook para la actriz HelenaJes, capturando su versatilidad y esencia para su portfolio profesional.', 
     media: [
-      { type: 'image', url: photoProjectImages[2] },
-      { type: 'image', url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3' },
-      { type: 'image', url: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3' }
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07394-scaled.avif' }
     ] 
   },
   { 
