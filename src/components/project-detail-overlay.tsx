@@ -206,13 +206,13 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
         <DialogContent showCloseButton={false} className="max-w-none w-screen h-screen p-4 sm:p-8 bg-black/90 backdrop-blur-sm border-0 flex items-center justify-center">
             <DialogTitle className="sr-only">Vista previa de la imagen</DialogTitle>
             <DialogDescription className="sr-only">Imagen ampliada del proyecto: {project.title}</DialogDescription>
-            <Image
-                src={previewImage || ''}
+            {previewImage && <Image
+                src={previewImage}
                 alt="Vista previa de la imagen"
                 fill
                 className="object-contain"
                 sizes="100vw"
-            />
+            />}
             <DialogClose asChild>
               <Button
                 variant="ghost"
