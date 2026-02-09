@@ -204,6 +204,8 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
       {/* Lightbox Dialog */}
       <Dialog open={!!previewImage} onOpenChange={(open) => !open && setPreviewImage(null)}>
         <DialogContent showCloseButton={false} className="max-w-none w-screen h-screen p-4 sm:p-8 bg-black/90 backdrop-blur-sm border-0 flex items-center justify-center">
+            <DialogTitle className="sr-only">Vista previa de la imagen</DialogTitle>
+            <DialogDescription className="sr-only">Imagen ampliada del proyecto: {project.title}</DialogDescription>
             <Image
                 src={previewImage || ''}
                 alt="Vista previa de la imagen"
