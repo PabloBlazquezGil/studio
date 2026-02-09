@@ -60,6 +60,8 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
   const currentIndex = allProjects.findIndex(p => p.id === project.id);
   const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length];
   const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
+  
+  const showGallery = mainMedia.type === 'image' && project.media.length > 0;
 
   return (
     <Dialog open={!!project} onOpenChange={(open) => !open && onClose()}>
@@ -150,11 +152,11 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
               </div>
             )}
             
-            {mainMedia.type === 'image' && project.media.length > 1 && (
+            {showGallery && (
                 <div className="mt-16">
                     <h2 className="font-headline text-3xl sm:text-4xl text-foreground mb-8">Galería del Proyecto</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                        {project.media.slice(1).map((mediaItem, index) => (
+                        {project.media.map((mediaItem, index) => (
                             <div key={index} className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-lg bg-muted">
                                 {mediaItem.type === 'image' ? (
                                 <a href={mediaItem.url} target="_blank" rel="noopener noreferrer">
