@@ -32,8 +32,9 @@ export const projects: Project[] = [
     imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px.avif', 
     description: 'Capturando la energía y la pasión del surf en las olas de Malpica.',
     media: [
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG06897_2048px-2.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px.avif' },
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG06887_2048px.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG06897_2048px-2.avif' },
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07002_2048px.avif' },
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07096_2048px.avif' },
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07176_2048px.avif' },
@@ -52,34 +53,6 @@ export const projects: Project[] = [
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07394-scaled.avif' },
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07352-Editar-scaled.avif' }
     ] 
-  },
-  { 
-    id: '4', 
-    title: 'Formas y Sombras', 
-    category: 'Arquitectura', 
-    year: 2023, 
-    client: 'Estudio de Arquitectos', 
-    imageUrl: photoProjectImages[3], 
-    description: 'Juego de luces y sombras en la arquitectura moderna.', 
-    media: [
-      { type: 'image', url: photoProjectImages[3] },
-      { type: 'image', url: 'https://images.unsplash.com/photo-1511818963242-b3ce524b6164?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3' },
-      { type: 'image', url: 'https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3' }
-    ]
-  },
-  { 
-    id: '5', 
-    title: 'El Sendero Verde', 
-    category: 'Naturaleza', 
-    year: 2022, 
-    client: 'Fundación Ecológica', 
-    imageUrl: photoProjectImages[4], 
-    description: 'Un viaje a través de los bosques más frondosos.', 
-    media: [
-      { type: 'image', url: photoProjectImages[4] },
-      { type: 'image', url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3' },
-      { type: 'image', url: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3' }
-    ]
   },
   { 
     id: '9', 
