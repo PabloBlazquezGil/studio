@@ -49,7 +49,8 @@ export const projects: Project[] = [
     imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07394-scaled.avif', 
     description: 'Sesión de photobook para la actriz HelenaJes, capturando su versatilidad y esencia para su portfolio profesional.', 
     media: [
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07394-scaled.avif' }
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07394-scaled.avif' },
+      { type: 'image', url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3' }
     ] 
   },
   { 
