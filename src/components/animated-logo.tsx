@@ -1,25 +1,24 @@
+import Image from 'next/image';
+
 export default function AnimatedLogo() {
-    const name = "Pablo Blázquez Gil";
     return (
-        <div>
-            <h1 className="flex overflow-hidden font-headline text-2xl" aria-label={name}>
-                {name.split('').map((char, index) => (
-                    <span
-                        key={index}
-                        className="animate-fade-in-up opacity-0"
-                        style={{ animationDelay: `${index * 0.05}s`, animationFillMode: 'forwards' }}
-                        aria-hidden="true"
-                    >
-                        {char === ' ' ? '\u00A0' : char}
-                    </span>
-                ))}
-            </h1>
-            <p 
-                className="text-xs uppercase tracking-widest text-muted-foreground animate-fade-in-up opacity-0 font-normal"
-                style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}
-            >
-                Fotografía y Vídeo
-            </p>
+        <div className="flex items-center gap-3">
+            <div className="relative w-12 h-12 rounded-lg overflow-hidden border border-white/10 shadow-[0_0_15px_rgba(79,209,197,0.3)] bg-black flex items-center justify-center">
+                <Image 
+                    src="/logo_pbg.png" 
+                    alt="Logo Pablo Blázquez Gil" 
+                    fill
+                    className="object-cover"
+                />
+            </div>
+            <div className="hidden sm:block">
+                <h1 className="font-headline text-xl" aria-label="Pablo Blázquez Gil">
+                    Pablo Blázquez Gil
+                </h1>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[#4FD1C5]">
+                    Fotografía y Vídeo
+                </p>
+            </div>
         </div>
     );
 }
