@@ -1,37 +1,66 @@
 import { ContactForm } from '@/components/contact-form';
-import { Copyright } from "lucide-react";
+import { Copyright, Instagram, Linkedin, Mail } from "lucide-react";
 import Link from 'next/link';
+
+const socials = [
+  { icon: Instagram, href: 'https://instagram.com/pabloblazquezgil', label: 'Instagram' },
+  { icon: Linkedin, href: 'https://linkedin.com/in/pabloblazquezgil', label: 'LinkedIn' },
+  { icon: Mail, href: 'mailto:hola@pabloblazquezgil.com', label: 'Email' },
+];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="w-full bg-secondary border-t border-border/20" id="contact">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 scroll-mt-24">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-headline text-4xl sm:text-5xl text-foreground">
-            Hablemos
+    <footer className="w-full bg-background border-t border-white/5" id="contact">
+
+      {/* Top cyan line */}
+      <div className="h-[2px] bg-gradient-to-r from-transparent via-[#4FD1C5] to-transparent" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 scroll-mt-24">
+        {/* Header */}
+        <div className="max-w-3xl mb-16">
+          <p className="text-[#4FD1C5] uppercase tracking-[0.3em] text-xs font-light mb-4">Contacto</p>
+          <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground leading-tight">
+            Hagamos algo<br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#4FD1C5] to-white">
+              memorable juntos.
+            </span>
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            ¿Tienes un proyecto en mente o simplemente quieres saludar? Rellena el formulario y me pondré en contacto contigo.
+          <p className="mt-6 text-muted-foreground text-base sm:text-lg max-w-lg leading-relaxed">
+            ¿Tienes un proyecto en mente? Cuéntame lo que necesitas y buscamos la forma de hacerlo realidad.
           </p>
         </div>
-        <div className="max-w-3xl mx-auto mt-12">
+
+        {/* Form */}
+        <div className="max-w-2xl">
           <ContactForm />
         </div>
       </div>
-      <div className="bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between text-center text-muted-foreground gap-4">
-              <div className="flex items-center">
-                <Copyright className="w-4 h-4 mr-2" />
-                <p>
-                {currentYear} Pablo Blázquez Gil. Todos los Derechos Reservados.
-                </p>
-              </div>
-              <div className="flex items-center gap-6 text-sm">
-                <Link href="/politica-de-privacidad" className="hover:text-primary transition-colors">Política de Privacidad</Link>
-                <Link href="/aviso-legal" className="hover:text-primary transition-colors">Aviso Legal</Link>
-              </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-white/5 bg-black">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between text-center text-muted-foreground gap-4">
+          <div className="flex items-center text-sm">
+            <Copyright className="w-3 h-3 mr-2" />
+            <p>{currentYear} Pablo Blázquez Gil. Todos los Derechos Reservados.</p>
           </div>
+
+          {/* Social icons */}
+          <div className="flex items-center gap-5">
+            {socials.map(({ icon: Icon, href, label }) => (
+              <Link key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                className="text-muted-foreground hover:text-[#4FD1C5] transition-colors"
+              >
+                <Icon className="w-4 h-4" />
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-6 text-xs">
+            <Link href="/politica-de-privacidad" className="hover:text-[#4FD1C5] transition-colors">Política de Privacidad</Link>
+            <Link href="/aviso-legal" className="hover:text-[#4FD1C5] transition-colors">Aviso Legal</Link>
+          </div>
+        </div>
       </div>
     </footer>
   );
