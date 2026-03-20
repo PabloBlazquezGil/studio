@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 150 20% 5%;
-    --foreground: 140 13% 92%;
-    --card: 150 20% 7%;
-    --card-foreground: 140 13% 92%;
-    --popover: 150 20% 7%;
-    --popover-foreground: 140 13% 92%;
-    --primary: 145 25% 49%;
-    --primary-foreground: 150 20% 5%;
-    --secondary: 150 20% 10%;
-    --secondary-foreground: 140 13% 92%;
-    --muted: 150 20% 10%;
-    --muted-foreground: 140 13% 60%;
-    --accent: 140 13% 92%;
-    --accent-foreground: 150 20% 5%;
+    --background: 0 0% 0%; /* Negro puro */
+    --foreground: 0 0% 98%; /* Blanco muy claro */
+    --card: 0 0% 4%; /* Casi negro para tarjetas */
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 174 59% 56%; /* Cyan #4FD1C5 */
+    --primary-foreground: 0 0% 0%; /* Texto negro sobre cyan */
+    --secondary: 0 0% 10%; /* Gris muy oscuro */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 65%; /* Gris medio */
+    --accent: 174 59% 56%; /* Cyan #4FD1C5 */
+    --accent-foreground: 0 0% 0%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 150 20% 15%;
-    --input: 150 20% 15%;
-    --ring: 145 25% 49%;
+    --border: 0 0% 12%; /* Borde sutil casi negro */
+    --input: 0 0% 12%;
+    --ring: 174 59% 56%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
