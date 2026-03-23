@@ -13,16 +13,16 @@ export default function Footer() {
   return (
     <footer className="w-full bg-background border-t border-white/5" id="contact">
 
-      {/* Top cyan line */}
-      <div className="h-[2px] bg-gradient-to-r from-transparent via-[#4FD1C5] to-transparent" />
+      {/* Top subtle line */}
+      <div className="h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 scroll-mt-24">
         {/* Header */}
         <div className="max-w-3xl mb-16">
-          <p className="text-[#4FD1C5] uppercase tracking-[0.3em] text-xs font-light mb-4">Contacto</p>
-          <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground leading-tight">
+          <p className="text-white/60 uppercase tracking-[0.3em] text-xs font-light mb-4">Contacto</p>
+          <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground leading-tight font-light tracking-tight">
             Hagamos algo<br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#4FD1C5] to-white">
+            <span className="font-medium italic text-white/80">
               memorable juntos.
             </span>
           </h2>
@@ -49,7 +49,7 @@ export default function Footer() {
           <div className="flex items-center gap-5">
             {socials.map(({ icon: Icon, href, label }) => (
               <Link key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-                className="text-muted-foreground hover:text-[#4FD1C5] transition-colors"
+                className="text-muted-foreground hover:text-white transition-colors"
               >
                 <Icon className="w-4 h-4" />
               </Link>
@@ -57,8 +57,8 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-6 text-xs">
-            <Link href="/politica-de-privacidad" className="hover:text-[#4FD1C5] transition-colors">Política de Privacidad</Link>
-            <Link href="/aviso-legal" className="hover:text-[#4FD1C5] transition-colors">Aviso Legal</Link>
+            <Link href="/politica-de-privacidad" className="hover:text-white transition-colors">Política de Privacidad</Link>
+            <Link href="/aviso-legal" className="hover:text-white transition-colors">Aviso Legal</Link>
           </div>
         </div>
       </div>

@@ -4,18 +4,18 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
-import { Playfair_Display, Manrope } from 'next/font/google';
+import { Outfit, Inter } from 'next/font/google';
 
-const fontHeadline = Playfair_Display({
+const fontHeadline = Outfit({
   subsets: ['latin'],
   variable: '--font-headline',
-  weight: ['400', '700'],
+  weight: ['300', '400', '600', '700'],
 });
 
-const fontBody = Manrope({
+const fontBody = Inter({
   subsets: ['latin'],
   variable: '--font-body',
-  weight: ['300', '400', '700'],
+  weight: ['300', '400', '500'],
 });
 
 export const metadata: Metadata = {

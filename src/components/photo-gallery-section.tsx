@@ -16,8 +16,8 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
         {/* Section header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-16 gap-4">
           <div>
-            <p className="text-[#4FD1C5] uppercase tracking-[0.3em] text-xs font-light mb-3">Portfolio</p>
-            <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground">Fotografía</h2>
+            <p className="text-white/70 uppercase tracking-[0.3em] text-xs font-light mb-3">Portfolio</p>
+            <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground font-light tracking-tight">Fotografía</h2>
           </div>
           <p className="text-muted-foreground max-w-xs text-sm leading-relaxed text-left sm:text-right">
             Una cuidada selección de proyectos que definen mi trayectoria creativa.
@@ -45,12 +45,12 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
 
-              {/* Cyan border on hover */}
-              <div className="absolute inset-0 border border-transparent group-hover:border-[#4FD1C5]/40 transition-all duration-500 pointer-events-none" />
+              {/* White border on hover */}
+              <div className="absolute inset-0 border border-transparent group-hover:border-white/20 transition-all duration-500 pointer-events-none" />
 
               {/* Badge top-left */}
               <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="bg-[#4FD1C5] text-black text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded">
+                <span className="bg-white/10 backdrop-blur-md border border-white/20 text-white text-[9px] uppercase tracking-widest px-3 py-1.5 rounded-sm">
                   {project.category}
                 </span>
               </div>
@@ -58,9 +58,9 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
               {/* Bottom text */}
               <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 text-white">
                 <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
-                  <h3 className="font-headline text-lg sm:text-2xl leading-tight">{project.title}</h3>
+                  <h3 className="font-headline text-lg sm:text-2xl leading-tight font-light">{project.title}</h3>
                   {project.year && (
-                    <p className="text-[10px] uppercase tracking-widest text-[#4FD1C5] mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="text-[10px] uppercase tracking-widest text-white/60 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       {project.year}
                     </p>
                   )}
