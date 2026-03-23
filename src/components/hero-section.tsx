@@ -36,10 +36,10 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-foreground p-4">
         <p
-          className="text-white/70 uppercase tracking-[0.4em] text-xs sm:text-sm font-light mb-6 animate-fade-in-up opacity-0"
+          className="text-white/70 uppercase tracking-[0.4em] text-xs sm:text-sm font-light mb-6 animate-fade-in-up opacity-0 text-center"
           style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}
         >
-          Fotografía & Dirección de Fotografía
+          Fotografía &middot; Filmmaking &middot; Dirección de Fotografía
         </p>
         <h1
           className="font-headline text-5xl md:text-7xl lg:text-8xl xl:text-9xl leading-tight animate-fade-in-up opacity-0 tracking-tight"
