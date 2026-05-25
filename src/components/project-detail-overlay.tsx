@@ -7,6 +7,7 @@ import { User, Calendar, ArrowLeft, ArrowRight, X, ZoomIn } from 'lucide-react';
 import Image from 'next/image';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
+import { getYouTubeId } from '@/lib/utils';
 
 interface ProjectNavigationLinkProps {
   project: Project;
@@ -61,6 +62,7 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
   if (!project) return null;
 
   const mainMedia = project.media[0];
+  const youtubeId = mainMedia && mainMedia.type === 'video' ? getYouTubeId(mainMedia.url) : null;
   
   const currentIndex = allProjects.findIndex(p => p.id === project.id);
   const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length];
@@ -87,12 +89,12 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
             {/* Hero Section */}
             <header className="relative h-[70vh] w-full">
               <div className="absolute inset-0">
-                {mainMedia.type === 'image' ? (
+                {mainMedia.type === 'image' || youtubeId ? (
                   <Image
-                    src={mainMedia.url}
+                    src={youtubeId ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg` : mainMedia.url}
                     alt={project.title}
                     fill
-                    className="object-cover"
+                    className="object-cover animate-fade-in"
                     sizes="100vw"
                     priority
                   />
@@ -148,13 +150,23 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
               {mainMedia.type === 'video' && (
                 <div className="mt-16">
                     <h2 className="font-headline text-3xl sm:text-4xl text-foreground mb-8">Vídeo Completo</h2>
-                    <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg bg-muted">
-                        <video
-                            src={mainMedia.url.split('#')[0]}
-                            className="w-full h-full object-cover"
-                            controls
-                            poster={project.imageUrl}
-                        />
+                    <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg bg-black">
+                        {youtubeId ? (
+                            <iframe
+                                src={`https://www.youtube.com/embed/${youtubeId}?autoplay=0&rel=0&modestbranding=1`}
+                                className="absolute inset-0 w-full h-full border-0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                                title={project.title}
+                            />
+                        ) : (
+                            <video
+                                src={mainMedia.url.split('#')[0]}
+                                className="w-full h-full object-cover"
+                                controls
+                                poster={project.imageUrl}
+                            />
+                        )}
                     </div>
                 </div>
               )}

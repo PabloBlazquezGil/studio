@@ -4,6 +4,8 @@ import type { Project } from "@/lib/types";
 import { useRef, useState, useEffect } from "react";
 import { Play } from "lucide-react";
 import ScrollReveal from "./scroll-reveal";
+import { getYouTubeId } from "@/lib/utils";
+import Image from "next/image";
 
 interface VideoCardProps {
     project: Project;
@@ -15,8 +17,10 @@ function VideoCard({ project, onProjectClick, featured = false }: VideoCardProps
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isHovering, setIsHovering] = useState(false);
     const videoUrl = project.media.find(m => m.type === 'video')?.url || '';
+    const youtubeId = getYouTubeId(videoUrl);
 
     useEffect(() => {
+        if (youtubeId) return;
         const video = videoRef.current;
         if (!video) return;
         if (isHovering) {
@@ -24,13 +28,15 @@ function VideoCard({ project, onProjectClick, featured = false }: VideoCardProps
         } else {
             video.pause();
         }
-    }, [isHovering]);
+    }, [isHovering, youtubeId]);
 
     return (
         <div
             onMouseEnter={() => {
-                const video = videoRef.current;
-                if (video) video.currentTime = 5;
+                if (!youtubeId) {
+                    const video = videoRef.current;
+                    if (video) video.currentTime = 5;
+                }
                 setIsHovering(true);
             }}
             onMouseLeave={() => setIsHovering(false)}
@@ -39,15 +45,28 @@ function VideoCard({ project, onProjectClick, featured = false }: VideoCardProps
                 featured ? 'aspect-video' : 'aspect-video'
             }`}
         >
-            <video
-                ref={videoRef}
-                src={videoUrl}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
-                loop
-                muted
-                playsInline
-                preload="metadata"
-            />
+            {youtubeId ? (
+                <div className="absolute inset-0 w-full h-full bg-black">
+                    <Image
+                        src={project.imageUrl || `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        priority
+                    />
+                </div>
+            ) : (
+                <video
+                    ref={videoRef}
+                    src={videoUrl}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                />
+            )}
             {/* Gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 

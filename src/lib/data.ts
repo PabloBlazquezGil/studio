@@ -100,7 +100,19 @@ export const projects: Project[] = [
     imageUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/Dia-de-la-Mujer-y-la-Nina-en-la-Ciencia-11_02_2024-Centro-de-Astrobiologia-CAB-CSIC-INTA.mp4',
     description: 'Vídeo conmemorativo para el Día Internacional de la Mujer y la Niña en la Ciencia, destacando el crucial papel de las mujeres en la astrobiología y la investigación espacial. Creado para el Centro de Astrobiología (CAB, CSIC-INTA).',
     media: [
-      { type: 'video', url: 'https://thundershoot.com/wp-content/uploads/2024/11/Dia-de-la-Mujer-y-la-Nina-en-la-Ciencia-11_02_2024-Centro-de-Astrobiologia-CAB-CSIC-INTA.mp4#t=5' },
+      { type: 'video', url: 'https://thundershoot.com/wp-content/uploads/2024/11/Dia-de-la-Mujer-y-la-Nina-en-la-Ciencia-11_02_2024-Centro-de-Astrobiologia-CAB-CSIC-INTA.mp4#t=5' }
+    ]
+  },
+  {
+    id: '14',
+    title: 'Fervenza 48H - Cortometraje',
+    category: 'Cortometraje',
+    year: 2025,
+    client: 'Festival Fervenza 48H',
+    imageUrl: 'https://img.youtube.com/vi/f-erOiwac60/maxresdefault.jpg',
+    description: 'Cortometraje realizado para el festival Fervenza 48H en el concello de Cabanas. Un reto cinematográfico completo que abarcó preproducción, producción y postproducción en un plazo récord de menos de 48 horas. En esta obra desempeñé el rol de director de fotografía, cámara y editor.',
+    media: [
+      { type: 'video', url: 'https://youtu.be/f-erOiwac60' }
     ]
   },
 ];
