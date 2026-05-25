@@ -42,6 +42,23 @@ export const projects: Project[] = [
     ] 
   },
   { 
+    id: '13', 
+    title: 'Photobook Ana Rosa', 
+    category: 'Retrato', 
+    year: 2026, 
+    client: 'Ana Rosa', 
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01270-scaled.jpg', 
+    description: 'Sesión fotográfica para el photobook personal de Ana Rosa, explorando diferentes estilos, luces y expresiones para capturar su verdadera esencia.', 
+    media: [
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01270-scaled.jpg' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01148-scaled.jpg' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01125-scaled.jpg' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01051-scaled.jpg' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01031-scaled.jpg' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG00922-scaled.jpg' }
+    ] 
+  },
+  { 
     id: '3', 
     title: 'Sesión Photobook Actriz', 
     category: 'Retrato', 
