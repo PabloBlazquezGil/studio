@@ -59,6 +59,21 @@ export const projects: Project[] = [
     ] 
   },
   { 
+    id: '15', 
+    title: 'Sesión de Surf en la Playa de La Lanzada', 
+    category: 'Fotografía Deportiva', 
+    year: 2026, 
+    client: 'Cliente Privado', 
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-14-scaled.jpg', 
+    description: 'Capturando la belleza del surf y la fuerza del océano en la emblemática playa de La Lanzada.',
+    media: [
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-14-scaled.jpg' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-11-scaled.jpg' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-10-scaled.jpg' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-3-scaled.jpg' }
+    ] 
+  },
+  { 
     id: '3', 
     title: 'Sesión Photobook Actriz', 
     category: 'Retrato', 
