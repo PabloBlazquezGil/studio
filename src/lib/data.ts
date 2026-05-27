@@ -33,7 +33,7 @@ export const projects: Project[] = [
     title: 'Sesión Photobook Actriz', 
     category: 'Retrato', 
     year: 2026, 
-    client: 'Ana Rosa', 
+    client: 'Cliente Privado', 
     imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01270-scaled.jpg', 
     description: 'Sesión fotográfica para un photobook personal, explorando diferentes estilos, luces y expresiones para capturar su verdadera esencia.', 
     media: [
