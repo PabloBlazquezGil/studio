@@ -12,18 +12,6 @@ const photoProjectImages = [
 
 export const projects: Project[] = [
   { 
-    id: '11', 
-    title: 'Cartel EANA Conference', 
-    category: 'Diseño de Cartel',
-    year: 2023, 
-    client: 'EANA', 
-    imageUrl: 'https://thundershoot.com/wp-content/uploads/2024/11/Cartel-A0-final-scaled.jpg.webp', 
-    description: 'Diseño del cartel para la EANA Conference, un congreso internacional para jóvenes astrobiólogos organizado en la Universidad Carlos III de Madrid.',
-    media: [
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2024/11/Cartel-A0-final-scaled.jpg.webp' }
-    ] 
-  },
-  { 
     id: '12', 
     title: 'Sesión de Surf en Malpica', 
     category: 'Fotografía Deportiva', 
