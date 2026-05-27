@@ -64,13 +64,13 @@ export const projects: Project[] = [
     category: 'Fotografía Deportiva', 
     year: 2026, 
     client: 'Cliente Privado', 
-    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-14-scaled.jpg', 
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-14-2.avif', 
     description: 'Capturando la belleza del surf y la fuerza del océano en la emblemática playa de La Lanzada.',
     media: [
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-14-scaled.jpg' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-11-scaled.jpg' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-10-scaled.jpg' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-3-scaled.jpg' }
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-14-2.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-11-2.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-10-2.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/La-Lanzada-3-2.avif' }
     ] 
   },
   { 
