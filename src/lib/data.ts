@@ -35,7 +35,7 @@ export const projects: Project[] = [
     year: 2026, 
     client: 'Ana Rosa', 
     imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01270-scaled.jpg', 
-    description: 'Sesión fotográfica para el photobook personal de Ana Rosa, explorando diferentes estilos, luces y expresiones para capturar su verdadera esencia.', 
+    description: 'Sesión fotográfica para un photobook personal, explorando diferentes estilos, luces y expresiones para capturar su verdadera esencia.', 
     media: [
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01270-scaled.jpg' },
       { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01148-scaled.jpg' },
