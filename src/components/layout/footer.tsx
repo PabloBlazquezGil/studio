@@ -5,7 +5,7 @@ import Link from 'next/link';
 const socials = [
   { icon: Instagram, href: 'https://instagram.com/pabloblazquezgil', label: 'Instagram' },
   { icon: Linkedin, href: 'https://linkedin.com/in/pabloblazquezgil', label: 'LinkedIn' },
-  { icon: Mail, href: 'mailto:hola@pabloblazquezgil.com', label: 'Email' },
+  { icon: Mail, href: 'mailto:pabloblazquezgil@gmail.com', label: 'Email' },
 ];
 
 export default function Footer() {
@@ -16,9 +16,9 @@ export default function Footer() {
       {/* Top subtle line */}
       <div className="h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 scroll-mt-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 scroll-mt-24 text-center">
         {/* Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-16 mx-auto">
           <p className="text-white/60 uppercase tracking-[0.3em] text-xs font-light mb-4">Contacto</p>
           <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground leading-tight font-light tracking-tight">
             Hagamos algo<br/>
@@ -26,13 +26,13 @@ export default function Footer() {
               memorable juntos.
             </span>
           </h2>
-          <p className="mt-6 text-muted-foreground text-base sm:text-lg max-w-lg leading-relaxed">
-            ¿Tienes un proyecto en mente? Cuéntame lo que necesitas y buscamos la forma de hacerlo realidad.
+          <p className="mt-6 text-muted-foreground text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+            ¿Tienes un proyecto en mente? Cuéntame lo que necesitas y buscamos la forma de hacerlo realidad, o escríbeme directamente a <a href="mailto:pabloblazquezgil@gmail.com" className="text-white hover:underline font-medium">pabloblazquezgil@gmail.com</a>.
           </p>
         </div>
 
         {/* Form */}
-        <div className="max-w-2xl">
+        <div className="max-w-2xl mx-auto">
           <ContactForm />
         </div>
       </div>
