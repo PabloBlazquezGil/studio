@@ -30,7 +30,7 @@ export const projects: Project[] = [
   },
   { 
     id: '13', 
-    title: 'Photobook Ana Rosa', 
+    title: 'Sesión Photobook Actriz', 
     category: 'Retrato', 
     year: 2026, 
     client: 'Ana Rosa', 
