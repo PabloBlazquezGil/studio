@@ -61,6 +61,27 @@ export const projects: Project[] = [
     ] 
   },
   { 
+    id: '16', 
+    title: 'Sesión de Tenis en Freixo', 
+    category: 'Fotografía Deportiva', 
+    year: 2026, 
+    client: 'Club de Tenis Freixo', 
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-118.avif', 
+    description: 'Capturando la intensidad, velocidad y precisión en cada golpe durante la sesión de tenis en las pistas de Freixo.', 
+    media: [
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-118.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-112.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-65.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-54.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-38.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-35.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-29.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-24.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-3.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-156.avif' }
+    ] 
+  },
+  { 
     id: '3', 
     title: 'Sesión Photobook Actriz', 
     category: 'Retrato', 
