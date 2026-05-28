@@ -2,69 +2,206 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Google Fonts ──────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
+
+/* ── Design Tokens ─────────────────────────────────────────────── */
 @layer base {
   :root {
-    --background: 0 0% 2%; /* Very deep almost black */
-    --foreground: 0 0% 98%; /* Creamy white */
-    --card: 0 0% 5%; /* Slightly lighter than bg */
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 100%; /* Pure white */
-    --primary-foreground: 0 0% 0%; /* Black text on white */
-    --secondary: 0 0% 10%; /* Dark gray */
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 0 0% 15%; /* Lighter gray accent */
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 100%;
-    --chart-1: ...
-    --radius: 0.5rem;
+    /* Brand colours */
+    --canopy:   #1C2826;   /* Verde Cánope */
+    --linen:    #F9F8F6;   /* Blanco Lino  */
+    --gold:     #D4AF37;   /* Arena Dorada */
+    --basalt:   #4A4E51;   /* Gris Basalto */
+
+    /* Dark-mode (default) – cinematic sections */
+    --background:          158 19% 12%;   /* #1C2826 as HSL */
+    --foreground:          40 20% 97%;    /* #F9F8F6 */
+    --card:                158 19% 10%;
+    --card-foreground:     40 20% 97%;
+    --popover:             158 19% 10%;
+    --popover-foreground:  40 20% 97%;
+    --primary:             43 64% 52%;    /* #D4AF37 – gold */
+    --primary-foreground:  158 19% 12%;   /* canopy on gold */
+    --secondary:           158 19% 16%;
+    --secondary-foreground:40 20% 97%;
+    --muted:               158 15% 20%;
+    --muted-foreground:    210 4% 31%;    /* #4A4E51 */
+    --accent:              43 64% 52%;    /* gold */
+    --accent-foreground:   158 19% 12%;
+    --destructive:         0 72% 51%;
+    --destructive-foreground: 40 20% 97%;
+    --border:              158 15% 22%;
+    --input:               158 15% 18%;
+    --ring:                43 64% 52%;    /* gold focus ring */
+    --radius:              0px;           /* Sharp corners brand rule */
+
+    /* Sidebar tokens (kept for ShadCN compatibility) */
+    --sidebar-background:  158 19% 10%;
+    --sidebar-foreground:  40 20% 97%;
+    --sidebar-primary:     43 64% 52%;
+    --sidebar-primary-foreground: 158 19% 12%;
+    --sidebar-accent:      158 19% 16%;
+    --sidebar-accent-foreground: 40 20% 97%;
+    --sidebar-border:      158 15% 22%;
+    --sidebar-ring:        43 64% 52%;
+  }
+
+  /* Light theme override (for specific sections via class .section-light) */
+  .section-light {
+    --background:         40 20% 97%;
+    --foreground:         158 19% 12%;
+    --muted-foreground:   210 4% 31%;
+    --border:             158 10% 82%;
+    --card:               40 18% 94%;
+    --card-foreground:    158 19% 12%;
   }
 }
 
+/* ── Base Styles ───────────────────────────────────────────────── */
 @layer base {
   html {
     @apply scroll-smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+  }
+
+  /* Headings use Cinzel – uppercase, wide tracking */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 400;
+  }
+
+  /* All transitions follow brand spec */
+  a, button, [role="button"] {
+    transition: all 0.4s ease;
+  }
+
+  /* Sharp corners everywhere */
+  *, *::before, *::after {
+    border-radius: 0 !important;
+  }
+
+  /* Gold selection */
+  ::selection {
+    background-color: #D4AF37;
+    color: #1C2826;
   }
 }
 
+/* ── Brand Utilities ───────────────────────────────────────────── */
 @layer utilities {
+  /* Gold accent divider line */
+  .divider-gold {
+    display: block;
+    width: 3rem;
+    height: 1px;
+    background-color: #D4AF37;
+  }
+
+  /* Uppercase spaced label (eyebrow text) */
+  .label-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #D4AF37;
+  }
+
+  /* Nav link style */
+  .nav-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    transition: color 0.4s ease;
+  }
+
+  /* CTA button – primary (gold fill) */
+  .btn-primary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: #D4AF37;
+    color: #1C2826;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    border: 1px solid #D4AF37;
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    background-color: transparent;
+    color: #D4AF37;
+  }
+
+  /* CTA button – secondary (ghost) */
+  .btn-ghost {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: transparent;
+    color: #F9F8F6;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    border: 1px solid rgba(249,248,246,0.25);
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+  .btn-ghost:hover {
+    border-color: #D4AF37;
+    color: #D4AF37;
+  }
+
+  /* Film grain overlay */
   .film-grain::after {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw; height: 100vh;
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAElBMVEUAAAAAAAD///8/Pz8/Pz9DQ0N0I1SAAAAABXRSTlMAZgBlj2Z9XgAAAEJJREFUKM9jYCAeQFYhifHy48f/BwEJKCQlpZSVlQ0MDIwVDIyMjAyMDAwMDAwMDEzA4hJiAYaGR3ceP3gAgwJDVYAAAtQClJ5dY2kAAAAASUVORK5CYII=');
     background-repeat: repeat;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.05;
+    opacity: 0.04;
     animation: grain 8s steps(10) infinite;
   }
 
   @keyframes grain {
     0%, 100% { transform: translate(0, 0); }
-    10% { transform: translate(-5%, -10%); }
-    20% { transform: translate(-15%, 5%); }
-    30% { transform: translate(7%, -25%); }
-    40% { transform: translate(-5%, 25%); }
-    50% { transform: translate(-15%, 10%); }
-    60% { transform: translate(15%, 0%); }
-    70% { transform: translate(0%, 15%); }
-    80% { transform: translate(3%, 35%); }
-    90% { transform: translate(-10%, 10%); }
+    10%  { transform: translate(-5%, -10%); }
+    20%  { transform: translate(-15%, 5%); }
+    30%  { transform: translate(7%, -25%); }
+    40%  { transform: translate(-5%, 25%); }
+    50%  { transform: translate(-15%, 10%); }
+    60%  { transform: translate(15%, 0%); }
+    70%  { transform: translate(0%, 15%); }
+    80%  { transform: translate(3%, 35%); }
+    90%  { transform: translate(-10%, 10%); }
+  }
+
+  /* Gold underline on hover */
+  .hover-gold:hover {
+    color: #D4AF37 !important;
+  }
+
+  /* Horizontal thin gold line */
+  .line-gold {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #D4AF37, transparent);
   }
 }

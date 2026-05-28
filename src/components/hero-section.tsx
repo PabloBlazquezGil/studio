@@ -1,14 +1,15 @@
 'use client';
-import { ArrowDown } from 'lucide-react';
 import Link from 'next/link';
 import { siteSettings } from '@/lib/data';
 
 export default function HeroSection() {
   if (!siteSettings) {
     return (
-      <section className="relative h-screen w-full overflow-hidden bg-secondary">
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-foreground p-4">
-          <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl">Contenido no disponible</h1>
+      <section className="relative h-screen w-full overflow-hidden bg-canopy">
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center p-4">
+          <h1 className="font-headline text-5xl md:text-7xl text-linen uppercase tracking-[0.2em]">
+            Contenido no disponible
+          </h1>
         </div>
       </section>
     );
@@ -16,7 +17,8 @@ export default function HeroSection() {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Background video */}
+
+      {/* ── Background video ─────────────────────────────────────── */}
       <video
         key={siteSettings.heroVideoUrl}
         src={siteSettings.heroVideoUrl}
@@ -27,61 +29,94 @@ export default function HeroSection() {
         playsInline
         poster={siteSettings.heroPosterUrl}
       />
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90" />
 
-      {/* Subtle top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-20" />
+      {/* ── Cinematic overlay — Verde Cánope gradient ─────────────── */}
+      <div className="absolute inset-0 bg-gradient-to-b from-canopy/85 via-canopy/40 to-canopy/90" />
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-foreground p-4">
+      {/* ── Top gold accent line ──────────────────────────────────── */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/50 to-transparent z-20" />
+
+      {/* ── Content ──────────────────────────────────────────────── */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+
+        {/* Eyebrow label */}
         <p
-          className="text-white/70 uppercase tracking-[0.4em] text-xs sm:text-sm font-light mb-6 animate-fade-in-up opacity-0 text-center"
+          className="label-eyebrow mb-8 animate-fade-in-up opacity-0"
           style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}
         >
-          Fotografía &middot; Filmmaking &middot; Dirección de Fotografía
+          Fotografía&nbsp;&middot;&nbsp;Filmmaking&nbsp;&middot;&nbsp;Dirección de Fotografía
         </p>
+
+        {/* Thin gold divider */}
+        <div
+          className="divider-gold mx-auto mb-10 animate-fade-in-up opacity-0"
+          style={{ animationDelay: '0.25s', animationFillMode: 'forwards' }}
+        />
+
+        {/* Main heading — Cinzel, uppercase, wide tracking */}
         <h1
-          className="font-headline text-5xl md:text-7xl lg:text-8xl xl:text-9xl leading-tight animate-fade-in-up opacity-0 tracking-tight"
-          style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}
+          className="font-headline text-5xl md:text-7xl lg:text-8xl xl:text-9xl leading-[1.1] text-linen animate-fade-in-up opacity-0"
+          style={{
+            animationDelay: '0.35s',
+            animationFillMode: 'forwards',
+            letterSpacing: '0.15em',
+            fontWeight: 400,
+          }}
         >
-          Luz. <span className="text-white/60 font-light italic">Movimiento.</span>
+          Luz.{' '}
+          <span className="text-linen/50" style={{ fontWeight: 300 }}>
+            Movimiento.
+          </span>
           <br />
           Emoción.
         </h1>
+
+        {/* Subheading */}
         <p
-          className="mt-8 text-base md:text-lg max-w-xl text-white/60 font-light leading-relaxed animate-fade-in-up opacity-0"
-          style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}
+          className="mt-8 text-sm md:text-base max-w-lg text-linen/55 font-body font-light leading-[1.8] animate-fade-in-up opacity-0 tracking-wide"
+          style={{ animationDelay: '0.55s', animationFillMode: 'forwards' }}
         >
-          Narrativas visuales que conectan marcas con personas. Especializado en cinematografía, eventos de alto nivel y proyectos corporativos.
+          Narrativas visuales que conectan marcas con personas. Especializado en cinematografía,
+          naturaleza y proyectos de alto nivel.
         </p>
+
+        {/* CTA buttons */}
         <div
-          className="flex flex-col sm:flex-row gap-6 mt-12 animate-fade-in-up opacity-0"
-          style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}
+          className="flex flex-col sm:flex-row gap-5 mt-14 animate-fade-in-up opacity-0"
+          style={{ animationDelay: '0.75s', animationFillMode: 'forwards' }}
         >
-          <Link
-            href="#gallery"
-            className="px-8 py-4 bg-white text-black font-semibold text-xs sm:text-sm uppercase tracking-[0.2em] hover:bg-white/90 transition-all duration-300 transform hover:scale-105"
-          >
+          <Link href="#gallery" className="btn-primary">
             Ver Portfolio
           </Link>
-          <Link
-            href="#contact"
-            className="px-8 py-4 bg-transparent border border-white/20 text-white text-xs sm:text-sm uppercase tracking-[0.2em] hover:bg-white/10 hover:border-white transition-all duration-300"
-          >
+          <Link href="#contact" className="btn-ghost">
             Contactar
           </Link>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 animate-fade-in-up opacity-0 flex flex-col items-center gap-4" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
-        <span className="text-[10px] uppercase tracking-[0.4em] text-white/40">Scroll</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
+      {/* ── Scroll indicator ──────────────────────────────────────── */}
+      <div
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 animate-fade-in-up opacity-0 flex flex-col items-center gap-3"
+        style={{ animationDelay: '1.1s', animationFillMode: 'forwards' }}
+      >
+        <span className="font-body text-[9px] uppercase tracking-[0.45em] text-linen/35">
+          Scroll
+        </span>
+        <div className="w-[1px] h-10 bg-gradient-to-b from-gold/50 to-transparent" />
       </div>
 
-      {/* Bottom subtle line */}
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent z-20" />
+      {/* ── Bottom gold accent line ───────────────────────────────── */}
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/20 to-transparent z-20" />
+
+      {/* ── Full name watermark ───────────────────────────────────── */}
+      <div className="absolute bottom-24 left-0 right-0 z-10 flex justify-center pointer-events-none select-none">
+        <span
+          className="font-headline text-[9px] tracking-[0.6em] text-linen/15 uppercase hidden lg:block"
+          style={{ letterSpacing: '0.6em' }}
+        >
+          Pablo Blázquez Gil
+        </span>
+      </div>
     </section>
   );
 }

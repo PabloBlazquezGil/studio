@@ -11,21 +11,31 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
   if (!projects || projects.length === 0) return null;
 
   return (
-    <section className="py-24 sm:py-32 bg-background" id="gallery">
-      <ScrollReveal className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-16 gap-4">
+    <section className="py-28 sm:py-36 bg-background" id="gallery">
+      <ScrollReveal className="container mx-auto px-6 sm:px-8 lg:px-16">
+
+        {/* ── Section header ──────────────────────────────────────── */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-20 gap-6">
           <div>
-            <p className="text-white/70 uppercase tracking-[0.3em] text-xs font-light mb-3">Portfolio</p>
-            <h2 className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground font-light tracking-tight">Fotografía</h2>
+            <p className="label-eyebrow mb-4">Portfolio</p>
+            <div className="divider-gold mb-6" />
+            <h2
+              className="font-headline text-4xl sm:text-5xl lg:text-6xl text-foreground font-light"
+              style={{ letterSpacing: '0.18em' }}
+            >
+              Fotografía
+            </h2>
           </div>
-          <p className="text-muted-foreground max-w-xs text-sm leading-relaxed text-left sm:text-right">
+          <p
+            className="font-body text-sm leading-[1.8] max-w-xs text-left sm:text-right"
+            style={{ color: '#4A4E51' }}
+          >
             Una cuidada selección de proyectos que definen mi trayectoria creativa.
           </p>
         </div>
 
-        {/* Masonry-style grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        {/* ── Masonry-style grid ───────────────────────────────────── */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
           {projects.map((project, index) => (
             <ScrollReveal
               key={project.id}
@@ -39,28 +49,53 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
                 src={project.imageUrl}
                 alt={project.title}
                 fill
-                className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-75"
+                className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-70"
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
               />
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
 
-              {/* White border on hover */}
-              <div className="absolute inset-0 border border-transparent group-hover:border-white/20 transition-all duration-500 pointer-events-none" />
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-canopy/90 via-canopy/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
 
-              {/* Badge top-left */}
-              <div className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="bg-white/10 backdrop-blur-md border border-white/20 text-white text-[9px] uppercase tracking-widest px-3 py-1.5 rounded-sm">
+              {/* Gold border on hover */}
+              <div
+                className="absolute inset-0 border border-transparent group-hover:border-gold/40 transition-all duration-500 pointer-events-none"
+              />
+
+              {/* Category badge — top-left */}
+              <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+                <span
+                  className="font-body text-[8px] uppercase tracking-[0.3em] px-3 py-1.5"
+                  style={{
+                    backgroundColor: 'rgba(212,175,55,0.15)',
+                    border: '1px solid rgba(212,175,55,0.4)',
+                    color: '#D4AF37',
+                    backdropFilter: 'blur(8px)',
+                    letterSpacing: '0.3em',
+                  }}
+                >
                   {project.category}
                 </span>
               </div>
 
               {/* Bottom text */}
-              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 text-white">
+              <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-7 text-linen">
                 <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
-                  <h3 className="font-headline text-lg sm:text-2xl leading-tight font-light">{project.title}</h3>
+                  {/* Gold thin line before title on hover */}
+                  <div
+                    className="h-[1px] mb-3 transition-all duration-500 opacity-0 group-hover:opacity-100"
+                    style={{ backgroundColor: '#D4AF37', width: '2rem' }}
+                  />
+                  <h3
+                    className="font-headline text-lg sm:text-xl leading-snug font-light"
+                    style={{ letterSpacing: '0.12em', color: '#F9F8F6' }}
+                  >
+                    {project.title}
+                  </h3>
                   {project.year && (
-                    <p className="text-[10px] uppercase tracking-widest text-white/60 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p
+                      className="font-body text-[9px] uppercase tracking-[0.35em] mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ color: '#D4AF37' }}
+                    >
                       {project.year}
                     </p>
                   )}
