@@ -8,10 +8,11 @@ const photoProjectImages = [
   'https://images.unsplash.com/photo-1617761141732-d481912af1a9?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3',
   'https://images.unsplash.com/photo-1623967680551-3e4694e2c9ad?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3',
   'https://images.unsplash.com/photo-1615472768508-9db82090f4c6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3'
-];export const projects: Project[] = [
+];
+export const projects: Project[] = [
   { 
     id: 'furnas', 
-    title: 'Playa de Furnas', 
+    title: 'Sesión de Surf en la Playa de Furnas', 
     category: 'Fotografía Deportiva', 
     year: 2026, 
     client: 'Cliente Privado', 
