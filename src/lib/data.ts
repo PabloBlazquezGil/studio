@@ -8,24 +8,25 @@ const photoProjectImages = [
   'https://images.unsplash.com/photo-1617761141732-d481912af1a9?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3',
   'https://images.unsplash.com/photo-1623967680551-3e4694e2c9ad?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3',
   'https://images.unsplash.com/photo-1615472768508-9db82090f4c6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3'
-];
-
-export const projects: Project[] = [
+];export const projects: Project[] = [
   { 
-    id: '12', 
-    title: 'Sesión de Surf en Malpica', 
+    id: 'furnas', 
+    title: 'Playa de Furnas', 
     category: 'Fotografía Deportiva', 
     year: 2026, 
     client: 'Cliente Privado', 
-    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px.avif', 
-    description: 'Capturando la energía y la pasión del surf en las olas de Malpica.',
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01768.avif', 
+    description: 'Sesión de surf de alta intensidad capturada bajo las desafiantes condiciones y la luz única de la playa de Furnas.',
     media: [
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG06887_2048px.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG06897_2048px-2.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07002_2048px.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07096_2048px.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07176_2048px.avif' }
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01768.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01773.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01778.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01699.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01716.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01738.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01742.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01744-2.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/PBG01758.avif' }
     ] 
   },
   { 
@@ -61,27 +62,6 @@ export const projects: Project[] = [
     ] 
   },
   { 
-    id: '16', 
-    title: 'Sesión de Tenis en Freixo', 
-    category: 'Fotografía Deportiva', 
-    year: 2026, 
-    client: 'Club de Tenis Freixo', 
-    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-118.avif', 
-    description: 'Capturando la intensidad, velocidad y precisión en cada golpe durante la sesión de tenis en las pistas de Freixo.', 
-    media: [
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-118.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-112.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-65.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-54.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-38.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-35.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-29.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-24.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-3.avif' },
-      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-156.avif' }
-    ] 
-  },
-  { 
     id: '3', 
     title: 'Sesión Photobook Actriz', 
     category: 'Retrato', 
@@ -104,6 +84,44 @@ export const projects: Project[] = [
     ] 
   },
   { 
+    id: '16', 
+    title: 'Sesión de Tenis en Freixo', 
+    category: 'Fotografía Deportiva', 
+    year: 2026, 
+    client: 'Club de Tenis Freixo', 
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-118.avif', 
+    description: 'Capturando la intensidad, velocidad y precisión en cada golpe durante la sesión de tenis en las pistas de Freixo.', 
+    media: [
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-118.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-112.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-65.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-54.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-38.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-35.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-29.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-24.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-3.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/05/Interclub-Portosiavo-156.avif' }
+    ] 
+  },
+  { 
+    id: '12', 
+    title: 'Sesión de Surf en Malpica', 
+    category: 'Fotografía Deportiva', 
+    year: 2026, 
+    client: 'Cliente Privado', 
+    imageUrl: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px.avif', 
+    description: 'Capturando la energía y la pasión del surf en las olas de Malpica.',
+    media: [
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07245_2048px.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG06887_2048px.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG06897_2048px-2.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07002_2048px.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07096_2048px.avif' },
+      { type: 'image', url: 'https://thundershoot.com/wp-content/uploads/2026/02/PBG07176_2048px.avif' }
+    ] 
+  },
+  { 
     id: '9', 
     title: 'PhDays', 
     category: 'Evento Científico', 
@@ -114,7 +132,7 @@ export const projects: Project[] = [
       { type: 'video', url: 'https://thundershoot.com/wp-content/uploads/2024/11/Trailer-PhDays2023-Centro-de-Astrobiologia.mp4#t=5' },
     ]
   },
-    {
+  {
     id: '10',
     title: 'Día de la Mujer y la Niña en la Ciencia',
     category: 'Evento de Divulgación',
