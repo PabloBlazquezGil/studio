@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import type { Project } from '@/lib/types';
-import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogClose } from '@/components/ui/dialog';
-import { User, Calendar, ArrowLeft, ArrowRight, X, ZoomIn } from 'lucide-react';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { User, Calendar, ArrowLeft, ArrowRight, X, ZoomIn, Play } from 'lucide-react';
 import Image from 'next/image';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
 import { getYouTubeId } from '@/lib/utils';
 
+/* ─────────────────────────────────────────────────────────────────
+   Navigation thumbnail
+───────────────────────────────────────────────────────────────── */
 interface ProjectNavigationLinkProps {
   project: Project;
   type: 'prev' | 'next';
@@ -17,38 +18,62 @@ interface ProjectNavigationLinkProps {
 
 function ProjectNavigationLink({ project, type, onClick }: ProjectNavigationLinkProps) {
   const isPrev = type === 'prev';
-  const imageSrc = project.imageUrl;
 
   return (
     <button
-        onClick={onClick}
-        className={`relative h-56 sm:h-64 group cursor-pointer text-left w-full ${isPrev ? 'sm:border-r' : ''} border-border/20`}
+      onClick={onClick}
+      className={`relative h-48 sm:h-56 group cursor-pointer text-left w-full overflow-hidden ${
+        isPrev ? 'border-r border-gold/10' : ''
+      }`}
+      style={{ transition: 'background-color 0.4s ease' }}
+      onMouseEnter={e => (e.currentTarget.style.backgroundColor = 'rgba(212,175,55,0.04)')}
+      onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'transparent')}
     >
       <Image
-          src={imageSrc}
-          alt={project.title}
-          fill
-          className="object-cover opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-          sizes="50vw"
+        src={project.imageUrl}
+        alt={project.title}
+        fill
+        className="object-cover opacity-15 group-hover:opacity-25 transition-opacity duration-500"
+        sizes="50vw"
       />
-      <div className="absolute inset-0 bg-background/70 group-hover:bg-background/60 transition-all duration-300" />
-      <div className={`relative z-10 h-full flex flex-col justify-center p-8 text-foreground ${isPrev ? 'items-start' : 'items-end'}`}>
-          <div className={`flex items-center gap-4 ${isPrev ? 'flex-row' : 'flex-row-reverse'}`}>
-              <div className="flex-shrink-0">
-                  {isPrev 
-                    ? <ArrowLeft className="w-8 h-8 text-primary transition-transform group-hover:-translate-x-2" /> 
-                    : <ArrowRight className="w-8 h-8 text-primary transition-transform group-hover:translate-x-2" />}
-              </div>
-              <div className={isPrev ? 'text-left' : 'text-right'}>
-                  <p className="text-sm uppercase tracking-wider text-muted-foreground">{isPrev ? 'Anterior' : 'Siguiente'}</p>
-                  <h3 className="font-headline text-2xl mt-1">{project.title}</h3>
-              </div>
+      <div className="absolute inset-0 bg-canopy/80 group-hover:bg-canopy/70 transition-all duration-500" />
+      {/* Gold accent line */}
+      <div
+        className={`absolute top-0 ${isPrev ? 'left-0' : 'right-0'} h-full w-[1px] bg-gold/0 group-hover:bg-gold/30 transition-all duration-500`}
+      />
+      <div className={`relative z-10 h-full flex flex-col justify-center p-8 sm:p-10 ${isPrev ? 'items-start' : 'items-end'}`}>
+        <div className={`flex items-center gap-4 ${isPrev ? 'flex-row' : 'flex-row-reverse'}`}>
+          <div
+            className="w-10 h-10 flex items-center justify-center border border-gold/30 group-hover:border-gold/70 transition-all duration-400"
+            style={{ backgroundColor: 'rgba(212,175,55,0.05)' }}
+          >
+            {isPrev
+              ? <ArrowLeft className="w-4 h-4 text-gold transition-transform group-hover:-translate-x-1 duration-400" />
+              : <ArrowRight className="w-4 h-4 text-gold transition-transform group-hover:translate-x-1 duration-400" />}
           </div>
+          <div className={isPrev ? 'text-left' : 'text-right'}>
+            <p
+              className="font-body text-[9px] uppercase tracking-[0.3em] mb-1"
+              style={{ color: 'rgba(249,248,246,0.35)' }}
+            >
+              {isPrev ? 'Anterior' : 'Siguiente'}
+            </p>
+            <h3
+              className="font-headline text-base sm:text-lg font-light"
+              style={{ color: '#F9F8F6', letterSpacing: '0.1em' }}
+            >
+              {project.title}
+            </h3>
+          </div>
+        </div>
       </div>
     </button>
   );
 }
 
+/* ─────────────────────────────────────────────────────────────────
+   Main overlay
+───────────────────────────────────────────────────────────────── */
 interface ProjectDetailOverlayProps {
   project: Project | null;
   onClose: () => void;
@@ -63,45 +88,62 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
 
   const mainMedia = project.media[0];
   const youtubeId = mainMedia && mainMedia.type === 'video' ? getYouTubeId(mainMedia.url) : null;
-  
+
   const currentIndex = allProjects.findIndex(p => p.id === project.id);
-  const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length];
-  const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
-  
-  const imageMedia = project.media.filter((item) => item.type === 'image');
+  const prevProject  = allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length];
+  const nextProject  = allProjects[(currentIndex + 1) % allProjects.length];
+
+  const imageMedia = project.media.filter(item => item.type === 'image');
   const showGallery = imageMedia.length > 0;
 
   return (
     <>
       <Dialog open={!!project} onOpenChange={(open) => !open && onClose()}>
-        <DialogContent showCloseButton={false} className="max-w-none w-full h-full p-0 bg-background border-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0">
-          
+        <DialogContent
+          showCloseButton={false}
+          className="max-w-none w-full h-full p-0 border-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0"
+          style={{ backgroundColor: '#1C2826' }}
+        >
           <div className="h-full w-full overflow-y-auto scroll-smooth">
-            <Button 
-              variant="ghost"
-              onClick={onClose} 
-              className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20 text-white hover:text-primary hover:bg-white/10"
+
+            {/* ── Back / Close button ─────────────────────────────── */}
+            <button
+              onClick={onClose}
               aria-label="Volver al portfolio"
+              className="absolute top-6 left-6 sm:top-8 sm:left-8 z-30 flex items-center gap-2 group"
+              style={{
+                fontFamily: 'var(--font-body, Montserrat), sans-serif',
+                fontSize: '0.65rem',
+                letterSpacing: '0.25em',
+                textTransform: 'uppercase',
+                color: 'rgba(249,248,246,0.55)',
+                transition: 'color 0.4s ease',
+              }}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#D4AF37')}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'rgba(249,248,246,0.55)')}
             >
-              <ArrowLeft className="w-5 h-5 mr-2" />
-              <span className="font-medium">Volver al portfolio</span>
-            </Button>
-            {/* Hero Section */}
+              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 duration-400" />
+              <span>Volver al portfolio</span>
+            </button>
+
+            {/* ── Hero ───────────────────────────────────────────── */}
             <header className="relative h-[70vh] w-full">
               <div className="absolute inset-0">
                 {mainMedia.type === 'image' || youtubeId ? (
                   <Image
-                    src={youtubeId ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg` : mainMedia.url}
+                    src={youtubeId
+                      ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`
+                      : mainMedia.url}
                     alt={project.title}
                     fill
-                    className="object-cover animate-fade-in"
+                    className="object-cover"
                     sizes="100vw"
                     priority
                   />
                 ) : (
                   <video
                     src={mainMedia.url}
-                    className="w-full h-full object-cover bg-black"
+                    className="w-full h-full object-cover"
                     autoPlay
                     loop
                     muted
@@ -110,100 +152,177 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                   />
                 )}
               </div>
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
 
-              <div className="relative z-10 flex flex-col justify-end h-full text-white p-8 md:p-12">
-                <Badge variant="secondary" className="mb-4 w-fit">{project.category}</Badge>
-                <DialogTitle className="font-headline text-4xl sm:text-5xl lg:text-7xl text-white">
-                   {project.title}
+              {/* Cinematic gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1C2826] via-[#1C2826]/60 to-transparent" />
+
+              {/* Top gold line */}
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent z-10" />
+
+              {/* Content */}
+              <div className="relative z-10 flex flex-col justify-end h-full p-8 md:p-14">
+                {/* Category badge */}
+                <span
+                  className="inline-block mb-5 w-fit font-body text-[8px] uppercase tracking-[0.35em] px-3 py-1.5"
+                  style={{
+                    backgroundColor: 'rgba(212,175,55,0.1)',
+                    border: '1px solid rgba(212,175,55,0.4)',
+                    color: '#D4AF37',
+                  }}
+                >
+                  {project.category}
+                </span>
+                <DialogTitle
+                  className="font-headline text-4xl sm:text-5xl lg:text-7xl font-light"
+                  style={{ color: '#F9F8F6', letterSpacing: '0.12em' }}
+                >
+                  {project.title}
                 </DialogTitle>
                 <DialogDescription className="sr-only">{project.description}</DialogDescription>
               </div>
             </header>
-            
-            {/* Content Section */}
-            <main className="container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 border-b border-border pb-8">
-                  <div className="flex items-center gap-3 text-muted-foreground">
-                      <User className="w-5 h-5 text-primary" />
-                      <div>
-                          <p className="font-bold text-foreground">Cliente</p>
-                          <p>{project.client}</p>
-                      </div>
-                  </div>
-                  {project.year && (
-                    <div className="flex items-center gap-3 text-muted-foreground">
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <div>
-                            <p className="font-bold text-foreground">Año</p>
-                            <p>{project.year}</p>
-                        </div>
+
+            {/* ── Meta & Description ─────────────────────────────── */}
+            <main className="container mx-auto max-w-5xl px-6 sm:px-8 lg:px-12 py-14 md:py-20">
+
+              {/* Meta row */}
+              <div
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12 pb-10"
+                style={{ borderBottom: '1px solid rgba(212,175,55,0.15)' }}
+              >
+                {project.client && (
+                  <div className="flex items-start gap-3">
+                    <User className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#D4AF37' }} />
+                    <div>
+                      <p
+                        className="font-body text-[9px] uppercase tracking-[0.25em] mb-1"
+                        style={{ color: '#D4AF37' }}
+                      >
+                        Cliente
+                      </p>
+                      <p className="font-body text-sm" style={{ color: 'rgba(249,248,246,0.75)' }}>
+                        {project.client}
+                      </p>
                     </div>
-                  )}
+                  </div>
+                )}
+                {project.year && (
+                  <div className="flex items-start gap-3">
+                    <Calendar className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#D4AF37' }} />
+                    <div>
+                      <p
+                        className="font-body text-[9px] uppercase tracking-[0.25em] mb-1"
+                        style={{ color: '#D4AF37' }}
+                      >
+                        Año
+                      </p>
+                      <p className="font-body text-sm" style={{ color: 'rgba(249,248,246,0.75)' }}>
+                        {project.year}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
 
-              <div className="text-lg leading-relaxed text-muted-foreground max-w-3xl">
-                <p>{project.description}</p>
+              {/* Description */}
+              <div className="max-w-3xl mb-16">
+                <p
+                  className="font-body text-base leading-[1.9]"
+                  style={{ color: 'rgba(249,248,246,0.6)' }}
+                >
+                  {project.description}
+                </p>
               </div>
-              
+
+              {/* ── Full video ─────────────────────────────────────── */}
               {mainMedia.type === 'video' && (
-                <div className="mt-16">
-                    <h2 className="font-headline text-3xl sm:text-4xl text-foreground mb-8">Vídeo Completo</h2>
-                    <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg bg-black">
-                        {youtubeId ? (
-                            <iframe
-                                src={`https://www.youtube.com/embed/${youtubeId}?autoplay=0&rel=0&modestbranding=1`}
-                                className="absolute inset-0 w-full h-full border-0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowFullScreen
-                                title={project.title}
-                            />
-                        ) : (
-                            <video
-                                src={mainMedia.url.split('#')[0]}
-                                className="w-full h-full object-cover"
-                                controls
-                                poster={project.imageUrl}
-                            />
-                        )}
-                    </div>
+                <div className="mb-16">
+                  <div className="mb-8">
+                    <p className="label-eyebrow mb-3">Producción</p>
+                    <div className="divider-gold mb-6" />
+                    <h2
+                      className="font-headline text-3xl sm:text-4xl font-light"
+                      style={{ color: '#F9F8F6', letterSpacing: '0.15em' }}
+                    >
+                      Vídeo Completo
+                    </h2>
+                  </div>
+                  <div className="relative aspect-video overflow-hidden shadow-2xl" style={{ border: '1px solid rgba(212,175,55,0.15)' }}>
+                    {youtubeId ? (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${youtubeId}?autoplay=0&rel=0&modestbranding=1`}
+                        className="absolute inset-0 w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        title={project.title}
+                      />
+                    ) : (
+                      <video
+                        src={mainMedia.url.split('#')[0]}
+                        className="w-full h-full object-cover"
+                        controls
+                        poster={project.imageUrl}
+                      />
+                    )}
+                  </div>
                 </div>
               )}
-              
+
+              {/* ── Photo gallery ──────────────────────────────────── */}
               {showGallery && (
-                  <div className="mt-16">
-                      <h2 className="font-headline text-3xl sm:text-4xl text-foreground mb-8">Galería del Proyecto</h2>
-                      <div className="columns-1 sm:columns-2 gap-4 md:gap-6 space-y-4 md:space-y-6">
-                          {imageMedia.map((mediaItem, index) => (
-                              <div key={index} className="break-inside-avoid">
-                                <button
-                                    onClick={() => setPreviewImage(mediaItem.url)}
-                                    className="block w-full relative group rounded-lg overflow-hidden shadow-lg bg-muted cursor-pointer"
-                                >
-                                    <Image
-                                        src={mediaItem.url}
-                                        alt={`${project.title} media ${index + 1}`}
-                                        width={0}
-                                        height={0}
-                                        sizes="(max-width: 768px) 100vw, 50vw"
-                                        className="h-auto w-full transition-transform duration-300 ease-in-out group-hover:scale-105"
-                                    />
-                                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                      <div className="p-3 bg-primary/90 rounded-full">
-                                          <ZoomIn className="w-6 h-6 text-primary-foreground" />
-                                      </div>
-                                    </div>
-                                </button>
-                              </div>
-                          ))}
-                      </div>
+                <div>
+                  <div className="mb-10">
+                    <p className="label-eyebrow mb-3">Galería</p>
+                    <div className="divider-gold mb-6" />
+                    <h2
+                      className="font-headline text-3xl sm:text-4xl font-light"
+                      style={{ color: '#F9F8F6', letterSpacing: '0.15em' }}
+                    >
+                      Galería del Proyecto
+                    </h2>
                   </div>
+                  <div className="columns-1 sm:columns-2 gap-3 md:gap-4 space-y-3 md:space-y-4">
+                    {imageMedia.map((mediaItem, index) => (
+                      <div key={index} className="break-inside-avoid">
+                        <button
+                          onClick={() => setPreviewImage(mediaItem.url)}
+                          className="block w-full relative group overflow-hidden cursor-pointer"
+                          style={{ border: '1px solid rgba(212,175,55,0.08)' }}
+                        >
+                          <Image
+                            src={mediaItem.url}
+                            alt={`${project.title} — imagen ${index + 1}`}
+                            width={0}
+                            height={0}
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="h-auto w-full transition-transform duration-700 ease-in-out group-hover:scale-105"
+                          />
+                          {/* Hover overlay */}
+                          <div className="absolute inset-0 bg-canopy/60 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center">
+                            <div
+                              className="w-12 h-12 flex items-center justify-center"
+                              style={{
+                                border: '1px solid rgba(212,175,55,0.6)',
+                                backgroundColor: 'rgba(212,175,55,0.1)',
+                              }}
+                            >
+                              <ZoomIn className="w-5 h-5" style={{ color: '#D4AF37' }} />
+                            </div>
+                          </div>
+                          {/* Gold bottom edge on hover */}
+                          <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gold/0 group-hover:bg-gold/50 transition-all duration-500" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               )}
             </main>
 
-            {/* Navigation Section */}
-            <footer className="w-full border-t border-border/20 mt-16 sm:mt-24">
+            {/* ── Navigation ─────────────────────────────────────── */}
+            <footer className="w-full mt-16 sm:mt-24" style={{ borderTop: '1px solid rgba(212,175,55,0.12)' }}>
+              {/* Gold top accent */}
+              <div className="h-[1px] bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
               <div className="grid grid-cols-1 sm:grid-cols-2">
                 <ProjectNavigationLink project={prevProject} type="prev" onClick={() => onProjectChange(prevProject)} />
                 <ProjectNavigationLink project={nextProject} type="next" onClick={() => onProjectChange(nextProject)} />
@@ -213,29 +332,45 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
         </DialogContent>
       </Dialog>
 
-      {/* Lightbox Dialog */}
+      {/* ── Lightbox ─────────────────────────────────────────────── */}
       <Dialog open={!!previewImage} onOpenChange={(open) => !open && setPreviewImage(null)}>
-        <DialogContent showCloseButton={false} className="max-w-none w-screen h-screen p-4 sm:p-8 bg-black/90 backdrop-blur-sm border-0 flex items-center justify-center">
-            <DialogTitle className="sr-only">Vista previa de la imagen</DialogTitle>
-            <DialogDescription className="sr-only">Imagen ampliada del proyecto: {project.title}</DialogDescription>
-            {previewImage && <Image
-                src={previewImage}
-                alt="Vista previa de la imagen"
-                fill
-                className="object-contain"
-                sizes="100vw"
-            />}
-            <DialogClose asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setPreviewImage(null)}
-                className="absolute top-4 right-4 z-50 text-white hover:text-primary bg-black/20 hover:bg-black/40 h-12 w-12 rounded-full"
-                aria-label="Cerrar vista previa"
-              >
-                <X className="w-6 h-6" />
-              </Button>
-            </DialogClose>
+        <DialogContent
+          showCloseButton={false}
+          className="max-w-none w-screen h-screen p-4 sm:p-8 border-0 flex items-center justify-center"
+          style={{ backgroundColor: 'rgba(10,15,14,0.96)', backdropFilter: 'blur(8px)' }}
+        >
+          <DialogTitle className="sr-only">Vista previa de la imagen</DialogTitle>
+          <DialogDescription className="sr-only">Imagen ampliada del proyecto: {project.title}</DialogDescription>
+          {previewImage && (
+            <Image
+              src={previewImage}
+              alt="Vista previa de la imagen"
+              fill
+              className="object-contain"
+              sizes="100vw"
+            />
+          )}
+          <button
+            onClick={() => setPreviewImage(null)}
+            aria-label="Cerrar vista previa"
+            className="absolute top-5 right-5 z-50 w-10 h-10 flex items-center justify-center"
+            style={{
+              border: '1px solid rgba(212,175,55,0.4)',
+              backgroundColor: 'rgba(28,40,38,0.8)',
+              color: '#D4AF37',
+              transition: 'all 0.4s ease',
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(212,175,55,0.15)';
+              (e.currentTarget as HTMLElement).style.borderColor = '#D4AF37';
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(28,40,38,0.8)';
+              (e.currentTarget as HTMLElement).style.borderColor = 'rgba(212,175,55,0.4)';
+            }}
+          >
+            <X className="w-4 h-4" />
+          </button>
         </DialogContent>
       </Dialog>
     </>

@@ -102,19 +102,13 @@ export default function Footer() {
           <div className="flex items-center gap-6">
             <Link
               href="/politica-de-privacidad"
-              className="font-body text-[10px] uppercase tracking-[0.2em] transition-colors duration-400"
-              style={{ color: 'rgba(249,248,246,0.3)' }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#D4AF37')}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'rgba(249,248,246,0.3)')}
+              className="font-body text-[10px] uppercase tracking-[0.2em] transition-colors duration-400 text-linen/30 hover:text-gold"
             >
               Privacidad
             </Link>
             <Link
               href="/aviso-legal"
-              className="font-body text-[10px] uppercase tracking-[0.2em] transition-colors duration-400"
-              style={{ color: 'rgba(249,248,246,0.3)' }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#D4AF37')}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'rgba(249,248,246,0.3)')}
+              className="font-body text-[10px] uppercase tracking-[0.2em] transition-colors duration-400 text-linen/30 hover:text-gold"
             >
               Aviso Legal
             </Link>

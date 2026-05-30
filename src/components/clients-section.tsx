@@ -35,10 +35,7 @@ export default function ClientsSection() {
                 alt={logo.clientName}
                 width={160}
                 height={60}
-                className="object-contain filter grayscale hover:grayscale-0 transition-all duration-500"
-                style={{ opacity: 0.65 }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.opacity = '1')}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.opacity = '0.65')}
+                className="object-contain filter grayscale hover:grayscale-0 opacity-65 hover:opacity-100 transition-all duration-500"
               />
             </div>
           ))}

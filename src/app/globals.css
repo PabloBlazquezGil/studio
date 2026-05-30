@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Google Fonts ──────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
-
 /* ── Design Tokens ─────────────────────────────────────────────── */
 @layer base {
   :root {
@@ -26,7 +23,7 @@
     --secondary:           158 19% 16%;
     --secondary-foreground:40 20% 97%;
     --muted:               158 15% 20%;
-    --muted-foreground:    210 4% 31%;    /* #4A4E51 */
+    --muted-foreground:    40 10% 55%;    /* linen/55 for dark bg readability */
     --accent:              43 64% 52%;    /* gold */
     --accent-foreground:   158 19% 12%;
     --destructive:         0 72% 51%;
@@ -68,13 +65,13 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-body, 'Montserrat'), sans-serif;
     line-height: 1.6;
   }
 
   /* Headings use Cinzel – uppercase, wide tracking */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cinzel', serif;
+    font-family: var(--font-headline, 'Cinzel'), serif;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     font-weight: 400;

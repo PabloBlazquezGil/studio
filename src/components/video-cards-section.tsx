@@ -162,7 +162,7 @@ export default function VideoCardsSection({ projects, onProjectClick }: VideoCar
           </div>
           <p
             className="font-body text-sm leading-[1.8] max-w-xs text-left sm:text-right"
-            style={{ color: '#4A4E51' }}
+            style={{ color: 'rgba(249,248,246,0.5)' }}
           >
             Pasa el cursor sobre cada pieza para ver un adelanto en movimiento.
           </p>

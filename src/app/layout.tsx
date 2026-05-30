@@ -9,7 +9,7 @@ import { Cinzel, Montserrat } from 'next/font/google';
 const fontHeadline = Cinzel({
   subsets: ['latin'],
   variable: '--font-headline',
-  weight: ['300', '400', '600'],
+  weight: ['400', '500', '600'],
   display: 'swap',
 });
 

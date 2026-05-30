@@ -28,7 +28,7 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
           </div>
           <p
             className="font-body text-sm leading-[1.8] max-w-xs text-left sm:text-right"
-            style={{ color: '#4A4E51' }}
+            style={{ color: 'rgba(249,248,246,0.5)' }}
           >
             Una cuidada selección de proyectos que definen mi trayectoria creativa.
           </p>

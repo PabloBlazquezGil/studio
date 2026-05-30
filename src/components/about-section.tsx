@@ -88,25 +88,11 @@ export default function AboutSection() {
               </div>
             </div>
 
-            {/* Skills */}
             <div className="grid grid-cols-3 gap-4">
               {skills.map(({ icon: Icon, label, sub }) => (
                 <div
                   key={label}
-                  className="border p-5 group"
-                  style={{
-                    borderColor: 'rgba(28,40,38,0.12)',
-                    backgroundColor: 'rgba(28,40,38,0.03)',
-                    transition: 'border-color 0.4s ease, background-color 0.4s ease',
-                  }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.borderColor = '#D4AF37';
-                    (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(212,175,55,0.05)';
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(28,40,38,0.12)';
-                    (e.currentTarget as HTMLElement).style.backgroundColor = 'rgba(28,40,38,0.03)';
-                  }}
+                  className="border border-canopy/12 bg-canopy/[0.03] transition-colors duration-400 hover:border-gold hover:bg-gold/5 p-5 group"
                 >
                   <Icon className="w-5 h-5 mb-3" style={{ color: '#D4AF37' }} />
                   <p className="font-body font-medium text-sm" style={{ color: '#1C2826' }}>
@@ -126,53 +112,13 @@ export default function AboutSection() {
             <div className="flex flex-wrap gap-5 mt-2">
               <Link
                 href="#contact"
-                style={{
-                  display: 'inline-block',
-                  padding: '0.9rem 2.2rem',
-                  backgroundColor: '#1C2826',
-                  color: '#F9F8F6',
-                  fontFamily: 'Montserrat, sans-serif',
-                  fontSize: '0.68rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.25em',
-                  textTransform: 'uppercase',
-                  border: '1px solid #1C2826',
-                  transition: 'all 0.4s ease',
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
-                  (e.currentTarget as HTMLElement).style.color = '#1C2826';
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor = '#1C2826';
-                  (e.currentTarget as HTMLElement).style.color = '#F9F8F6';
-                }}
+                className="inline-block px-[2.2rem] py-[0.9rem] bg-canopy text-linen font-body text-[0.68rem] font-semibold tracking-[0.25em] uppercase border border-canopy transition-all duration-400 hover:bg-transparent hover:text-canopy"
               >
                 Conectar
               </Link>
               <Link
                 href="#gallery"
-                style={{
-                  display: 'inline-block',
-                  padding: '0.9rem 2.2rem',
-                  backgroundColor: 'transparent',
-                  color: '#1C2826',
-                  fontFamily: 'Montserrat, sans-serif',
-                  fontSize: '0.68rem',
-                  fontWeight: 500,
-                  letterSpacing: '0.25em',
-                  textTransform: 'uppercase',
-                  border: '1px solid rgba(28,40,38,0.3)',
-                  transition: 'all 0.4s ease',
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = '#D4AF37';
-                  (e.currentTarget as HTMLElement).style.color = '#D4AF37';
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.borderColor = 'rgba(28,40,38,0.3)';
-                  (e.currentTarget as HTMLElement).style.color = '#1C2826';
-                }}
+                className="inline-block px-[2.2rem] py-[0.9rem] bg-transparent text-canopy font-body text-[0.68rem] font-medium tracking-[0.25em] uppercase border border-canopy/30 transition-all duration-400 hover:border-gold hover:text-gold"
               >
                 Ver Portfolio
               </Link>
