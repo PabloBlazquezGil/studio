@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+
 import { siteSettings } from '@/lib/data';
 
 export default function HeroSection() {
@@ -71,27 +71,7 @@ export default function HeroSection() {
           Fotografía&nbsp;&middot;&nbsp;Filmmaking&nbsp;&middot;&nbsp;Dirección de Fotografía
         </p>
 
-        {/* Subheading */}
-        <p
-          className="mt-4 text-sm md:text-base max-w-lg text-linen/55 font-body font-light leading-[1.8] animate-fade-in-up opacity-0 tracking-wide"
-          style={{ animationDelay: '0.55s', animationFillMode: 'forwards' }}
-        >
-          Narrativas visuales que conectan marcas con personas. Especializado en cinematografía,
-          naturaleza y proyectos de alto nivel.
-        </p>
 
-        {/* CTA buttons */}
-        <div
-          className="flex flex-col sm:flex-row gap-5 mt-14 animate-fade-in-up opacity-0"
-          style={{ animationDelay: '0.75s', animationFillMode: 'forwards' }}
-        >
-          <Link href="#gallery" className="btn-primary">
-            Ver Portfolio
-          </Link>
-          <Link href="#contact" className="btn-ghost">
-            Contactar
-          </Link>
-        </div>
       </div>
 
       {/* ── Scroll indicator ──────────────────────────────────────── */}
