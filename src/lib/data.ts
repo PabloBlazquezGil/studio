@@ -157,6 +157,20 @@ export const projects: Project[] = [
       { type: 'video', url: 'https://youtu.be/f-erOiwac60' }
     ]
   },
+  {
+    id: 'adria-floristeria',
+    title: 'Adria Floristería',
+    category: 'Social Media / Reels',
+    year: 2026,
+    client: 'Adria Floristería',
+    imageUrl: '/img/adria-floristeria.png',
+    description: 'Creación de dos reels para redes sociales sobre la preparación y su minucioso trabajo en servicios de bodas. Un enfoque cinematográfico y detallista que destaca el arte del estilismo floral, el diseño de espacios y la elegancia de los preparativos matrimoniales.',
+    media: [
+      { type: 'video', url: 'https://thundershoot.com/wp-content/uploads/2026/06/SHORT-FILM-CASA-BEATNIK-1080.mp4', title: 'Casa Beatnik' },
+      { type: 'video', url: 'https://thundershoot.com/wp-content/uploads/2026/06/Short-Film-San-Lorenzo-1.mp4', title: 'Pazo San Lorenzo' }
+    ],
+    layoutType: 'portrait'
+  },
 ];
 
 export const author: Author = {

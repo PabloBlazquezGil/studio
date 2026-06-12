@@ -6,7 +6,8 @@ export type Project = {
   year?: number;
   client: string;
   imageUrl: string;
-  media: { type: 'image' | 'video'; url: string }[];
+  media: { type: 'image' | 'video'; url: string; title?: string }[];
+  layoutType?: 'portrait' | 'landscape';
 };
 
 export type Author = {

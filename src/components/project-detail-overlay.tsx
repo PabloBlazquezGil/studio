@@ -96,6 +96,9 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
   const imageMedia = project.media.filter(item => item.type === 'image');
   const showGallery = imageMedia.length > 0;
 
+  const videoMedia = project.media.filter(item => item.type === 'video');
+  const isPortraitProject = project.layoutType === 'portrait';
+
   return (
     <>
       <Dialog open={!!project} onOpenChange={(open) => !open && onClose()}>
@@ -129,11 +132,13 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
             {/* ── Hero ───────────────────────────────────────────── */}
             <header className="relative h-[70vh] w-full">
               <div className="absolute inset-0">
-                {mainMedia.type === 'image' || youtubeId ? (
+                {mainMedia.type === 'image' || youtubeId || isPortraitProject ? (
                   <Image
-                    src={youtubeId
-                      ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`
-                      : mainMedia.url}
+                    src={isPortraitProject
+                      ? project.imageUrl
+                      : (youtubeId
+                        ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`
+                        : mainMedia.url)}
                     alt={project.title}
                     fill
                     className="object-cover"
@@ -234,8 +239,8 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                 </p>
               </div>
 
-              {/* ── Full video ─────────────────────────────────────── */}
-              {mainMedia.type === 'video' && (
+              {/* ── Full video / Videos section ─────────────────────── */}
+              {videoMedia.length > 0 && (
                 <div className="mb-16">
                   <div className="mb-8">
                     <p className="label-eyebrow mb-3">Producción</p>
@@ -244,26 +249,57 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                       className="font-headline text-3xl sm:text-4xl font-light"
                       style={{ color: '#F9F8F6', letterSpacing: '0.15em' }}
                     >
-                      Vídeo Completo
+                      {videoMedia.length > 1 ? 'Vídeos del Proyecto' : 'Vídeo Completo'}
                     </h2>
                   </div>
-                  <div className="relative aspect-video overflow-hidden shadow-2xl" style={{ border: '1px solid rgba(212,175,55,0.15)' }}>
-                    {youtubeId ? (
-                      <iframe
-                        src={`https://www.youtube.com/embed/${youtubeId}?autoplay=0&rel=0&modestbranding=1`}
-                        className="absolute inset-0 w-full h-full border-0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        title={project.title}
-                      />
-                    ) : (
-                      <video
-                        src={mainMedia.url.split('#')[0]}
-                        className="w-full h-full object-cover"
-                        controls
-                        poster={project.imageUrl}
-                      />
-                    )}
+                  
+                  <div className={`grid gap-8 ${
+                    videoMedia.length === 1
+                      ? isPortraitProject
+                        ? 'max-w-[450px] mx-auto grid-cols-1'
+                        : 'grid-cols-1'
+                      : isPortraitProject
+                        ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto'
+                        : 'grid-cols-1'
+                  }`}>
+                    {videoMedia.map((mediaItem, index) => {
+                      const ytId = getYouTubeId(mediaItem.url);
+                      return (
+                        <div key={index} className="flex flex-col gap-4">
+                          {mediaItem.title && (
+                            <h3 
+                              className="font-headline text-lg sm:text-xl font-light tracking-[0.1em]"
+                              style={{ color: '#F9F8F6' }}
+                            >
+                              {mediaItem.title}
+                            </h3>
+                          )}
+                          <div 
+                            className={`relative overflow-hidden shadow-2xl ${
+                              isPortraitProject ? 'aspect-[9/16]' : 'aspect-video'
+                            }`} 
+                            style={{ border: '1px solid rgba(212,175,55,0.15)' }}
+                          >
+                            {ytId ? (
+                              <iframe
+                                src={`https://www.youtube.com/embed/${ytId}?autoplay=0&rel=0&modestbranding=1`}
+                                className="absolute inset-0 w-full h-full border-0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                                title={mediaItem.title || `${project.title} — vídeo ${index + 1}`}
+                              />
+                            ) : (
+                              <video
+                                src={mediaItem.url.split('#')[0]}
+                                className="w-full h-full object-cover"
+                                controls
+                                poster={project.imageUrl}
+                              />
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
