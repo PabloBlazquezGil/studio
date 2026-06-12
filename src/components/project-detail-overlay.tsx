@@ -7,6 +7,8 @@ import { User, Calendar, ArrowLeft, ArrowRight, X, ZoomIn, Play } from 'lucide-r
 import Image from 'next/image';
 import { getYouTubeId } from '@/lib/utils';
 
+const isImage = (url: string) => !/\.(mp4|webm|ogg)/i.test(url.split('#')[0].split('?')[0]);
+
 /* ─────────────────────────────────────────────────────────────────
    Navigation thumbnail
 ───────────────────────────────────────────────────────────────── */
@@ -29,13 +31,23 @@ function ProjectNavigationLink({ project, type, onClick }: ProjectNavigationLink
       onMouseEnter={e => (e.currentTarget.style.backgroundColor = 'rgba(212,175,55,0.04)')}
       onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'transparent')}
     >
-      <Image
-        src={project.imageUrl}
-        alt={project.title}
-        fill
-        className="object-cover opacity-15 group-hover:opacity-25 transition-opacity duration-500"
-        sizes="50vw"
-      />
+      {isImage(project.imageUrl) ? (
+        <Image
+          src={project.imageUrl}
+          alt={project.title}
+          fill
+          className="object-cover opacity-15 group-hover:opacity-25 transition-opacity duration-500"
+          sizes="50vw"
+        />
+      ) : (
+        <video
+          src={project.imageUrl}
+          className="absolute inset-0 w-full h-full object-cover opacity-15 group-hover:opacity-25 transition-opacity duration-500"
+          muted
+          playsInline
+          preload="metadata"
+        />
+      )}
       <div className="absolute inset-0 bg-canopy/80 group-hover:bg-canopy/70 transition-all duration-500" />
       {/* Gold accent line */}
       <div
@@ -132,7 +144,7 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
             {/* ── Hero ───────────────────────────────────────────── */}
             <header className="relative h-[70vh] w-full">
               <div className="absolute inset-0">
-                {mainMedia.type === 'image' || youtubeId || isPortraitProject ? (
+                {mainMedia.type === 'image' || youtubeId || (isPortraitProject && isImage(project.imageUrl)) ? (
                   <Image
                     src={isPortraitProject
                       ? project.imageUrl
@@ -147,13 +159,13 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                   />
                 ) : (
                   <video
-                    src={mainMedia.url}
+                    src={isPortraitProject && !isImage(project.imageUrl) ? project.imageUrl : mainMedia.url}
                     className="w-full h-full object-cover"
                     autoPlay
                     loop
                     muted
                     playsInline
-                    poster={project.imageUrl}
+                    poster={isImage(project.imageUrl) ? project.imageUrl : undefined}
                   />
                 )}
               </div>
@@ -293,7 +305,7 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                                 src={mediaItem.url.split('#')[0]}
                                 className="w-full h-full object-cover"
                                 controls
-                                poster={project.imageUrl}
+                                poster={isImage(project.imageUrl) ? project.imageUrl : undefined}
                               />
                             )}
                           </div>
