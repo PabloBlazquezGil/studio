@@ -37,7 +37,7 @@ export default function HeroSection() {
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/50 to-transparent z-20" />
 
       {/* ── Content ──────────────────────────────────────────────── */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 pt-20">
 
         {/* Eyebrow label */}
         <p
