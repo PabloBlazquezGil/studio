@@ -1,8 +1,36 @@
 'use client';
+
+import { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { siteSettings } from '@/lib/data';
 
 export default function HeroSection() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const startTime = (() => {
+    const match = siteSettings?.heroVideoUrl?.match(/#t=([0-9]+(?:\.[0-9]+)?)/);
+    return match ? parseFloat(match[1]) : 0;
+  })();
+
+  const handleLoadedMetadata = () => {
+    if (videoRef.current && startTime > 0) {
+      videoRef.current.currentTime = startTime;
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current && startTime > 0) {
+      if (videoRef.current.currentTime < startTime) {
+        videoRef.current.currentTime = startTime;
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (videoRef.current && startTime > 0) {
+      videoRef.current.currentTime = startTime;
+    }
+  }, [startTime]);
+
   if (!siteSettings) {
     return (
       <section className="relative h-screen w-full overflow-hidden bg-canopy">
@@ -20,6 +48,7 @@ export default function HeroSection() {
 
       {/* ── Background video ─────────────────────────────────────── */}
       <video
+        ref={videoRef}
         key={siteSettings.heroVideoUrl}
         src={siteSettings.heroVideoUrl}
         className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 scale-105"
@@ -27,6 +56,8 @@ export default function HeroSection() {
         loop
         muted
         playsInline
+        onLoadedMetadata={handleLoadedMetadata}
+        onTimeUpdate={handleTimeUpdate}
         poster={siteSettings.heroPosterUrl}
       />
 

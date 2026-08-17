@@ -19,23 +19,47 @@ function VideoCard({ project, onProjectClick, featured = false }: VideoCardProps
   const videoUrl  = project.media.find(m => m.type === 'video')?.url || '';
   const youtubeId = getYouTubeId(videoUrl);
 
+  const startTime = (() => {
+    const match = videoUrl.match(/#t=([0-9]+(?:\.[0-9]+)?)/);
+    return match ? parseFloat(match[1]) : 0;
+  })();
+
+  const handleLoadedMetadata = () => {
+    if (videoRef.current && startTime > 0) {
+      videoRef.current.currentTime = startTime;
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current && startTime > 0) {
+      if (videoRef.current.currentTime < startTime) {
+        videoRef.current.currentTime = startTime;
+      }
+    }
+  };
+
   useEffect(() => {
     if (youtubeId) return;
     const video = videoRef.current;
     if (!video) return;
     if (isHovering) {
+      if (startTime > 0 && (video.currentTime < startTime || video.currentTime === 0)) {
+        video.currentTime = startTime;
+      }
       video.play().catch(() => {});
     } else {
       video.pause();
     }
-  }, [isHovering, youtubeId]);
+  }, [isHovering, youtubeId, startTime]);
 
   return (
     <div
       onMouseEnter={() => {
         if (!youtubeId) {
           const video = videoRef.current;
-          if (video) video.currentTime = 5;
+          if (video && startTime > 0 && video.currentTime < startTime) {
+            video.currentTime = startTime;
+          }
         }
         setIsHovering(true);
       }}
@@ -66,6 +90,8 @@ function VideoCard({ project, onProjectClick, featured = false }: VideoCardProps
           muted
           playsInline
           preload="metadata"
+          onLoadedMetadata={handleLoadedMetadata}
+          onTimeUpdate={handleTimeUpdate}
         />
       )}
 

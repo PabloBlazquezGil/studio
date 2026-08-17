@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { Project } from '@/lib/types';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { User, Calendar, ArrowLeft, ArrowRight, X, ZoomIn, Play } from 'lucide-react';
@@ -83,11 +83,18 @@ interface ProjectDetailOverlayProps {
 
 export default function ProjectDetailOverlay({ project, onClose, allProjects, onProjectChange }: ProjectDetailOverlayProps) {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const fullVideoRef = useRef<HTMLVideoElement>(null);
 
   if (!project) return null;
 
   const mainMedia = project.media[0];
   const youtubeId = mainMedia && mainMedia.type === 'video' ? getYouTubeId(mainMedia.url) : null;
+  const videoUrl = mainMedia && mainMedia.type === 'video' ? mainMedia.url : '';
+  const startTime = (() => {
+    const match = videoUrl.match(/#t=([0-9]+(?:\.[0-9]+)?)/);
+    return match ? parseFloat(match[1]) : 0;
+  })();
 
   const currentIndex = allProjects.findIndex(p => p.id === project.id);
   const prevProject  = allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length];
@@ -142,6 +149,8 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                   />
                 ) : (
                   <video
+                    ref={heroVideoRef}
+                    key={`hero-${project.id}-${mainMedia.url}`}
                     src={mainMedia.url}
                     className="w-full h-full object-cover"
                     autoPlay
@@ -149,6 +158,16 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                     muted
                     playsInline
                     poster={project.imageUrl}
+                    onLoadedMetadata={() => {
+                      if (heroVideoRef.current && startTime > 0) {
+                        heroVideoRef.current.currentTime = startTime;
+                      }
+                    }}
+                    onTimeUpdate={() => {
+                      if (heroVideoRef.current && startTime > 0 && heroVideoRef.current.currentTime < startTime) {
+                        heroVideoRef.current.currentTime = startTime;
+                      }
+                    }}
                   />
                 )}
               </div>
@@ -258,10 +277,17 @@ export default function ProjectDetailOverlay({ project, onClose, allProjects, on
                       />
                     ) : (
                       <video
-                        src={mainMedia.url.split('#')[0]}
+                        ref={fullVideoRef}
+                        key={`full-${project.id}-${mainMedia.url}`}
+                        src={mainMedia.url}
                         className="w-full h-full object-cover"
                         controls
                         poster={project.imageUrl}
+                        onLoadedMetadata={() => {
+                          if (fullVideoRef.current && startTime > 0) {
+                            fullVideoRef.current.currentTime = startTime;
+                          }
+                        }}
                       />
                     )}
                   </div>
