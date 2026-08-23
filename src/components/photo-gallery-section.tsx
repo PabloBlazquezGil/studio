@@ -34,15 +34,13 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
           </p>
         </div>
 
-        {/* ── Masonry-style grid ───────────────────────────────────── */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
+        {/* ── Uniform grid ─────────────────────────────────────────── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
           {projects.map((project, index) => (
             <ScrollReveal
               key={project.id}
               delay={index * 80}
-              className={`group relative overflow-hidden cursor-pointer ${
-                index === 0 ? 'col-span-2 lg:col-span-1 row-span-1 aspect-[4/3]' : 'aspect-[2/3]'
-              }`}
+              className="group relative overflow-hidden cursor-pointer aspect-[4/3]"
               onClick={() => onProjectClick(project)}
             >
               <Image
@@ -50,16 +48,14 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
                 alt={project.title}
                 fill
                 className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-70"
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
 
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-canopy/90 via-canopy/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
 
               {/* Gold border on hover */}
-              <div
-                className="absolute inset-0 border border-transparent group-hover:border-gold/40 transition-all duration-500 pointer-events-none"
-              />
+              <div className="absolute inset-0 border border-transparent group-hover:border-gold/40 transition-all duration-500 pointer-events-none" />
 
               {/* Category badge — top-left */}
               <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
@@ -80,7 +76,6 @@ export default function PhotoGallerySection({ projects, onProjectClick }: PhotoG
               {/* Bottom text */}
               <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-7 text-linen">
                 <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
-                  {/* Gold thin line before title on hover */}
                   <div
                     className="h-[1px] mb-3 transition-all duration-500 opacity-0 group-hover:opacity-100"
                     style={{ backgroundColor: '#D4AF37', width: '2rem' }}

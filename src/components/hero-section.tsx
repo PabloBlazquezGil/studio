@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import Link from 'next/link';
 import { siteSettings } from '@/lib/data';
 
 export default function HeroSection() {
@@ -68,27 +67,13 @@ export default function HeroSection() {
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gold/50 to-transparent z-20" />
 
       {/* ── Content ──────────────────────────────────────────────── */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-
-        {/* Eyebrow label */}
-        <p
-          className="label-eyebrow mb-8 animate-fade-in-up opacity-0"
-          style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}
-        >
-          Fotografía&nbsp;&middot;&nbsp;Filmmaking&nbsp;&middot;&nbsp;Dirección de Fotografía
-        </p>
-
-        {/* Thin gold divider */}
-        <div
-          className="divider-gold mx-auto mb-10 animate-fade-in-up opacity-0"
-          style={{ animationDelay: '0.25s', animationFillMode: 'forwards' }}
-        />
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 pt-20">
 
         {/* Main heading — Cinzel, uppercase, wide tracking */}
         <h1
           className="font-headline text-5xl md:text-7xl lg:text-8xl xl:text-9xl leading-[1.1] text-linen animate-fade-in-up opacity-0"
           style={{
-            animationDelay: '0.35s',
+            animationDelay: '0.1s',
             animationFillMode: 'forwards',
             letterSpacing: '0.15em',
             fontWeight: 400,
@@ -102,27 +87,21 @@ export default function HeroSection() {
           Emoción.
         </h1>
 
-        {/* Subheading */}
+        {/* Thin gold divider */}
+        <div
+          className="divider-gold mx-auto my-8 animate-fade-in-up opacity-0"
+          style={{ animationDelay: '0.25s', animationFillMode: 'forwards' }}
+        />
+
+        {/* Services label */}
         <p
-          className="mt-8 text-sm md:text-base max-w-lg text-linen/55 font-body font-light leading-[1.8] animate-fade-in-up opacity-0 tracking-wide"
-          style={{ animationDelay: '0.55s', animationFillMode: 'forwards' }}
+          className="label-eyebrow mb-6 animate-fade-in-up opacity-0"
+          style={{ animationDelay: '0.35s', animationFillMode: 'forwards' }}
         >
-          Narrativas visuales que conectan marcas con personas. Especializado en cinematografía,
-          naturaleza y proyectos de alto nivel.
+          Fotografía&nbsp;&middot;&nbsp;Filmmaking&nbsp;&middot;&nbsp;Dirección de Fotografía
         </p>
 
-        {/* CTA buttons */}
-        <div
-          className="flex flex-col sm:flex-row gap-5 mt-14 animate-fade-in-up opacity-0"
-          style={{ animationDelay: '0.75s', animationFillMode: 'forwards' }}
-        >
-          <Link href="#gallery" className="btn-primary">
-            Ver Portfolio
-          </Link>
-          <Link href="#contact" className="btn-ghost">
-            Contactar
-          </Link>
-        </div>
+
       </div>
 
       {/* ── Scroll indicator ──────────────────────────────────────── */}
