@@ -135,12 +135,12 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p>
               Para obtener más información sobre nuestras prácticas de privacidad o si tiene alguna pregunta, contáctenos a través del{' '}
-              <a
-                href="/#contact"
+              <Link
+                href="/contacto"
                 className="text-gold hover:opacity-75 transition-opacity duration-400"
               >
                 formulario de contacto
-              </a>
+              </Link>
               {' '}disponible en este sitio.
             </p>
           </section>

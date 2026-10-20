@@ -1,120 +1,91 @@
-import { ContactForm } from '@/components/contact-form';
-import { Instagram, Linkedin, Mail } from "lucide-react";
 import Link from 'next/link';
-import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
+import { author, socialLinks } from '@/lib/data';
 
-const socials = [
-  { icon: Instagram, href: 'https://instagram.com/pabloblazquezgil',  label: 'Instagram' },
-  { icon: Linkedin,  href: 'https://linkedin.com/in/pabloblazquezgil', label: 'LinkedIn'  },
-  { icon: Mail,      href: 'mailto:pabloblazquezgil@gmail.com',        label: 'Email'     },
+const siteMap = [
+  { href: '/', label: 'Inicio' },
+  { href: '/trabajos', label: 'Trabajos' },
+  { href: '/sobre-mi', label: 'Sobre mí' },
+  { href: '/contacto', label: 'Contacto' },
 ];
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="w-full" id="contact" style={{ backgroundColor: '#1C2826' }}>
-
-      {/* ── Top gold accent line ──────────────────────────────────── */}
-      <div className="h-[1px] bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-
-      {/* ── Contact section ───────────────────────────────────────── */}
-      <div className="container mx-auto px-6 sm:px-8 lg:px-16 py-24 sm:py-32 scroll-mt-24">
-
-        {/* Two-column: heading left / form right */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-
-          {/* Left: heading block */}
-          <div>
-            <p className="label-eyebrow mb-4">Contacto</p>
-            <div className="divider-gold mb-8" />
-            <h2
-              className="font-headline text-4xl sm:text-5xl lg:text-6xl text-linen font-light leading-[1.15]"
-              style={{ letterSpacing: '0.15em' }}
-            >
-              Hagamos algo<br />
-              <span style={{ color: '#D4AF37', fontWeight: 300 }}>memorable.</span>
-            </h2>
-            <p className="mt-8 font-body text-sm leading-[1.9] max-w-md" style={{ color: 'rgba(249,248,246,0.5)' }}>
-              ¿Tienes un proyecto en mente? Cuéntame lo que necesitas y buscamos la
-              forma de hacerlo realidad, o escríbeme directamente a{' '}
-              <a
-                href="mailto:pabloblazquezgil@gmail.com"
-                className="transition-colors duration-400"
-                style={{ color: '#D4AF37' }}
-              >
-                pabloblazquezgil@gmail.com
-              </a>
-              .
-            </p>
-
-            {/* Social icons */}
-            <div className="flex items-center gap-6 mt-12">
-              {socials.map(({ icon: Icon, href, label }) => (
-                <Link
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="text-linen/40 hover:text-gold transition-colors duration-400"
-                >
-                  <Icon className="w-5 h-5" />
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: form */}
-          <div>
-            <ContactForm />
-          </div>
+    <footer className="bg-canopy text-linen">
+      {/* Llamada a la acción */}
+      <section className="border-t border-linen/10 px-5 py-24 text-center sm:px-10 sm:py-32">
+        <p className="text-sm font-medium text-gold">Trabaja conmigo</p>
+        <Link
+          href="/contacto"
+          className="group mt-4 inline-block font-headline text-5xl uppercase leading-[0.95] transition-colors hover:text-gold sm:text-7xl lg:text-8xl"
+        >
+          Hagamos algo
+          <br />
+          memorable
+        </Link>
+        <div className="mt-8">
+          <Link
+            href="/contacto"
+            className="inline-flex items-center gap-2 bg-gold px-6 py-3 font-headline text-lg uppercase tracking-wide text-canopy transition-colors hover:bg-linen"
+          >
+            Escríbeme <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
-      </div>
+      </section>
 
-      {/* ── Gold mid divider ─────────────────────────────────────── */}
-      <div className="h-[1px] mx-16 bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
-
-      {/* ── Bottom bar ───────────────────────────────────────────── */}
-      <div style={{ backgroundColor: 'rgba(0,0,0,0.25)' }}>
-        <div className="container mx-auto px-6 sm:px-8 lg:px-16 py-7 flex flex-col sm:flex-row items-center justify-between gap-5">
-
-          {/* Logo mark + brand name */}
-          <div className="flex items-center gap-3">
-            <div className="relative w-7 h-7 border border-gold/25 overflow-hidden">
-              <Image
-                src="https://thundershoot.com/wp-content/uploads/2026/05/Logo-Pablo-Blazquez.png"
-                alt="PBG"
-                fill
-                className="object-contain p-0.5"
-                unoptimized
-              />
-            </div>
-            <span
-              className="font-headline text-[9px] tracking-[0.35em] uppercase"
-              style={{ color: 'rgba(249,248,246,0.4)', letterSpacing: '0.35em' }}
-            >
-              &copy; {currentYear} Pablo Blázquez Gil
-            </span>
+      <div className="border-t border-linen/10 px-5 py-12 sm:px-10">
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
+          <div className="col-span-2">
+            <p className="font-headline text-2xl uppercase">{author.name}</p>
+            <p className="mt-2 max-w-xs text-sm text-linen/60">Fotografía y vídeo. Deporte, retrato, eventos y redes sociales.</p>
           </div>
+          <FooterColumn title="Mapa del sitio" links={siteMap} />
+          <FooterColumn title="Redes" links={socialLinks} external />
+        </div>
 
-          {/* Legal links */}
-          <div className="flex items-center gap-6">
-            <Link
-              href="/politica-de-privacidad"
-              className="font-body text-[10px] uppercase tracking-[0.2em] transition-colors duration-400 text-linen/30 hover:text-gold"
-            >
+        <div className="mt-12 flex flex-col gap-4 border-t border-linen/10 pt-6 text-xs text-linen/50 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {author.name}
+          </p>
+          <div className="flex gap-6">
+            <Link href="/politica-de-privacidad" className="hover:text-gold">
               Privacidad
             </Link>
-            <Link
-              href="/aviso-legal"
-              className="font-body text-[10px] uppercase tracking-[0.2em] transition-colors duration-400 text-linen/30 hover:text-gold"
-            >
-              Aviso Legal
+            <Link href="/aviso-legal" className="hover:text-gold">
+              Aviso legal
             </Link>
           </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({
+  title,
+  links,
+  external = false,
+}: {
+  title: string;
+  links: { href: string; label: string }[];
+  external?: boolean;
+}) {
+  return (
+    <div>
+      <p className="text-xs font-medium text-gold">{title}</p>
+      <ul className="mt-3 space-y-2">
+        {links.map(({ href, label }) => (
+          <li key={href}>
+            <Link
+              href={href}
+              className="font-headline text-lg uppercase tracking-wide text-linen/80 hover:text-gold"
+              {...(external && !href.startsWith('mailto:') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            >
+              {label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

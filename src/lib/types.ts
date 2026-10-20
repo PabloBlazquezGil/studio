@@ -1,31 +1,49 @@
+export type MediaItem = {
+  type: 'image' | 'video';
+  url: string;
+  title?: string;
+};
+
+export type Discipline = 'deporte' | 'retrato' | 'eventos' | 'cine' | 'redes';
+
 export type Project = {
-  id: string;
+  slug: string;
   title: string;
-  category: string;
-  description: string;
-  year?: number;
   client: string;
-  imageUrl: string;
-  media: { type: 'image' | 'video'; url: string; title?: string }[];
-  layoutType?: 'portrait' | 'landscape';
+  category: string;
+  discipline: Discipline;
+  year?: number;
+  description: string;
+  /** Imagen o vídeo que se muestra en las tarjetas y en la cabecera del proyecto. */
+  cover: string;
+  media: MediaItem[];
+  /** Los vídeos verticales (reels) se presentan en formato 9:16. */
+  orientation?: 'portrait' | 'landscape';
+};
+
+export type HeroSlide = {
+  projectSlug: string;
+  videoUrl: string;
 };
 
 export type Author = {
-  id: string;
   name: string;
   title: string;
   bio: string;
   imageUrl: string;
 };
 
-export type SiteSettings = {
-    id: string;
-    heroVideoUrl: string;
-    heroPosterUrl: string;
+export type Service = {
+  title: string;
+  description: string;
 };
 
 export type ClientLogo = {
-    id: string;
-    logoUrl: string;
-    clientName: string;
+  clientName: string;
+  logoUrl: string;
+};
+
+export type SocialLink = {
+  label: string;
+  href: string;
 };
