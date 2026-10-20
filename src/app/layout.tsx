@@ -1,60 +1,49 @@
 import type { Metadata } from 'next';
-import { Toaster } from '@/components/ui/toaster';
-import './globals.css';
-import { cn } from '@/lib/utils';
+import { Barlow_Condensed, Inter } from 'next/font/google';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
-import { Cinzel, Montserrat } from 'next/font/google';
+import { Toaster } from '@/components/ui/toaster';
+import { siteUrl } from '@/lib/site';
+import { cn } from '@/lib/utils';
+import './globals.css';
 
-const fontHeadline = Cinzel({
+const fontHeadline = Barlow_Condensed({
   subsets: ['latin'],
   variable: '--font-headline',
-  weight: ['400', '500', '600'],
+  weight: ['500', '600'],
   display: 'swap',
 });
 
-const fontBody = Montserrat({
+const fontBody = Inter({
   subsets: ['latin'],
   variable: '--font-body',
-  weight: ['300', '400', '500', '600'],
-  style: ['normal', 'italic'],
   display: 'swap',
 });
 
+const description =
+  'Fotógrafo y videógrafo. Surf y deporte, retrato, eventos y reels para redes sociales con una mirada cinematográfica.';
+
 export const metadata: Metadata = {
-  title: 'Pablo Blázquez Gil | Fotografía & Filmmaking',
-  description: 'Portfolio de Pablo Blázquez Gil — Fotógrafo y cineasta especializado en naturaleza, fauna y narrativa visual de autor.',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Pablo Blázquez Gil | Fotografía y vídeo',
+    template: '%s | Pablo Blázquez Gil',
+  },
+  description,
   openGraph: {
-    title: 'Pablo Blázquez Gil | Fotografía & Filmmaking',
-    description: 'Portfolio de Pablo Blázquez Gil — Fotógrafo y cineasta especializado en naturaleza, fauna y narrativa visual de autor.',
+    title: 'Pablo Blázquez Gil | Fotografía y vídeo',
+    description,
     siteName: 'Pablo Blázquez Gil',
-    images: [
-      {
-        url: 'https://images.unsplash.com/photo-1506606401543-2e73709cebb4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3',
-        width: 1200,
-        height: 630,
-        alt: 'Portfolio de Pablo Blázquez Gil — Fotografía y Filmmaking',
-      },
-    ],
+    images: [{ url: '/og.jpg', width: 2048, height: 1518, alt: 'Surf en Malpica, por Pablo Blázquez Gil' }],
     locale: 'es_ES',
     type: 'website',
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={cn('dark', fontHeadline.variable, fontBody.variable)}>
-      <head />
-      <body
-        className={cn(
-          'font-body antialiased film-grain',
-          'selection:bg-gold selection:text-canopy'
-        )}
-      >
+    <html lang="es" className={cn(fontHeadline.variable, fontBody.variable)}>
+      <body className="font-body antialiased">
         <Header />
         <main>{children}</main>
         <Footer />
