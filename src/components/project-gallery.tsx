@@ -59,6 +59,7 @@ export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
       {open !== null && (
         <div
           className="fixed inset-0 z-[60] flex items-center justify-center bg-black/95"
+          data-lenis-prevent
           role="dialog"
           aria-modal="true"
           aria-label={`${title}: imagen ${open + 1} de ${images.length}`}

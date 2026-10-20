@@ -17,7 +17,7 @@ export default function Footer() {
         <p className="text-sm font-medium text-gold">Trabaja conmigo</p>
         <Link
           href="/contacto"
-          className="group mt-4 inline-block font-headline text-5xl uppercase leading-[0.95] transition-colors hover:text-gold sm:text-7xl lg:text-8xl"
+          className="group mt-4 inline-block font-headline text-5xl font-bold uppercase leading-[0.95] transition-colors hover:text-gold sm:text-7xl lg:text-8xl"
         >
           Hagamos algo
           <br />

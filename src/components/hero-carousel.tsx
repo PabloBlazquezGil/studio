@@ -1,10 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { HeroSlide, Project } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import LoopVideo from './loop-video';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SLIDE_DURATION = 7000;
 
@@ -18,6 +22,22 @@ interface HeroCarouselProps {
  */
 export default function HeroCarousel({ slides }: HeroCarouselProps) {
   const [current, setCurrent] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const mediaRef = useRef<HTMLDivElement>(null);
+
+  // Al bajar, el vídeo se acerca y se oscurece mientras la página sube por encima.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ctx = gsap.context(() => {
+      gsap.to(mediaRef.current, {
+        scale: 1.15,
+        opacity: 0.4,
+        ease: 'none',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top top', end: 'bottom top', scrub: true },
+      });
+    });
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => setCurrent((i) => (i + 1) % slides.length), SLIDE_DURATION);
@@ -27,29 +47,31 @@ export default function HeroCarousel({ slides }: HeroCarouselProps) {
   const active = slides[current];
 
   return (
-    <section className="relative h-[100svh] w-full overflow-hidden bg-canopy">
-      {slides.map((slide, index) => (
-        <div
-          key={slide.videoUrl}
-          className={cn(
-            'absolute inset-0 transition-opacity duration-1000',
-            index === current ? 'opacity-100' : 'opacity-0',
-          )}
-          aria-hidden={index !== current}
-        >
-          {/* Solo se descargan el clip actual y el siguiente */}
-          {(index === current || index === (current + 1) % slides.length) && (
-            <LoopVideo src={slide.videoUrl} playing={index === current} eager />
-          )}
-        </div>
-      ))}
+    <section ref={sectionRef} className="relative h-[100svh] w-full overflow-hidden bg-canopy">
+      <div ref={mediaRef} className="absolute inset-0">
+        {slides.map((slide, index) => (
+          <div
+            key={slide.videoUrl}
+            className={cn(
+              'absolute inset-0 transition-opacity duration-1000',
+              index === current ? 'opacity-100' : 'opacity-0',
+            )}
+            aria-hidden={index !== current}
+          >
+            {/* Solo se descargan el clip actual y el siguiente */}
+            {(index === current || index === (current + 1) % slides.length) && (
+              <LoopVideo src={slide.videoUrl} playing={index === current} eager />
+            )}
+          </div>
+        ))}
+      </div>
 
       <div className="absolute inset-0 bg-gradient-to-b from-canopy/60 via-transparent to-canopy/70" />
 
       <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 sm:px-10 sm:pb-10">
         <Link href={`/trabajos/${active.project.slug}`} className="group inline-block">
           <p className="text-xs font-medium text-gold">{active.project.client}</p>
-          <p className="mt-1 font-headline text-2xl uppercase leading-none text-linen transition-colors group-hover:text-gold sm:text-3xl">
+          <p className="mt-1 font-headline text-2xl font-bold uppercase leading-none text-linen transition-colors group-hover:text-gold sm:text-3xl">
             {active.project.title}
           </p>
         </Link>

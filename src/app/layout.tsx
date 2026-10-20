@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Barlow_Condensed, Inter } from 'next/font/google';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import SmoothScroll from '@/components/motion/smooth-scroll';
 import { Toaster } from '@/components/ui/toaster';
 import { siteUrl } from '@/lib/site';
 import { cn } from '@/lib/utils';
@@ -10,7 +11,7 @@ import './globals.css';
 const fontHeadline = Barlow_Condensed({
   subsets: ['latin'],
   variable: '--font-headline',
-  weight: ['500', '600'],
+  weight: ['500', '600', '700'],
   display: 'swap',
 });
 
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="es" className={cn(fontHeadline.variable, fontBody.variable)}>
       <body className="font-body antialiased">
+        <SmoothScroll />
         <Header />
         <main>{children}</main>
         <Footer />

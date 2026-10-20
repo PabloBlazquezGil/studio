@@ -35,9 +35,20 @@ export default {
           from: { width: '0%' },
           to: { width: '100%' },
         },
+        curtain: {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(-100%)' },
+        },
+        // Solo opacidad: un transform en el contenedor rompería los elementos fijos (visor, vista previa).
+        'page-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
       },
       animation: {
         progress: 'progress linear forwards',
+        curtain: 'curtain 0.8s cubic-bezier(0.76, 0, 0.24, 1) 0.1s forwards',
+        'page-in': 'page-in 0.6s ease-out 0.35s both',
       },
     },
   },
