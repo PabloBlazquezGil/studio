@@ -88,6 +88,7 @@ export default function Header() {
         <nav
           className="fixed inset-x-0 bottom-0 top-16 flex flex-col justify-between bg-canopy px-5 pb-10 pt-8 md:hidden"
           aria-label="Menú móvil"
+          data-lenis-prevent
         >
           <ul className="space-y-2">
             {[{ href: '/', label: 'Inicio' }, ...navLinks].map(({ href, label }) => (

@@ -47,3 +47,18 @@ export type SocialLink = {
   label: string;
   href: string;
 };
+
+export type Comparison = {
+  title: string;
+  /** Foto sin editar (RAW revelado en plano). */
+  before: string;
+  /** La misma foto con la edición y el color final. */
+  after: string;
+};
+
+export type Testimonial = {
+  quote: string;
+  name: string;
+  /** Cargo, empresa o proyecto. */
+  role: string;
+};

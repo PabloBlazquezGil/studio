@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ArrowRight, LayoutGrid, List } from 'lucide-react';
@@ -25,6 +26,11 @@ export default function WorkIndex() {
   const activeFilter = filters.find((f) => f.id === searchParams.get('filtro')) ?? filters[0];
   const view: View = searchParams.get('vista') === 'lista' ? 'lista' : 'cuadricula';
   const visible = projects.filter(activeFilter.matches);
+
+  // Al cambiar de filtro o de vista cambia la altura de la página: recalcula las animaciones.
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [activeFilter.id, view]);
 
   const update = (key: string, value: string, defaultValue: string) => {
     const params = new URLSearchParams(searchParams.toString());

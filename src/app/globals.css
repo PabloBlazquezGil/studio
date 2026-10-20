@@ -29,6 +29,10 @@
     @apply bg-background text-foreground;
   }
 
+  .font-headline {
+    font-weight: 600;
+  }
+
   ::selection {
     @apply bg-gold text-canopy;
   }

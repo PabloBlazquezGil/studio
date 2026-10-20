@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
+import SplitHeading from '@/components/motion/split-heading';
 import ProjectCard from '@/components/project-card';
 import ProjectGallery from '@/components/project-gallery';
 import ProjectMedia from '@/components/project-media';
@@ -51,9 +52,12 @@ export default async function ProjectPage({ params }: Props) {
         <div className="absolute inset-0 bg-gradient-to-b from-canopy/50 via-transparent to-canopy" />
         <div className="absolute inset-x-0 bottom-0 px-5 pb-10 sm:px-10 sm:pb-14">
           <p className="text-sm font-medium text-gold">{project.category}</p>
-          <h1 className="mt-2 max-w-5xl font-headline text-5xl uppercase leading-[0.9] text-linen sm:text-7xl lg:text-8xl">
-            {project.title}
-          </h1>
+          <SplitHeading
+            as="h1"
+            immediate
+            lines={[project.title]}
+            className="mt-2 max-w-5xl text-5xl font-bold leading-[0.9] text-linen sm:text-7xl lg:text-8xl"
+          />
         </div>
       </header>
 
@@ -132,7 +136,7 @@ export default async function ProjectPage({ params }: Props) {
       {/* Más proyectos */}
       <section className="border-t border-linen/10 px-2.5 py-20 sm:px-10 sm:py-28">
         <div className="mb-8 flex items-end justify-between gap-4 px-2.5 sm:px-0">
-          <h2 className="font-headline text-4xl uppercase leading-none text-linen sm:text-5xl">Más proyectos</h2>
+          <SplitHeading lines={['Más proyectos']} className="text-4xl font-bold leading-none text-linen sm:text-6xl" />
           <Link
             href="/trabajos"
             className="inline-flex shrink-0 items-center gap-2 font-headline text-lg uppercase tracking-wide text-linen/70 hover:text-gold"

@@ -1,4 +1,13 @@
-import type { Author, ClientLogo, HeroSlide, Project, Service, SocialLink } from './types';
+import type {
+  Author,
+  ClientLogo,
+  Comparison,
+  HeroSlide,
+  Project,
+  Service,
+  SocialLink,
+  Testimonial,
+} from './types';
 
 const WP = 'https://thundershoot.com/wp-content/uploads';
 
@@ -253,6 +262,24 @@ export const clientLogos: ClientLogo[] = [
   { clientName: 'INTA', logoUrl: `${WP}/2024/11/images-2.png` },
   { clientName: 'EANA', logoUrl: `${WP}/2024/11/EANA_logo-2.png.webp` },
 ];
+
+/**
+ * Comparador antes/después de color. Añade pares de la misma foto (sin editar y editada)
+ * y la sección aparecerá en la home. Mientras esté vacío, la sección no se muestra.
+ */
+export const comparisons: Comparison[] = [];
+
+/**
+ * Opiniones de clientes. Mientras esté vacío, la sección no se muestra.
+ * Ejemplo: { quote: '...', name: 'Nombre', role: 'Club de Tenis Freixo' }
+ */
+export const testimonials: Testimonial[] = [];
+
+/** Rangos de presupuesto que se ofrecen en el briefing de /contacto. Ajústalos a tus tarifas. */
+export const budgetRanges = ['Menos de 300 €', '300 – 800 €', '800 – 1.500 €', 'Más de 1.500 €', 'Aún no lo sé'];
+
+/** Palabras del texto en movimiento de la home. */
+export const marqueeWords = ['Surf', 'Deporte', 'Retrato', 'Eventos', 'Cine', 'Reels'];
 
 export const contactEmail = 'pabloblazquezgil@gmail.com';
 
