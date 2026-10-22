@@ -1,6 +1,6 @@
 # Pablo Blázquez Gil · Portfolio
 
-Portfolio de fotografía y vídeo hecho con Next.js 15 (App Router), React 19 y Tailwind CSS. Se despliega en Vercel sin configuración extra.
+Portfolio de fotografía y vídeo hecho con Next.js 16 (App Router), React 19 y Tailwind CSS. Se despliega en Vercel sin configuración extra.
 
 ## Desarrollo
 
