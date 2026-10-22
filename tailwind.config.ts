@@ -44,11 +44,16 @@ export default {
           from: { opacity: '0' },
           to: { opacity: '1' },
         },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
         progress: 'progress linear forwards',
         curtain: 'curtain 0.8s cubic-bezier(0.76, 0, 0.24, 1) 0.1s forwards',
         'page-in': 'page-in 0.6s ease-out 0.35s both',
+        marquee: 'marquee 40s linear infinite',
       },
     },
   },
