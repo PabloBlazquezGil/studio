@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 mb-16 group text-basalt hover:text-gold transition-colors duration-400"
+          className="inline-flex items-center gap-2 py-3 mb-12 group text-basalt hover:text-gold transition-colors duration-400"
           style={{
             fontFamily: 'var(--font-body, Montserrat), sans-serif',
             fontSize: '0.65rem',

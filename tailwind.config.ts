@@ -39,7 +39,8 @@ export default {
           from: { transform: 'translateY(0)' },
           to: { transform: 'translateY(-100%)' },
         },
-        // Solo opacidad: un transform en el contenedor rompería los elementos fijos (visor, vista previa).
+        // Solo opacidad y sin fill-mode final: un transform, o una animación que se queda aplicada, crea un
+        // contexto de apilamiento que deja la cabecera por encima del visor y de la vista previa.
         'page-in': {
           from: { opacity: '0' },
           to: { opacity: '1' },
@@ -52,7 +53,7 @@ export default {
       animation: {
         progress: 'progress linear forwards',
         curtain: 'curtain 0.8s cubic-bezier(0.76, 0, 0.24, 1) 0.1s forwards',
-        'page-in': 'page-in 0.6s ease-out 0.35s both',
+        'page-in': 'page-in 0.6s ease-out 0.35s backwards',
         marquee: 'marquee 40s linear infinite',
       },
     },
