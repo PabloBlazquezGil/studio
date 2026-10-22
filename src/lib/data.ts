@@ -257,10 +257,10 @@ export const services: Service[] = [
 ];
 
 export const clientLogos: ClientLogo[] = [
-  { clientName: 'Centro de Astrobiología', logoUrl: `${WP}/2025/02/0.png` },
-  { clientName: 'CSIC', logoUrl: `${WP}/2025/01/LOGO_PNG.png` },
-  { clientName: 'INTA', logoUrl: `${WP}/2024/11/images-2.png` },
-  { clientName: 'EANA', logoUrl: `${WP}/2024/11/EANA_logo-2.png.webp` },
+  { clientName: 'CSIC', logoUrl: '/logos/csic.png' },
+  { clientName: 'Centro de Astrobiología', logoUrl: '/logos/centro-de-astrobiologia.png' },
+  { clientName: 'EANA', logoUrl: '/logos/eana.png' },
+  { clientName: 'INTA', logoUrl: '/logos/inta.png' },
 ];
 
 /**

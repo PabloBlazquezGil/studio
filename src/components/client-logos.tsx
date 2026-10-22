@@ -7,8 +7,7 @@ import type { ClientLogo } from '@/lib/types';
 const REPEAT = 4;
 
 /**
- * Cinta infinita de logos de clientes sobre el fondo oscuro. Cada logo va a todo color en su propia
- * tarjeta blanca, así se lee bien aunque el archivo tenga fondo blanco o tinta oscura.
+ * Cinta infinita de logos de clientes en blanco sobre el fondo oscuro (archivos en /public/logos).
  * La cinta se pausa al pasar el ratón y queda quieta con movimiento reducido.
  */
 export default function ClientLogos() {
@@ -26,7 +25,7 @@ export default function ClientLogos() {
       </div>
 
       <div className="group relative mt-14 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
-        <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused] motion-reduce:w-full motion-reduce:animate-none motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-4 motion-reduce:px-5">
+        <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused] motion-reduce:w-full motion-reduce:animate-none motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-12 motion-reduce:px-5">
           <LogoList logos={track} />
           <LogoList logos={track} hidden className="motion-reduce:hidden" />
         </div>
@@ -37,20 +36,17 @@ export default function ClientLogos() {
 
 function LogoList({ logos, hidden = false, className = '' }: { logos: ClientLogo[]; hidden?: boolean; className?: string }) {
   return (
-    <ul className={`flex shrink-0 gap-4 pr-4 motion-reduce:contents ${className}`} aria-hidden={hidden || undefined}>
+    <ul className={`flex shrink-0 items-center gap-16 pr-16 sm:gap-24 sm:pr-24 motion-reduce:contents ${className}`} aria-hidden={hidden || undefined}>
       {logos.map((logo, index) => {
         // Con movimiento reducido solo se ve la primera tanda, sin repeticiones.
         const repeated = index >= clientLogos.length;
         return (
           <li
             key={`${logo.clientName}-${index}`}
-            className={`flex h-32 w-60 shrink-0 flex-col items-center justify-center gap-3 bg-white px-8 transition-transform duration-500 hover:-translate-y-1 sm:h-36 sm:w-72 ${repeated ? 'motion-reduce:hidden' : ''}`}
+            className={`relative h-24 w-52 shrink-0 opacity-80 transition-opacity duration-500 hover:opacity-100 sm:h-28 sm:w-64 ${repeated ? 'motion-reduce:hidden' : ''}`}
             aria-hidden={!hidden && repeated ? true : undefined}
           >
-            <span className="relative h-14 w-full sm:h-16">
-              <Image src={logo.logoUrl} alt={hidden || repeated ? '' : logo.clientName} fill sizes="288px" className="object-contain" />
-            </span>
-            <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-canopy/50">{logo.clientName}</span>
+            <Image src={logo.logoUrl} alt={hidden || repeated ? '' : logo.clientName} fill sizes="256px" className="object-contain" />
           </li>
         );
       })}
