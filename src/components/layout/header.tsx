@@ -29,7 +29,12 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => setMenuOpen(false), [pathname]);
+  // Cierra el menú al cambiar de ruta (también con atrás/adelante del navegador).
+  const [menuPathname, setMenuPathname] = useState(pathname);
+  if (menuPathname !== pathname) {
+    setMenuPathname(pathname);
+    setMenuOpen(false);
+  }
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
