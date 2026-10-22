@@ -43,15 +43,15 @@ export default function Footer() {
           <FooterColumn title="Redes" links={socialLinks} external />
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-linen/10 pt-6 text-xs text-linen/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-1 border-t border-linen/10 pt-6 text-xs text-linen/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {author.name}
           </p>
-          <div className="flex gap-6">
-            <Link href="/politica-de-privacidad" className="hover:text-gold">
+          <div className="-ml-2 flex gap-2 sm:ml-0 sm:-mr-2">
+            <Link href="/politica-de-privacidad" className="px-2 py-3 hover:text-gold">
               Privacidad
             </Link>
-            <Link href="/aviso-legal" className="hover:text-gold">
+            <Link href="/aviso-legal" className="px-2 py-3 hover:text-gold">
               Aviso legal
             </Link>
           </div>
@@ -73,12 +73,12 @@ function FooterColumn({
   return (
     <div>
       <p className="text-xs font-medium text-gold">{title}</p>
-      <ul className="mt-3 space-y-2">
+      <ul className="mt-2">
         {links.map(({ href, label }) => (
           <li key={href}>
             <Link
               href={href}
-              className="font-headline text-lg uppercase tracking-wide text-linen/80 hover:text-gold"
+              className="inline-block py-2 font-headline text-lg uppercase tracking-wide text-linen/80 hover:text-gold"
               {...(external && !href.startsWith('mailto:') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             >
               {label}
