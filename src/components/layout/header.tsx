@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
-import { author, logoUrl } from '@/lib/data';
+import { LogoMark } from '@/components/brand/logo-mark';
+import { author } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -51,9 +51,7 @@ export default function Header() {
     >
       <div className="flex h-16 items-center justify-between px-5 sm:h-20 sm:px-10">
         <Link href="/" className="flex items-center gap-3" aria-label={`${author.name}, inicio`}>
-          <span className="relative h-8 w-8 shrink-0 sm:h-9 sm:w-9">
-            <Image src={logoUrl} alt="" fill sizes="36px" className="object-contain" priority unoptimized />
-          </span>
+          <LogoMark className="h-8 shrink-0 text-linen sm:h-9" />
           <span className="font-headline text-lg uppercase tracking-[0.12em] text-linen sm:text-xl">{author.name}</span>
         </Link>
 
