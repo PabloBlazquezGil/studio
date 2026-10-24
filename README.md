@@ -28,7 +28,7 @@ Todo el contenido está en [`src/lib/data.ts`](src/lib/data.ts):
 
 - **`projects`**: cada proyecto con su `slug` (la URL), título, cliente, categoría, disciplina, portada (`cover`, imagen o vídeo) y medios. El orden de la lista es el orden en la web. En la home, las posiciones 4 y 10 se muestran como tarjetas anchas.
 - **`heroSlides`**: los clips del carrusel de la home.
-- **`author`**, **`services`**, **`clientLogos`**, **`socialLinks`**.
+- **`author`**, **`services`**, **`socialLinks`**.
 
 Los vídeos admiten `#t=5` al final de la URL para empezar en el segundo 5. Las imágenes se sirven desde `thundershoot.com` y `img.youtube.com`; para usar otro dominio, añádelo en `next.config.ts`.
 

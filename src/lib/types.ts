@@ -38,11 +38,6 @@ export type Service = {
   description: string;
 };
 
-export type ClientLogo = {
-  clientName: string;
-  logoUrl: string;
-};
-
 export type SocialLink = {
   label: string;
   href: string;

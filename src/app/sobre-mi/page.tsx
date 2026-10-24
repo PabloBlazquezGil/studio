@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import ClientLogos from '@/components/client-logos';
 import SplitHeading from '@/components/motion/split-heading';
 import PageIntro from '@/components/page-intro';
 import Reveal from '@/components/reveal';
@@ -43,7 +42,6 @@ export default function AboutPage() {
 
       <Testimonials />
 
-      <ClientLogos />
     </>
   );
 }
