@@ -1,6 +1,5 @@
 import type {
   Author,
-  ClientLogo,
   Comparison,
   HeroSlide,
   Project,
@@ -254,13 +253,6 @@ export const services: Service[] = [
     title: 'Postproducción',
     description: 'Edición, etalonaje y entrega en los formatos que necesites, lista para publicar.',
   },
-];
-
-export const clientLogos: ClientLogo[] = [
-  { clientName: 'CSIC', logoUrl: '/logos/csic.png' },
-  { clientName: 'Centro de Astrobiología', logoUrl: '/logos/centro-de-astrobiologia.png' },
-  { clientName: 'EANA', logoUrl: '/logos/eana.png' },
-  { clientName: 'INTA', logoUrl: '/logos/inta.png' },
 ];
 
 /**

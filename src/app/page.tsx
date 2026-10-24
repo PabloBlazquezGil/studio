@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import BeforeAfter from '@/components/before-after';
 import BentoGrid from '@/components/bento-grid';
-import ClientLogos from '@/components/client-logos';
 import HeroCarousel from '@/components/hero-carousel';
 import Parallax from '@/components/motion/parallax';
 import ScrollMarquee from '@/components/motion/scroll-marquee';
@@ -86,7 +85,6 @@ export default function Home() {
 
       <Testimonials />
 
-      <ClientLogos />
     </>
   );
 }
