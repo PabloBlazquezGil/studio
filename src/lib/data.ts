@@ -281,4 +281,3 @@ export const socialLinks: SocialLink[] = [
   { label: 'Email', href: `mailto:${contactEmail}` },
 ];
 
-export const logoUrl = `${WP}/2026/05/Logo-Pablo-Blazquez.png`;

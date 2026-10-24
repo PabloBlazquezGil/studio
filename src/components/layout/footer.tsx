@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { LogoMark } from '@/components/brand/logo-mark';
 import { author, socialLinks } from '@/lib/data';
 
 const siteMap = [
@@ -36,7 +37,8 @@ export default function Footer() {
       <div className="border-t border-linen/10 px-5 py-12 sm:px-10">
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
           <div className="col-span-2">
-            <p className="font-headline text-2xl uppercase">{author.name}</p>
+            <LogoMark className="h-12 text-linen" />
+            <p className="mt-4 font-headline text-2xl uppercase">{author.name}</p>
             <p className="mt-2 max-w-xs text-sm text-linen/60">Fotografía y vídeo. Deporte, retrato, eventos y redes sociales.</p>
           </div>
           <FooterColumn title="Mapa del sitio" links={siteMap} />
