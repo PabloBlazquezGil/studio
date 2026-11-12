@@ -8,7 +8,7 @@ import type {
   Testimonial,
 } from './types';
 
-const WP = 'https://thundershoot.com/wp-content/uploads';
+const WP = 'https://archivos.thundershoot.com';
 
 /**
  * Proyectos del portfolio.

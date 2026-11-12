@@ -1,7 +1,7 @@
 # Migración de Next.js a Astro: lista de comprobación
 
 Comparado contra `main` (Next 16 + Tailwind 4) con las dos versiones compiladas y servidas en local, a 390 y 1280 px.
-Los medios (thundershoot.com y YouTube) no se pueden cargar desde el entorno de pruebas: las imágenes se sustituyeron por una imagen de relleno y los vídeos no se reprodujeron. Maquetación, medidas y comportamiento sí se comprobaron; el aspecto real de las fotos y los vídeos hay que verlo en la vista previa con red.
+Los medios (archivos.thundershoot.com y YouTube) no se pueden cargar desde el entorno de pruebas: las imágenes se sustituyeron por una imagen de relleno y los vídeos no se reprodujeron. Maquetación, medidas y comportamiento sí se comprobaron; el aspecto real de las fotos y los vídeos hay que verlo en la vista previa con red.
 
 ## Páginas y rutas
 
@@ -53,7 +53,7 @@ Los medios (thundershoot.com y YouTube) no se pueden cargar desde el entorno de 
 
 ## Imágenes y vídeos
 
-- [x] Mismas URL de thundershoot.com y YouTube, vídeos de YouTube con `youtube-nocookie`
+- [x] Mismos archivos (ahora en archivos.thundershoot.com) y YouTube, vídeos de YouTube con `youtube-nocookie`
 - [~] Cambia: `next/image` redimensionaba las imágenes remotas; ahora se sirven tal cual (lazy, `decoding=async`, primera con prioridad). Las fotos ya están en AVIF/JPG en el origen
 
 ## Responsive
