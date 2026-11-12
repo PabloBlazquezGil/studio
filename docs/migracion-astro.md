@@ -13,7 +13,7 @@ Los medios (thundershoot.com y YouTube) no se pueden cargar desde el entorno de 
 ## Diseño y estilos
 
 - [x] Colores canopy `#1C2826`, gold `#D4AF37`, linen `#F9F8F6`, tipografías Barlow Condensed e Inter (ahora autoalojadas con Fontsource en vez de next/font)
-- [x] Capturas a 390 y 1280 px de las 8 rutas: diferencia de píxeles 0 % en 14 de 16; las otras dos eran la altura de /contacto (corregida) y el estado de la animación en /trabajos
+- [x] Capturas a 390 y 1280 px de las 8 rutas, con las dos versiones una al lado de la otra: misma maquetación y alturas de página idénticas (salvo /contacto, que tenía 96 px de más por el contenedor de avisos y ya está corregido). La comparación píxel a píxel de página completa no es fiable en /trabajos porque la cabecera fija y las animaciones de aparición caen en puntos distintos de la captura; ahí se comparó a ojo y con medidas
 - [x] Logo Encuadre en cabecera, pie y favicon (`icon.svg`, `apple-icon.png`, `favicon.ico` ahora en `public/`)
 - [x] Secciones vacías (`comparisons`, `testimonials`) siguen ocultas
 - [x] Sin menciones a Alvo Estudio ni Toxogel; sin logos de clientes (se quitaron en la PR #7)
