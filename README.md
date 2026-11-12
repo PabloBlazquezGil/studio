@@ -59,7 +59,7 @@ Todo el contenido está en [`src/lib/data.ts`](src/lib/data.ts):
 - **`author`**, **`services`**, **`socialLinks`**.
 - **`comparisons`** y **`testimonials`**: vacíos a propósito; mientras lo estén, sus secciones no se muestran.
 
-Los vídeos admiten `#t=5` al final de la URL para empezar en el segundo 5. Las imágenes y vídeos se sirven desde `thundershoot.com` y YouTube; Astro no los descarga ni los procesa en el build.
+Los vídeos admiten `#t=5` al final de la URL para empezar en el segundo 5. Las imágenes y vídeos se sirven desde `archivos.thundershoot.com` y YouTube; Astro no los descarga ni los procesa en el build.
 
 ## Formulario de contacto
 
