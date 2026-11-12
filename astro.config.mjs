@@ -7,7 +7,9 @@ import tailwindcss from '@tailwindcss/vite';
  * URL pública de la web (para sitemap.xml, robots.txt, canonical e imagen social).
  * Defínela con la variable de entorno SITE_URL en el panel de Hostinger.
  */
-const site = process.env.SITE_URL;
+const site =
+  process.env.SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined);
 if (!site && process.env.NODE_ENV === 'production') {
   console.warn('[aviso] SITE_URL no está definida: el sitemap y la imagen social apuntarán a localhost.');
 }
