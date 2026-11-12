@@ -27,6 +27,9 @@ const ogImageAlt = image ? title : 'Surf en Malpica, por Pablo Blázquez Gil';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Las fotos y vídeos viven en thundershoot.com, que puede rechazar peticiones con referer de otro dominio
+         (protección anti-hotlinking). Sin referer, como hacía Next al servir las imágenes por su servidor, cargan igual. -->
+    <meta name="referrer" content="no-referrer" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
