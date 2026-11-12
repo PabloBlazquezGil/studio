@@ -1,0 +1,18 @@
+---
+interface Props {
+  words: string[];
+}
+
+/**
+ * Dos filas de texto gigante que se desplazan en sentidos opuestos al hacer scroll.
+ * La segunda fila va en contorno para dar ritmo.
+ */
+const { words } = Astro.props;
+const line = `${words.join(' · ')} · `.repeat(4);
+const base = 'whitespace-nowrap font-headline text-[18vw] uppercase leading-[0.85] sm:text-[12vw]';
+---
+
+<div data-marquee class="overflow-hidden py-16 sm:py-24" aria-hidden="true">
+  <p data-row="1" class={`${base} text-linen`}>{line}</p>
+  <p data-row="2" class={`${base} text-transparent [-webkit-text-stroke:1px_var(--color-gold)]`}>{line}</p>
+</div>

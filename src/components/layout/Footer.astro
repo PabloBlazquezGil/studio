@@ -1,0 +1,64 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import FooterColumn from './FooterColumn.astro';
+import LogoMark from '@/components/brand/LogoMark.astro';
+import { author, socialLinks } from '@/lib/data';
+
+const siteMap = [
+  { href: '/', label: 'Inicio' },
+  { href: '/trabajos', label: 'Trabajos' },
+  { href: '/sobre-mi', label: 'Sobre mí' },
+  { href: '/contacto', label: 'Contacto' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-canopy text-linen">
+      {/* Llamada a la acción */}
+      <section class="border-t border-linen/10 px-5 py-24 text-center sm:px-10 sm:py-32">
+        <p class="text-sm font-medium text-gold">Trabaja conmigo</p>
+        <a
+          href="/contacto"
+          class="group mt-4 inline-block font-headline text-5xl font-bold uppercase leading-[0.95] transition-colors hover:text-gold sm:text-7xl lg:text-8xl"
+        >
+          Hagamos algo
+          <br />
+          memorable
+        </a>
+        <div class="mt-8">
+          <a
+            href="/contacto"
+            class="inline-flex items-center gap-2 bg-gold px-6 py-3 font-headline text-lg uppercase tracking-wide text-canopy transition-colors hover:bg-linen"
+          >
+            Escríbeme <ArrowRight class="h-4 w-4" />
+          </a>
+        </div>
+      </section>
+
+      <div class="border-t border-linen/10 px-5 py-12 sm:px-10">
+        <div class="grid grid-cols-2 gap-10 sm:grid-cols-4">
+          <div class="col-span-2">
+            <LogoMark class="h-12 text-linen" />
+            <p class="mt-4 font-headline text-2xl uppercase">{author.name}</p>
+            <p class="mt-2 max-w-xs text-sm text-linen/60">Fotografía y vídeo. Deporte, retrato, eventos y redes sociales.</p>
+          </div>
+          <FooterColumn title="Mapa del sitio" links={siteMap} />
+          <FooterColumn title="Redes" links={socialLinks} external />
+        </div>
+
+        <div class="mt-12 flex flex-col gap-1 border-t border-linen/10 pt-6 text-xs text-linen/50 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {year} {author.name}
+          </p>
+          <div class="-ml-2 flex gap-2 sm:ml-0 sm:-mr-2">
+            <a href="/politica-de-privacidad" class="px-2 py-3 hover:text-gold">
+              Privacidad
+            </a>
+            <a href="/aviso-legal" class="px-2 py-3 hover:text-gold">
+              Aviso legal
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>

@@ -1,0 +1,40 @@
+---
+import type { Project } from '@/lib/types';
+import { cn } from '@/lib/utils';
+import Parallax from './motion/Parallax.astro';
+import ProjectMedia from './ProjectMedia.astro';
+
+interface Props {
+  project: Project;
+  class?: string;
+  sizes?: string;
+  priority?: boolean;
+}
+
+/** Tarjeta de proyecto: el trabajo ocupa toda la tarjeta y encima solo el cliente y el título. */
+const { project, class: className, sizes = '(max-width: 1024px) 100vw, 33vw', priority } = Astro.props;
+---
+
+<a
+  href={`/trabajos/${project.slug}`}
+  class={cn('group relative block overflow-hidden bg-black/30', className)}
+  data-project-card
+  data-discipline={project.discipline}
+  data-format={project.media.some((m) => m.type === 'video') ? 'video' : 'fotografia'}
+>
+  <Parallax amount={6}>
+    <ProjectMedia
+      project={project}
+      sizes={sizes}
+      priority={priority}
+      class="transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+    />
+  </Parallax>
+  <div class="absolute inset-0 bg-linear-to-t from-canopy/80 via-canopy/10 to-transparent transition-opacity duration-500 group-hover:opacity-70"></div>
+  <div class="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+    <p class="text-xs font-medium text-gold">{project.client}</p>
+    <h3 class="mt-1 font-headline text-2xl font-bold uppercase leading-none text-linen sm:text-3xl">
+      {project.title}
+    </h3>
+  </div>
+</a>

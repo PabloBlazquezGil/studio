@@ -1,0 +1,43 @@
+---
+import type { Project } from '@/lib/types';
+import { cn, isVideoFile } from '@/lib/utils';
+
+interface Props {
+  project: Project;
+  sizes: string;
+  class?: string;
+  priority?: boolean;
+  /** Reproduce el vídeo siempre, sin esperar a que esté en pantalla. */
+  playing?: boolean;
+}
+
+/** Portada de un proyecto: vídeo en bucle si la portada es un vídeo, imagen si no. */
+const { project, sizes, class: className, priority, playing } = Astro.props;
+---
+
+{
+  isVideoFile(project.cover) ? (
+    <video
+      data-loop
+      data-src={project.cover}
+      data-eager={priority ? '' : undefined}
+      data-playing={playing ? 'true' : undefined}
+      class={cn('h-full w-full object-cover', className)}
+      muted
+      loop
+      playsinline
+      preload="none"
+      aria-hidden="true"
+    />
+  ) : (
+    <img
+      src={project.cover}
+      alt={project.title}
+      sizes={sizes}
+      loading={priority ? 'eager' : 'lazy'}
+      fetchpriority={priority ? 'high' : undefined}
+      decoding="async"
+      class={cn('absolute inset-0 h-full w-full object-cover', className)}
+    />
+  )
+}

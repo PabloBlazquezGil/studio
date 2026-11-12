@@ -1,0 +1,136 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import ProjectMedia from '@/components/ProjectMedia.astro';
+import SplitHeading from '@/components/motion/SplitHeading.astro';
+import ProjectGallery from '@/components/react/ProjectGallery';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { projects } from '@/lib/data';
+import { disciplineLabels, getProjectImage, getRelatedProjects, isVideoProject } from '@/lib/projects';
+import { cn, getStartTime, getYouTubeId } from '@/lib/utils';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props;
+
+const videos = project.media.filter((m) => m.type === 'video');
+const images = project.media.filter((m) => m.type === 'image').map((m) => m.url);
+const portrait = project.orientation === 'portrait';
+const related = getRelatedProjects(project);
+
+const credits = [
+  ['Cliente', project.client],
+  ['Año', project.year?.toString()],
+  ['Categoría', project.category],
+  ['Disciplina', disciplineLabels[project.discipline]],
+  ['Formato', isVideoProject(project) ? 'Vídeo' : 'Fotografía'],
+].filter((entry): entry is [string, string] => Boolean(entry[1]));
+---
+
+<BaseLayout title={project.title} description={project.description} image={getProjectImage(project)}>
+  <article>
+    {/* Portada a pantalla completa */}
+    <header class="relative h-svh w-full overflow-hidden bg-canopy">
+      <ProjectMedia project={project} sizes="100vw" priority playing />
+      <div class="absolute inset-0 bg-linear-to-b from-canopy/50 via-transparent to-canopy"></div>
+      <div class="absolute inset-x-0 bottom-0 px-5 pb-10 sm:px-10 sm:pb-14">
+        <p class="text-sm font-medium text-gold">{project.category}</p>
+        <SplitHeading
+          as="h1"
+          immediate
+          lines={[project.title]}
+          class="mt-2 max-w-5xl text-5xl font-bold leading-[0.9] text-linen sm:text-7xl lg:text-8xl"
+        />
+      </div>
+    </header>
+
+    {/* Descripción y créditos */}
+    <section class="grid gap-12 px-5 py-20 sm:px-10 sm:py-28 lg:grid-cols-[3fr_2fr] lg:gap-24">
+      <div>
+        <h2 class="font-headline text-2xl uppercase tracking-wide text-gold">Descripción</h2>
+        <p class="mt-5 max-w-2xl text-lg leading-relaxed text-linen/80">{project.description}</p>
+      </div>
+      <div>
+        <h2 class="font-headline text-2xl uppercase tracking-wide text-gold">Créditos</h2>
+        <dl class="mt-5 divide-y divide-linen/10 border-y border-linen/10">
+          {
+            credits.map(([label, value]) => (
+              <div class="grid grid-cols-[8rem_1fr] gap-4 py-3 text-sm">
+                <dt class="text-linen/50">{label}</dt>
+                <dd class="text-linen">{value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
+
+    {/* Vídeos completos */}
+    {
+      videos.length > 0 && (
+        <section id="video" class="px-2.5 pb-20 sm:px-10 sm:pb-28">
+          <div class={cn('mx-auto grid gap-6', portrait ? 'max-w-4xl sm:grid-cols-2' : 'max-w-6xl grid-cols-1')}>
+            {videos.map((video, index) => {
+              const youtubeId = getYouTubeId(video.url);
+              const label = video.title ?? `${project.title}${videos.length > 1 ? ` (${index + 1})` : ''}`;
+              return (
+                <figure>
+                  <div class={cn('relative overflow-hidden bg-black', portrait ? 'aspect-9/16' : 'aspect-video')}>
+                    {youtubeId ? (
+                      <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1`}
+                        title={label}
+                        class="absolute inset-0 h-full w-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        loading="lazy"
+                      />
+                    ) : (
+                      <video
+                        src={getStartTime(video.url) ? video.url : `${video.url}#t=0.1`}
+                        class="absolute inset-0 h-full w-full object-contain"
+                        controls
+                        playsinline
+                        preload="metadata"
+                      />
+                    )}
+                  </div>
+                  {video.title && (
+                    <figcaption class="mt-3 font-headline text-xl uppercase tracking-wide text-linen">{video.title}</figcaption>
+                  )}
+                </figure>
+              );
+            })}
+          </div>
+        </section>
+      )
+    }
+
+    {/* Galería */}
+    {
+      images.length > 0 && (
+        <section class="px-2.5 pb-20 sm:px-10 sm:pb-28" aria-label="Galería">
+          <ProjectGallery client:visible title={project.title} images={images} />
+        </section>
+      )
+    }
+
+    {/* Más proyectos */}
+    <section class="border-t border-linen/10 px-2.5 py-20 sm:px-10 sm:py-28">
+      <div class="mb-8 flex items-end justify-between gap-4 px-2.5 sm:px-0">
+        <SplitHeading lines={['Más proyectos']} class="text-4xl font-bold leading-none text-linen sm:text-6xl" />
+        <a
+          href="/trabajos"
+          class="inline-flex shrink-0 items-center gap-2 font-headline text-lg uppercase tracking-wide text-linen/70 hover:text-gold"
+        >
+          Todos <ArrowRight class="h-4 w-4" />
+        </a>
+      </div>
+      <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
+        {related.map((p) => <ProjectCard project={p} class="aspect-4/5" />)}
+      </div>
+    </section>
+  </article>
+</BaseLayout>

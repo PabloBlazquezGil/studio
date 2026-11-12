@@ -1,9 +1,5 @@
-/**
- * URL pública de la web. En Vercel se toma del dominio de producción automáticamente;
- * se puede forzar con la variable NEXT_PUBLIC_SITE_URL.
- */
-export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : 'http://localhost:9002');
+/** URL pública de la web (la define `site` en astro.config.mjs a partir de SITE_URL). */
+export const siteName = 'Pablo Blázquez Gil';
+export const defaultTitle = 'Pablo Blázquez Gil | Fotografía y vídeo';
+export const defaultDescription =
+  'Fotógrafo y videógrafo. Surf y deporte, retrato, eventos y reels para redes sociales con una mirada cinematográfica.';

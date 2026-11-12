@@ -1,0 +1,17 @@
+---
+import PageIntro from '@/components/PageIntro.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Página no encontrada" noindex>
+  <div class="min-h-[70vh]">
+    <PageIntro eyebrow="Error 404" title="Página no encontrada">
+      <a
+        href="/trabajos"
+        class="mt-10 inline-block border border-linen/30 px-6 py-3 font-headline text-lg uppercase tracking-wide text-linen hover:border-gold hover:text-gold"
+      >
+        Ver trabajos
+      </a>
+    </PageIntro>
+  </div>
+</BaseLayout>

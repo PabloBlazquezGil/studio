@@ -1,0 +1,19 @@
+---
+import { cn } from '@/lib/utils';
+
+interface Props {
+  class?: string;
+  /** Desplazamiento máximo en % de la altura del contenido. */
+  amount?: number;
+}
+
+/**
+ * El contenido se desplaza más despacio que la página mientras cruza la pantalla.
+ * Se agranda un poco para que el movimiento nunca deje bordes vacíos.
+ */
+const { class: className, amount = 8 } = Astro.props;
+---
+
+<div data-parallax={amount} class={cn('absolute inset-x-0 inset-y-[-10%]', className)}>
+  <slot />
+</div>
