@@ -1,0 +1,113 @@
+---
+import { Menu, X } from '@lucide/astro';
+import LogoMark from '@/components/brand/LogoMark.astro';
+import { author } from '@/lib/data';
+import { cn } from '@/lib/utils';
+
+const navLinks = [
+  { href: '/trabajos', label: 'Trabajos' },
+  { href: '/sobre-mi', label: 'Sobre mí' },
+  { href: '/contacto', label: 'Contacto' },
+];
+
+// Sin la barra final, para comparar rutas igual que en cualquier alojamiento.
+const pathname = Astro.url.pathname.replace(/(.)\/$/, '$1');
+/** Las páginas que empiezan con un vídeo o imagen a pantalla completa llevan la cabecera transparente. */
+const fullBleedHero = pathname === '/' || /^\/trabajos\/[^/]+$/.test(pathname);
+---
+
+<header
+  id="site-header"
+  data-full-bleed={fullBleedHero ? '' : undefined}
+  class={cn(
+    'group/header fixed inset-x-0 top-0 z-50 transition-colors duration-500',
+    fullBleedHero ? 'bg-transparent data-[solid]:bg-canopy/95 data-[solid]:backdrop-blur-md' : 'bg-canopy/95 backdrop-blur-md',
+  )}
+>
+  <div class="flex h-16 items-center justify-between px-5 sm:h-20 sm:px-10">
+    <a href="/" class="flex items-center gap-3" aria-label={`${author.name}, inicio`}>
+      <LogoMark class="h-8 shrink-0 text-linen sm:h-9" />
+      <span class="font-headline text-lg uppercase tracking-[0.12em] text-linen sm:text-xl">{author.name}</span>
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Navegación principal">
+      {
+        navLinks.map(({ href, label }) => (
+          <a
+            href={href}
+            class={cn(
+              'font-headline text-lg uppercase tracking-wide transition-colors hover:text-gold',
+              pathname.startsWith(href) ? 'text-gold' : 'text-linen',
+            )}
+          >
+            {label}
+          </a>
+        ))
+      }
+      <a
+        href="/contacto"
+        class="border border-gold px-4 py-1.5 font-headline text-lg uppercase tracking-wide text-gold transition-colors hover:bg-gold hover:text-canopy"
+      >
+        Presupuesto
+      </a>
+    </nav>
+
+    <button
+      type="button"
+      id="menu-toggle"
+      class="p-2 text-linen md:hidden"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <Menu class="h-6 w-6" data-icon="open" />
+      <X class="hidden h-6 w-6" data-icon="close" />
+    </button>
+  </div>
+
+  <nav
+    id="mobile-menu"
+    hidden
+    class="fixed inset-x-0 bottom-0 top-16 flex flex-col justify-between bg-canopy px-5 pb-10 pt-8 md:hidden [&[hidden]]:hidden"
+    aria-label="Menú móvil"
+    data-lenis-prevent
+  >
+    <ul class="space-y-2">
+      {
+        [{ href: '/', label: 'Inicio' }, ...navLinks].map(({ href, label }) => (
+          <li>
+            <a href={href} class="block font-headline text-5xl uppercase leading-tight text-linen hover:text-gold">
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a href="/contacto" class="block bg-gold py-4 text-center font-headline text-xl uppercase tracking-wide text-canopy">
+      Pide presupuesto
+    </a>
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById('site-header')!;
+  const toggle = document.getElementById('menu-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+
+  const onScroll = () => header.toggleAttribute('data-solid', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const setOpen = (open: boolean) => {
+    menu.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    toggle.querySelector('[data-icon="open"]')?.classList.toggle('hidden', open);
+    toggle.querySelector('[data-icon="close"]')?.classList.toggle('hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  toggle.addEventListener('click', () => setOpen(menu.hasAttribute('hidden')));
+  menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  // Al volver con "atrás" desde la caché del navegador, el menú no debe quedar abierto.
+  window.addEventListener('pageshow', () => setOpen(false));
+</script>

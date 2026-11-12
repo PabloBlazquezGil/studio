@@ -1,0 +1,215 @@
+---
+import { ArrowRight, LayoutGrid, List } from '@lucide/astro';
+import PageIntro from '@/components/PageIntro.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { projects } from '@/lib/data';
+import { filters } from '@/lib/projects';
+import { isVideoFile } from '@/lib/utils';
+
+// A cada proyecto se le anotan los filtros a los que pertenece; el script solo muestra u oculta.
+const items = projects.map((project) => ({
+  project,
+  matches: filters.filter((f) => f.matches(project)).map((f) => f.id).join(' '),
+}));
+---
+
+<BaseLayout
+  title="Trabajos"
+  description="Proyectos de fotografía y vídeo: surf y deporte, retrato, eventos, cortometrajes y reels para redes sociales."
+>
+  <PageIntro eyebrow="Portfolio" title="Trabajos" />
+  <section class="px-2.5 pb-24 sm:px-10" id="work-index">
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <nav aria-label="Filtrar trabajos" class="-mx-1 flex flex-wrap gap-x-5 gap-y-2">
+        {
+          filters.map((filter) => (
+            <button
+              type="button"
+              data-filter={filter.id}
+              aria-pressed={filter.id === 'todos' ? 'true' : 'false'}
+              class="px-1 font-headline text-lg uppercase tracking-wide text-linen/50 underline-offset-8 transition-colors hover:text-linen aria-pressed:text-linen aria-pressed:underline aria-pressed:decoration-gold aria-pressed:decoration-2"
+            >
+              {filter.label}
+            </button>
+          ))
+        }
+      </nav>
+
+      <div class="flex shrink-0 self-start bg-linen/10 p-1 sm:self-auto" role="group" aria-label="Vista">
+        <button
+          type="button"
+          data-view="cuadricula"
+          aria-pressed="true"
+          aria-label="Ver en cuadrícula"
+          class="p-2 text-linen/40 transition-colors hover:text-linen aria-pressed:bg-linen/15 aria-pressed:text-linen"
+        >
+          <LayoutGrid class="h-4 w-4" />
+        </button>
+        <button
+          type="button"
+          data-view="lista"
+          aria-pressed="false"
+          aria-label="Ver en lista"
+          class="p-2 text-linen/40 transition-colors hover:text-linen aria-pressed:bg-linen/15 aria-pressed:text-linen"
+        >
+          <List class="h-4 w-4" />
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-10">
+      <p data-empty hidden class="py-20 text-center text-linen/50">Todavía no hay proyectos en esta categoría.</p>
+
+      <!-- Vista cuadrícula -->
+      <div data-grid class="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          items.map(({ project, matches }, index) => (
+            <div data-item data-filters={matches}>
+              <ProjectCard project={project} class="aspect-4/5" priority={index < 3} />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Vista lista: en escritorio, al pasar el ratón aparece la portada siguiendo al cursor -->
+      <div data-list hidden class="relative">
+        <ul class="border-t border-linen/15">
+          {
+            items.map(({ project, matches }) => (
+              <li
+                data-item
+                data-filters={matches}
+                data-cover={project.cover}
+                data-cover-video={isVideoFile(project.cover) ? '' : undefined}
+                data-title={project.title}
+              >
+                <a
+                  href={`/trabajos/${project.slug}`}
+                  class="group grid grid-cols-[1fr_auto] items-center gap-4 border-b border-linen/15 py-5 transition-colors hover:border-gold/60 md:grid-cols-[3fr_2fr_2fr_auto]"
+                >
+                  <span class="font-headline text-2xl uppercase leading-none text-linen transition-colors group-hover:text-gold sm:text-3xl">
+                    {project.title}
+                  </span>
+                  <span class="hidden text-sm text-linen/60 md:block">{project.category}</span>
+                  <span class="hidden text-sm text-linen/60 md:block">{project.client}</span>
+                  <ArrowRight class="h-5 w-5 text-linen/60 transition-all group-hover:translate-x-1 group-hover:text-gold" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <div
+          data-preview
+          class="pointer-events-none fixed z-40 hidden aspect-4/3 w-80 -translate-y-1/2 translate-x-8 overflow-hidden shadow-2xl"
+          aria-hidden="true"
+        >
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { initLoopVideos } from '@/scripts/loop-video';
+
+  /**
+   * Índice de trabajos con filtros y dos vistas (cuadrícula y lista).
+   * El filtro y la vista viven en la URL (?filtro=deporte&vista=lista) para poder compartirlos.
+   */
+  const root = document.getElementById('work-index')!;
+  const filterButtons = [...root.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+  const viewButtons = [...root.querySelectorAll<HTMLButtonElement>('[data-view]')];
+  const grid = root.querySelector<HTMLElement>('[data-grid]')!;
+  const list = root.querySelector<HTMLElement>('[data-list]')!;
+  const empty = root.querySelector<HTMLElement>('[data-empty]')!;
+  const preview = root.querySelector<HTMLElement>('[data-preview]')!;
+
+  const ids = filterButtons.map((b) => b.dataset.filter!);
+  const params = new URLSearchParams(location.search);
+  let filter = ids.includes(params.get('filtro') ?? '') ? params.get('filtro')! : 'todos';
+  let view = params.get('vista') === 'lista' ? 'lista' : 'cuadricula';
+
+  const render = () => {
+    filterButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filter === filter)));
+    viewButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === view)));
+    let visible = 0;
+    root.querySelectorAll<HTMLElement>('[data-item]').forEach((item) => {
+      const show = item.dataset.filters!.split(' ').includes(filter);
+      item.hidden = !show;
+      if (show && item.closest('[data-grid]')) visible++;
+    });
+    empty.hidden = visible > 0;
+    grid.hidden = view !== 'cuadricula' || visible === 0;
+    list.hidden = view !== 'lista' || visible === 0;
+    if (list.hidden) preview.classList.add('hidden');
+    // Al cambiar de filtro o de vista cambia la altura de la página: recalcula las animaciones.
+    document.dispatchEvent(new Event('studio:layout-change'));
+  };
+
+  const update = (key: string, value: string, defaultValue: string) => {
+    const next = new URLSearchParams(location.search);
+    if (value === defaultValue) next.delete(key);
+    else next.set(key, value);
+    const query = next.toString();
+    history.replaceState(null, '', query ? `${location.pathname}?${query}` : location.pathname);
+  };
+
+  filterButtons.forEach((b) =>
+    b.addEventListener('click', () => {
+      filter = b.dataset.filter!;
+      update('filtro', filter, 'todos');
+      render();
+    }),
+  );
+  viewButtons.forEach((b) =>
+    b.addEventListener('click', () => {
+      view = b.dataset.view!;
+      update('vista', view, 'cuadricula');
+      render();
+    }),
+  );
+
+  // Vista previa que sigue al cursor (solo con ratón).
+  const hoverable = window.matchMedia('(hover: hover)');
+  let shownFor = '';
+  list.addEventListener('mousemove', (e) => {
+    preview.style.left = `${e.clientX}px`;
+    preview.style.top = `${e.clientY}px`;
+  });
+  list.addEventListener('mouseleave', () => {
+    preview.classList.add('hidden');
+    shownFor = '';
+  });
+  list.querySelectorAll<HTMLElement>('[data-item]').forEach((item) =>
+    item.addEventListener('mouseenter', () => {
+      if (!hoverable.matches) return;
+      preview.classList.remove('hidden');
+      if (shownFor === item.dataset.title) return;
+      shownFor = item.dataset.title!;
+      const cover = item.dataset.cover!;
+      preview.innerHTML = '';
+      if (item.hasAttribute('data-cover-video')) {
+        const video = document.createElement('video');
+        video.dataset.loop = '';
+        video.dataset.src = cover;
+        video.dataset.eager = '';
+        video.dataset.playing = 'true';
+        video.className = 'h-full w-full object-cover';
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        preview.append(video);
+        initLoopVideos(preview);
+      } else {
+        const img = document.createElement('img');
+        img.src = cover;
+        img.alt = '';
+        img.className = 'absolute inset-0 h-full w-full object-cover';
+        preview.append(img);
+      }
+    }),
+  );
+
+  render();
+</script>

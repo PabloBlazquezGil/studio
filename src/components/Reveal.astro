@@ -1,0 +1,15 @@
+---
+import { cn } from '@/lib/utils';
+
+interface Props {
+  class?: string;
+  delay?: number;
+}
+
+/** Aparece con un fundido y un ligero desplazamiento la primera vez que entra en pantalla. */
+const { class: className, delay = 0 } = Astro.props;
+---
+
+<div data-reveal class={cn(className)} style={`--reveal-delay:${delay}ms`}>
+  <slot />
+</div>

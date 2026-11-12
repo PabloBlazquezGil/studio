@@ -1,0 +1,52 @@
+---
+import { cn } from '@/lib/utils';
+
+interface Props {
+  /** Líneas del titular; cada una se revela por separado. Las palabras entre `*` van en dorado. */
+  lines: string[];
+  as?: 'h1' | 'h2' | 'h3' | 'p';
+  class?: string;
+  /** Anima al cargar en lugar de al entrar en pantalla (para cabeceras). */
+  immediate?: boolean;
+}
+
+const { lines, as: Tag = 'h2', class: className, immediate = false } = Astro.props;
+const label = lines.join(' ').replace(/\*/g, '');
+// Cada línea → partes (normal / dorado) → palabras → letras.
+const parsed = lines.map((line) =>
+  line
+    .split(/(\*[^*]+\*)/)
+    .filter(Boolean)
+    .map((part) => {
+      const highlighted = part.startsWith('*');
+      const text = highlighted ? part.slice(1, -1) : part;
+      return { highlighted, words: text.split(/(\s+)/).filter((w) => w !== '') };
+    }),
+);
+---
+
+<Tag class={cn('font-headline uppercase', className)} aria-label={label} data-split data-immediate={immediate ? '' : undefined}>
+  {
+    parsed.map((parts) => (
+      <span class="block overflow-hidden pb-[0.06em]" aria-hidden="true">
+        {parts.map((part) => (
+          <span class={part.highlighted ? 'text-gold' : undefined}>
+            {part.words.map((word) =>
+              /^\s+$/.test(word) ? (
+                ' '
+              ) : (
+                <span class="inline-block whitespace-nowrap">
+                  {Array.from(word).map((char) => (
+                    <span data-char class="inline-block">
+                      {char}
+                    </span>
+                  ))}
+                </span>
+              ),
+            )}
+          </span>
+        ))}
+      </span>
+    ))
+  }
+</Tag>

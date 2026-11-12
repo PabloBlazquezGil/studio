@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  links: { href: string; label: string }[];
+  external?: boolean;
+}
+
+const { title, links, external = false } = Astro.props;
+---
+
+<div>
+  <p class="text-xs font-medium text-gold">{title}</p>
+  <ul class="mt-2">
+    {
+      links.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class="inline-block py-2 font-headline text-lg uppercase tracking-wide text-linen/80 hover:text-gold"
+            {...(external && !href.startsWith('mailto:') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
+            {label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

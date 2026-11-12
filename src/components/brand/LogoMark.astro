@@ -1,0 +1,27 @@
+---
+import { cn } from '@/lib/utils';
+import { FRAME_PATH, GOLD, PBG_PATH } from './logo-paths';
+
+interface Props {
+  class?: string;
+  title?: string;
+}
+
+/**
+ * Logo "Encuadre": las iniciales PBG dentro de las esquinas de enfoque de un fotograma 3:2,
+ * con el piloto dorado de REC. Las letras usan currentColor para adaptarse al fondo.
+ */
+const { class: className, title } = Astro.props;
+---
+
+<svg
+  viewBox="2 16 96 68"
+  class={cn('h-8 w-auto', className)}
+  role={title ? 'img' : undefined}
+  aria-hidden={title ? undefined : 'true'}
+  aria-label={title}
+>
+  <path d={FRAME_PATH} fill="none" stroke={GOLD} stroke-width="4"></path>
+  <path d={PBG_PATH} fill="currentColor"></path>
+  <circle cx="86" cy="28" r="3.2" fill={GOLD}></circle>
+</svg>

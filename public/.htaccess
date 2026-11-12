@@ -1,0 +1,2 @@
+# Hostinger (Apache/LiteSpeed): página 404 propia
+ErrorDocument 404 /404.html
