@@ -17,7 +17,7 @@ export default function AboutPage() {
       <PageIntro eyebrow="Sobre mí" title={author.title} />
 
       <section className="grid gap-10 px-5 pb-24 sm:px-10 lg:grid-cols-2 lg:gap-20">
-        <Reveal className="relative aspect-[4/5] overflow-hidden">
+        <Reveal className="relative aspect-4/5 overflow-hidden">
           <Image src={author.imageUrl} alt={author.name} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" priority />
         </Reveal>
         <Reveal delay={120} className="space-y-6 text-lg leading-relaxed text-linen/80 lg:pt-10">

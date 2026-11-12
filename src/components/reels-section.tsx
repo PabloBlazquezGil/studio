@@ -33,10 +33,10 @@ export default function ReelsSection() {
           <Link
             key={video.url}
             href={`/trabajos/${project.slug}`}
-            className="group relative aspect-[9/16] w-[70vw] max-w-[320px] shrink-0 snap-start overflow-hidden bg-black/30 sm:w-[40vw] lg:w-[30%]"
+            className="group relative aspect-9/16 w-[70vw] max-w-[320px] shrink-0 snap-start overflow-hidden bg-black/30 sm:w-[40vw] lg:w-[30%]"
           >
             <LoopVideo src={video.url} className="transition-transform duration-700 group-hover:scale-[1.03]" />
-            <div className="absolute inset-0 bg-gradient-to-t from-canopy/80 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-canopy/80 via-transparent to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-5">
               <p className="text-xs font-medium text-gold">{project.client}</p>
               <p className="mt-1 font-headline text-2xl uppercase leading-none text-linen">{video.title ?? project.title}</p>

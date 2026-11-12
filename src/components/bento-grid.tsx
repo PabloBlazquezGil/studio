@@ -19,7 +19,7 @@ export default function BentoGrid({ projects }: { projects: Project[] }) {
           <Reveal
             key={project.slug}
             delay={(index % 3) * 80}
-            className={cn('aspect-[4/5] sm:aspect-square', wide && 'sm:col-span-2 sm:aspect-[2/1] lg:aspect-auto')}
+            className={cn('aspect-4/5 sm:aspect-square', wide && 'sm:col-span-2 sm:aspect-2/1 lg:aspect-auto')}
           >
             <ProjectCard
               project={project}

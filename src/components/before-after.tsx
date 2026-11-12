@@ -13,7 +13,7 @@ export default function BeforeAfter({ comparison }: { comparison: Comparison }) 
 
   return (
     <figure>
-      <div className="relative aspect-[3/2] select-none overflow-hidden bg-black/30">
+      <div className="relative aspect-3/2 select-none overflow-hidden bg-black/30">
         <Image src={comparison.before} alt={`${comparison.title}, sin editar`} fill sizes="100vw" className="object-cover" />
         <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
           <Image src={comparison.after} alt={`${comparison.title}, editada`} fill sizes="100vw" className="object-cover" />

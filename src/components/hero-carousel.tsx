@@ -47,7 +47,7 @@ export default function HeroCarousel({ slides }: HeroCarouselProps) {
   const active = slides[current];
 
   return (
-    <section ref={sectionRef} className="relative h-[100svh] w-full overflow-hidden bg-canopy">
+    <section ref={sectionRef} className="relative h-svh w-full overflow-hidden bg-canopy">
       <div ref={mediaRef} className="absolute inset-0">
         {slides.map((slide, index) => (
           <div
@@ -66,7 +66,7 @@ export default function HeroCarousel({ slides }: HeroCarouselProps) {
         ))}
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-canopy/60 via-transparent to-canopy/70" />
+      <div className="absolute inset-0 bg-linear-to-b from-canopy/60 via-transparent to-canopy/70" />
 
       <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 sm:px-10 sm:pb-10">
         <Link href={`/trabajos/${active.project.slug}`} className="group inline-block">

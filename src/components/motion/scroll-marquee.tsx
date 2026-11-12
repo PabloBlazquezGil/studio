@@ -34,7 +34,7 @@ export default function ScrollMarquee({ words }: { words: string[] }) {
           className={
             row === 1
               ? 'whitespace-nowrap font-headline text-[18vw] uppercase leading-[0.85] text-linen sm:text-[12vw]'
-              : 'whitespace-nowrap font-headline text-[18vw] uppercase leading-[0.85] text-transparent [-webkit-text-stroke:1px_theme(colors.gold)] sm:text-[12vw]'
+              : 'whitespace-nowrap font-headline text-[18vw] uppercase leading-[0.85] text-transparent [-webkit-text-stroke:1px_var(--color-gold)] sm:text-[12vw]'
           }
         >
           {line.repeat(4)}

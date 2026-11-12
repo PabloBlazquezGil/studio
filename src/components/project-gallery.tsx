@@ -42,7 +42,7 @@ export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
             key={url}
             type="button"
             onClick={() => setOpen(index)}
-            className="group relative aspect-[3/2] overflow-hidden bg-black/30"
+            className="group relative aspect-3/2 overflow-hidden bg-black/30"
             aria-label={`Ampliar imagen ${index + 1} de ${title}`}
           >
             <Image
@@ -58,7 +58,7 @@ export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
 
       {open !== null && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/95"
+          className="fixed inset-0 z-60 flex items-center justify-center bg-black/95"
           data-lenis-prevent
           role="dialog"
           aria-modal="true"

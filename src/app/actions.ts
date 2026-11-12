@@ -3,9 +3,9 @@
 import { z } from 'zod';
 
 const contactSchema = z.object({
-  name: z.string({required_error: "El nombre es obligatorio."}).min(2, { message: "El nombre debe tener al menos 2 caracteres." }),
-  email: z.string({required_error: "El email es obligatorio."}).email({ message: "Por favor, introduce un email válido." }),
-  message: z.string({required_error: "El mensaje es obligatorio."}).min(10, { message: "El mensaje debe tener al menos 10 caracteres." }),
+  name: z.string({ error: "El nombre es obligatorio." }).min(2, { message: "El nombre debe tener al menos 2 caracteres." }),
+  email: z.string({ error: "El email es obligatorio." }).email({ message: "Por favor, introduce un email válido." }),
+  message: z.string({ error: "El mensaje es obligatorio." }).min(10, { message: "El mensaje debe tener al menos 10 caracteres." }),
 });
 
 export type State = {
