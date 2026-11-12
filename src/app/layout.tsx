@@ -10,14 +10,14 @@ import './globals.css';
 
 const fontHeadline = Barlow_Condensed({
   subsets: ['latin'],
-  variable: '--font-headline',
+  variable: '--nf-headline',
   weight: ['500', '600', '700'],
   display: 'swap',
 });
 
 const fontBody = Inter({
   subsets: ['latin'],
-  variable: '--font-body',
+  variable: '--nf-body',
   display: 'swap',
 });
 

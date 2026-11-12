@@ -7,7 +7,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div
-        className="pointer-events-none fixed inset-0 z-[70] animate-curtain bg-canopy motion-reduce:hidden"
+        className="pointer-events-none fixed inset-0 z-70 animate-curtain bg-canopy motion-reduce:hidden"
         aria-hidden
       >
         <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gold" />

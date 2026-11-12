@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 const steps = ['Qué necesitas', 'Cuándo y dónde', 'Presupuesto', 'Tus datos'] as const;
 
 const fieldClass =
-  'w-full border border-linen/15 bg-linen/5 px-4 py-3 text-sm text-linen outline-none transition-colors placeholder:text-linen/30 focus:border-gold focus:bg-gold/5';
+  'w-full border border-linen/15 bg-linen/5 px-4 py-3 text-sm text-linen outline-hidden transition-colors placeholder:text-linen/30 focus:border-gold focus:bg-gold/5';
 const labelClass = 'mb-2 block text-xs font-medium text-linen/60';
 
 /**
@@ -83,7 +83,7 @@ export function ContactForm() {
         ))}
       </ol>
 
-      <div key={step} className="min-h-[18rem] animate-in fade-in slide-in-from-right-4 duration-500">
+      <div key={step} className="min-h-72 animate-in fade-in slide-in-from-right-4 duration-500">
         {step === 0 && (
           <fieldset>
             <legend className="font-headline text-3xl font-bold uppercase text-linen sm:text-4xl">¿Qué necesitas?</legend>

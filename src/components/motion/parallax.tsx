@@ -39,7 +39,7 @@ export default function Parallax({ children, className, amount = 8 }: ParallaxPr
   }, [amount]);
 
   return (
-    <div ref={ref} className={cn('absolute inset-x-0 -inset-y-[10%]', className)}>
+    <div ref={ref} className={cn('absolute inset-x-0 inset-y-[-10%]', className)}>
       {children}
     </div>
   );

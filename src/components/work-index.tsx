@@ -87,7 +87,7 @@ export default function WorkIndex() {
         ) : view === 'cuadricula' ? (
           <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
             {visible.map((project, index) => (
-              <ProjectCard key={project.slug} project={project} className="aspect-[4/5]" priority={index < 3} />
+              <ProjectCard key={project.slug} project={project} className="aspect-4/5" priority={index < 3} />
             ))}
           </div>
         ) : (
@@ -129,7 +129,7 @@ function ProjectList({ projects }: { projects: Project[] }) {
 
       {hovered && (
         <div
-          className="pointer-events-none fixed z-40 hidden aspect-[4/3] w-80 translate-x-8 -translate-y-1/2 overflow-hidden shadow-2xl [@media(hover:hover)]:block"
+          className="pointer-events-none fixed z-40 hidden aspect-4/3 w-80 translate-x-8 -translate-y-1/2 overflow-hidden shadow-2xl [@media(hover:hover)]:block"
           style={{ left: pos.x, top: pos.y }}
           aria-hidden
         >

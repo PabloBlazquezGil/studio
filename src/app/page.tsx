@@ -63,7 +63,7 @@ export default function Home() {
       )}
 
       <section className="grid items-center gap-10 border-t border-linen/10 px-5 py-24 sm:px-10 sm:py-32 lg:grid-cols-2 lg:gap-20">
-        <Reveal className="relative aspect-[4/5] overflow-hidden lg:order-2">
+        <Reveal className="relative aspect-4/5 overflow-hidden lg:order-2">
           <Parallax>
             <Image src={author.imageUrl} alt={author.name} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
           </Parallax>

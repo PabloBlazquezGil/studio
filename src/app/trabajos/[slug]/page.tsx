@@ -47,9 +47,9 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <article>
       {/* Portada a pantalla completa */}
-      <header className="relative h-[100svh] w-full overflow-hidden bg-canopy">
+      <header className="relative h-svh w-full overflow-hidden bg-canopy">
         <ProjectMedia project={project} sizes="100vw" priority playing />
-        <div className="absolute inset-0 bg-gradient-to-b from-canopy/50 via-transparent to-canopy" />
+        <div className="absolute inset-0 bg-linear-to-b from-canopy/50 via-transparent to-canopy" />
         <div className="absolute inset-x-0 bottom-0 px-5 pb-10 sm:px-10 sm:pb-14">
           <p className="text-sm font-medium text-gold">{project.category}</p>
           <SplitHeading
@@ -94,7 +94,7 @@ export default async function ProjectPage({ params }: Props) {
               const label = video.title ?? `${project.title}${videos.length > 1 ? ` (${index + 1})` : ''}`;
               return (
                 <figure key={video.url}>
-                  <div className={cn('relative overflow-hidden bg-black', portrait ? 'aspect-[9/16]' : 'aspect-video')}>
+                  <div className={cn('relative overflow-hidden bg-black', portrait ? 'aspect-9/16' : 'aspect-video')}>
                     {youtubeId ? (
                       <iframe
                         src={`https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1`}
@@ -146,7 +146,7 @@ export default async function ProjectPage({ params }: Props) {
         </div>
         <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
           {related.map((p) => (
-            <ProjectCard key={p.slug} project={p} className="aspect-[4/5]" />
+            <ProjectCard key={p.slug} project={p} className="aspect-4/5" />
           ))}
         </div>
       </section>
