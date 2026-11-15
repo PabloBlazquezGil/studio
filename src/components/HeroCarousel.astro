@@ -1,6 +1,8 @@
 ---
 import type { HeroSlide, Project } from '@/lib/types';
 import { Pause, Play } from '@lucide/astro';
+import { projectPath, toLang } from '@/i18n/routes';
+import { useTranslations } from '@/i18n/ui';
 import { cn } from '@/lib/utils';
 
 interface Props {
@@ -13,6 +15,8 @@ interface Props {
  */
 const { slides } = Astro.props;
 const SLIDE_DURATION = 7000;
+const lang = toLang(Astro.currentLocale);
+const t = useTranslations(lang);
 ---
 
 <section
@@ -53,7 +57,7 @@ const SLIDE_DURATION = 7000;
       slides.map((slide, index) => (
         <a
           data-caption
-          href={`/trabajos/${slide.project.slug}`}
+          href={projectPath(slide.project.slug, lang)}
           hidden={index !== 0}
           class="group inline-block [&[hidden]]:hidden"
         >
@@ -69,13 +73,15 @@ const SLIDE_DURATION = 7000;
     <button
       type="button"
       data-toggle
-      aria-label="Pausar el showreel"
+      aria-label={t.hero.pause}
+      data-label-pause={t.hero.pause}
+      data-label-play={t.hero.play}
       class="-ml-2 mr-1 p-2 text-linen/70 transition-colors hover:text-gold"
     >
       <Pause class="h-4 w-4" data-icon="pause" />
       <Play class="hidden h-4 w-4" data-icon="play" />
     </button>
-    <div class="flex flex-1 gap-2" role="tablist" aria-label="Clips del showreel">
+    <div class="flex flex-1 gap-2" role="tablist" aria-label={t.hero.clips}>
       {
         slides.map((slide, index) => (
           <button
@@ -83,7 +89,7 @@ const SLIDE_DURATION = 7000;
             role="tab"
             data-tab
             aria-selected={index === 0 ? 'true' : 'false'}
-            aria-label={`Clip ${index + 1}: ${slide.project.title}`}
+            aria-label={t.hero.clip(index + 1, slide.project.title)}
             class="group relative h-6 flex-1 sm:max-w-24"
           >
             <span class="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 bg-linen/25 transition-colors group-hover:bg-linen/50" />
@@ -97,10 +103,10 @@ const SLIDE_DURATION = 7000;
 
   <a
     href="#trabajos-destacados"
-    aria-label="Desliza para ver trabajos"
+    aria-label={t.hero.seeWork}
     class="absolute bottom-8 right-5 z-10 hidden items-center gap-2 text-xs font-medium text-linen/70 transition-colors hover:text-gold sm:flex sm:right-10 sm:bottom-10"
   >
-    Desliza <span aria-hidden="true" class="block h-8 w-px animate-pulse bg-gold"></span>
+    {t.hero.scroll} <span aria-hidden="true" class="block h-8 w-px animate-pulse bg-gold"></span>
   </a>
 </section>
 
@@ -170,7 +176,7 @@ const SLIDE_DURATION = 7000;
     };
 
     const sync = () => {
-      const label = userPaused ? 'Reanudar el showreel' : 'Pausar el showreel';
+      const label = (userPaused ? toggle.dataset.labelPlay : toggle.dataset.labelPause) ?? '';
       toggle.setAttribute('aria-label', label);
       toggle.querySelector('[data-icon="pause"]')?.classList.toggle('hidden', userPaused);
       toggle.querySelector('[data-icon="play"]')?.classList.toggle('hidden', !userPaused);

@@ -39,7 +39,8 @@ Igual que cualquier proyecto Astro estático: en hPanel, aplicación Node.js des
 | `/sobre-mi/` | Biografía y servicios |
 | `/contacto/` | Datos de contacto y briefing por pasos (abre el programa de correo con `mailto:`) |
 | `/aviso-legal/`, `/politica-de-privacidad/` | Páginas legales |
-| `/sitemap.xml`, `/robots.txt` | SEO, generados en el build |
+| `/en/`, `/en/work/`, `/en/work/[slug]/`, `/en/about/`, `/en/contact/`, `/en/legal-notice/`, `/en/privacy-policy/` | Versión en inglés de cada página |
+| `/sitemap.xml`, `/robots.txt` | SEO, generados en el build (el sitemap incluye los dos idiomas con `hreflang`) |
 
 ```
 src/
@@ -47,7 +48,9 @@ src/
   layouts/      BaseLayout.astro: <head> con SEO, cabecera, pie y transición de página
   components/   componentes Astro; components/react/ = islas de React; ui/ = toasts
   scripts/      motion.ts (Lenis + GSAP + aparición) y loop-video.ts (vídeos en bucle)
-  lib/data.ts   todo el contenido
+  views/        el contenido de cada página; pages/ y pages/en/ solo las montan en cada idioma
+  i18n/         routes.ts (idiomas y rutas), ui.ts (textos de la interfaz), content.en.ts (contenido en inglés)
+  lib/data.ts   todo el contenido (en español)
 ```
 
 ## Cómo añadir o editar contenido
@@ -60,6 +63,15 @@ Todo el contenido está en [`src/lib/data.ts`](src/lib/data.ts):
 - **`comparisons`** y **`testimonials`**: vacíos a propósito; mientras lo estén, sus secciones no se muestran.
 
 Los vídeos admiten `#t=5` al final de la URL para empezar en el segundo 5. Las imágenes y vídeos se sirven desde `archivos.thundershoot.com` y YouTube; Astro no los descarga ni los procesa en el build.
+
+## Idiomas
+
+La web está en español (idioma por defecto, en la raíz) y en inglés (bajo `/en`), con el i18n nativo de Astro.
+
+- **Textos de la interfaz** (menú, botones, formulario, títulos de sección): `src/i18n/ui.ts`, un bloque por idioma.
+- **Contenido en inglés** (títulos y descripciones de proyectos, biografía, servicios, rangos de presupuesto): `src/i18n/content.en.ts`. Al añadir un proyecto en `data.ts`, añade aquí su traducción con el mismo `slug`; si falta, la versión inglesa muestra el texto en español.
+- **Rutas traducidas** (`/trabajos` ↔ `/en/work`…): `src/i18n/routes.ts`. Los slugs de los proyectos son los mismos en los dos idiomas.
+- Cada página enlaza a su traducción con `<link rel="alternate" hreflang>` y el selector de idioma (cabecera, menú móvil y pie) lleva a la misma página en el otro idioma. No hay redirección automática por idioma del navegador.
 
 ## Formulario de contacto
 

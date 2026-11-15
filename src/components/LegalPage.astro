@@ -1,0 +1,97 @@
+---
+import { ArrowLeft } from '@lucide/astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { path, toLang } from '@/i18n/routes';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+/** Marco común de las páginas legales (fondo claro, cabecera y pie). El texto va en el slot. */
+const { title, description } = Astro.props;
+const lang = toLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="min-h-screen w-full pt-28" style={{ backgroundColor: '#F9F8F6' }}>
+    <div class="container mx-auto max-w-3xl px-6 sm:px-8 lg:px-12 py-16 sm:py-24">
+      {/* Back link */}
+      <a
+        href={path('home', lang)}
+        class="inline-flex items-center gap-2 py-3 mb-12 group text-basalt hover:text-gold transition-colors duration-400"
+        style={{
+          fontFamily: 'var(--font-body, Montserrat), sans-serif',
+          fontSize: '0.65rem',
+          letterSpacing: '0.3em',
+          textTransform: 'uppercase',
+        }}
+      >
+        <ArrowLeft class="w-3 h-3 transition-transform group-hover:-translate-x-1 duration-400" />
+        {t.legal.back}
+      </a>
+
+      {/* Header */}
+      <div class="mb-14">
+        <p class="font-body text-[10px] uppercase tracking-[0.4em] mb-4" style={{ color: '#D4AF37' }}>
+          {t.legal.eyebrow}
+        </p>
+        <div class="mb-6" style={{ display: 'block', width: '3rem', height: '1px', backgroundColor: '#D4AF37' }} />
+        <h1 class="font-headline text-4xl sm:text-5xl font-light" style={{ color: '#1C2826', letterSpacing: '0.15em' }}>
+          {title}
+        </h1>
+      </div>
+
+      {/* Divider */}
+      <div style={{ height: '1px', background: 'linear-gradient(to right, #1C2826, rgba(28,40,38,0.1))', marginBottom: '3rem' }} />
+
+      {/* Content: los <h2> de las secciones toman su estilo de aquí */}
+      <div
+        class="legal-content space-y-10"
+        style={{ color: '#4A4E51', fontFamily: 'var(--font-body, Montserrat), sans-serif', fontSize: '0.9rem', lineHeight: '1.9' }}
+      >
+        <slot />
+      </div>
+
+      {/* Bottom gold line */}
+      <div class="mt-20" style={{ height: '1px', background: 'linear-gradient(to right, transparent, #D4AF37, transparent)' }} />
+      <p
+        class="text-center mt-6"
+        style={{
+          fontFamily: 'var(--font-body, Montserrat), sans-serif',
+          fontSize: '0.65rem',
+          letterSpacing: '0.3em',
+          textTransform: 'uppercase',
+          color: 'rgba(74,78,81,0.5)',
+        }}
+      >
+        © {new Date().getFullYear()} Pablo Blázquez Gil
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-content :global(h2) {
+    font-family: var(--font-headline);
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    color: #1c2826;
+    letter-spacing: 0.15em;
+  }
+  .legal-content :global(strong) {
+    color: #1c2826;
+    font-weight: 500;
+  }
+  .legal-content :global(a) {
+    color: #d4af37;
+    transition: opacity 0.4s;
+  }
+  .legal-content :global(a:hover) {
+    opacity: 0.75;
+  }
+</style>

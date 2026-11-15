@@ -20,6 +20,12 @@ export default defineConfig({
   // El CSS (unos 10 KB comprimido) va dentro de cada página: el primer pintado no espera a otra petición.
   build: { inlineStylesheets: 'always' },
   server: { port: 9002 },
+  // Español en la raíz (/trabajos) e inglés bajo /en (/en/work). Las rutas traducidas están en src/i18n/routes.ts.
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [react()],
   vite: { plugins: [tailwindcss()] },
 });
