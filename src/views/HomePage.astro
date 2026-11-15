@@ -1,0 +1,103 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import BentoGrid from '@/components/BentoGrid.astro';
+import HeroCarousel from '@/components/HeroCarousel.astro';
+import Parallax from '@/components/motion/Parallax.astro';
+import ReelsSection from '@/components/ReelsSection.astro';
+import Reveal from '@/components/Reveal.astro';
+import ScrollMarquee from '@/components/motion/ScrollMarquee.astro';
+import SplitHeading from '@/components/motion/SplitHeading.astro';
+import Testimonials from '@/components/Testimonials.astro';
+import BeforeAfter from '@/components/react/BeforeAfter';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { path, toLang } from '@/i18n/routes';
+import { useTranslations } from '@/i18n/ui';
+import { getAuthor, getMarqueeWords, getProjects } from '@/lib/content';
+import { comparisons, heroSlides } from '@/lib/data';
+import { getProject } from '@/lib/projects';
+
+const lang = toLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const author = getAuthor(lang);
+const projects = getProjects(lang);
+
+const slides = heroSlides.flatMap((slide) => {
+  const project = getProject(slide.projectSlug, lang);
+  return project ? [{ ...slide, project }] : [];
+});
+---
+
+<BaseLayout>
+  <HeroCarousel slides={slides} />
+
+  <section class="px-5 pb-16 pt-20 text-center sm:px-10 sm:pt-28">
+    <SplitHeading
+      as="h1"
+      lines={t.home.heading}
+      class="text-6xl font-bold leading-[0.88] text-linen sm:text-8xl lg:text-[10rem]"
+    />
+    <Reveal delay={300}>
+      <p class="mt-8 text-sm text-linen/60 sm:text-base">{t.home.subheading}</p>
+    </Reveal>
+  </section>
+
+  <section id="trabajos-destacados" class="scroll-mt-20 px-2.5 sm:px-10" aria-label={t.home.featured}>
+    <BentoGrid projects={projects} />
+    <div class="mt-12 text-center">
+      <a
+        href={path('work', lang)}
+        class="inline-flex items-center gap-2 border border-linen/30 px-6 py-3 font-headline text-lg uppercase tracking-wide text-linen transition-colors hover:border-gold hover:text-gold"
+      >
+        {t.home.allWork} <ArrowRight class="h-4 w-4" />
+      </a>
+    </div>
+  </section>
+
+  <ScrollMarquee words={getMarqueeWords(lang)} />
+
+  <ReelsSection />
+
+  {
+    comparisons.length > 0 && (
+      <section class="border-t border-linen/10 px-5 py-24 sm:px-10 sm:py-32">
+        <p class="text-sm font-medium text-gold">{t.home.postEyebrow}</p>
+        <SplitHeading lines={t.home.beforeAfter} class="mt-3 text-5xl font-bold leading-[0.9] text-linen sm:text-7xl" />
+        <div class="mt-12 grid gap-10 lg:grid-cols-2">
+          {comparisons.map((comparison) => (
+            <BeforeAfter client:visible comparison={comparison} lang={lang} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="grid items-center gap-10 border-t border-linen/10 px-5 py-24 sm:px-10 sm:py-32 lg:grid-cols-2 lg:gap-20">
+    <Reveal class="relative aspect-[4/5] overflow-hidden lg:order-2">
+      <Parallax>
+        <img
+          src={author.imageUrl}
+          alt={author.name}
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+      </Parallax>
+    </Reveal>
+    <div>
+      <p class="text-sm font-medium text-gold">{t.home.aboutEyebrow}</p>
+      <SplitHeading lines={[author.title]} class="mt-3 text-5xl font-bold leading-[0.9] text-linen sm:text-7xl" />
+      <Reveal delay={150}>
+        <p class="mt-6 max-w-lg leading-relaxed text-linen/70">{author.bio.split('\n\n')[0]}</p>
+        <a
+          href={path('about', lang)}
+          class="mt-8 inline-flex items-center gap-2 bg-linen/10 px-5 py-2.5 font-headline text-lg uppercase tracking-wide text-linen transition-colors hover:bg-gold hover:text-canopy"
+        >
+          {t.home.meetMe} <ArrowRight class="h-4 w-4" />
+        </a>
+      </Reveal>
+    </div>
+  </section>
+
+  <Testimonials />
+</BaseLayout>

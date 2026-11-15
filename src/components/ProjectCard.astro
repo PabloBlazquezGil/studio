@@ -1,5 +1,6 @@
 ---
 import type { Project } from '@/lib/types';
+import { projectPath, toLang } from '@/i18n/routes';
 import { cn } from '@/lib/utils';
 import Parallax from './motion/Parallax.astro';
 import ProjectMedia from './ProjectMedia.astro';
@@ -13,10 +14,11 @@ interface Props {
 
 /** Tarjeta de proyecto: el trabajo ocupa toda la tarjeta y encima solo el cliente y el título. */
 const { project, class: className, sizes = '(max-width: 1024px) 100vw, 33vw', priority } = Astro.props;
+const lang = toLang(Astro.currentLocale);
 ---
 
 <a
-  href={`/trabajos/${project.slug}`}
+  href={projectPath(project.slug, lang)}
   class={cn('group relative block overflow-hidden bg-black/30', className)}
   data-project-card
   data-discipline={project.discipline}

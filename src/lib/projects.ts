@@ -1,36 +1,43 @@
-import { projects } from './data';
+import type { Lang } from '@/i18n/routes';
+import { useTranslations } from '@/i18n/ui';
+import { getProjects } from './content';
 import type { Discipline, Project } from './types';
 import { getYouTubeId } from './utils';
 
-export const disciplineLabels: Record<Discipline, string> = {
-  deporte: 'Deporte',
-  retrato: 'Retrato',
-  eventos: 'Eventos',
-  cine: 'Cine',
-  redes: 'Redes sociales',
-};
+export function getDisciplineLabels(lang: Lang): Record<Discipline, string> {
+  return useTranslations(lang).disciplines;
+}
 
 export type Filter = { id: string; label: string; matches: (p: Project) => boolean };
 
 export const isVideoProject = (p: Project) => p.media.some((m) => m.type === 'video');
 
-/** Filtros de /trabajos. Solo se muestran las disciplinas que tienen algún proyecto. */
-export const filters: Filter[] = [
-  { id: 'todos', label: 'Todos', matches: () => true },
-  { id: 'fotografia', label: 'Fotografía', matches: (p) => !isVideoProject(p) },
-  { id: 'video', label: 'Vídeo', matches: isVideoProject },
-  ...(Object.keys(disciplineLabels) as Discipline[])
-    .filter((d) => projects.some((p) => p.discipline === d))
-    .map((d) => ({ id: d, label: disciplineLabels[d], matches: (p: Project) => p.discipline === d })),
-];
+/**
+ * Filtros de /trabajos. Solo se muestran las disciplinas que tienen algún proyecto.
+ * Los `id` (los que van en la URL, ?filtro=deporte) son los mismos en los dos idiomas.
+ */
+export function getFilters(lang: Lang): Filter[] {
+  const t = useTranslations(lang);
+  const projects = getProjects(lang);
+  const labels = getDisciplineLabels(lang);
+  return [
+    { id: 'todos', label: t.filters.all, matches: () => true },
+    { id: 'fotografia', label: t.filters.photo, matches: (p) => !isVideoProject(p) },
+    { id: 'video', label: t.filters.video, matches: isVideoProject },
+    ...(Object.keys(labels) as Discipline[])
+      .filter((d) => projects.some((p) => p.discipline === d))
+      .map((d) => ({ id: d, label: labels[d], matches: (p: Project) => p.discipline === d })),
+  ];
+}
 
-export function getProject(slug: string): Project | undefined {
-  return projects.find((p) => p.slug === slug);
+export function getProject(slug: string, lang: Lang): Project | undefined {
+  return getProjects(lang).find((p) => p.slug === slug);
 }
 
 /** Tres proyectos relacionados: primero los de la misma disciplina, luego los siguientes en la lista. */
-export function getRelatedProjects(project: Project, count = 3): Project[] {
-  const index = projects.indexOf(project);
+export function getRelatedProjects(project: Project, lang: Lang, count = 3): Project[] {
+  const projects = getProjects(lang);
+  const index = projects.findIndex((p) => p.slug === project.slug);
   const rest = [...projects.slice(index + 1), ...projects.slice(0, index)];
   const same = rest.filter((p) => p.discipline === project.discipline);
   const others = rest.filter((p) => p.discipline !== project.discipline);

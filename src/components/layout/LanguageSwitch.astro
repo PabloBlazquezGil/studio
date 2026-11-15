@@ -1,0 +1,30 @@
+---
+import { langs, languages, path, toLang, translatePath } from '@/i18n/routes';
+import { useTranslations } from '@/i18n/ui';
+
+interface Props {
+  class?: string;
+  /** Muestra el nombre del idioma («English») en vez del código («EN»). */
+  long?: boolean;
+}
+
+/** Enlace a la misma página en el otro idioma (o a su portada si la página no existe allí). */
+const { class: className, long = false } = Astro.props;
+const lang = toLang(Astro.currentLocale);
+const others = langs.filter((l) => l !== lang);
+---
+
+{
+  others.map((other) => (
+    <a
+      href={translatePath(Astro.url.pathname, other) ?? path('home', other)}
+      hreflang={other}
+      lang={other}
+      class={className}
+      aria-label={long ? undefined : useTranslations(other).nav.switchTo}
+      data-lang-switch
+    >
+      {long ? languages[other] : other.toUpperCase()}
+    </a>
+  ))
+}
