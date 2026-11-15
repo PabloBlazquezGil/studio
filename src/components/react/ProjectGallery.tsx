@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 
 interface ProjectGalleryProps {
@@ -9,6 +9,9 @@ interface ProjectGalleryProps {
 /** Galería en cuadrícula de tres columnas con visor a pantalla completa (teclado: ← → Esc). */
 export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
   const [open, setOpen] = useState<number | null>(null);
+  const opener = useRef<HTMLElement | null>(null);
+  const closeButton = useRef<HTMLButtonElement>(null);
+  const touchX = useRef(0);
 
   const close = useCallback(() => setOpen(null), []);
   const step = useCallback(
@@ -25,11 +28,17 @@ export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
     };
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
+    closeButton.current?.focus();
     return () => {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
     };
   }, [open, close, step]);
+
+  // Al cerrar el visor, el foco vuelve a la miniatura que lo abrió.
+  useEffect(() => {
+    if (open === null) opener.current?.focus();
+  }, [open]);
 
   return (
     <>
@@ -38,7 +47,10 @@ export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
           <button
             key={url}
             type="button"
-            onClick={() => setOpen(index)}
+            onClick={(e) => {
+              opener.current = e.currentTarget;
+              setOpen(index);
+            }}
             className="group relative aspect-3/2 overflow-hidden bg-black/30"
             aria-label={`Ampliar imagen ${index + 1} de ${title}`}
           >
@@ -62,6 +74,11 @@ export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
           aria-modal="true"
           aria-label={`${title}: imagen ${open + 1} de ${images.length}`}
           onClick={close}
+          onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
+          onTouchEnd={(e) => {
+            const dx = e.changedTouches[0].clientX - touchX.current;
+            if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+          }}
         >
           <div className="relative h-[85vh] w-[92vw]" onClick={(e) => e.stopPropagation()}>
             <img
@@ -73,7 +90,7 @@ export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
           <p className="absolute left-5 top-5 text-sm text-linen/60">
             {open + 1} / {images.length}
           </p>
-          <button type="button" onClick={close} aria-label="Cerrar" className="absolute right-4 top-4 p-2 text-linen/70 hover:text-gold">
+          <button ref={closeButton} type="button" onClick={close} aria-label="Cerrar" className="absolute right-4 top-4 p-2 text-linen/70 hover:text-gold">
             <X className="h-6 w-6" />
           </button>
           {images.length > 1 && (

@@ -1,5 +1,6 @@
 ---
 import type { HeroSlide, Project } from '@/lib/types';
+import { Pause, Play } from '@lucide/astro';
 import { cn } from '@/lib/utils';
 
 interface Props {
@@ -64,7 +65,17 @@ const SLIDE_DURATION = 7000;
       ))
     }
 
-    <div class="mt-6 flex gap-2" role="tablist" aria-label="Clips del showreel">
+    <div class="mt-6 flex items-center gap-2">
+    <button
+      type="button"
+      data-toggle
+      aria-label="Pausar el showreel"
+      class="-ml-2 mr-1 p-2 text-linen/70 transition-colors hover:text-gold"
+    >
+      <Pause class="h-4 w-4" data-icon="pause" />
+      <Play class="hidden h-4 w-4" data-icon="play" />
+    </button>
+    <div class="flex flex-1 gap-2" role="tablist" aria-label="Clips del showreel">
       {
         slides.map((slide, index) => (
           <button
@@ -81,7 +92,16 @@ const SLIDE_DURATION = 7000;
         ))
       }
     </div>
+    </div>
   </div>
+
+  <a
+    href="#trabajos-destacados"
+    aria-label="Ver trabajos"
+    class="absolute bottom-8 right-5 z-10 hidden items-center gap-2 text-xs font-medium text-linen/70 transition-colors hover:text-gold sm:flex sm:right-10 sm:bottom-10"
+  >
+    Desliza <span aria-hidden="true" class="block h-8 w-px animate-pulse bg-gold"></span>
+  </a>
 </section>
 
 <script>
@@ -94,42 +114,90 @@ const SLIDE_DURATION = 7000;
     const captions = [...root.querySelectorAll<HTMLElement>('[data-caption]')];
     const tabs = [...root.querySelectorAll<HTMLElement>('[data-tab]')];
     const fills = [...root.querySelectorAll<HTMLElement>('[data-fill]')];
+    const toggle = root.querySelector<HTMLButtonElement>('[data-toggle]')!;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     let current = 0;
-    let timer: ReturnType<typeof setTimeout>;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    // El usuario lo pausa; o se pausa solo si la pestaña está oculta o el hero ya no se ve.
+    let userPaused = reduced.matches;
+    let visible = true;
+
+    const running = () => !userPaused && visible && !document.hidden;
+
+    const playVideo = (play: boolean) => {
+      const next = (current + 1) % slides.length;
+      slides.forEach((slide, i) => {
+        const video = slide.querySelector<HTMLVideoElement>('video');
+        if (!video) return;
+        if (i === current || i === next) controlLoopVideo(video, true, play && i === current);
+        else controlLoopVideo(video, false, false);
+      });
+    };
 
     const show = (index: number) => {
       current = index;
-      const next = (current + 1) % slides.length;
       slides.forEach((slide, i) => {
         const active = i === current;
         slide.classList.toggle('opacity-100', active);
         slide.classList.toggle('opacity-0', !active);
         slide.setAttribute('aria-hidden', String(!active));
-        const video = slide.querySelector<HTMLVideoElement>('video');
-        // Solo se descargan el clip actual y el siguiente.
-        if (video && (active || i === next)) controlLoopVideo(video, true, active);
-        else if (video) controlLoopVideo(video, false, false);
       });
+      playVideo(running());
       captions.forEach((c, i) => (c.hidden = i !== current));
       tabs.forEach((t, i) => t.setAttribute('aria-selected', String(i === current)));
       fills.forEach((fill, i) => {
         fill.classList.remove('animate-progress', 'w-full', 'w-0');
         fill.style.animationDuration = '';
         if (i < current) fill.classList.add('w-full');
-        else {
+        else if (i === current && running()) {
           fill.classList.add('w-0');
-          if (i === current) {
-            void fill.offsetWidth; // reinicia la animación
-            fill.classList.add('animate-progress');
-            fill.style.animationDuration = `${duration}ms`;
-          }
-        }
+          void fill.offsetWidth; // reinicia la animación
+          fill.classList.add('animate-progress');
+          fill.style.animationDuration = `${duration}ms`;
+        } else fill.classList.add(i === current && userPaused ? 'w-full' : 'w-0');
       });
       clearTimeout(timer);
-      timer = setTimeout(() => show((current + 1) % slides.length), duration);
+      timer = running() ? setTimeout(() => show((current + 1) % slides.length), duration) : undefined;
     };
 
+    const sync = () => {
+      const label = userPaused ? 'Reanudar el showreel' : 'Pausar el showreel';
+      toggle.setAttribute('aria-label', label);
+      toggle.querySelector('[data-icon="pause"]')?.classList.toggle('hidden', userPaused);
+      toggle.querySelector('[data-icon="play"]')?.classList.toggle('hidden', !userPaused);
+      show(current);
+    };
+
+    toggle.addEventListener('click', () => {
+      userPaused = !userPaused;
+      sync();
+    });
     tabs.forEach((tab, i) => tab.addEventListener('click', () => show(i)));
-    show(0);
+    document.addEventListener('visibilitychange', () => show(current));
+    new IntersectionObserver(
+      ([entry]) => {
+        const nowVisible = entry.intersectionRatio > 0.25;
+        if (nowVisible !== visible) {
+          visible = nowVisible;
+          show(current);
+        }
+      },
+      { threshold: [0, 0.25] },
+    ).observe(root);
+
+    // Deslizar con el dedo para cambiar de clip.
+    let startX = 0;
+    root.addEventListener('touchstart', (e) => (startX = e.touches[0].clientX), { passive: true });
+    root.addEventListener(
+      'touchend',
+      (e) => {
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) < 50) return;
+        show((current + (dx < 0 ? 1 : -1) + slides.length) % slides.length);
+      },
+      { passive: true },
+    );
+
+    sync();
   }
 </script>

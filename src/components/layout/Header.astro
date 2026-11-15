@@ -27,7 +27,7 @@ const fullBleedHero = pathname === '/' || /^\/trabajos\/[^/]+$/.test(pathname);
   <div class="flex h-16 items-center justify-between px-5 sm:h-20 sm:px-10">
     <a href="/" class="flex items-center gap-3" aria-label={`${author.name}, inicio`}>
       <LogoMark class="h-8 shrink-0 text-linen sm:h-9" />
-      <span class="font-headline text-lg uppercase tracking-[0.12em] text-linen sm:text-xl">{author.name}</span>
+      <span class="max-[439px]:hidden whitespace-nowrap font-headline text-lg uppercase tracking-[0.12em] text-linen sm:text-xl">{author.name}</span>
     </a>
 
     <nav class="hidden items-center gap-8 md:flex" aria-label="Navegación principal">
@@ -39,6 +39,7 @@ const fullBleedHero = pathname === '/' || /^\/trabajos\/[^/]+$/.test(pathname);
               'font-headline text-lg uppercase tracking-wide transition-colors hover:text-gold',
               pathname.startsWith(href) ? 'text-gold' : 'text-linen',
             )}
+            aria-current={pathname.startsWith(href) ? 'page' : undefined}
           >
             {label}
           </a>
@@ -52,10 +53,21 @@ const fullBleedHero = pathname === '/' || /^\/trabajos\/[^/]+$/.test(pathname);
       </a>
     </nav>
 
+    <div class="flex items-center gap-1 md:hidden">
+    {
+      !pathname.startsWith('/contacto') && (
+        <a
+          href="/contacto"
+          class="border border-gold px-3 py-1 font-headline text-base uppercase tracking-wide text-gold transition-colors hover:bg-gold hover:text-canopy"
+        >
+          Presupuesto
+        </a>
+      )
+    }
     <button
       type="button"
       id="menu-toggle"
-      class="p-2 text-linen md:hidden"
+      class="p-2 text-linen"
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="mobile-menu"
@@ -63,6 +75,7 @@ const fullBleedHero = pathname === '/' || /^\/trabajos\/[^/]+$/.test(pathname);
       <Menu class="h-6 w-6" data-icon="open" />
       <X class="hidden h-6 w-6" data-icon="close" />
     </button>
+    </div>
   </div>
 
   <nav
@@ -108,6 +121,12 @@ const fullBleedHero = pathname === '/' || /^\/trabajos\/[^/]+$/.test(pathname);
   };
   toggle.addEventListener('click', () => setOpen(menu.hasAttribute('hidden')));
   menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.hidden) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
   // Al volver con "atrás" desde la caché del navegador, el menú no debe quedar abierto.
   window.addEventListener('pageshow', () => setOpen(false));
 </script>

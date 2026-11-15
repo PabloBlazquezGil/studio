@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowLeft, ArrowRight, Check, Copy, Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { budgetRanges, contactEmail, services } from '@/lib/data';
+import { budgetRanges, contactEmail, projects, services } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 const steps = ['Qué necesitas', 'Cuándo y dónde', 'Presupuesto', 'Tus datos'] as const;
@@ -24,6 +24,15 @@ export default function ContactForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [sent, setSent] = useState<{ subject: string; body: string } | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  // Llegar desde un proyecto (?proyecto=slug) deja el mensaje empezado.
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get('proyecto');
+    const project = projects.find((p) => p.slug === slug);
+    if (project) setMessage((m) => m || `Me gustaría algo parecido a «${project.title}».`);
+  }, []);
 
   const canContinue = [types.length > 0, true, budget !== '', name !== '' && email !== ''][step];
 
@@ -41,31 +50,77 @@ export default function ContactForm() {
       return;
     }
 
-    const subject = encodeURIComponent(`Contacto Web — ${name}`);
-    const body = encodeURIComponent(
-      [
-        'Hola Pablo,',
-        '',
-        `Mi nombre es ${name}.`,
-        `Mi correo de contacto es: ${email}`,
-        '',
-        `Qué necesito: ${types.join(', ')}`,
-        `Fecha: ${when || 'Por concretar'}`,
-        `Lugar: ${where || 'Por concretar'}`,
-        `Presupuesto orientativo: ${budget}`,
-        '',
-        'Mensaje:',
-        message || '(sin mensaje adicional)',
-      ].join('\n'),
-    );
+    const subject = `Contacto Web — ${name}`;
+    const body = [
+      'Hola Pablo,',
+      '',
+      `Mi nombre es ${name}.`,
+      `Mi correo de contacto es: ${email}`,
+      '',
+      `Qué necesito: ${types.join(', ')}`,
+      `Fecha: ${when || 'Por concretar'}`,
+      `Lugar: ${where || 'Por concretar'}`,
+      `Presupuesto orientativo: ${budget}`,
+      '',
+      'Mensaje:',
+      message || '(sin mensaje adicional)',
+    ].join('\n');
 
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    setSent({ subject, body });
+    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    toast({
-      title: '¡Abriendo cliente de correo!',
-      description: 'Se ha abierto tu cliente de correo para enviar el mensaje.',
-    });
   };
+
+  const copyMessage = async () => {
+    if (!sent) return;
+    try {
+      await navigator.clipboard.writeText(`Asunto: ${sent.subject}\n\n${sent.body}`);
+      setCopied(true);
+    } catch {
+      toast({ variant: 'destructive', title: 'No se pudo copiar', description: `Escríbeme a ${contactEmail}.` });
+    }
+  };
+
+  if (sent) {
+    return (
+      <div className="text-left" role="status">
+        <p className="font-headline text-3xl font-bold uppercase text-linen sm:text-4xl">Último paso: envía el correo</p>
+        <p className="mt-4 max-w-md leading-relaxed text-linen/70">
+          Se ha abierto tu programa de correo con el mensaje ya escrito. Solo tienes que pulsar enviar. Si no se ha abierto,
+          copia el mensaje y mándalo a{' '}
+          <a href={`mailto:${contactEmail}`} className="text-gold underline underline-offset-4">
+            {contactEmail}
+          </a>
+          .
+        </p>
+        <pre className="mt-6 max-h-64 overflow-auto whitespace-pre-wrap border border-linen/15 bg-linen/5 p-4 font-body text-sm text-linen/80">
+          {sent.body}
+        </pre>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={copyMessage}
+            className="inline-flex items-center gap-2 bg-gold px-6 py-3 font-headline text-lg uppercase tracking-wide text-canopy transition-colors hover:bg-linen"
+          >
+            {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />} {copied ? 'Copiado' : 'Copiar mensaje'}
+          </button>
+          <a
+            href={`mailto:${contactEmail}?subject=${encodeURIComponent(sent.subject)}&body=${encodeURIComponent(sent.body)}`}
+            className="inline-flex items-center gap-2 border border-linen/30 px-6 py-3 font-headline text-lg uppercase tracking-wide text-linen transition-colors hover:border-gold hover:text-gold"
+          >
+            <Mail className="h-4 w-4" /> Abrir correo de nuevo
+          </a>
+          <button
+            type="button"
+            onClick={() => setSent(null)}
+            className="px-2 py-3 font-headline text-lg uppercase tracking-wide text-linen/60 hover:text-linen"
+          >
+            Editar respuestas
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="text-left">

@@ -59,6 +59,7 @@ const items = projects.map((project) => ({
     </div>
 
     <div class="mt-10">
+      <p data-count class="mb-6 text-sm text-linen/50" role="status" aria-live="polite"></p>
       <p data-empty hidden class="py-20 text-center text-linen/50">Todavía no hay proyectos en esta categoría.</p>
 
       <!-- Vista cuadrícula -->
@@ -124,6 +125,7 @@ const items = projects.map((project) => ({
   const list = root.querySelector<HTMLElement>('[data-list]')!;
   const empty = root.querySelector<HTMLElement>('[data-empty]')!;
   const preview = root.querySelector<HTMLElement>('[data-preview]')!;
+  const count = root.querySelector<HTMLElement>('[data-count]')!;
 
   const ids = filterButtons.map((b) => b.dataset.filter!);
   const params = new URLSearchParams(location.search);
@@ -140,6 +142,7 @@ const items = projects.map((project) => ({
       if (show && item.closest('[data-grid]')) visible++;
     });
     empty.hidden = visible > 0;
+    count.textContent = visible === 1 ? '1 proyecto' : `${visible} proyectos`;
     grid.hidden = view !== 'cuadricula' || visible === 0;
     list.hidden = view !== 'lista' || visible === 0;
     if (list.hidden) preview.classList.add('hidden');
