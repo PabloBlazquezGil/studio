@@ -3,6 +3,11 @@ import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
 import { defaultDescription, defaultTitle, siteName } from '@/lib/site';
 import '@/styles/global.css';
+// Las tres fuentes que se ven nada más cargar (texto, titulares y botones): se piden a la vez que el CSS
+// en lugar de esperar a que el CSS las descubra. Son las mismas URL que usa global.css.
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import barlow600 from '@fontsource/barlow-condensed/files/barlow-condensed-latin-600-normal.woff2?url';
+import barlow700 from '@fontsource/barlow-condensed/files/barlow-condensed-latin-700-normal.woff2?url';
 
 interface Props {
   /** Título de la página. Se muestra como «<título> | Pablo Blázquez Gil». Sin título, el de la home. */
@@ -30,6 +35,11 @@ const ogImageAlt = image ? title : 'Surf en Malpica, por Pablo Blázquez Gil';
     <!-- Las fotos y vídeos viven en archivos.thundershoot.com, que puede rechazar peticiones con referer de otro dominio
          (protección anti-hotlinking). Sin referer, como hacía Next al servir las imágenes por su servidor, cargan igual. -->
     <meta name="referrer" content="no-referrer" />
+    <!-- Fotos y vídeos: la conexión con su servidor se abre mientras se descarga la página. -->
+    <link rel="preconnect" href="https://archivos.thundershoot.com" />
+    {[interLatin, barlow700, barlow600].map((href) => (
+      <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
+    ))}
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -46,8 +56,8 @@ const ogImageAlt = image ? title : 'Surf en Malpica, por Pablo Blázquez Gil';
     <meta property="og:locale" content="es_ES" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={ogImage} />
-    {!image && <meta property="og:image:width" content="2048" />}
-    {!image && <meta property="og:image:height" content="1518" />}
+    {!image && <meta property="og:image:width" content="1200" />}
+    {!image && <meta property="og:image:height" content="889" />}
     {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />

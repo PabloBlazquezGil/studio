@@ -17,6 +17,8 @@ if (!site && process.env.NODE_ENV === 'production') {
 export default defineConfig({
   site: site ?? 'http://localhost:9002',
   output: 'static',
+  // El CSS (unos 10 KB comprimido) va dentro de cada página: el primer pintado no espera a otra petición.
+  build: { inlineStylesheets: 'always' },
   server: { port: 9002 },
   integrations: [react()],
   vite: { plugins: [tailwindcss()] },
