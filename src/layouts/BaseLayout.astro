@@ -1,8 +1,10 @@
 ---
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
+import { langs, ogLocales, toLang, translatePath } from '@/i18n/routes';
+import { useTranslations } from '@/i18n/ui';
 import { siteGraph, toJsonLd } from '@/lib/seo';
-import { defaultDescription, defaultTitle, siteName } from '@/lib/site';
+import { siteName } from '@/lib/site';
 import '@/styles/global.css';
 
 interface Props {
@@ -21,25 +23,38 @@ interface Props {
   noindex?: boolean;
 }
 
+const lang = toLang(Astro.currentLocale);
+const t = useTranslations(lang);
 const {
   title,
-  description = defaultDescription,
+  description = t.site.description,
   image,
   imageAlt,
   type = 'website',
   jsonLd = [],
   noindex = false,
 } = Astro.props;
-const fullTitle = title ? `${title} | ${siteName}` : defaultTitle;
+const fullTitle = title ? `${title} | ${siteName}` : t.site.title;
 const site = Astro.site ?? new URL(Astro.url.origin);
 const canonical = new URL(Astro.url.pathname, site).href;
 const ogImage = new URL(image ?? '/og.jpg', site).href;
-const ogImageAlt = imageAlt ?? (image ? title : 'Surf en Malpica, por Pablo Blázquez Gil');
-const structuredData = noindex ? undefined : toJsonLd([...siteGraph(site), ...jsonLd]);
+const ogImageAlt = imageAlt ?? (image ? title : t.site.ogImageAlt);
+const structuredData = noindex ? undefined : toJsonLd([...siteGraph(site, lang), ...jsonLd]);
+
+// La misma página en cada idioma (hreflang), con barra final como las URL que genera el build y el sitemap.
+// La 404 no tiene equivalente.
+const alternates = noindex
+  ? []
+  : langs.flatMap((l) => {
+      const path = translatePath(Astro.url.pathname, l);
+      if (!path) return [];
+      return [{ lang: l, href: new URL(path === '/' ? path : `${path}/`, site).href }];
+    });
+const defaultAlternate = alternates.find((a) => a.lang === 'es');
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -55,6 +70,8 @@ const structuredData = noindex ? undefined : toJsonLd([...siteGraph(site), ...js
     />
     <meta name="author" content={siteName} />
     <meta name="theme-color" content="#1C2826" />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    {defaultAlternate && <link rel="alternate" hreflang="x-default" href={defaultAlternate.href} />}
 
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
@@ -64,7 +81,8 @@ const structuredData = noindex ? undefined : toJsonLd([...siteGraph(site), ...js
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content={siteName} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale" content={ogLocales[lang]} />
+    {alternates.filter((a) => a.lang !== lang).map((a) => <meta property="og:locale:alternate" content={ogLocales[a.lang]} />)}
     <meta property="og:type" content={type} />
     <meta property="og:image" content={ogImage} />
     {!image && <meta property="og:image:width" content="2048" />}
@@ -83,8 +101,14 @@ const structuredData = noindex ? undefined : toJsonLd([...siteGraph(site), ...js
     </script>
   </head>
   <body class="font-body antialiased">
+    <a
+      href="#contenido"
+      class="fixed left-4 top-4 z-[100] -translate-y-24 bg-gold px-4 py-2 font-headline text-lg uppercase tracking-wide text-canopy transition-transform focus:translate-y-0"
+    >
+      {t.site.skipToContent}
+    </a>
     <Header />
-    <main>
+    <main id="contenido" tabindex="-1" class="outline-none">
       {/*
         Transición entre páginas: al entrar en cada página, una cortina del color de fondo
         con una línea dorada se retira hacia arriba y el contenido aparece debajo.

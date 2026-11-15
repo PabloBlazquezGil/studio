@@ -1,14 +1,17 @@
 ---
 import { testimonials } from '@/lib/data';
 import Reveal from './Reveal.astro';
+import { toLang } from '@/i18n/routes';
+import { useTranslations } from '@/i18n/ui';
 
 /** Opiniones de clientes en tipografía grande. No se muestra hasta que haya alguna en data.ts. */
+const t = useTranslations(toLang(Astro.currentLocale));
 ---
 
 {
   testimonials.length > 0 && (
-    <section class="border-t border-linen/10 px-5 py-24 sm:px-10 sm:py-32" aria-label="Opiniones de clientes">
-      <p class="text-sm font-medium text-gold">Lo que dicen</p>
+    <section class="border-t border-linen/10 px-5 py-24 sm:px-10 sm:py-32" aria-label={t.testimonials.label}>
+      <p class="text-sm font-medium text-gold">{t.testimonials.eyebrow}</p>
       <div class="mt-10 grid gap-16 lg:grid-cols-2">
         {testimonials.map((t, i) => (
           <Reveal delay={i * 120}>

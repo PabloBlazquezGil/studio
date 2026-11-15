@@ -1,28 +1,40 @@
 /**
- * Datos estructurados (schema.org en JSON-LD) y textos para buscadores.
+ * Datos estructurados (schema.org en JSON-LD) y textos para buscadores, en el idioma de cada página.
  * Google los usa para entender quién eres, qué ofreces y qué hay en cada página.
  * Se pueden comprobar con https://validator.schema.org o la Prueba de resultados enriquecidos de Google.
  */
-import { author, contactEmail, projects, services, socialLinks } from './data';
-import { disciplineLabels, getProjectImage, isVideoProject } from './projects';
+import { path, projectPath, servicePath, type Lang } from '@/i18n/routes';
+import { useTranslations } from '@/i18n/ui';
+import { getAuthor, getProjects, getServices } from './content';
+import { contactEmail, socialLinks } from './data';
+import { getDisciplineLabels, getProjectImage, isVideoProject } from './projects';
 import { areaServed, jobTitle, location, siteName } from './site';
 import type { MediaItem, Project, Service } from './types';
 import { getYouTubeId, isVideoFile } from './utils';
 
 type Json = Record<string, unknown>;
 
-const abs = (path: string, site: URL) => new URL(path, site).href;
+const inLanguage: Record<Lang, string> = { es: 'es-ES', en: 'en-GB' };
+
+/** URL absoluta con barra final, igual que las del sitemap y el canonical. */
+const abs = (p: string, site: URL) => new URL(p === '/' || p.endsWith('/') ? p : `${p}/`, site).href;
+
+// La persona, el negocio y la web son los mismos en los dos idiomas: un único @id.
 const ids = (site: URL) => ({
-  website: abs('/#website', site),
-  person: abs('/#person', site),
-  business: abs('/#business', site),
+  website: new URL('/#website', site).href,
+  person: new URL('/#person', site).href,
+  business: new URL('/#business', site).href,
 });
 
 const sameAs = socialLinks.filter((l) => l.href.startsWith('http')).map((l) => l.href);
+const area = () => areaServed.map((name) => ({ '@type': 'AdministrativeArea', name }));
 
 /** Persona, negocio y web: van en todas las páginas y el resto de datos los referencian por su @id. */
-export function siteGraph(site: URL): Json[] {
+export function siteGraph(site: URL, lang: Lang): Json[] {
+  const t = useTranslations(lang).seo;
   const id = ids(site);
+  const author = getAuthor(lang);
+  const services = getServices(lang);
   const address =
     location.locality || location.region
       ? {
@@ -37,54 +49,55 @@ export function siteGraph(site: URL): Json[] {
     {
       '@type': 'WebSite',
       '@id': id.website,
-      url: abs('/', site),
+      url: abs(path('home', lang), site),
       name: siteName,
-      inLanguage: 'es-ES',
+      inLanguage: Object.values(inLanguage),
       publisher: { '@id': id.person },
     },
     {
       '@type': 'Person',
       '@id': id.person,
       name: author.name,
-      jobTitle,
-      homeLocation: { '@type': 'AdministrativeArea', name: location.region || areaServed[0] },
-      url: abs('/sobre-mi/', site),
+      jobTitle: jobTitle[lang],
+      url: abs(path('about', lang), site),
       image: author.imageUrl,
       email: `mailto:${contactEmail}`,
       sameAs,
-      knowsAbout: ['Fotografía', 'Vídeo', 'Dirección de fotografía', ...services.map((s) => s.title)],
+      homeLocation: { '@type': 'AdministrativeArea', name: location.region || areaServed[0] },
+      knowsAbout: [...t.knowsAbout, ...services.map((s) => s.title)],
       worksFor: { '@id': id.business },
     },
     {
       '@type': 'ProfessionalService',
       '@id': id.business,
-      name: `${author.name} · Fotografía y vídeo`,
-      description: 'Fotografía y vídeo profesional en Galicia: deporte y surf, retrato, eventos, cortometrajes y reels para redes sociales.',
-      url: abs('/', site),
-      image: abs('/og.jpg', site),
-      logo: abs('/apple-icon.png', site),
+      name: `${author.name} · ${t.business}`,
+      description: t.businessDescription,
+      url: abs(path('home', lang), site),
+      image: new URL('/og.jpg', site).href,
+      logo: new URL('/apple-icon.png', site).href,
       email: contactEmail,
       founder: { '@id': id.person },
       sameAs,
-      areaServed: areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
+      areaServed: area(),
       ...(address && { address }),
-      knowsLanguage: 'es',
+      knowsLanguage: ['es', 'en'],
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
-        name: 'Servicios de fotografía y vídeo',
+        name: t.catalog,
         itemListElement: services.map((s) => ({
           '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: s.title, url: abs(`/servicios/${s.slug}/`, site) },
+          itemOffered: { '@type': 'Service', name: s.title, url: abs(servicePath(s.slug, lang), site) },
         })),
       },
     },
   ];
 }
 
-export function breadcrumbs(site: URL, items: { name: string; path: string }[]): Json {
+export function breadcrumbs(site: URL, lang: Lang, items: { name: string; path: string }[]): Json {
+  const home = { name: useTranslations(lang).nav.home, path: path('home', lang) };
   return {
     '@type': 'BreadcrumbList',
-    itemListElement: [{ name: 'Inicio', path: '/' }, ...items].map((item, index) => ({
+    itemListElement: [home, ...items].map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
@@ -93,34 +106,35 @@ export function breadcrumbs(site: URL, items: { name: string; path: string }[]):
   };
 }
 
+const isPrivate = (client: string) => /^(cliente privado|private client)$/i.test(client.trim());
+
 /** Texto alternativo de una foto de un proyecto. */
-export function imageAlt(project: Project, item: MediaItem | undefined, index: number, total: number): string {
+export function imageAlt(project: Project, item: MediaItem | undefined, index: number, total: number, lang: Lang): string {
   if (item?.alt) return item.alt;
-  const client = project.client !== 'Cliente privado' ? ` para ${project.client}` : '';
-  const count = total > 1 ? `, foto ${index + 1} de ${total}` : '';
-  return `${project.title}: ${project.category.toLowerCase()}${client}${count}. Pablo Blázquez Gil`;
+  const client = isPrivate(project.client) ? undefined : project.client;
+  return useTranslations(lang).seo.photoAlt(project.title, project.category, client, index + 1, total);
 }
 
 /** Texto alternativo de la portada de un proyecto. */
-export function coverAlt(project: Project): string {
+export function coverAlt(project: Project, lang: Lang): string {
   const item = project.media.find((m) => m.url === project.cover);
-  return item?.alt ?? imageAlt(project, undefined, 0, 1);
+  return item?.alt ?? imageAlt(project, undefined, 0, 1, lang);
 }
 
-/** Descripción para Google de un proyecto: su texto más el tipo de trabajo y el autor. */
-export function projectDescription(project: Project): string {
-  const extra = ` ${project.category} por ${author.name}.`;
+/** Descripción para Google de un proyecto: su texto más el tipo de trabajo y el autor (si cabe en 160 caracteres). */
+export function projectDescription(project: Project, lang: Lang): string {
+  const extra = ` ${useTranslations(lang).seo.by(project.category, getAuthor(lang).name)}`;
   const text = project.description.trim();
   if (text.length + extra.length <= 160) return text + extra;
   return text.length <= 160 ? text : `${text.slice(0, 157).replace(/\s+\S*$/, '')}…`;
 }
 
 /** Servicio al que pertenece un proyecto (el primero que lo enseña como ejemplo). */
-export function serviceForProject(project: Project): Service | undefined {
-  return services.find((s) => s.projectSlugs.includes(project.slug));
+export function serviceForProject(project: Project, lang: Lang): Service | undefined {
+  return getServices(lang).find((s) => s.projectSlugs.includes(project.slug));
 }
 
-function videoObject(project: Project, video: MediaItem, index: number, total: number, site: URL): Json {
+function videoObject(project: Project, video: MediaItem, index: number, total: number, site: URL, lang: Lang): Json {
   const youtubeId = getYouTubeId(video.url);
   const name = video.title ? `${project.title}: ${video.title}` : total > 1 ? `${project.title} (${index + 1})` : project.title;
   const thumbnail = youtubeId ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg` : getProjectImage(project);
@@ -133,57 +147,60 @@ function videoObject(project: Project, video: MediaItem, index: number, total: n
     ...(youtubeId
       ? { embedUrl: `https://www.youtube-nocookie.com/embed/${youtubeId}`, url: `https://youtu.be/${youtubeId}` }
       : { contentUrl: video.url.split('#')[0] }),
-    inLanguage: 'es',
+    inLanguage: inLanguage[lang],
     creator: { '@id': ids(site).person },
   };
 }
 
 /** Datos de una página de proyecto: obra, fotos y vídeos, y migas de pan. */
-export function projectGraph(project: Project, site: URL): Json[] {
-  const url = abs(`/trabajos/${project.slug}/`, site);
+export function projectGraph(project: Project, site: URL, lang: Lang): Json[] {
+  const t = useTranslations(lang);
+  const author = getAuthor(lang);
+  const url = abs(projectPath(project.slug, lang), site);
   const images = project.media.filter((m) => m.type === 'image');
   const videos = project.media.filter((m) => m.type === 'video' && (getYouTubeId(m.url) || isVideoFile(m.url)));
-  const video = isVideoProject(project);
 
   const work: Json = {
-    '@type': video ? 'CreativeWork' : 'ImageGallery',
+    '@type': isVideoProject(project) ? 'CreativeWork' : 'ImageGallery',
     '@id': `${url}#work`,
     url,
     name: project.title,
     headline: project.title,
     description: project.description,
     genre: project.category,
-    about: disciplineLabels[project.discipline],
-    inLanguage: 'es',
+    about: getDisciplineLabels(lang)[project.discipline],
+    inLanguage: inLanguage[lang],
     ...(project.year && { dateCreated: String(project.year) }),
     creator: { '@id': ids(site).person },
     author: { '@id': ids(site).person },
-    ...(project.client !== 'Cliente privado' && { sourceOrganization: { '@type': 'Organization', name: project.client } }),
+    ...(!isPrivate(project.client) && { sourceOrganization: { '@type': 'Organization', name: project.client } }),
     ...(images.length > 0 && {
       image: images.map((m, i) => ({
         '@type': 'ImageObject',
         contentUrl: m.url,
-        caption: imageAlt(project, m, i, images.length),
+        caption: imageAlt(project, m, i, images.length, lang),
         creator: { '@id': ids(site).person },
         creditText: author.name,
         copyrightNotice: `© ${author.name}`,
       })),
     }),
-    ...(videos.length > 0 && { video: videos.map((m, i) => videoObject(project, m, i, videos.length, site)) }),
+    ...(videos.length > 0 && { video: videos.map((m, i) => videoObject(project, m, i, videos.length, site, lang)) }),
   };
 
   return [
     work,
-    breadcrumbs(site, [
-      { name: 'Trabajos', path: '/trabajos/' },
-      { name: project.title, path: `/trabajos/${project.slug}/` },
+    breadcrumbs(site, lang, [
+      { name: t.nav.work, path: path('work', lang) },
+      { name: project.title, path: projectPath(project.slug, lang) },
     ]),
   ];
 }
 
 /** Datos de una página de servicio. */
-export function serviceGraph(service: Service, site: URL): Json[] {
-  const url = abs(`/servicios/${service.slug}/`, site);
+export function serviceGraph(service: Service, site: URL, lang: Lang): Json[] {
+  const t = useTranslations(lang);
+  const url = abs(servicePath(service.slug, lang), site);
+  const projects = getProjects(lang);
   const examples = service.projectSlugs.flatMap((slug) => projects.filter((p) => p.slug === slug));
   return [
     {
@@ -194,37 +211,68 @@ export function serviceGraph(service: Service, site: URL): Json[] {
       serviceType: service.title,
       description: service.seoDescription,
       provider: { '@id': ids(site).business },
-      areaServed: areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
+      areaServed: area(),
       audience: service.idealFor.map((name) => ({ '@type': 'Audience', audienceType: name })),
       ...(examples.length > 0 && {
-        subjectOf: examples.map((p) => ({ '@type': 'CreativeWork', name: p.title, url: abs(`/trabajos/${p.slug}/`, site) })),
+        subjectOf: examples.map((p) => ({
+          '@type': 'CreativeWork',
+          name: p.title,
+          url: abs(projectPath(p.slug, lang), site),
+        })),
       }),
     },
-    breadcrumbs(site, [
-      { name: 'Servicios', path: '/servicios/' },
-      { name: service.title, path: `/servicios/${service.slug}/` },
+    breadcrumbs(site, lang, [
+      { name: t.nav.services, path: path('services', lang) },
+      { name: service.title, path: servicePath(service.slug, lang) },
     ]),
   ];
 }
 
-/** Lista de trabajos (para /trabajos). */
-export function projectListGraph(site: URL): Json[] {
+/** Lista de servicios (para /servicios). */
+export function serviceListGraph(site: URL, lang: Lang): Json[] {
+  const t = useTranslations(lang);
   return [
     {
       '@type': 'CollectionPage',
-      url: abs('/trabajos/', site),
-      name: 'Trabajos de fotografía y vídeo',
+      url: abs(path('services', lang), site),
+      name: t.services.metaTitle,
+      inLanguage: inLanguage[lang],
+      about: { '@id': ids(site).business },
+    },
+    breadcrumbs(site, lang, [{ name: t.nav.services, path: path('services', lang) }]),
+  ];
+}
+
+/** Lista de trabajos (para /trabajos). */
+export function projectListGraph(site: URL, lang: Lang): Json[] {
+  const t = useTranslations(lang);
+  return [
+    {
+      '@type': 'CollectionPage',
+      url: abs(path('work', lang), site),
+      name: t.seo.workList,
+      inLanguage: inLanguage[lang],
       mainEntity: {
         '@type': 'ItemList',
-        itemListElement: projects.map((p, i) => ({
+        itemListElement: getProjects(lang).map((p, i) => ({
           '@type': 'ListItem',
           position: i + 1,
-          url: abs(`/trabajos/${p.slug}/`, site),
+          url: abs(projectPath(p.slug, lang), site),
           name: p.title,
         })),
       },
     },
-    breadcrumbs(site, [{ name: 'Trabajos', path: '/trabajos/' }]),
+    breadcrumbs(site, lang, [{ name: t.nav.work, path: path('work', lang) }]),
+  ];
+}
+
+/** Sobre mí y contacto. */
+export function pageGraph(type: 'ProfilePage' | 'ContactPage', key: 'about' | 'contact', site: URL, lang: Lang): Json[] {
+  const t = useTranslations(lang);
+  const target = type === 'ProfilePage' ? { mainEntity: { '@id': ids(site).person } } : { about: { '@id': ids(site).business } };
+  return [
+    { '@type': type, url: abs(path(key, lang), site), inLanguage: inLanguage[lang], ...target },
+    breadcrumbs(site, lang, [{ name: t.nav[key], path: path(key, lang) }]),
   ];
 }
 

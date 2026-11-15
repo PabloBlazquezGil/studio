@@ -1,16 +1,12 @@
-/** URL pública de la web (la define `site` en astro.config.mjs a partir de SITE_URL). */
+/** Nombre de la web. El título y la descripción por defecto de cada idioma están en src/i18n/ui.ts (`site`). */
 export const siteName = 'Pablo Blázquez Gil';
-export const defaultTitle = 'Pablo Blázquez Gil | Fotógrafo y videógrafo en Galicia';
-export const defaultDescription =
-  'Fotógrafo y videógrafo en Galicia. Fotografía deportiva y de surf, retrato y photobook, eventos, cortometrajes y reels para redes sociales con mirada de cine.';
 
 /** Profesión tal como aparece en Google (datos estructurados). */
-export const jobTitle = 'Fotógrafo y videógrafo';
+export const jobTitle = { es: 'Fotógrafo y videógrafo', en: 'Photographer and videographer' };
 
 /**
- * Dónde trabajas, para Google. Rellena `locality` y `region` con tu ciudad y provincia
- * (por ejemplo 'A Coruña' y 'Galicia') y aparecerán en los datos estructurados y en las búsquedas locales.
- * Mientras estén vacíos no se publica ninguna dirección.
+ * Dónde trabajas, para Google (datos estructurados y búsquedas locales).
+ * Añade tu ciudad en `locality` (por ejemplo 'A Coruña') si quieres que también aparezca.
  */
 export const location = {
   locality: '',

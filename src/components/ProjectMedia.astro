@@ -1,5 +1,6 @@
 ---
 import type { Project } from '@/lib/types';
+import { toLang } from '@/i18n/routes';
 import { coverAlt } from '@/lib/seo';
 import { cn, isVideoFile } from '@/lib/utils';
 
@@ -33,7 +34,7 @@ const { project, sizes, class: className, priority, playing } = Astro.props;
   ) : (
     <img
       src={project.cover}
-      alt={coverAlt(project)}
+      alt={coverAlt(project, toLang(Astro.currentLocale))}
       sizes={sizes}
       loading={priority ? 'eager' : 'lazy'}
       fetchpriority={priority ? 'high' : undefined}

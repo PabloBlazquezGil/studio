@@ -1,17 +1,31 @@
 ---
 import PageIntro from '@/components/PageIntro.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { path } from '@/i18n/routes';
+import { ui } from '@/i18n/ui';
+
+// Hay una sola 404 para toda la web, así que va en los dos idiomas.
 ---
 
-<BaseLayout title="Página no encontrada" noindex>
+<BaseLayout title={`${ui.es.notFound.title} · ${ui.en.notFound.title}`} noindex>
   <div class="min-h-[70vh]">
-    <PageIntro eyebrow="Error 404" title="Página no encontrada">
-      <a
-        href="/trabajos"
-        class="mt-10 inline-block border border-linen/30 px-6 py-3 font-headline text-lg uppercase tracking-wide text-linen hover:border-gold hover:text-gold"
-      >
-        Ver trabajos
-      </a>
+    <PageIntro eyebrow={ui.es.notFound.eyebrow} title={ui.es.notFound.title}>
+      <p class="mt-4 text-lg text-linen/60" lang="en">{ui.en.notFound.title}</p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a
+          href={path('work', 'es')}
+          class="inline-block border border-linen/30 px-6 py-3 font-headline text-lg uppercase tracking-wide text-linen hover:border-gold hover:text-gold"
+        >
+          {ui.es.notFound.cta}
+        </a>
+        <a
+          href={path('work', 'en')}
+          lang="en"
+          class="inline-block border border-linen/15 px-6 py-3 font-headline text-lg uppercase tracking-wide text-linen/70 hover:border-gold hover:text-gold"
+        >
+          {ui.en.notFound.cta}
+        </a>
+      </div>
     </PageIntro>
   </div>
 </BaseLayout>
