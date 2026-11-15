@@ -1,19 +1,22 @@
 import { useState } from 'react';
+import type { Lang } from '@/i18n/routes';
+import { useTranslations } from '@/i18n/ui';
 import type { Comparison } from '@/lib/types';
 
 /**
  * Comparador antes/después: la foto editada se recorta sobre la original
  * y una barra vertical (arrastrable, o con las flechas del teclado) marca el corte.
  */
-export default function BeforeAfter({ comparison }: { comparison: Comparison }) {
+export default function BeforeAfter({ comparison, lang }: { comparison: Comparison; lang: Lang }) {
+  const t = useTranslations(lang).beforeAfter;
   const [position, setPosition] = useState(50);
 
   return (
     <figure>
       <div className="relative aspect-3/2 select-none overflow-hidden bg-black/30">
-        <img src={comparison.before} alt={`${comparison.title}, sin editar`} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={comparison.before} alt={t.before(comparison.title)} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
-          <img src={comparison.after} alt={`${comparison.title}, editada`} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+          <img src={comparison.after} alt={t.after(comparison.title)} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
         </div>
 
         <div className="pointer-events-none absolute inset-y-0 w-0.5 -translate-x-1/2 bg-gold" style={{ left: `${position}%` }}>
@@ -21,8 +24,8 @@ export default function BeforeAfter({ comparison }: { comparison: Comparison }) 
             ⟷
           </span>
         </div>
-        <span className="absolute left-4 top-4 bg-canopy/70 px-2 py-1 text-xs text-linen">Editada</span>
-        <span className="absolute right-4 top-4 bg-canopy/70 px-2 py-1 text-xs text-linen">Original</span>
+        <span className="absolute left-4 top-4 bg-canopy/70 px-2 py-1 text-xs text-linen">{t.edited}</span>
+        <span className="absolute right-4 top-4 bg-canopy/70 px-2 py-1 text-xs text-linen">{t.original}</span>
 
         {/* El control real es un range invisible a pantalla completa: funciona con ratón, dedo y teclado. */}
         <input
@@ -31,7 +34,7 @@ export default function BeforeAfter({ comparison }: { comparison: Comparison }) 
           max={100}
           value={position}
           onChange={(e) => setPosition(Number(e.target.value))}
-          aria-label={`Comparar ${comparison.title}: original y editada`}
+          aria-label={t.compare(comparison.title)}
           className="absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
         />
       </div>

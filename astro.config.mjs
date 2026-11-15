@@ -18,6 +18,12 @@ export default defineConfig({
   site: site ?? 'http://localhost:9002',
   output: 'static',
   server: { port: 9002 },
+  // Español en la raíz (/trabajos) e inglés bajo /en (/en/work). Las rutas traducidas están en src/i18n/routes.ts.
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [react()],
   vite: { plugins: [tailwindcss()] },
 });

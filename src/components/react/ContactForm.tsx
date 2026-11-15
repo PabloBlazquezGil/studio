@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, Check, Copy, Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { budgetRanges, contactEmail, projects, services } from '@/lib/data';
+import type { Lang } from '@/i18n/routes';
+import { useTranslations } from '@/i18n/ui';
+import { getBudgetRanges, getProjects, getServices } from '@/lib/content';
+import { contactEmail } from '@/lib/data';
 import { cn } from '@/lib/utils';
-
-const steps = ['Qué necesitas', 'Cuándo y dónde', 'Presupuesto', 'Tus datos'] as const;
 
 const fieldClass =
   'w-full border border-linen/15 bg-linen/5 px-4 py-3 text-sm text-linen outline-hidden transition-colors placeholder:text-linen/30 focus:border-gold focus:bg-gold/5';
@@ -14,7 +15,11 @@ const labelClass = 'mb-2 block text-xs font-medium text-linen/60';
  * Briefing por pasos. Al terminar abre el programa de correo del visitante (mailto:)
  * con todas las respuestas ya escritas en el mensaje.
  */
-export default function ContactForm() {
+export default function ContactForm({ lang }: { lang: Lang }) {
+  const t = useTranslations(lang).form;
+  const steps = t.steps;
+  const services = getServices(lang);
+  const budgetRanges = getBudgetRanges(lang);
   const { toast } = useToast();
   const [step, setStep] = useState(0);
   const [types, setTypes] = useState<string[]>([]);
@@ -30,9 +35,9 @@ export default function ContactForm() {
   // Llegar desde un proyecto (?proyecto=slug) deja el mensaje empezado.
   useEffect(() => {
     const slug = new URLSearchParams(window.location.search).get('proyecto');
-    const project = projects.find((p) => p.slug === slug);
-    if (project) setMessage((m) => m || `Me gustaría algo parecido a «${project.title}».`);
-  }, []);
+    const project = getProjects(lang).find((p) => p.slug === slug);
+    if (project) setMessage((m) => m || t.fromProject(project.title));
+  }, [lang, t]);
 
   const canContinue = [types.length > 0, true, budget !== '', name !== '' && email !== ''][step];
 
@@ -46,24 +51,25 @@ export default function ContactForm() {
       return;
     }
     if (!name || !email) {
-      toast({ variant: 'destructive', title: 'Error', description: 'Por favor, completa tu nombre y tu email.' });
+      toast({ variant: 'destructive', title: t.errorTitle, description: t.errorMissing });
       return;
     }
 
-    const subject = `Contacto Web — ${name}`;
+    const mail = t.mail;
+    const subject = mail.subject(name);
     const body = [
-      'Hola Pablo,',
+      mail.greeting,
       '',
-      `Mi nombre es ${name}.`,
-      `Mi correo de contacto es: ${email}`,
+      mail.intro(name),
+      mail.replyTo(email),
       '',
-      `Qué necesito: ${types.join(', ')}`,
-      `Fecha: ${when || 'Por concretar'}`,
-      `Lugar: ${where || 'Por concretar'}`,
-      `Presupuesto orientativo: ${budget}`,
+      `${mail.what}: ${types.join(', ')}`,
+      `${mail.date}: ${when || mail.tbd}`,
+      `${mail.place}: ${where || mail.tbd}`,
+      `${mail.budget}: ${budget}`,
       '',
-      'Mensaje:',
-      message || '(sin mensaje adicional)',
+      `${mail.message}:`,
+      message || mail.noMessage,
     ].join('\n');
 
     setSent({ subject, body });
@@ -74,20 +80,19 @@ export default function ContactForm() {
   const copyMessage = async () => {
     if (!sent) return;
     try {
-      await navigator.clipboard.writeText(`Asunto: ${sent.subject}\n\n${sent.body}`);
+      await navigator.clipboard.writeText(`${t.copySubject}: ${sent.subject}\n\n${sent.body}`);
       setCopied(true);
     } catch {
-      toast({ variant: 'destructive', title: 'No se pudo copiar', description: `Escríbeme a ${contactEmail}.` });
+      toast({ variant: 'destructive', title: t.copyErrorTitle, description: t.copyErrorText(contactEmail) });
     }
   };
 
   if (sent) {
     return (
       <div className="text-left" role="status">
-        <p className="font-headline text-3xl font-bold uppercase text-linen sm:text-4xl">Último paso: envía el correo</p>
+        <p className="font-headline text-3xl font-bold uppercase text-linen sm:text-4xl">{t.sentTitle}</p>
         <p className="mt-4 max-w-md leading-relaxed text-linen/70">
-          Se ha abierto tu programa de correo con el mensaje ya escrito. Solo tienes que pulsar enviar. Si no se ha abierto,
-          copia el mensaje y mándalo a{' '}
+          {t.sentText}{' '}
           <a href={`mailto:${contactEmail}`} className="text-gold underline underline-offset-4">
             {contactEmail}
           </a>
@@ -102,20 +107,20 @@ export default function ContactForm() {
             onClick={copyMessage}
             className="inline-flex items-center gap-2 bg-gold px-6 py-3 font-headline text-lg uppercase tracking-wide text-canopy transition-colors hover:bg-linen"
           >
-            {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />} {copied ? 'Copiado' : 'Copiar mensaje'}
+            {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />} {copied ? t.copied : t.copy}
           </button>
           <a
             href={`mailto:${contactEmail}?subject=${encodeURIComponent(sent.subject)}&body=${encodeURIComponent(sent.body)}`}
             className="inline-flex items-center gap-2 border border-linen/30 px-6 py-3 font-headline text-lg uppercase tracking-wide text-linen transition-colors hover:border-gold hover:text-gold"
           >
-            <Mail className="h-4 w-4" /> Abrir correo de nuevo
+            <Mail className="h-4 w-4" /> {t.reopen}
           </a>
           <button
             type="button"
             onClick={() => setSent(null)}
             className="px-2 py-3 font-headline text-lg uppercase tracking-wide text-linen/60 hover:text-linen"
           >
-            Editar respuestas
+            {t.edit}
           </button>
         </div>
       </div>
@@ -125,7 +130,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="text-left">
       {/* Progreso */}
-      <ol className="mb-10 grid grid-cols-4 gap-2" aria-label="Pasos del briefing">
+      <ol className="mb-10 grid grid-cols-4 gap-2" aria-label={t.stepsLabel}>
         {steps.map((label, index) => (
           <li key={label} aria-current={index === step ? 'step' : undefined}>
             <span className={cn('block h-0.5 transition-colors duration-500', index <= step ? 'bg-gold' : 'bg-linen/15')} />
@@ -139,8 +144,8 @@ export default function ContactForm() {
       <div key={step} className="min-h-72 animate-in fade-in slide-in-from-right-4 duration-500">
         {step === 0 && (
           <fieldset>
-            <legend className="font-headline text-3xl font-bold uppercase text-linen sm:text-4xl">¿Qué necesitas?</legend>
-            <p className="mt-2 text-sm text-linen/60">Puedes elegir varias opciones.</p>
+            <legend className="font-headline text-3xl font-bold uppercase text-linen sm:text-4xl">{t.whatTitle}</legend>
+            <p className="mt-2 text-sm text-linen/60">{t.whatHint}</p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               {services.map(({ title }) => {
                 const selected = types.includes(title);
@@ -166,23 +171,23 @@ export default function ContactForm() {
 
         {step === 1 && (
           <fieldset className="space-y-5">
-            <legend className="font-headline text-3xl font-bold uppercase text-linen sm:text-4xl">¿Cuándo y dónde?</legend>
-            <p className="text-sm text-linen/60">Si aún no lo sabes, puedes dejarlo en blanco.</p>
+            <legend className="font-headline text-3xl font-bold uppercase text-linen sm:text-4xl">{t.whenTitle}</legend>
+            <p className="text-sm text-linen/60">{t.whenHint}</p>
             <div>
-              <label htmlFor="when" className={labelClass}>Fecha aproximada</label>
-              <input id="when" value={when} onChange={(e) => setWhen(e.target.value)} placeholder="Ej.: finales de marzo" className={fieldClass} />
+              <label htmlFor="when" className={labelClass}>{t.when}</label>
+              <input id="when" value={when} onChange={(e) => setWhen(e.target.value)} placeholder={t.whenPlaceholder} className={fieldClass} />
             </div>
             <div>
-              <label htmlFor="where" className={labelClass}>Lugar</label>
-              <input id="where" value={where} onChange={(e) => setWhere(e.target.value)} placeholder="Ej.: A Coruña" className={fieldClass} />
+              <label htmlFor="where" className={labelClass}>{t.where}</label>
+              <input id="where" value={where} onChange={(e) => setWhere(e.target.value)} placeholder={t.wherePlaceholder} className={fieldClass} />
             </div>
           </fieldset>
         )}
 
         {step === 2 && (
           <fieldset>
-            <legend className="font-headline text-3xl font-bold uppercase text-linen sm:text-4xl">Presupuesto orientativo</legend>
-            <p className="mt-2 text-sm text-linen/60">Me ayuda a proponerte la mejor opción.</p>
+            <legend className="font-headline text-3xl font-bold uppercase text-linen sm:text-4xl">{t.budgetTitle}</legend>
+            <p className="mt-2 text-sm text-linen/60">{t.budgetHint}</p>
             <div className="mt-6 grid gap-2.5 sm:grid-cols-2">
               {budgetRanges.map((range) => (
                 <button
@@ -204,25 +209,25 @@ export default function ContactForm() {
 
         {step === 3 && (
           <fieldset className="space-y-5">
-            <legend className="font-headline text-3xl font-bold uppercase text-linen sm:text-4xl">Tus datos</legend>
+            <legend className="font-headline text-3xl font-bold uppercase text-linen sm:text-4xl">{t.detailsTitle}</legend>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div>
-                <label htmlFor="name" className={labelClass}>Nombre</label>
-                <input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Tu nombre" required className={fieldClass} />
+                <label htmlFor="name" className={labelClass}>{t.name}</label>
+                <input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder={t.namePlaceholder} required className={fieldClass} />
               </div>
               <div>
-                <label htmlFor="email" className={labelClass}>Email</label>
-                <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="tu@email.com" required className={fieldClass} />
+                <label htmlFor="email" className={labelClass}>{t.email}</label>
+                <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t.emailPlaceholder} required className={fieldClass} />
               </div>
             </div>
             <div>
-              <label htmlFor="message" className={labelClass}>Cuéntame algo más (opcional)</label>
+              <label htmlFor="message" className={labelClass}>{t.message}</label>
               <textarea
                 id="message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 rows={4}
-                placeholder="La idea, el estilo que buscas, referencias…"
+                placeholder={t.messagePlaceholder}
                 className={cn(fieldClass, 'resize-none')}
               />
             </div>
@@ -237,7 +242,7 @@ export default function ContactForm() {
             onClick={() => setStep(step - 1)}
             className="inline-flex items-center gap-2 font-headline text-lg uppercase tracking-wide text-linen/60 hover:text-linen"
           >
-            <ArrowLeft className="h-4 w-4" /> Atrás
+            <ArrowLeft className="h-4 w-4" /> {t.back}
           </button>
         ) : (
           <span />
@@ -247,7 +252,7 @@ export default function ContactForm() {
           disabled={!canContinue}
           className="inline-flex items-center gap-2 bg-gold px-8 py-3.5 font-headline text-lg uppercase tracking-wide text-canopy transition-colors hover:bg-linen disabled:cursor-not-allowed disabled:opacity-40"
         >
-          {step < steps.length - 1 ? 'Siguiente' : 'Enviar por email'} <ArrowRight className="h-4 w-4" />
+          {step < steps.length - 1 ? t.next : t.submit} <ArrowRight className="h-4 w-4" />
         </button>
       </div>
     </form>
