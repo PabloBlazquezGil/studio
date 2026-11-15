@@ -14,7 +14,7 @@ Qué hace la web por sí sola y qué conviene revisar de vez en cuando.
 
 - **Proyecto nuevo:** se añade solo al sitemap, a los datos estructurados y a /trabajos. Para que salga como ejemplo en un servicio, añade su `slug` a `projectSlugs` del servicio.
 - **Servicio nuevo:** añade una entrada a `services` en `data.ts` y tendrá su página en `/servicios/<slug>`.
-- **Ciudad / zona:** rellena `location` y `areaServed` en `src/lib/site.ts`. Mientras estén vacíos no se publica ninguna dirección.
+- **Ciudad / zona:** `location` y `areaServed` en `src/lib/site.ts` (ahora Galicia). Si añades la ciudad en `locality`, sale también en los datos para Google.
 
 ## Requisito
 

@@ -1,8 +1,8 @@
 /** URL pública de la web (la define `site` en astro.config.mjs a partir de SITE_URL). */
 export const siteName = 'Pablo Blázquez Gil';
-export const defaultTitle = 'Pablo Blázquez Gil | Fotógrafo y videógrafo';
+export const defaultTitle = 'Pablo Blázquez Gil | Fotógrafo y videógrafo en Galicia';
 export const defaultDescription =
-  'Fotógrafo y videógrafo. Fotografía deportiva y de surf, retrato y photobook, eventos, cortometrajes y reels para redes sociales con mirada de cine.';
+  'Fotógrafo y videógrafo en Galicia. Fotografía deportiva y de surf, retrato y photobook, eventos, cortometrajes y reels para redes sociales con mirada de cine.';
 
 /** Profesión tal como aparece en Google (datos estructurados). */
 export const jobTitle = 'Fotógrafo y videógrafo';
@@ -14,9 +14,9 @@ export const jobTitle = 'Fotógrafo y videógrafo';
  */
 export const location = {
   locality: '',
-  region: '',
+  region: 'Galicia',
   country: 'ES',
 };
 
 /** Zonas en las que ofreces tus servicios (datos estructurados). */
-export const areaServed = ['España'];
+export const areaServed = ['Galicia'];

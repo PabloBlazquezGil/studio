@@ -233,9 +233,9 @@ export const services: Service[] = [
     title: 'Fotografía deportiva',
     description:
       'Surf, tenis y deportes de acción. Me muevo con la acción para capturar la intensidad, el gesto y la luz de cada momento.',
-    seoTitle: 'Fotógrafo deportivo y de surf',
+    seoTitle: 'Fotógrafo deportivo y de surf en Galicia',
     seoDescription:
-      'Fotografía deportiva de surf, tenis y deportes de acción. Fotos con intensidad y buena luz para deportistas, clubes, escuelas y marcas.',
+      'Fotografía deportiva en Galicia: surf, tenis y deportes de acción. Fotos con intensidad y buena luz para deportistas, clubes y marcas.',
     headline: 'Fotografía deportiva',
     intro: [
       'En el deporte todo pasa en una fracción de segundo: el giro en la ola, el golpe en la red, la cara justo antes de llegar. Mi trabajo es estar en el sitio adecuado, con la luz a favor, para que ese instante quede bien contado.',
@@ -256,9 +256,9 @@ export const services: Service[] = [
     title: 'Retrato y photobook',
     description:
       'Sesiones para actores, actrices y profesionales que necesitan un book con personalidad, cuidando la luz y la dirección en cada toma.',
-    seoTitle: 'Fotógrafo de retrato y photobook',
+    seoTitle: 'Fotógrafo de retrato y photobook en Galicia',
     seoDescription:
-      'Sesiones de retrato y photobook para actores, actrices y profesionales. Luz cuidada y dirección en cada toma para un book con personalidad.',
+      'Retrato y photobook en Galicia para actores, actrices y profesionales. Luz cuidada y dirección en cada toma para un book con personalidad.',
     headline: 'Retrato y photobook',
     intro: [
       'Un buen book no es una colección de fotos bonitas: es lo que ve un director de casting o un cliente antes de conocerte. Por eso cada sesión empieza hablando de qué quieres transmitir y para quién son las fotos.',
@@ -279,9 +279,9 @@ export const services: Service[] = [
     title: 'Eventos y divulgación',
     description:
       'Cobertura en foto y vídeo de congresos, jornadas y eventos científicos o corporativos, con piezas listas para comunicar.',
-    seoTitle: 'Fotografía y vídeo de eventos y congresos',
+    seoTitle: 'Fotografía y vídeo de eventos en Galicia',
     seoDescription:
-      'Cobertura en foto y vídeo de congresos, jornadas y eventos científicos o corporativos. Tráileres, resúmenes y piezas listas para comunicar.',
+      'Foto y vídeo de congresos, jornadas y eventos científicos o corporativos en Galicia. Tráileres, resúmenes y piezas listas para comunicar.',
     headline: 'Eventos y divulgación',
     intro: [
       'Un evento dura unas horas, pero lo que se cuenta de él puede seguir trabajando para ti durante meses. Cubro congresos, jornadas y actos institucionales pensando desde el principio en cómo se van a usar las imágenes.',
@@ -301,9 +301,9 @@ export const services: Service[] = [
     slug: 'video-y-cortometraje',
     title: 'Vídeo y cortometraje',
     description: 'Dirección de fotografía, cámara y montaje para piezas narrativas, tráileres y vídeo de marca.',
-    seoTitle: 'Videógrafo y director de fotografía',
+    seoTitle: 'Videógrafo y director de fotografía en Galicia',
     seoDescription:
-      'Dirección de fotografía, cámara y montaje para cortometrajes, tráileres y vídeo de marca. Piezas con mirada de cine para contar tu historia.',
+      'Videógrafo en Galicia: dirección de fotografía, cámara y montaje para cortometrajes, tráileres y vídeo de marca, con mirada de cine.',
     headline: 'Vídeo y cortometraje',
     intro: [
       'Me gusta contar historias con la cámara. Trabajo como director de fotografía, operador de cámara y montador, por separado o en el mismo proyecto, para piezas narrativas, tráileres y vídeo de marca.',
@@ -324,9 +324,9 @@ export const services: Service[] = [
     title: 'Reels para redes sociales',
     description:
       'Piezas verticales con enfoque cinematográfico para marcas y negocios que quieren destacar en Instagram y TikTok.',
-    seoTitle: 'Reels y vídeo vertical para redes',
+    seoTitle: 'Reels para redes sociales en Galicia',
     seoDescription:
-      'Reels y vídeo vertical con enfoque cinematográfico para marcas y negocios. Piezas para Instagram y TikTok que enseñan tu trabajo con cuidado.',
+      'Reels y vídeo vertical para marcas y negocios en Galicia, con enfoque de cine. Piezas para Instagram y TikTok que enseñan tu trabajo.',
     headline: 'Reels para redes sociales',
     intro: [
       'En redes tienes un par de segundos para que alguien deje de deslizar. Grabo y monto reels verticales con mirada de cine para que tu marca se vea tan cuidada como tu trabajo.',
@@ -346,17 +346,17 @@ export const services: Service[] = [
     slug: 'postproduccion',
     title: 'Postproducción',
     description: 'Edición, etalonaje y entrega en los formatos que necesites, lista para publicar.',
-    seoTitle: 'Postproducción de foto y vídeo',
+    seoTitle: 'Edición y postproducción de foto y vídeo',
     seoDescription:
-      'Edición fotográfica, montaje de vídeo y etalonaje. Entrega en los formatos que necesites, lista para publicar en web, redes o pantalla grande.',
+      'Edición de fotos, montaje de vídeo y etalonaje, también de material grabado por otros. Entrega lista para web, redes o pantalla grande.',
     headline: 'Postproducción',
     intro: [
       'La mitad de una buena imagen se hace después de disparar. Me encargo de la edición fotográfica, el montaje y el etalonaje para que todas las piezas de un proyecto tengan el mismo color y la misma intención.',
-      'Puedo ocuparme de la postproducción de lo que grabo yo o de material que ya tengas, y entregarlo en el formato que necesites para web, redes o proyección.',
+      'Me ocupo de la postproducción de lo que grabo yo y también de fotos y vídeos que ya tengas, grabados por ti o por otro equipo. Lo entrego en el formato que necesites para web, redes o proyección.',
     ],
     includes: [
-      'Revelado y retoque fotográfico',
-      'Montaje de vídeo',
+      'Edición y retoque de fotos, también de material ajeno',
+      'Edición y montaje de vídeo',
       'Etalonaje y corrección de color',
       'Sonido, música y subtítulos',
       'Exportación para web, redes y proyección',
