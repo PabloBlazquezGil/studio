@@ -4,9 +4,19 @@ import ContactForm from '@/components/react/ContactForm';
 import { Toaster } from '@/components/react/Toaster';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { contactEmail, socialLinks } from '@/lib/data';
+import { breadcrumbs } from '@/lib/seo';
+
+const site = Astro.site ?? new URL(Astro.url.origin);
 ---
 
-<BaseLayout title="Contacto" description="Cuéntame tu proyecto de fotografía o vídeo y te preparo un presupuesto.">
+<BaseLayout
+  title="Contacto y presupuesto"
+  description="Cuéntame tu proyecto de fotografía o vídeo y te preparo un presupuesto a medida: deporte, retrato, eventos, cortometrajes o reels para redes."
+  jsonLd={[
+    { '@type': 'ContactPage', url: new URL('/contacto/', site).href, about: { '@id': new URL('/#business', site).href } },
+    breadcrumbs(site, [{ name: 'Contacto', path: '/contacto/' }]),
+  ]}
+>
   <PageIntro eyebrow="Contacto" title="Hablemos" />
 
   <section class="grid gap-16 px-5 pb-24 sm:px-10 lg:grid-cols-[2fr_3fr] lg:gap-24">

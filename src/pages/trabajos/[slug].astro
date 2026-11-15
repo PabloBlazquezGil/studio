@@ -6,7 +6,8 @@ import SplitHeading from '@/components/motion/SplitHeading.astro';
 import ProjectGallery from '@/components/react/ProjectGallery';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { projects } from '@/lib/data';
-import { disciplineLabels, getProjectImage, getRelatedProjects, isVideoProject } from '@/lib/projects';
+import { disciplineLabels, getRelatedProjects, getSocialImage, isVideoProject } from '@/lib/projects';
+import { coverAlt, imageAlt, projectDescription, projectGraph, serviceForProject } from '@/lib/seo';
 import { cn, getStartTime, getYouTubeId } from '@/lib/utils';
 
 export function getStaticPaths() {
@@ -16,7 +17,10 @@ export function getStaticPaths() {
 const { project } = Astro.props;
 
 const videos = project.media.filter((m) => m.type === 'video');
-const images = project.media.filter((m) => m.type === 'image').map((m) => m.url);
+const imageItems = project.media.filter((m) => m.type === 'image');
+const images = imageItems.map((m, i) => ({ url: m.url, alt: imageAlt(project, m, i, imageItems.length) }));
+const service = serviceForProject(project);
+const site = Astro.site ?? new URL(Astro.url.origin);
 const portrait = project.orientation === 'portrait';
 const related = getRelatedProjects(project);
 
@@ -29,7 +33,14 @@ const credits = [
 ].filter((entry): entry is [string, string] => Boolean(entry[1]));
 ---
 
-<BaseLayout title={project.title} description={project.description} image={getProjectImage(project)}>
+<BaseLayout
+  title={`${project.title} · ${project.category}`}
+  description={projectDescription(project)}
+  image={getSocialImage(project)}
+  imageAlt={getSocialImage(project) ? coverAlt(project) : undefined}
+  type="article"
+  jsonLd={projectGraph(project, site)}
+>
   <article>
     {/* Portada a pantalla completa */}
     <header class="relative h-svh w-full overflow-hidden bg-canopy">
@@ -51,6 +62,16 @@ const credits = [
       <div>
         <h2 class="font-headline text-2xl uppercase tracking-wide text-gold">Descripción</h2>
         <p class="mt-5 max-w-2xl text-lg leading-relaxed text-linen/80">{project.description}</p>
+        {
+          service && (
+            <a
+              href={`/servicios/${service.slug}`}
+              class="mt-8 inline-flex items-center gap-2 font-headline text-lg uppercase tracking-wide text-linen/70 transition-colors hover:text-gold"
+            >
+              Servicio de {service.title.toLowerCase()} <ArrowRight class="h-4 w-4" />
+            </a>
+          )
+        }
       </div>
       <div>
         <h2 class="font-headline text-2xl uppercase tracking-wide text-gold">Créditos</h2>

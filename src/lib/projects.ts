@@ -37,6 +37,16 @@ export function getRelatedProjects(project: Project, count = 3): Project[] {
   return [...same, ...others].slice(0, count);
 }
 
+/**
+ * Imagen para compartir en redes (WhatsApp, Facebook, LinkedIn…). Esas redes no muestran AVIF,
+ * así que si el proyecto solo tiene fotos AVIF se devuelve undefined y se usa la imagen general /og.jpg.
+ */
+export function getSocialImage(project: Project): string | undefined {
+  const youtubeId = project.media.map((m) => getYouTubeId(m.url)).find(Boolean);
+  if (youtubeId) return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+  return project.media.find((m) => m.type === 'image' && /\.(jpe?g|png|webp)$/i.test(m.url))?.url;
+}
+
 /** Imagen fija representativa de un proyecto (para metadatos y vistas previas). */
 export function getProjectImage(project: Project): string | undefined {
   const youtubeId = project.media.map((m) => getYouTubeId(m.url)).find(Boolean);

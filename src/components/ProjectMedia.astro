@@ -1,5 +1,6 @@
 ---
 import type { Project } from '@/lib/types';
+import { coverAlt } from '@/lib/seo';
 import { cn, isVideoFile } from '@/lib/utils';
 
 interface Props {
@@ -32,7 +33,7 @@ const { project, sizes, class: className, priority, playing } = Astro.props;
   ) : (
     <img
       src={project.cover}
-      alt={project.title}
+      alt={coverAlt(project)}
       sizes={sizes}
       loading={priority ? 'eager' : 'lazy'}
       fetchpriority={priority ? 'high' : undefined}

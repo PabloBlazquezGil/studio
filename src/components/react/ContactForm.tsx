@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { budgetRanges, contactEmail, services } from '@/lib/data';
@@ -24,6 +24,13 @@ export default function ContactForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+
+  // Si se llega desde la página de un servicio (/contacto?servicio=retrato-y-photobook), viene ya marcado.
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get('servicio');
+    const service = services.find((s) => s.slug === slug);
+    if (service) setTypes((current) => (current.includes(service.title) ? current : [...current, service.title]));
+  }, []);
 
   const canContinue = [types.length > 0, true, budget !== '', name !== '' && email !== ''][step];
 

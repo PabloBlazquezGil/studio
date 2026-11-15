@@ -1,0 +1,62 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import PageIntro from '@/components/PageIntro.astro';
+import Reveal from '@/components/Reveal.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { services } from '@/lib/data';
+import { breadcrumbs } from '@/lib/seo';
+
+const site = Astro.site ?? new URL(Astro.url.origin);
+const jsonLd = [
+  {
+    '@type': 'CollectionPage',
+    url: new URL('/servicios/', site).href,
+    name: 'Servicios de fotografía y vídeo',
+    about: { '@id': new URL('/#business', site).href },
+  },
+  breadcrumbs(site, [{ name: 'Servicios', path: '/servicios/' }]),
+];
+---
+
+<BaseLayout
+  title="Servicios de fotografía y vídeo"
+  description="Fotografía deportiva y de surf, retrato y photobook, eventos y congresos, cortometrajes y vídeo de marca, reels para redes y postproducción."
+  jsonLd={jsonLd}
+>
+  <PageIntro eyebrow="Servicios" title="Qué puedo hacer por ti">
+    <p class="mt-8 max-w-2xl text-lg leading-relaxed text-linen/70">
+      Fotografía y vídeo con mirada de cine, desde la idea hasta la entrega. Elige el tipo de trabajo que necesitas y
+      mira ejemplos reales de cada uno.
+    </p>
+  </PageIntro>
+
+  <section class="px-5 pb-24 sm:px-10 sm:pb-32">
+    <ol class="border-t border-linen/15">
+      {
+        services.map((service, index) => (
+          <li>
+            <a
+              href={`/servicios/${service.slug}`}
+              class="group grid gap-3 border-b border-linen/15 py-8 transition-colors hover:border-gold/60 md:grid-cols-[6rem_2fr_3fr_auto] md:items-center md:gap-8"
+            >
+              <span class="font-headline text-xl text-gold">{String(index + 1).padStart(2, '0')}</span>
+              <h2 class="font-headline text-3xl font-bold uppercase leading-none text-linen transition-colors group-hover:text-gold sm:text-4xl">
+                {service.title}
+              </h2>
+              <p class="leading-relaxed text-linen/70">{service.description}</p>
+              <ArrowRight class="hidden h-6 w-6 text-linen/60 transition-all group-hover:translate-x-1 group-hover:text-gold md:block" />
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+    <Reveal class="mt-16 text-center">
+      <a
+        href="/contacto"
+        class="inline-flex items-center gap-2 bg-gold px-6 py-3 font-headline text-lg uppercase tracking-wide text-canopy transition-colors hover:bg-linen"
+      >
+        Pide presupuesto <ArrowRight class="h-4 w-4" />
+      </a>
+    </Reveal>
+  </section>
+</BaseLayout>

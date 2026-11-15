@@ -5,7 +5,10 @@ import ProjectCard from '@/components/ProjectCard.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { projects } from '@/lib/data';
 import { filters } from '@/lib/projects';
+import { projectListGraph } from '@/lib/seo';
 import { isVideoFile } from '@/lib/utils';
+
+const site = Astro.site ?? new URL(Astro.url.origin);
 
 // A cada proyecto se le anotan los filtros a los que pertenece; el script solo muestra u oculta.
 const items = projects.map((project) => ({
@@ -15,8 +18,9 @@ const items = projects.map((project) => ({
 ---
 
 <BaseLayout
-  title="Trabajos"
-  description="Proyectos de fotografía y vídeo: surf y deporte, retrato, eventos, cortometrajes y reels para redes sociales."
+  title="Trabajos de fotografía y vídeo"
+  description="Portfolio de fotografía y vídeo de Pablo Blázquez Gil: surf y deporte, retrato y photobook, eventos científicos, cortometrajes y reels para redes."
+  jsonLd={projectListGraph(site)}
 >
   <PageIntro eyebrow="Portfolio" title="Trabajos" />
   <section class="px-2.5 pb-24 sm:px-10" id="work-index">

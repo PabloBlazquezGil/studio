@@ -3,7 +3,8 @@ import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 
 interface ProjectGalleryProps {
   title: string;
-  images: string[];
+  /** Fotos con su texto alternativo. */
+  images: { url: string; alt: string }[];
 }
 
 /** Galería en cuadrícula de tres columnas con visor a pantalla completa (teclado: ← → Esc). */
@@ -34,7 +35,7 @@ export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
   return (
     <>
       <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
-        {images.map((url, index) => (
+        {images.map(({ url, alt }, index) => (
           <button
             key={url}
             type="button"
@@ -44,7 +45,7 @@ export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
           >
             <img
               src={url}
-              alt={`${title}, imagen ${index + 1}`}
+              alt={alt}
               loading="lazy"
               decoding="async"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -65,8 +66,8 @@ export default function ProjectGallery({ title, images }: ProjectGalleryProps) {
         >
           <div className="relative h-[85vh] w-[92vw]" onClick={(e) => e.stopPropagation()}>
             <img
-              src={images[open]}
-              alt={`${title}, imagen ${open + 1}`}
+              src={images[open].url}
+              alt={images[open].alt}
               className="absolute inset-0 h-full w-full object-contain"
             />
           </div>
