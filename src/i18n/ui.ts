@@ -55,7 +55,7 @@ const es = {
     clips: 'Clips del showreel',
     clip: (n: number, title: string) => `Clip ${n}: ${title}`,
     scroll: 'Desliza',
-    seeWork: 'Ver trabajos',
+    seeWork: 'Desliza para ver trabajos',
   },
   reels: {
     eyebrow: 'Redes sociales',
@@ -295,7 +295,7 @@ const en: UI = {
     clips: 'Showreel clips',
     clip: (n: number, title: string) => `Clip ${n}: ${title}`,
     scroll: 'Scroll',
-    seeWork: 'See the work',
+    seeWork: 'Scroll to see the work',
   },
   reels: {
     eyebrow: 'Social media',

@@ -130,14 +130,23 @@ const t = useTranslations(lang);
 
     const running = () => !userPaused && visible && !document.hidden;
 
+    // El siguiente clip solo se empieza a descargar cuando el actual ya puede reproducirse:
+    // así el primero no compite por el ancho de banda (en móvil, la diferencia es de segundos).
+    const videoAt = (i: number) => slides[i]?.querySelector<HTMLVideoElement>('video') ?? null;
+    const preloadNext = () => {
+      const next = videoAt((current + 1) % slides.length);
+      if (next) controlLoopVideo(next, true, false);
+    };
+
     const playVideo = (play: boolean) => {
-      const next = (current + 1) % slides.length;
-      slides.forEach((slide, i) => {
-        const video = slide.querySelector<HTMLVideoElement>('video');
-        if (!video) return;
-        if (i === current || i === next) controlLoopVideo(video, true, play && i === current);
-        else controlLoopVideo(video, false, false);
+      slides.forEach((_, i) => {
+        const video = videoAt(i);
+        if (video) controlLoopVideo(video, i === current, play && i === current);
       });
+      const active = videoAt(current);
+      if (!active) return;
+      if (active.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) preloadNext();
+      else active.addEventListener('canplaythrough', preloadNext, { once: true });
     };
 
     const show = (index: number) => {

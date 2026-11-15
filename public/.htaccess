@@ -1,2 +1,30 @@
-# Hostinger (Apache/LiteSpeed): página 404 propia
+# Hostinger (Apache/LiteSpeed)
+
+# Página 404 propia
 ErrorDocument 404 /404.html
+
+# Compresión del HTML, CSS, JS y SVG
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_headers.c>
+  # JS, CSS y fuentes solo existen en /_astro/ y llevan un hash en el nombre: cambian de nombre
+  # cuando cambian, así que el navegador puede guardarlos un año sin volver a preguntar.
+  <FilesMatch "\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Iconos e imagen social: una semana.
+  <FilesMatch "\.(ico|svg|png|jpg)$">
+    Header set Cache-Control "public, max-age=604800, stale-while-revalidate=86400"
+  </FilesMatch>
+  # Las páginas se revalidan siempre, para que un cambio se vea al momento.
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "no-referrer"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
