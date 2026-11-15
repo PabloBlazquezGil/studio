@@ -5,7 +5,8 @@ import { useTranslations } from '@/i18n/ui';
 
 interface ProjectGalleryProps {
   title: string;
-  images: string[];
+  /** Fotos con su texto alternativo. */
+  images: { url: string; alt: string }[];
   lang: Lang;
 }
 
@@ -47,7 +48,7 @@ export default function ProjectGallery({ title, images, lang }: ProjectGalleryPr
   return (
     <>
       <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
-        {images.map((url, index) => (
+        {images.map(({ url, alt }, index) => (
           <button
             key={url}
             type="button"
@@ -60,7 +61,7 @@ export default function ProjectGallery({ title, images, lang }: ProjectGalleryPr
           >
             <img
               src={url}
-              alt={t.image(index + 1, title)}
+              alt={alt}
               loading="lazy"
               decoding="async"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -86,8 +87,8 @@ export default function ProjectGallery({ title, images, lang }: ProjectGalleryPr
         >
           <div className="relative h-[85vh] w-[92vw]" onClick={(e) => e.stopPropagation()}>
             <img
-              src={images[open]}
-              alt={t.image(open + 1, title)}
+              src={images[open].url}
+              alt={images[open].alt}
               className="absolute inset-0 h-full w-full object-contain"
             />
           </div>

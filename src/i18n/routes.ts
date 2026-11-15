@@ -14,6 +14,7 @@ export const ogLocales: Record<Lang, string> = { es: 'es_ES', en: 'en_GB' };
 export const routes = {
   home: { es: '/', en: '/en' },
   work: { es: '/trabajos', en: '/en/work' },
+  services: { es: '/servicios', en: '/en/services' },
   about: { es: '/sobre-mi', en: '/en/about' },
   contact: { es: '/contacto', en: '/en/contact' },
   legal: { es: '/aviso-legal', en: '/en/legal-notice' },
@@ -32,6 +33,11 @@ export function path(key: RouteKey, lang: Lang): string {
 
 export function projectPath(slug: string, lang: Lang): string {
   return `${routes.work[lang]}/${slug}`;
+}
+
+/** Página de un servicio. Los slugs de los servicios son los mismos en los dos idiomas. */
+export function servicePath(slug: string, lang: Lang): string {
+  return `${routes.services[lang]}/${slug}`;
 }
 
 /** Ruta sin la barra final (salvo la raíz), para comparar rutas igual en cualquier alojamiento. */
@@ -56,6 +62,8 @@ export function translatePath(pathname: string, to: Lang): string | undefined {
   }
   const project = current.match(new RegExp(`^${routes.work[from]}/([^/]+)$`));
   if (project) return projectPath(project[1], to);
+  const service = current.match(new RegExp(`^${routes.services[from]}/([^/]+)$`));
+  if (service) return servicePath(service[1], to);
   return undefined;
 }
 

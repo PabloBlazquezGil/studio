@@ -27,7 +27,11 @@ export function getAuthor(lang: Lang): Author {
 }
 
 export function getServices(lang: Lang): Service[] {
-  return lang === 'es' ? services : services.map((s, i) => servicesEn[i] ?? s);
+  return lang === 'es' ? services : services.map((s, i) => ({ ...s, ...servicesEn[i] }));
+}
+
+export function getService(slug: string, lang: Lang): Service | undefined {
+  return getServices(lang).find((s) => s.slug === slug);
 }
 
 export function getBudgetRanges(lang: Lang): string[] {

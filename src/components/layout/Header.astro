@@ -14,6 +14,7 @@ const contact = path('contact', lang);
 
 const navLinks = [
   { href: path('work', lang), label: t.nav.work },
+  { href: path('services', lang), label: t.nav.services },
   { href: path('about', lang), label: t.nav.about },
   { href: contact, label: t.nav.contact },
 ];
@@ -39,7 +40,7 @@ const onContact = isRoute(pathname, 'contact');
       <span class="max-[439px]:hidden whitespace-nowrap font-headline text-lg uppercase tracking-[0.12em] text-linen sm:text-xl">{author.name}</span>
     </a>
 
-    <nav class="hidden items-center gap-8 md:flex" aria-label={t.nav.main}>
+    <nav class="hidden items-center gap-6 lg:flex xl:gap-8" aria-label={t.nav.main}>
       {
         navLinks.map(({ href, label }) => (
           <a
@@ -63,7 +64,7 @@ const onContact = isRoute(pathname, 'contact');
       </a>
     </nav>
 
-    <div class="flex items-center gap-1 md:hidden">
+    <div class="flex items-center gap-1 lg:hidden">
     {
       !onContact && (
         <a
@@ -95,7 +96,7 @@ const onContact = isRoute(pathname, 'contact');
   <nav
     id="mobile-menu"
     hidden
-    class="fixed inset-x-0 top-16 flex h-[calc(100dvh-4rem)] flex-col justify-between overflow-y-auto bg-canopy px-5 pb-10 pt-8 md:hidden [&[hidden]]:hidden"
+    class="fixed inset-x-0 top-16 flex h-[calc(100dvh-4rem)] flex-col justify-between overflow-y-auto bg-canopy px-5 pb-10 pt-8 lg:hidden [&[hidden]]:hidden"
     aria-label={t.nav.mobile}
     data-lenis-prevent
   >

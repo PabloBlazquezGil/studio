@@ -7,15 +7,16 @@ import type { Lang } from './routes';
  */
 const es = {
   site: {
-    title: 'Pablo Blázquez Gil | Fotografía y vídeo',
+    title: 'Pablo Blázquez Gil | Fotógrafo y videógrafo en Galicia',
     description:
-      'Fotógrafo y videógrafo. Surf y deporte, retrato, eventos y reels para redes sociales con una mirada cinematográfica.',
+      'Fotógrafo y videógrafo en Galicia. Fotografía deportiva y de surf, retrato y photobook, eventos, cortometrajes y reels para redes sociales con mirada de cine.',
     ogImageAlt: 'Surf en Malpica, por Pablo Blázquez Gil',
     skipToContent: 'Saltar al contenido',
   },
   nav: {
     home: 'Inicio',
     work: 'Trabajos',
+    services: 'Servicios',
     about: 'Sobre mí',
     contact: 'Contacto',
     quote: 'Presupuesto',
@@ -32,7 +33,7 @@ const es = {
     eyebrow: 'Trabaja conmigo',
     cta: ['Hagamos algo', 'memorable'],
     button: 'Escríbeme',
-    tagline: 'Fotografía y vídeo. Deporte, retrato, eventos y redes sociales.',
+    tagline: 'Fotografía y vídeo en Galicia. Deporte, retrato, eventos y redes sociales.',
     sitemap: 'Mapa del sitio',
     social: 'Redes',
     privacy: 'Privacidad',
@@ -40,7 +41,7 @@ const es = {
   },
   home: {
     heading: ['Luz. Movimiento.', '*Emoción.*'],
-    subheading: 'Fotografía · Vídeo · Dirección de fotografía',
+    subheading: (name: string) => `${name} · Fotógrafo y videógrafo en Galicia · Deporte, retrato, eventos y reels`,
     featured: 'Trabajos destacados',
     allWork: 'Todos los trabajos',
     postEyebrow: 'Postproducción',
@@ -68,9 +69,10 @@ const es = {
   },
   work: {
     title: 'Trabajos',
+    metaTitle: 'Trabajos de fotografía y vídeo',
     eyebrow: 'Portfolio',
     description:
-      'Proyectos de fotografía y vídeo: surf y deporte, retrato, eventos, cortometrajes y reels para redes sociales.',
+      'Portfolio de fotografía y vídeo en Galicia de Pablo Blázquez Gil: surf y deporte, retrato y photobook, eventos científicos, cortometrajes y reels.',
     filterLabel: 'Filtrar trabajos',
     viewLabel: 'Vista',
     grid: 'Ver en cuadrícula',
@@ -107,6 +109,7 @@ const es = {
     ctaButton: 'Pide presupuesto',
     more: 'Más proyectos',
     all: 'Todos',
+    service: (title: string) => `Servicio de ${title.toLowerCase()}`,
   },
   gallery: {
     open: (n: number, title: string) => `Ampliar imagen ${n} de ${title}`,
@@ -125,14 +128,56 @@ const es = {
   },
   about: {
     title: 'Sobre mí',
+    metaTitle: 'Sobre mí y servicios',
     description: (name: string) =>
-      `${name}: fotógrafo y videógrafo. Servicios de fotografía deportiva, retrato, eventos, vídeo y reels.`,
+      `${name}, fotógrafo y videógrafo en Galicia. Fotografía deportiva y de surf, retrato y photobook, eventos, cortometrajes, reels y postproducción.`,
     services: 'Servicios',
+    seeService: 'Ver servicio',
+    seeServiceLabel: (title: string) => `Más sobre ${title.toLowerCase()}`,
+    portraitAlt: (name: string) => `${name}, fotógrafo y videógrafo`,
+  },
+  services: {
+    eyebrow: 'Servicios',
+    serviceEyebrow: 'Servicio',
+    metaTitle: 'Servicios de fotografía y vídeo en Galicia',
+    description:
+      'Fotografía deportiva y de surf, retrato y photobook, eventos y congresos, cortometrajes, reels para redes y postproducción en Galicia.',
+    heading: 'Qué puedo hacer por ti',
+    intro:
+      'Fotografía y vídeo con mirada de cine, desde la idea hasta la entrega. Elige el tipo de trabajo que necesitas y mira ejemplos reales de cada uno.',
+    includes: 'Qué incluye',
+    idealFor: 'Para quién',
+    examples: ['Trabajos de *ejemplo*'],
+    allWork: 'Todos',
+    process: ['Cómo trabajo'],
+    steps: [
+      ['Me cuentas tu idea', 'Qué necesitas, para qué lo vas a usar, fechas y lugar.'],
+      ['Propuesta y presupuesto', 'Te propongo un enfoque y un presupuesto a medida antes de empezar.'],
+      ['Sesión o rodaje', 'Fotografío o grabo cuidando la luz, el ritmo y cada detalle.'],
+      ['Edición y entrega', 'Selección, edición y color, listo en los formatos que necesites.'],
+    ],
+    others: 'Otros servicios',
+    cta: 'Pide presupuesto',
+    breadcrumb: 'Migas de pan',
+  },
+  seo: {
+    catalog: 'Servicios de fotografía y vídeo',
+    business: 'Fotografía y vídeo',
+    businessDescription:
+      'Fotografía y vídeo profesional en Galicia: deporte y surf, retrato, eventos, cortometrajes y reels para redes sociales.',
+    knowsAbout: ['Fotografía', 'Vídeo', 'Dirección de fotografía'],
+    workList: 'Trabajos de fotografía y vídeo',
+    privateClient: 'Cliente privado',
+    photoAlt: (title: string, category: string, client: string | undefined, n: number, total: number) =>
+      `${title}: ${category.toLowerCase()}${client ? ` para ${client}` : ''}${total > 1 ? `, foto ${n} de ${total}` : ''}. Pablo Blázquez Gil`,
+    by: (category: string, name: string) => `${category} por ${name}.`,
   },
   contact: {
     title: 'Contacto',
+    metaTitle: 'Contacto y presupuesto',
     heading: 'Hablemos',
-    description: 'Cuéntame tu proyecto de fotografía o vídeo y te preparo un presupuesto.',
+    description:
+      'Cuéntame tu proyecto de fotografía o vídeo y te preparo un presupuesto a medida: deporte, retrato, eventos, cortometrajes o reels en Galicia.',
     intro: '¿Tienes un proyecto en mente? Cuéntame lo que necesitas y buscamos la forma de hacerlo realidad.',
     email: 'Email',
     social: 'Redes',
@@ -203,15 +248,16 @@ export type UI = typeof es;
 
 const en: UI = {
   site: {
-    title: 'Pablo Blázquez Gil | Photography & video',
+    title: 'Pablo Blázquez Gil | Photographer & videographer in Galicia, Spain',
     description:
-      'Photographer and videographer. Surf and sports, portraits, events and social media reels with a cinematic eye.',
+      'Photographer and videographer based in Galicia, Spain. Surf and sports photography, portraits, events, short films and social media reels with a cinematic eye.',
     ogImageAlt: 'Surfing in Malpica, by Pablo Blázquez Gil',
     skipToContent: 'Skip to content',
   },
   nav: {
     home: 'Home',
     work: 'Work',
+    services: 'Services',
     about: 'About',
     contact: 'Contact',
     quote: 'Get a quote',
@@ -227,7 +273,7 @@ const en: UI = {
     eyebrow: 'Work with me',
     cta: ["Let's make something", 'memorable'],
     button: 'Get in touch',
-    tagline: 'Photography and video. Sports, portraits, events and social media.',
+    tagline: 'Photography and video in Galicia, Spain. Sports, portraits, events and social media.',
     sitemap: 'Sitemap',
     social: 'Social',
     privacy: 'Privacy',
@@ -235,7 +281,7 @@ const en: UI = {
   },
   home: {
     heading: ['Light. Motion.', '*Emotion.*'],
-    subheading: 'Photography · Video · Cinematography',
+    subheading: (name: string) => `${name} · Photographer & videographer in Galicia · Sports, portraits, events and reels`,
     featured: 'Featured work',
     allWork: 'All work',
     postEyebrow: 'Post-production',
@@ -263,9 +309,10 @@ const en: UI = {
   },
   work: {
     title: 'Work',
+    metaTitle: 'Photography and video work',
     eyebrow: 'Portfolio',
     description:
-      'Photography and video projects: surf and sports, portraits, events, short films and social media reels.',
+      'Photography and video portfolio by Pablo Blázquez Gil, Galicia: surf and sports, portraits and photobooks, science events, short films and reels.',
     filterLabel: 'Filter projects',
     viewLabel: 'View',
     grid: 'Grid view',
@@ -302,6 +349,7 @@ const en: UI = {
     ctaButton: 'Request a quote',
     more: 'More projects',
     all: 'All work',
+    service: (title: string) => `${title} service`,
   },
   gallery: {
     open: (n: number, title: string) => `Enlarge image ${n} of ${title}`,
@@ -320,14 +368,56 @@ const en: UI = {
   },
   about: {
     title: 'About',
+    metaTitle: 'About and services',
     description: (name: string) =>
-      `${name}: photographer and videographer. Sports photography, portraits, events, video and reels.`,
+      `${name}, photographer and videographer in Galicia, Spain. Surf and sports photography, portraits, events, short films, reels and post-production.`,
     services: 'Services',
+    seeService: 'See service',
+    seeServiceLabel: (title: string) => `More about ${title.toLowerCase()}`,
+    portraitAlt: (name: string) => `${name}, photographer and videographer`,
+  },
+  services: {
+    eyebrow: 'Services',
+    serviceEyebrow: 'Service',
+    metaTitle: 'Photography and video services in Galicia',
+    description:
+      'Surf and sports photography, portraits and photobooks, events and conferences, short films, social media reels and post-production in Galicia, Spain.',
+    heading: 'What I can do for you',
+    intro:
+      'Photography and video with a cinematic eye, from the first idea to delivery. Pick the kind of work you need and see real examples of each.',
+    includes: "What's included",
+    idealFor: "Who it's for",
+    examples: ['Example *work*'],
+    allWork: 'All work',
+    process: ['How I work'],
+    steps: [
+      ['Tell me your idea', "What you need, what it's for, dates and location."],
+      ['Proposal and quote', 'I suggest an approach and a tailored quote before we start.'],
+      ['Shoot', 'I photograph or film with care for light, pace and detail.'],
+      ['Editing and delivery', 'Selection, editing and colour, ready in the formats you need.'],
+    ],
+    others: 'Other services',
+    cta: 'Request a quote',
+    breadcrumb: 'Breadcrumb',
+  },
+  seo: {
+    catalog: 'Photography and video services',
+    business: 'Photography & video',
+    businessDescription:
+      'Professional photography and video in Galicia, Spain: sports and surf, portraits, events, short films and social media reels.',
+    knowsAbout: ['Photography', 'Video', 'Cinematography'],
+    workList: 'Photography and video work',
+    privateClient: 'Private client',
+    photoAlt: (title: string, category: string, client: string | undefined, n: number, total: number) =>
+      `${title}: ${category.toLowerCase()}${client ? ` for ${client}` : ''}${total > 1 ? `, photo ${n} of ${total}` : ''}. Pablo Blázquez Gil`,
+    by: (category: string, name: string) => `${category} by ${name}.`,
   },
   contact: {
     title: 'Contact',
+    metaTitle: 'Contact and quotes',
     heading: "Let's talk",
-    description: 'Tell me about your photo or video project and I will put together a quote.',
+    description:
+      'Tell me about your photo or video project and I will put together a tailored quote: sports, portraits, events, short films or reels in Galicia.',
     intro: "Have a project in mind? Tell me what you need and we'll find a way to make it happen.",
     email: 'Email',
     social: 'Social',

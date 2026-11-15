@@ -3,6 +3,7 @@ import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
 import { langs, ogLocales, toLang, translatePath } from '@/i18n/routes';
 import { useTranslations } from '@/i18n/ui';
+import { siteGraph, toJsonLd } from '@/lib/seo';
 import { siteName } from '@/lib/site';
 import '@/styles/global.css';
 // Las tres fuentes que se ven nada más cargar (texto, titulares y botones): se piden a la vez que el CSS
@@ -17,18 +18,33 @@ interface Props {
   description?: string;
   /** Imagen para redes sociales (ruta o URL). Por defecto, /og.jpg. */
   image?: string;
+  /** Texto alternativo de la imagen social. */
+  imageAlt?: string;
+  /** Tipo de página para redes sociales: los proyectos son «article». */
+  type?: 'website' | 'article';
+  /** Datos estructurados propios de la página (se suman a los de la persona y el negocio). */
+  jsonLd?: Record<string, unknown>[];
   /** Impide que los buscadores indexen la página (404). */
   noindex?: boolean;
 }
 
 const lang = toLang(Astro.currentLocale);
 const t = useTranslations(lang);
-const { title, description = t.site.description, image, noindex = false } = Astro.props;
+const {
+  title,
+  description = t.site.description,
+  image,
+  imageAlt,
+  type = 'website',
+  jsonLd = [],
+  noindex = false,
+} = Astro.props;
 const fullTitle = title ? `${title} | ${siteName}` : t.site.title;
 const site = Astro.site ?? new URL(Astro.url.origin);
 const canonical = new URL(Astro.url.pathname, site).href;
 const ogImage = new URL(image ?? '/og.jpg', site).href;
-const ogImageAlt = image ? title : t.site.ogImageAlt;
+const ogImageAlt = imageAlt ?? (image ? title : t.site.ogImageAlt);
+const structuredData = noindex ? undefined : toJsonLd([...siteGraph(site, lang), ...jsonLd]);
 
 // La misma página en cada idioma (hreflang), con barra final como las URL que genera el build y el sitemap.
 // La 404 no tiene equivalente.
@@ -58,7 +74,12 @@ const defaultAlternate = alternates.find((a) => a.lang === 'es');
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex" />}
+    <meta
+      name="robots"
+      content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}
+    />
+    <meta name="author" content={siteName} />
+    <meta name="theme-color" content="#1C2826" />
     {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
     {defaultAlternate && <link rel="alternate" hreflang="x-default" href={defaultAlternate.href} />}
 
@@ -72,7 +93,7 @@ const defaultAlternate = alternates.find((a) => a.lang === 'es');
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={ogLocales[lang]} />
     {alternates.filter((a) => a.lang !== lang).map((a) => <meta property="og:locale:alternate" content={ogLocales[a.lang]} />)}
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:image" content={ogImage} />
     {!image && <meta property="og:image:width" content="1200" />}
     {!image && <meta property="og:image:height" content="889" />}
@@ -81,6 +102,8 @@ const defaultAlternate = alternates.find((a) => a.lang === 'es');
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    {ogImageAlt && <meta name="twitter:image:alt" content={ogImageAlt} />}
+    {structuredData && <script type="application/ld+json" set:html={structuredData} />}
 
     <!-- Las animaciones de entrada solo ocultan el contenido si JavaScript va a mostrarlo después. -->
     <script is:inline>

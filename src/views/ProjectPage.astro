@@ -5,9 +5,10 @@ import ProjectMedia from '@/components/ProjectMedia.astro';
 import SplitHeading from '@/components/motion/SplitHeading.astro';
 import ProjectGallery from '@/components/react/ProjectGallery';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { path, toLang } from '@/i18n/routes';
+import { path, servicePath, toLang } from '@/i18n/routes';
 import { useTranslations } from '@/i18n/ui';
-import { getDisciplineLabels, getProject, getProjectImage, getRelatedProjects, isVideoProject } from '@/lib/projects';
+import { getDisciplineLabels, getProject, getRelatedProjects, getSocialImage, isVideoProject } from '@/lib/projects';
+import { coverAlt, imageAlt, projectDescription, projectGraph, serviceForProject } from '@/lib/seo';
 import { cn, getStartTime, getYouTubeId } from '@/lib/utils';
 
 interface Props {
@@ -19,7 +20,11 @@ const t = useTranslations(lang);
 const project = getProject(Astro.props.slug, lang)!;
 
 const videos = project.media.filter((m) => m.type === 'video');
-const images = project.media.filter((m) => m.type === 'image').map((m) => m.url);
+const imageItems = project.media.filter((m) => m.type === 'image');
+const images = imageItems.map((m, i) => ({ url: m.url, alt: imageAlt(project, m, i, imageItems.length, lang) }));
+const service = serviceForProject(project, lang);
+const site = Astro.site ?? new URL(Astro.url.origin);
+const socialImage = getSocialImage(project);
 const portrait = project.orientation === 'portrait';
 const related = getRelatedProjects(project, lang);
 
@@ -32,7 +37,14 @@ const credits = [
 ].filter((entry): entry is [string, string] => Boolean(entry[1]));
 ---
 
-<BaseLayout title={project.title} description={project.description} image={getProjectImage(project)}>
+<BaseLayout
+  title={`${project.title} · ${project.category}`}
+  description={projectDescription(project, lang)}
+  image={socialImage}
+  imageAlt={socialImage ? coverAlt(project, lang) : undefined}
+  type="article"
+  jsonLd={projectGraph(project, site, lang)}
+>
   <article>
     {/* Portada a pantalla completa */}
     <header class="relative h-svh w-full overflow-hidden bg-canopy">
@@ -54,6 +66,16 @@ const credits = [
       <div>
         <h2 class="font-headline text-2xl uppercase tracking-wide text-gold">{t.project.description}</h2>
         <p class="mt-5 max-w-2xl text-lg leading-relaxed text-linen/80">{project.description}</p>
+        {
+          service && (
+            <a
+              href={servicePath(service.slug, lang)}
+              class="mt-8 inline-flex items-center gap-2 font-headline text-lg uppercase tracking-wide text-linen/70 transition-colors hover:text-gold"
+            >
+              {t.project.service(service.title)} <ArrowRight class="h-4 w-4" />
+            </a>
+          )
+        }
       </div>
       <div>
         <h2 class="font-headline text-2xl uppercase tracking-wide text-gold">{t.project.credits}</h2>

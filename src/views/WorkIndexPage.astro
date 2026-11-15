@@ -7,12 +7,14 @@ import { projectPath, toLang } from '@/i18n/routes';
 import { useTranslations } from '@/i18n/ui';
 import { getProjects } from '@/lib/content';
 import { getFilters } from '@/lib/projects';
+import { projectListGraph } from '@/lib/seo';
 import { isVideoFile } from '@/lib/utils';
 
 const lang = toLang(Astro.currentLocale);
 const t = useTranslations(lang);
 const projects = getProjects(lang);
 const filters = getFilters(lang);
+const site = Astro.site ?? new URL(Astro.url.origin);
 
 // A cada proyecto se le anotan los filtros a los que pertenece; el script solo muestra u oculta.
 const items = projects.map((project) => ({
@@ -21,7 +23,7 @@ const items = projects.map((project) => ({
 }));
 ---
 
-<BaseLayout title={t.work.title} description={t.work.description}>
+<BaseLayout title={t.work.metaTitle} description={t.work.description} jsonLd={projectListGraph(site, lang)}>
   <PageIntro eyebrow={t.work.eyebrow} title={t.work.title} />
   <section class="px-2.5 pb-24 sm:px-10" id="work-index">
     <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">

@@ -37,7 +37,7 @@ const slides = heroSlides.flatMap((slide) => {
       class="text-6xl font-bold leading-[0.88] text-linen sm:text-8xl lg:text-[10rem]"
     />
     <Reveal delay={300}>
-      <p class="mt-8 text-sm text-linen/60 sm:text-base">{t.home.subheading}</p>
+      <p class="mt-8 text-sm text-linen/60 sm:text-base">{t.home.subheading(author.name)}</p>
     </Reveal>
   </section>
 
@@ -77,7 +77,7 @@ const slides = heroSlides.flatMap((slide) => {
       <Parallax>
         <img
           src={author.imageUrl}
-          alt={author.name}
+          alt={t.about.portraitAlt(author.name)}
           sizes="(max-width: 1024px) 100vw, 50vw"
           loading="lazy"
           decoding="async"

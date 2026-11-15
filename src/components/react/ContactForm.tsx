@@ -39,6 +39,13 @@ export default function ContactForm({ lang }: { lang: Lang }) {
     if (project) setMessage((m) => m || t.fromProject(project.title));
   }, [lang, t]);
 
+  // Llegar desde la página de un servicio (?servicio=retrato-y-photobook) lo deja ya marcado.
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get('servicio');
+    const service = getServices(lang).find((s) => s.slug === slug);
+    if (service) setTypes((current) => (current.includes(service.title) ? current : [...current, service.title]));
+  }, [lang]);
+
   const canContinue = [types.length > 0, true, budget !== '', name !== '' && email !== ''][step];
 
   const toggleType = (type: string) =>

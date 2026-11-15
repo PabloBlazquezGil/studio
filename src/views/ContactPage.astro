@@ -6,12 +6,14 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { toLang } from '@/i18n/routes';
 import { useTranslations } from '@/i18n/ui';
 import { contactEmail, socialLinks } from '@/lib/data';
+import { pageGraph } from '@/lib/seo';
 
 const lang = toLang(Astro.currentLocale);
 const t = useTranslations(lang);
+const site = Astro.site ?? new URL(Astro.url.origin);
 ---
 
-<BaseLayout title={t.contact.title} description={t.contact.description}>
+<BaseLayout title={t.contact.metaTitle} description={t.contact.description} jsonLd={pageGraph('ContactPage', 'contact', site, lang)}>
   <PageIntro eyebrow={t.contact.title} title={t.contact.heading} />
 
   <section class="grid gap-16 px-5 pb-24 sm:px-10 lg:grid-cols-[2fr_3fr] lg:gap-24">

@@ -223,35 +223,146 @@ export const author: Author = {
   imageUrl: `${WP}/2026/02/1710610037469-scaled.jpg`,
 };
 
+/**
+ * Servicios. Cada uno tiene su propia página en /servicios/<slug> pensada para aparecer en Google
+ * cuando alguien busca ese tipo de trabajo. `projectSlugs` decide qué trabajos se enseñan como ejemplo.
+ */
 export const services: Service[] = [
   {
+    slug: 'fotografia-deportiva',
     title: 'Fotografía deportiva',
     description:
       'Surf, tenis y deportes de acción. Me muevo con la acción para capturar la intensidad, el gesto y la luz de cada momento.',
+    seoTitle: 'Fotógrafo deportivo y de surf en Galicia',
+    seoDescription:
+      'Fotografía deportiva en Galicia: surf, tenis y deportes de acción. Fotos con intensidad y buena luz para deportistas, clubes y marcas.',
+    headline: 'Fotografía deportiva',
+    intro: [
+      'En el deporte todo pasa en una fracción de segundo: el giro en la ola, el golpe en la red, la cara justo antes de llegar. Mi trabajo es estar en el sitio adecuado, con la luz a favor, para que ese instante quede bien contado.',
+      'He fotografiado surf en playas como Furnas, La Lanzada o Malpica y competición de tenis en pista. Me adapto al ritmo de cada disciplina y a lo que necesites hacer con las fotos después: redes, web, prensa o un recuerdo para el deportista.',
+    ],
+    includes: [
+      'Sesiones de surf y deportes al aire libre',
+      'Cobertura de partidos, torneos y entrenamientos',
+      'Retratos de deportistas y equipos',
+      'Selección y edición de color de las mejores fotos',
+      'Entrega en alta resolución y en formatos para redes',
+    ],
+    idealFor: ['Surfistas y deportistas', 'Clubes y escuelas', 'Marcas deportivas', 'Organizadores de eventos'],
+    projectSlugs: ['surf-playa-de-furnas', 'tenis-en-freixo', 'surf-la-lanzada', 'surf-en-malpica'],
   },
   {
+    slug: 'retrato-y-photobook',
     title: 'Retrato y photobook',
     description:
       'Sesiones para actores, actrices y profesionales que necesitan un book con personalidad, cuidando la luz y la dirección en cada toma.',
+    seoTitle: 'Fotógrafo de retrato y photobook en Galicia',
+    seoDescription:
+      'Retrato y photobook en Galicia para actores, actrices y profesionales. Luz cuidada y dirección en cada toma para un book con personalidad.',
+    headline: 'Retrato y photobook',
+    intro: [
+      'Un buen book no es una colección de fotos bonitas: es lo que ve un director de casting o un cliente antes de conocerte. Por eso cada sesión empieza hablando de qué quieres transmitir y para quién son las fotos.',
+      'Durante la sesión te guío con la pose, la expresión y la luz para que no tengas que pensar en la cámara. Probamos estilos distintos para que salgas con un book variado y que se parezca a ti.',
+    ],
+    includes: [
+      'Preparación de la sesión: estilo, vestuario y localización',
+      'Dirección durante la sesión',
+      'Varios estilos y looks en una misma sesión',
+      'Retoque y edición de color de las fotos elegidas',
+      'Entrega lista para agencias, castings y redes',
+    ],
+    idealFor: ['Actores y actrices', 'Modelos', 'Profesionales y emprendedores', 'Artistas y músicos'],
+    projectSlugs: ['photobook-helenajes', 'photobook-actriz'],
   },
   {
+    slug: 'eventos-y-divulgacion',
     title: 'Eventos y divulgación',
     description:
       'Cobertura en foto y vídeo de congresos, jornadas y eventos científicos o corporativos, con piezas listas para comunicar.',
+    seoTitle: 'Fotografía y vídeo de eventos en Galicia',
+    seoDescription:
+      'Foto y vídeo de congresos, jornadas y eventos científicos o corporativos en Galicia. Tráileres, resúmenes y piezas listas para comunicar.',
+    headline: 'Eventos y divulgación',
+    intro: [
+      'Un evento dura unas horas, pero lo que se cuenta de él puede seguir trabajando para ti durante meses. Cubro congresos, jornadas y actos institucionales pensando desde el principio en cómo se van a usar las imágenes.',
+      'He trabajado con el Centro de Astrobiología (CAB, CSIC-INTA) en el tráiler del congreso PhDays y en el vídeo del Día Internacional de la Mujer y la Niña en la Ciencia. Sé moverme en un evento sin molestar y sacar las historias que hay detrás de cada ponencia.',
+    ],
+    includes: [
+      'Fotografía del evento, ponentes y asistentes',
+      'Tráileres y vídeos resumen',
+      'Entrevistas y piezas de divulgación',
+      'Clips cortos para redes durante o después del evento',
+      'Entrega organizada para prensa, web y redes',
+    ],
+    idealFor: ['Centros de investigación', 'Universidades', 'Empresas e instituciones', 'Organizadores de congresos'],
+    projectSlugs: ['phdays', 'dia-de-la-mujer-y-la-nina-en-la-ciencia'],
   },
   {
+    slug: 'video-y-cortometraje',
     title: 'Vídeo y cortometraje',
-    description:
-      'Dirección de fotografía, cámara y montaje para piezas narrativas, tráileres y vídeo de marca.',
+    description: 'Dirección de fotografía, cámara y montaje para piezas narrativas, tráileres y vídeo de marca.',
+    seoTitle: 'Videógrafo y director de fotografía en Galicia',
+    seoDescription:
+      'Videógrafo en Galicia: dirección de fotografía, cámara y montaje para cortometrajes, tráileres y vídeo de marca, con mirada de cine.',
+    headline: 'Vídeo y cortometraje',
+    intro: [
+      'Me gusta contar historias con la cámara. Trabajo como director de fotografía, operador de cámara y montador, por separado o en el mismo proyecto, para piezas narrativas, tráileres y vídeo de marca.',
+      'En el festival Fervenza 48H rodamos y montamos un cortometraje completo en menos de 48 horas, en el que fui director de fotografía, cámara y editor. Esa forma de trabajar, rápida pero cuidando cada plano, es la que llevo a cada encargo.',
+    ],
+    includes: [
+      'Dirección de fotografía e iluminación',
+      'Operador de cámara',
+      'Montaje y etalonaje',
+      'Tráileres y vídeos promocionales',
+      'Vídeo corporativo y de marca',
+    ],
+    idealFor: ['Productoras y cortometrajistas', 'Marcas y empresas', 'Festivales y proyectos culturales', 'Instituciones'],
+    projectSlugs: ['fervenza-48h', 'phdays', 'dia-de-la-mujer-y-la-nina-en-la-ciencia'],
   },
   {
+    slug: 'reels-para-redes-sociales',
     title: 'Reels para redes sociales',
     description:
       'Piezas verticales con enfoque cinematográfico para marcas y negocios que quieren destacar en Instagram y TikTok.',
+    seoTitle: 'Reels para redes sociales en Galicia',
+    seoDescription:
+      'Reels y vídeo vertical para marcas y negocios en Galicia, con enfoque de cine. Piezas para Instagram y TikTok que enseñan tu trabajo.',
+    headline: 'Reels para redes sociales',
+    intro: [
+      'En redes tienes un par de segundos para que alguien deje de deslizar. Grabo y monto reels verticales con mirada de cine para que tu marca se vea tan cuidada como tu trabajo.',
+      'Para Adria Floristería hice dos reels sobre la preparación de bodas en Casa Beatnik y el Pazo San Lorenzo, enseñando el detalle del estilismo floral y el montaje de los espacios. Cada pieza se piensa en formato vertical desde la grabación, no se recorta después.',
+    ],
+    includes: [
+      'Idea y guion de cada pieza',
+      'Grabación en formato vertical 9:16',
+      'Montaje con ritmo para redes',
+      'Música, textos y subtítulos',
+      'Entrega lista para Instagram, TikTok y YouTube Shorts',
+    ],
+    idealFor: ['Comercios y negocios locales', 'Bodas y eventos', 'Hostelería y turismo', 'Marcas personales'],
+    projectSlugs: ['adria-floristeria'],
   },
   {
+    slug: 'postproduccion',
     title: 'Postproducción',
     description: 'Edición, etalonaje y entrega en los formatos que necesites, lista para publicar.',
+    seoTitle: 'Edición y postproducción de foto y vídeo',
+    seoDescription:
+      'Edición de fotos, montaje de vídeo y etalonaje, también de material grabado por otros. Entrega lista para web, redes o pantalla grande.',
+    headline: 'Postproducción',
+    intro: [
+      'La mitad de una buena imagen se hace después de disparar. Me encargo de la edición fotográfica, el montaje y el etalonaje para que todas las piezas de un proyecto tengan el mismo color y la misma intención.',
+      'Me ocupo de la postproducción de lo que grabo yo y también de fotos y vídeos que ya tengas, grabados por ti o por otro equipo. Lo entrego en el formato que necesites para web, redes o proyección.',
+    ],
+    includes: [
+      'Edición y retoque de fotos, también de material ajeno',
+      'Edición y montaje de vídeo',
+      'Etalonaje y corrección de color',
+      'Sonido, música y subtítulos',
+      'Exportación para web, redes y proyección',
+    ],
+    idealFor: ['Marcas y empresas', 'Productoras', 'Creadores de contenido', 'Fotógrafos y videógrafos'],
+    projectSlugs: ['fervenza-48h', 'surf-playa-de-furnas', 'adria-floristeria', 'photobook-helenajes'],
   },
 ];
 
