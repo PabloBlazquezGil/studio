@@ -118,6 +118,20 @@ const credits = [
       )
     }
 
+    {/* Camino directo al contacto desde cada proyecto */}
+    <section class="border-t border-linen/10 px-5 py-20 text-center sm:px-10 sm:py-28">
+      <p class="text-sm font-medium text-gold">¿Te gusta lo que ves?</p>
+      <h2 class="mx-auto mt-3 max-w-3xl font-headline text-4xl font-bold uppercase leading-[0.95] text-linen sm:text-6xl">
+        Hagamos algo así para ti
+      </h2>
+      <a
+        href={`/contacto?proyecto=${project.slug}`}
+        class="mt-8 inline-flex items-center gap-2 bg-gold px-6 py-3 font-headline text-lg uppercase tracking-wide text-canopy transition-colors hover:bg-linen"
+      >
+        Pide presupuesto <ArrowRight class="h-4 w-4" />
+      </a>
+    </section>
+
     {/* Más proyectos */}
     <section class="border-t border-linen/10 px-2.5 py-20 sm:px-10 sm:py-28">
       <div class="mb-8 flex items-end justify-between gap-4 px-2.5 sm:px-0">
