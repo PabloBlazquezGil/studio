@@ -27,7 +27,7 @@ Igual que cualquier proyecto Astro estático: en hPanel, aplicación Node.js des
 | Variable de entorno | `SITE_URL` = dominio final, por ejemplo `https://tudominio.com` |
 
 `SITE_URL` la usan `sitemap.xml`, `robots.txt`, las URL canónicas y la imagen para redes sociales. Si falta, apuntan a `localhost`.
-`public/.htaccess` hace que Hostinger muestre `404.html` en las páginas que no existen.
+`public/.htaccess` hace que Hostinger muestre `404.html` en las páginas que no existen, comprime HTML/CSS/JS y fija la caché (un año para `/_astro/`, que lleva hash en el nombre) y cabeceras de seguridad. `vercel.json` hace lo mismo en Vercel.
 
 ## Estructura
 

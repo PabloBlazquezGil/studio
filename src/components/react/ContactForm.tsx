@@ -134,7 +134,7 @@ export default function ContactForm({ lang }: { lang: Lang }) {
         {steps.map((label, index) => (
           <li key={label} aria-current={index === step ? 'step' : undefined}>
             <span className={cn('block h-0.5 transition-colors duration-500', index <= step ? 'bg-gold' : 'bg-linen/15')} />
-            <span className={cn('mt-2 hidden text-xs sm:block', index === step ? 'text-linen' : 'text-linen/40')}>
+            <span className={cn('mt-2 hidden text-xs sm:block', index === step ? 'text-linen' : 'text-linen/60')}>
               {String(index + 1).padStart(2, '0')} {label}
             </span>
           </li>
