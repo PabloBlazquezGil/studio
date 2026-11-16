@@ -1,0 +1,39 @@
+name: Optimizar medios
+
+# Genera fotos AVIF y pósters de vídeo a partir de los originales de archivos.thundershoot.com,
+# solo cuando no hay pérdida visible (ver scripts/media/optimize.py), y los sube a la rama.
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths:
+      - 'scripts/media/**'
+      - '.github/workflows/media.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dependencias
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+          pip install 'pillow==12.*' 'numpy==2.*' 'scipy==1.*' 'ssimulacra2==0.3.0'
+          python -c "from PIL import features; assert features.check('avif'), 'Pillow sin AVIF'"
+      - name: Optimizar
+        run: python scripts/media/optimize.py
+      - name: Subir resultados a la rama
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898299+github-actions[bot]@users.noreply.github.com'
+          git add public/media src/data/media.json docs/medios-optimizados.md docs/medios-optimizados.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Medios optimizados: AVIF sin pérdida visible y pósters de vídeo'
+          git push
