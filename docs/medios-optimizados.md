@@ -14,11 +14,11 @@ la web lo sigue sirviendo a los navegadores sin AVIF.
 | --- | --- | --- | --- |
 | `PBG01270-scaled.jpg` | 1600×2400, 446 KB | descartado (sin pérdida visible solo ahorra un 6 %) | — |
 | `PBG01148-scaled.jpg` | 1600×2400, 325 KB | descartado (sin pérdida visible solo ahorra un 1 %) | — |
-| `PBG01125-scaled.jpg` | 1600×2400, 301 KB | descartado (sin pérdida visible solo ahorra un -12 %) | — |
+| `PBG01125-scaled.jpg` | 1600×2400, 301 KB | descartado (sin pérdida visible pesa un 12 % más que el JPG) | — |
 | `PBG01051-scaled.jpg` | 1600×2400, 280 KB | descartado (ninguna calidad llega a 90) | — |
 | `PBG01031-scaled.jpg` | 1600×2400, 241 KB | descartado (sin pérdida visible solo ahorra un 10 %) | — |
-| `PBG00922-scaled.jpg` | 1487×2560, 405 KB | descartado (sin pérdida visible solo ahorra un -49 %) | — |
-| `1710610037469-scaled.jpg` | 1600×2400, 498 KB | descartado (sin pérdida visible solo ahorra un -38 %) | — |
+| `PBG00922-scaled.jpg` | 1487×2560, 405 KB | descartado (sin pérdida visible pesa un 49 % más que el JPG) | — |
+| `1710610037469-scaled.jpg` | 1600×2400, 498 KB | descartado (sin pérdida visible pesa un 38 % más que el JPG) | — |
 
 ## Pósters (un fotograma por clip del carrusel)
 

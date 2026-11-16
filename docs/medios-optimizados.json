@@ -76,7 +76,7 @@
       },
       "full": {
         "ok": false,
-        "reason": "sin p\u00e9rdida visible solo ahorra un -12 %",
+        "reason": "sin p\u00e9rdida visible solo pesa un 12 % más",
         "tried": [
           {
             "q": 80,
@@ -211,7 +211,7 @@
       },
       "full": {
         "ok": false,
-        "reason": "sin p\u00e9rdida visible solo ahorra un -49 %",
+        "reason": "sin p\u00e9rdida visible solo pesa un 49 % más",
         "tried": [
           {
             "q": 80,
@@ -266,7 +266,7 @@
       },
       "full": {
         "ok": false,
-        "reason": "sin p\u00e9rdida visible solo ahorra un -38 %",
+        "reason": "sin p\u00e9rdida visible solo pesa un 38 % más",
         "tried": [
           {
             "q": 80,

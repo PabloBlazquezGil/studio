@@ -85,7 +85,9 @@ def best_avif(ref: Image.Image, icc: bytes | None, max_bytes: int | None, tmp: P
         if score >= UMBRAL:
             if max_bytes is not None and len(data) > max_bytes * (1 - AHORRO_MINIMO):
                 ahorro = 100 * (1 - len(data) / max_bytes)
-                return {'ok': False, 'reason': f'sin pérdida visible solo ahorra un {ahorro:.0f} %', 'tried': tried}
+                reason = (f'sin pérdida visible solo ahorra un {ahorro:.0f} %' if ahorro > 0
+                          else f'sin pérdida visible pesa un {-ahorro:.0f} % más que el JPG')
+                return {'ok': False, 'reason': reason, 'tried': tried}
             return {'ok': True, 'data': data, **tried[-1], 'tried': tried}
     return {'ok': False, 'reason': f'ninguna calidad llega a {UMBRAL:.0f}', 'tried': tried}
 
