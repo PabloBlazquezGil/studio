@@ -40,7 +40,7 @@ MANIFEST = ROOT / 'src' / 'data' / 'media.json'
 REPORT = ROOT / 'docs' / 'medios-optimizados.md'
 
 UMBRAL = 90.0  # SSIMULACRA2: 90 o más = no se distingue del original a distancia normal de visión
-CALIDADES = [80, 84, 88, 90, 92, 94, 96, 98]
+CALIDADES = [80, 84, 88, 90, 92, 94, 96, 98, 100]
 ANCHO_MEDIO = 2048
 AHORRO_MINIMO = 0.20  # una foto solo pasa a AVIF si pesa al menos un 20 % menos que su JPG
 
