@@ -36,4 +36,5 @@ jobs:
           git add public/media src/data/media.json docs/medios-optimizados.md docs/medios-optimizados.json
           git diff --cached --quiet && exit 0
           git commit -m 'Medios optimizados: AVIF sin pérdida visible y pósters de vídeo'
-          git push
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin HEAD:"$GITHUB_REF_NAME"
