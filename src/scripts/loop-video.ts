@@ -3,7 +3,8 @@
  * Solo descargan el archivo cuando están cerca de la pantalla y respetan el `#t=` de la URL
  * como punto de inicio de cada vuelta.
  *
- * Atributos: data-src (URL), data-eager (carga al montarse), data-playing="true" (reproduce siempre).
+ * Atributos: data-src (URL), data-poster (fotograma inicial, se carga junto al vídeo),
+ * data-eager (carga al montarse), data-playing="true" (reproduce siempre).
  * El carrusel de la home controla sus clips desde fuera con `controlLoopVideo`.
  */
 type State = { load: boolean; inView: boolean; controlled: boolean; play: boolean };
@@ -19,6 +20,8 @@ function apply(video: HTMLVideoElement) {
   const state = states.get(video)!;
   const src = video.dataset.src ?? '';
   if (state.load && !video.getAttribute('src')) {
+    // El póster se pide a la vez que el vídeo, no al cargar la página: se ve mientras llega el clip.
+    if (video.dataset.poster && !video.poster) video.poster = video.dataset.poster;
     video.preload = 'auto';
     video.src = src;
   }

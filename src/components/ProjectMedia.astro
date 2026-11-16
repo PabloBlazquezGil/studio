@@ -24,7 +24,8 @@ const { project, sizes, class: className, priority, playing } = Astro.props;
     <video
       data-loop
       data-src={project.cover}
-      poster={posterFor(project.cover)}
+      poster={priority ? posterFor(project.cover) : undefined}
+      data-poster={posterFor(project.cover)}
       data-eager={priority ? '' : undefined}
       data-playing={playing ? 'true' : undefined}
       class={cn('h-full w-full object-cover', className)}

@@ -39,7 +39,8 @@ const t = useTranslations(lang);
             data-loop
             data-controlled
             data-src={slide.videoUrl}
-            poster={posterFor(slide.videoUrl)}
+            poster={index === 0 ? posterFor(slide.videoUrl) : undefined}
+            data-poster={posterFor(slide.videoUrl)}
             class="h-full w-full object-cover"
             muted
             loop

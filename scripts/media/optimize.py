@@ -4,7 +4,8 @@ pérdida visible.
 
 Para cada foto prueba calidades AVIF de menor a mayor y se queda con la primera que cumple:
   - SSIMULACRA2 >= UMBRAL frente al original (90 = «visualmente sin pérdida»), y
-  - pesa menos que el JPG original (si no, no merece la pena y se descarta).
+  - pesa al menos un 20 % menos que el JPG original. Si el ahorro es menor, no compensa cambiar
+    la foto que ya se ve bien y se queda con el JPG.
 Si ninguna calidad lo cumple, la foto se queda solo con su JPG. El JPG original nunca se toca:
 la web lo sigue usando como respaldo (<picture>).
 
@@ -41,6 +42,7 @@ REPORT = ROOT / 'docs' / 'medios-optimizados.md'
 UMBRAL = 90.0  # SSIMULACRA2: 90 o más = no se distingue del original a distancia normal de visión
 CALIDADES = [80, 84, 88, 90, 92, 94, 96, 98]
 ANCHO_MEDIO = 2048
+AHORRO_MINIMO = 0.20  # una foto solo pasa a AVIF si pesa al menos un 20 % menos que su JPG
 
 
 def download(url: str, dest: Path) -> Path:
@@ -81,8 +83,9 @@ def best_avif(ref: Image.Image, icc: bytes | None, max_bytes: int | None, tmp: P
         tried.append({'q': q, 'ssimulacra2': round(score, 2), 'psnr': round(p, 2), 'bytes': len(data)})
         print(f'    q={q}: SSIMULACRA2={score:.2f} PSNR={p:.2f} dB {len(data) / 1024:.0f} KB', flush=True)
         if score >= UMBRAL:
-            if max_bytes is not None and len(data) >= max_bytes:
-                return {'ok': False, 'reason': 'no pesa menos que el JPG', 'tried': tried}
+            if max_bytes is not None and len(data) > max_bytes * (1 - AHORRO_MINIMO):
+                ahorro = 100 * (1 - len(data) / max_bytes)
+                return {'ok': False, 'reason': f'sin pérdida visible solo ahorra un {ahorro:.0f} %', 'tried': tried}
             return {'ok': True, 'data': data, **tried[-1], 'tried': tried}
     return {'ok': False, 'reason': f'ninguna calidad llega a {UMBRAL:.0f}', 'tried': tried}
 
@@ -157,8 +160,9 @@ def write_report(photos: dict, posters: dict) -> None:
         'Generado por `scripts/media/optimize.py` (GitHub Actions, workflow «Optimizar medios»).',
         f'Regla: se usa la calidad AVIF más baja con **SSIMULACRA2 ≥ {UMBRAL:.0f}** frente al original',
         '(a partir de 90 no se distingue del original a distancia normal de visión; 100 = idéntico),',
-        'en 4:4:4 (sin submuestreo de color) y conservando el perfil ICC. Si no pesa menos que el JPG,',
-        'o ninguna calidad llega al umbral, la foto se queda con el JPG. El JPG original no se toca y',
+        'en 4:4:4 (sin submuestreo de color) y conservando el perfil ICC. Si a esa calidad no pesa al',
+        f'menos un {AHORRO_MINIMO:.0%} menos que el JPG, o ninguna calidad llega al umbral, la foto se queda',
+        'con el JPG: no compensa cambiar una foto que ya se ve bien. El JPG original no se toca y',
         'la web lo sigue sirviendo a los navegadores sin AVIF.',
         '',
         '## Fotos',
@@ -191,6 +195,9 @@ def write_report(photos: dict, posters: dict) -> None:
 def main() -> int:
     photos: dict = {}
     posters: dict = {}
+    # Se regenera todo en cada ejecución: no quedan archivos de reglas anteriores.
+    for old in OUT_PUBLIC.glob('*/*.avif'):
+        old.unlink()
     with tempfile.TemporaryDirectory() as d:
         tmp = Path(d)
         for path in SOURCES['photos']:
