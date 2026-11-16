@@ -130,6 +130,14 @@ def process_photo(path: str, tmp: Path) -> dict:
 def process_video(video: dict, tmp: Path) -> dict:
     path, t = video['path'], video['time']
     url = SOURCES['base'] + path
+    if t == 'middle':
+        # Los primeros segundos de algunos vídeos son una portada que no queremos de póster:
+        # se usa un fotograma de la mitad del vídeo.
+        dur = subprocess.run(
+            ['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', url],
+            check=True, capture_output=True, text=True,
+        ).stdout.strip()
+        t = round(float(dur) / 2, 2)
     frame = tmp / 'frame.png'
     frame.unlink(missing_ok=True)
     # -ss después de -i: búsqueda exacta, el fotograma que se ve al empezar el vídeo
