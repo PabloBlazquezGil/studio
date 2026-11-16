@@ -24,7 +24,7 @@ la web lo sigue sirviendo a los navegadores sin AVIF.
 
 | Vídeo | Fotograma | Póster AVIF |
 | --- | --- | --- |
-| `Dia-de-la-Mujer-y-la-Nina-en-la-Ciencia-11_02_2024-Centro-de-Astrobiologia-CAB-CSIC-INTA.mp4` | 1920×1080 | 62 KB · q80 · SSIMULACRA2 92.06 · PSNR 50.49 dB |
+| `Dia-de-la-Mujer-y-la-Nina-en-la-Ciencia-11_02_2024-Centro-de-Astrobiologia-CAB-CSIC-INTA.mp4` |  | descartado (ninguna calidad llega a 90) |
 | `SHORT-FILM-CASA-BEATNIK-1080.mp4` | 1080×1920 | 433 KB · q88 · SSIMULACRA2 90.01 · PSNR 43.3 dB |
-| `Trailer-PhDays2023-Centro-de-Astrobiologia.mp4` |  | descartado (ninguna calidad llega a 90) |
+| `Trailer-PhDays2023-Centro-de-Astrobiologia.mp4` | 1920×1080 | 397 KB · q98 · SSIMULACRA2 90.02 · PSNR 48.74 dB |
 | `Short-Film-San-Lorenzo-1.mp4` | 1080×1920 | 558 KB · q92 · SSIMULACRA2 90.01 · PSNR 45.37 dB |
