@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { avifSrcset } from '@/lib/media';
+
+/**
+ * <img> con versión AVIF cuando existe una sin pérdida visible (src/data/media.json).
+ * Los navegadores sin AVIF, y las fotos sin versión optimizada, usan el original.
+ */
+type Props = HTMLAttributes<'img'> & { src: string };
+
+const { src, sizes, ...rest } = Astro.props;
+const srcset = avifSrcset(src);
+---
+
+{
+  srcset ? (
+    <picture>
+      <source type="image/avif" srcset={srcset} sizes={sizes} />
+      <img src={src} sizes={sizes} {...rest} />
+    </picture>
+  ) : (
+    <img src={src} sizes={sizes} {...rest} />
+  )
+}

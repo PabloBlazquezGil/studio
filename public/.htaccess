@@ -1,3 +1,6 @@
+# Por si el servidor no conoce el tipo de las fotos AVIF de /media.
+AddType image/avif .avif
+
 # Hostinger (Apache/LiteSpeed)
 
 # Página 404 propia
@@ -14,8 +17,8 @@ ErrorDocument 404 /404.html
   <FilesMatch "\.(js|css|woff2)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
-  # Iconos e imagen social: una semana.
-  <FilesMatch "\.(ico|svg|png|jpg)$">
+  # Iconos, imagen social, fotos AVIF y pósters de /media: una semana.
+  <FilesMatch "\.(ico|svg|png|jpg|avif)$">
     Header set Cache-Control "public, max-age=604800, stale-while-revalidate=86400"
   </FilesMatch>
   # Las páginas se revalidan siempre, para que un cambio se vea al momento.

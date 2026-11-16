@@ -10,6 +10,7 @@ import { useTranslations } from '@/i18n/ui';
 import { getDisciplineLabels, getProject, getRelatedProjects, getSocialImage, isVideoProject } from '@/lib/projects';
 import { coverAlt, imageAlt, projectDescription, projectGraph, serviceForProject } from '@/lib/seo';
 import { cn, getStartTime, getYouTubeId } from '@/lib/utils';
+import { avifSrcset, posterFor } from '@/lib/media';
 
 interface Props {
   slug: string;
@@ -21,7 +22,11 @@ const project = getProject(Astro.props.slug, lang)!;
 
 const videos = project.media.filter((m) => m.type === 'video');
 const imageItems = project.media.filter((m) => m.type === 'image');
-const images = imageItems.map((m, i) => ({ url: m.url, alt: imageAlt(project, m, i, imageItems.length, lang) }));
+const images = imageItems.map((m, i) => ({
+  url: m.url,
+  alt: imageAlt(project, m, i, imageItems.length, lang),
+  avif: avifSrcset(m.url),
+}));
 const service = serviceForProject(project, lang);
 const site = Astro.site ?? new URL(Astro.url.origin);
 const socialImage = getSocialImage(project);
@@ -116,6 +121,7 @@ const credits = [
                     ) : (
                       <video
                         src={getStartTime(video.url) ? video.url : `${video.url}#t=0.1`}
+                        poster={posterFor(video.url)}
                         class="absolute inset-0 h-full w-full object-contain"
                         controls
                         playsinline

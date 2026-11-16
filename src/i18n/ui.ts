@@ -10,7 +10,7 @@ const es = {
     title: 'Pablo Blázquez Gil | Fotógrafo y videógrafo en Galicia',
     description:
       'Fotógrafo y videógrafo en Galicia. Fotografía deportiva y de surf, retrato y photobook, eventos, cortometrajes y reels para redes sociales con mirada de cine.',
-    ogImageAlt: 'Surf en Malpica, por Pablo Blázquez Gil',
+    ogImageAlt: 'Pablo Blázquez Gil, fotografía y vídeo en Galicia: surf en Malpica, flores de boda y una conferencia científica',
     skipToContent: 'Saltar al contenido',
   },
   nav: {
@@ -251,7 +251,7 @@ const en: UI = {
     title: 'Pablo Blázquez Gil | Photographer & videographer in Galicia, Spain',
     description:
       'Photographer and videographer based in Galicia, Spain. Surf and sports photography, portraits, events, short films and social media reels with a cinematic eye.',
-    ogImageAlt: 'Surfing in Malpica, by Pablo Blázquez Gil',
+    ogImageAlt: 'Pablo Blázquez Gil, photography and video in Galicia: surfing in Malpica, wedding flowers and a science talk',
     skipToContent: 'Skip to content',
   },
   nav: {

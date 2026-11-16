@@ -30,7 +30,7 @@ function splitHeadings() {
       duration: 0.9,
       ease: 'power4.out',
       stagger: 0.025,
-      delay: immediate ? 0.3 : 0,
+      delay: immediate ? 0.15 : 0,
       scrollTrigger: immediate ? undefined : { trigger: node, start: 'top 85%' },
     });
   });

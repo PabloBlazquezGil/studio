@@ -46,7 +46,7 @@ export function getRelatedProjects(project: Project, lang: Lang, count = 3): Pro
 
 /**
  * Imagen para compartir en redes (WhatsApp, Facebook, LinkedIn…). Esas redes no muestran AVIF,
- * así que si el proyecto solo tiene fotos AVIF se devuelve undefined y se usa la imagen general /og.jpg.
+ * así que si el proyecto solo tiene fotos AVIF se devuelve undefined y se usa la imagen general /og-portfolio.jpg.
  */
 export function getSocialImage(project: Project): string | undefined {
   const youtubeId = project.media.map((m) => getYouTubeId(m.url)).find(Boolean);

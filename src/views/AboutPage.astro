@@ -8,6 +8,7 @@ import { ArrowRight } from '@lucide/astro';
 import { servicePath, toLang } from '@/i18n/routes';
 import { pageGraph } from '@/lib/seo';
 import { useTranslations } from '@/i18n/ui';
+import Picture from '@/components/Picture.astro';
 import { getAuthor, getServices } from '@/lib/content';
 
 const lang = toLang(Astro.currentLocale);
@@ -26,7 +27,7 @@ const site = Astro.site ?? new URL(Astro.url.origin);
 
   <section class="grid gap-10 px-5 pb-24 sm:px-10 lg:grid-cols-2 lg:gap-20">
     <Reveal class="relative aspect-4/5 overflow-hidden">
-      <img
+      <Picture
         src={author.imageUrl}
         alt={t.about.portraitAlt(author.name)}
         sizes="(max-width: 1024px) 100vw, 50vw"
