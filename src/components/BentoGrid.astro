@@ -23,7 +23,7 @@ const { projects } = Astro.props as { projects: Project[] };
       return (
         <Reveal
           delay={(index % 3) * 80}
-          class={cn('aspect-4/5 sm:aspect-square', wide && 'sm:col-span-2 sm:aspect-2/1 lg:aspect-auto')}
+          class={cn('aspect-4/3 sm:aspect-square', wide && 'sm:col-span-2 sm:aspect-2/1 lg:aspect-auto')}
         >
           <ProjectCard
             project={project}

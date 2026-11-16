@@ -8,7 +8,7 @@ import { contactEmail } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 const fieldClass =
-  'w-full border border-linen/15 bg-linen/5 px-4 py-3 text-sm text-linen outline-hidden transition-colors placeholder:text-linen/30 focus:border-gold focus:bg-gold/5';
+  'w-full border border-linen/15 bg-linen/5 px-4 py-3 text-sm text-linen outline-hidden transition-colors placeholder:text-linen/50 focus:border-gold focus:bg-gold/5';
 const labelClass = 'mb-2 block text-xs font-medium text-linen/60';
 
 /**

@@ -4,7 +4,7 @@ import FooterColumn from './FooterColumn.astro';
 import LogoMark from '@/components/brand/LogoMark.astro';
 import LanguageSwitch from './LanguageSwitch.astro';
 import { author, socialLinks } from '@/lib/data';
-import { path, toLang } from '@/i18n/routes';
+import { isProjectPath, isRoute, normalizePath, path, toLang } from '@/i18n/routes';
 import { useTranslations } from '@/i18n/ui';
 
 const lang = toLang(Astro.currentLocale);
@@ -20,10 +20,15 @@ const siteMap = [
 ];
 
 const year = new Date().getFullYear();
+
+// La llamada final sobra donde ya hay una justo encima (proyecto, servicios) o donde ya estás en el formulario.
+const pathname = normalizePath(Astro.url.pathname);
+const showCta = !(isRoute(pathname, 'contact') || isRoute(pathname, 'services') || isProjectPath(pathname));
 ---
 
 <footer class="bg-canopy text-linen">
       {/* Llamada a la acción */}
+      {showCta && (
       <section class="border-t border-linen/10 px-5 py-24 text-center sm:px-10 sm:py-32">
         <p class="text-sm font-medium text-gold">{t.footer.eyebrow}</p>
         <a
@@ -43,6 +48,7 @@ const year = new Date().getFullYear();
           </a>
         </div>
       </section>
+      )}
 
       <div class="border-t border-linen/10 px-5 py-12 sm:px-10">
         <div class="grid grid-cols-2 gap-10 sm:grid-cols-4">
@@ -55,7 +61,7 @@ const year = new Date().getFullYear();
           <FooterColumn title={t.footer.social} links={socialLinks} external />
         </div>
 
-        <div class="mt-12 flex flex-col gap-1 border-t border-linen/10 pt-6 text-xs text-linen/50 sm:flex-row sm:items-center sm:justify-between">
+        <div class="mt-12 flex flex-col gap-1 border-t border-linen/10 pt-6 text-xs text-linen/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {author.name}
           </p>

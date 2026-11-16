@@ -41,8 +41,13 @@ const es = {
   },
   home: {
     heading: ['Luz. Movimiento.', '*Emoción.*'],
-    subheading: (name: string) => `${name} · Fotógrafo y videógrafo en Galicia · Deporte, retrato, eventos y reels`,
+    subheading: (name: string) =>
+      `Soy ${name}. Fotografía y vídeo con mirada de cine en Galicia para deportistas, marcas, actores y eventos.`,
+    seeWork: 'Ver trabajos',
+    quote: 'Pide presupuesto',
     featured: 'Trabajos destacados',
+    servicesEyebrow: 'Servicios',
+    allServices: 'Ver todos los servicios',
     allWork: 'Todos los trabajos',
     postEyebrow: 'Postproducción',
     beforeAfter: ['Antes y *después*'],
@@ -281,8 +286,13 @@ const en: UI = {
   },
   home: {
     heading: ['Light. Motion.', '*Emotion.*'],
-    subheading: (name: string) => `${name} · Photographer & videographer in Galicia · Sports, portraits, events and reels`,
+    subheading: (name: string) =>
+      `I'm ${name}. Cinematic photography and video in Galicia, Spain, for athletes, brands, actors and events.`,
+    seeWork: 'See the work',
+    quote: 'Request a quote',
     featured: 'Featured work',
+    servicesEyebrow: 'Services',
+    allServices: 'See all services',
     allWork: 'All work',
     postEyebrow: 'Post-production',
     beforeAfter: ['Before and *after*'],
