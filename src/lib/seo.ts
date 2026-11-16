@@ -73,7 +73,7 @@ export function siteGraph(site: URL, lang: Lang): Json[] {
       name: `${author.name} · ${t.business}`,
       description: t.businessDescription,
       url: abs(path('home', lang), site),
-      image: new URL('/og.jpg', site).href,
+      image: new URL('/og-portfolio.jpg', site).href,
       logo: new URL('/apple-icon.png', site).href,
       email: contactEmail,
       founder: { '@id': id.person },

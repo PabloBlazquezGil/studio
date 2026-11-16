@@ -6,7 +6,7 @@ Qué hace la web por sí sola y qué conviene revisar de vez en cuando.
 
 - Título y descripción propios en cada idioma (`BaseLayout.astro`, textos en `src/i18n/ui.ts`). Los proyectos usan «Título · Categoría» y su descripción; los servicios, `seoTitle` y `seoDescription` de `src/lib/data.ts` (español) y `src/i18n/content.en.ts` (inglés).
 - `hreflang` entre la versión en español y en inglés de cada página, también en el sitemap.
-- `canonical`, Open Graph y Twitter cards con imagen y texto alternativo. Las redes no muestran AVIF, así que los proyectos que solo tienen fotos AVIF comparten `/og.jpg`.
+- `canonical`, Open Graph y Twitter cards con imagen y texto alternativo. Las redes no muestran AVIF, así que los proyectos que solo tienen fotos AVIF comparten `/og-portfolio.jpg`.
 - Datos estructurados schema.org (`src/lib/seo.ts`): `WebSite`, `Person` y `ProfessionalService` en todas las páginas; `ImageGallery`/`CreativeWork` + `VideoObject` en los proyectos; `Service` en los servicios; migas de pan (`BreadcrumbList`).
 - `sitemap.xml` con todas las páginas y las fotos de cada proyecto (sitemap de imágenes) y `robots.txt`.
 - Textos alternativos generados a partir del proyecto. Para una foto concreta, añade `alt: '...'` a su entrada en `data.ts`.
