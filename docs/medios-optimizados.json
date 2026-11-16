@@ -7,11 +7,8 @@
         "bytes": 456646
       },
       "full": {
-        "ok": true,
-        "q": 88,
-        "ssimulacra2": 90.45,
-        "psnr": 48.27,
-        "bytes": 431023,
+        "ok": false,
+        "reason": "sin p\u00e9rdida visible solo ahorra un 6 %",
         "tried": [
           {
             "q": 80,
@@ -31,10 +28,7 @@
             "psnr": 48.27,
             "bytes": 431023
           }
-        ],
-        "src": "/media/fotos/PBG01270-scaled.avif",
-        "width": 1600,
-        "height": 2400
+        ]
       }
     },
     "/2026/05/PBG01148-scaled.jpg": {
@@ -44,11 +38,8 @@
         "bytes": 332533
       },
       "full": {
-        "ok": true,
-        "q": 90,
-        "ssimulacra2": 90.16,
-        "psnr": 48.4,
-        "bytes": 327892,
+        "ok": false,
+        "reason": "sin p\u00e9rdida visible solo ahorra un 1 %",
         "tried": [
           {
             "q": 80,
@@ -74,10 +65,7 @@
             "psnr": 48.4,
             "bytes": 327892
           }
-        ],
-        "src": "/media/fotos/PBG01148-scaled.avif",
-        "width": 1600,
-        "height": 2400
+        ]
       }
     },
     "/2026/05/PBG01125-scaled.jpg": {
@@ -88,7 +76,7 @@
       },
       "full": {
         "ok": false,
-        "reason": "no pesa menos que el JPG",
+        "reason": "sin p\u00e9rdida visible solo ahorra un -12 %",
         "tried": [
           {
             "q": 80,
@@ -191,11 +179,8 @@
         "bytes": 246311
       },
       "full": {
-        "ok": true,
-        "q": 88,
-        "ssimulacra2": 90.12,
-        "psnr": 51.36,
-        "bytes": 220498,
+        "ok": false,
+        "reason": "sin p\u00e9rdida visible solo ahorra un 10 %",
         "tried": [
           {
             "q": 80,
@@ -215,10 +200,7 @@
             "psnr": 51.36,
             "bytes": 220498
           }
-        ],
-        "src": "/media/fotos/PBG01031-scaled.avif",
-        "width": 1600,
-        "height": 2400
+        ]
       }
     },
     "/2026/05/PBG00922-scaled.jpg": {
@@ -229,7 +211,7 @@
       },
       "full": {
         "ok": false,
-        "reason": "no pesa menos que el JPG",
+        "reason": "sin p\u00e9rdida visible solo ahorra un -49 %",
         "tried": [
           {
             "q": 80,
@@ -284,7 +266,7 @@
       },
       "full": {
         "ok": false,
-        "reason": "no pesa menos que el JPG",
+        "reason": "sin p\u00e9rdida visible solo ahorra un -38 %",
         "tried": [
           {
             "q": 80,

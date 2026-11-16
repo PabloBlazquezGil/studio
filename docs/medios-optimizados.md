@@ -3,21 +3,22 @@
 Generado por `scripts/media/optimize.py` (GitHub Actions, workflow «Optimizar medios»).
 Regla: se usa la calidad AVIF más baja con **SSIMULACRA2 ≥ 90** frente al original
 (a partir de 90 no se distingue del original a distancia normal de visión; 100 = idéntico),
-en 4:4:4 (sin submuestreo de color) y conservando el perfil ICC. Si no pesa menos que el JPG,
-o ninguna calidad llega al umbral, la foto se queda con el JPG. El JPG original no se toca y
+en 4:4:4 (sin submuestreo de color) y conservando el perfil ICC. Si a esa calidad no pesa al
+menos un 20% menos que el JPG, o ninguna calidad llega al umbral, la foto se queda
+con el JPG: no compensa cambiar una foto que ya se ve bien. El JPG original no se toca y
 la web lo sigue sirviendo a los navegadores sin AVIF.
 
 ## Fotos
 
 | Foto | JPG original | AVIF tamaño completo | AVIF 2048 px |
 | --- | --- | --- | --- |
-| `PBG01270-scaled.jpg` | 1600×2400, 446 KB | 421 KB (−6 %) · q88 · SSIMULACRA2 90.45 · PSNR 48.27 dB | — |
-| `PBG01148-scaled.jpg` | 1600×2400, 325 KB | 320 KB (−1 %) · q90 · SSIMULACRA2 90.16 · PSNR 48.4 dB | — |
-| `PBG01125-scaled.jpg` | 1600×2400, 301 KB | descartado (no pesa menos que el JPG) | — |
+| `PBG01270-scaled.jpg` | 1600×2400, 446 KB | descartado (sin pérdida visible solo ahorra un 6 %) | — |
+| `PBG01148-scaled.jpg` | 1600×2400, 325 KB | descartado (sin pérdida visible solo ahorra un 1 %) | — |
+| `PBG01125-scaled.jpg` | 1600×2400, 301 KB | descartado (sin pérdida visible solo ahorra un -12 %) | — |
 | `PBG01051-scaled.jpg` | 1600×2400, 280 KB | descartado (ninguna calidad llega a 90) | — |
-| `PBG01031-scaled.jpg` | 1600×2400, 241 KB | 215 KB (−10 %) · q88 · SSIMULACRA2 90.12 · PSNR 51.36 dB | — |
-| `PBG00922-scaled.jpg` | 1487×2560, 405 KB | descartado (no pesa menos que el JPG) | — |
-| `1710610037469-scaled.jpg` | 1600×2400, 498 KB | descartado (no pesa menos que el JPG) | — |
+| `PBG01031-scaled.jpg` | 1600×2400, 241 KB | descartado (sin pérdida visible solo ahorra un 10 %) | — |
+| `PBG00922-scaled.jpg` | 1487×2560, 405 KB | descartado (sin pérdida visible solo ahorra un -49 %) | — |
+| `1710610037469-scaled.jpg` | 1600×2400, 498 KB | descartado (sin pérdida visible solo ahorra un -38 %) | — |
 
 ## Pósters (un fotograma por clip del carrusel)
 
