@@ -1,0 +1,484 @@
+{
+  "photos": {
+    "/2026/05/PBG01270-scaled.jpg": {
+      "jpg": {
+        "width": 1600,
+        "height": 2400,
+        "bytes": 456646
+      },
+      "full": {
+        "ok": true,
+        "q": 88,
+        "ssimulacra2": 90.45,
+        "psnr": 48.27,
+        "bytes": 431023,
+        "tried": [
+          {
+            "q": 80,
+            "ssimulacra2": 87.77,
+            "psnr": 46.5,
+            "bytes": 345076
+          },
+          {
+            "q": 84,
+            "ssimulacra2": 89.3,
+            "psnr": 47.35,
+            "bytes": 384837
+          },
+          {
+            "q": 88,
+            "ssimulacra2": 90.45,
+            "psnr": 48.27,
+            "bytes": 431023
+          }
+        ],
+        "src": "/media/fotos/PBG01270-scaled.avif",
+        "width": 1600,
+        "height": 2400
+      }
+    },
+    "/2026/05/PBG01148-scaled.jpg": {
+      "jpg": {
+        "width": 1600,
+        "height": 2400,
+        "bytes": 332533
+      },
+      "full": {
+        "ok": true,
+        "q": 90,
+        "ssimulacra2": 90.16,
+        "psnr": 48.4,
+        "bytes": 327892,
+        "tried": [
+          {
+            "q": 80,
+            "ssimulacra2": 86.97,
+            "psnr": 46.92,
+            "bytes": 241360
+          },
+          {
+            "q": 84,
+            "ssimulacra2": 88.58,
+            "psnr": 47.51,
+            "bytes": 273426
+          },
+          {
+            "q": 88,
+            "ssimulacra2": 89.92,
+            "psnr": 48.29,
+            "bytes": 312325
+          },
+          {
+            "q": 90,
+            "ssimulacra2": 90.16,
+            "psnr": 48.4,
+            "bytes": 327892
+          }
+        ],
+        "src": "/media/fotos/PBG01148-scaled.avif",
+        "width": 1600,
+        "height": 2400
+      }
+    },
+    "/2026/05/PBG01125-scaled.jpg": {
+      "jpg": {
+        "width": 1600,
+        "height": 2400,
+        "bytes": 308497
+      },
+      "full": {
+        "ok": false,
+        "reason": "no pesa menos que el JPG",
+        "tried": [
+          {
+            "q": 80,
+            "ssimulacra2": 86.79,
+            "psnr": 46.49,
+            "bytes": 226220
+          },
+          {
+            "q": 84,
+            "ssimulacra2": 88.39,
+            "psnr": 47.12,
+            "bytes": 256602
+          },
+          {
+            "q": 88,
+            "ssimulacra2": 89.75,
+            "psnr": 47.69,
+            "bytes": 295505
+          },
+          {
+            "q": 90,
+            "ssimulacra2": 89.97,
+            "psnr": 47.76,
+            "bytes": 311569
+          },
+          {
+            "q": 92,
+            "ssimulacra2": 90.19,
+            "psnr": 47.9,
+            "bytes": 344828
+          }
+        ]
+      }
+    },
+    "/2026/05/PBG01051-scaled.jpg": {
+      "jpg": {
+        "width": 1600,
+        "height": 2400,
+        "bytes": 286415
+      },
+      "full": {
+        "ok": false,
+        "reason": "ninguna calidad llega a 90",
+        "tried": [
+          {
+            "q": 80,
+            "ssimulacra2": 84.35,
+            "psnr": 47.34,
+            "bytes": 200449
+          },
+          {
+            "q": 84,
+            "ssimulacra2": 86.08,
+            "psnr": 48.03,
+            "bytes": 229926
+          },
+          {
+            "q": 88,
+            "ssimulacra2": 87.23,
+            "psnr": 48.63,
+            "bytes": 262988
+          },
+          {
+            "q": 90,
+            "ssimulacra2": 87.48,
+            "psnr": 48.73,
+            "bytes": 276528
+          },
+          {
+            "q": 92,
+            "ssimulacra2": 87.7,
+            "psnr": 48.88,
+            "bytes": 302813
+          },
+          {
+            "q": 94,
+            "ssimulacra2": 87.91,
+            "psnr": 49.03,
+            "bytes": 318954
+          },
+          {
+            "q": 96,
+            "ssimulacra2": 88.4,
+            "psnr": 49.34,
+            "bytes": 377052
+          },
+          {
+            "q": 98,
+            "ssimulacra2": 88.53,
+            "psnr": 49.42,
+            "bytes": 417580
+          }
+        ]
+      }
+    },
+    "/2026/05/PBG01031-scaled.jpg": {
+      "jpg": {
+        "width": 1600,
+        "height": 2400,
+        "bytes": 246311
+      },
+      "full": {
+        "ok": true,
+        "q": 88,
+        "ssimulacra2": 90.12,
+        "psnr": 51.36,
+        "bytes": 220498,
+        "tried": [
+          {
+            "q": 80,
+            "ssimulacra2": 86.85,
+            "psnr": 49.45,
+            "bytes": 168546
+          },
+          {
+            "q": 84,
+            "ssimulacra2": 88.83,
+            "psnr": 50.47,
+            "bytes": 193485
+          },
+          {
+            "q": 88,
+            "ssimulacra2": 90.12,
+            "psnr": 51.36,
+            "bytes": 220498
+          }
+        ],
+        "src": "/media/fotos/PBG01031-scaled.avif",
+        "width": 1600,
+        "height": 2400
+      }
+    },
+    "/2026/05/PBG00922-scaled.jpg": {
+      "jpg": {
+        "width": 1487,
+        "height": 2560,
+        "bytes": 414380
+      },
+      "full": {
+        "ok": false,
+        "reason": "no pesa menos que el JPG",
+        "tried": [
+          {
+            "q": 80,
+            "ssimulacra2": 86.53,
+            "psnr": 46.35,
+            "bytes": 321857
+          },
+          {
+            "q": 84,
+            "ssimulacra2": 88.16,
+            "psnr": 47.24,
+            "bytes": 355439
+          },
+          {
+            "q": 88,
+            "ssimulacra2": 89.23,
+            "psnr": 48.04,
+            "bytes": 398054
+          },
+          {
+            "q": 90,
+            "ssimulacra2": 89.45,
+            "psnr": 48.17,
+            "bytes": 417202
+          },
+          {
+            "q": 92,
+            "ssimulacra2": 89.7,
+            "psnr": 48.42,
+            "bytes": 464901
+          },
+          {
+            "q": 94,
+            "ssimulacra2": 89.84,
+            "psnr": 48.57,
+            "bytes": 499103
+          },
+          {
+            "q": 96,
+            "ssimulacra2": 90.3,
+            "psnr": 48.94,
+            "bytes": 616487
+          }
+        ]
+      }
+    },
+    "/2026/02/1710610037469-scaled.jpg": {
+      "jpg": {
+        "width": 1600,
+        "height": 2400,
+        "bytes": 510076
+      },
+      "full": {
+        "ok": false,
+        "reason": "no pesa menos que el JPG",
+        "tried": [
+          {
+            "q": 80,
+            "ssimulacra2": 86.26,
+            "psnr": 44.96,
+            "bytes": 372067
+          },
+          {
+            "q": 84,
+            "ssimulacra2": 87.72,
+            "psnr": 45.79,
+            "bytes": 420029
+          },
+          {
+            "q": 88,
+            "ssimulacra2": 88.91,
+            "psnr": 46.64,
+            "bytes": 476346
+          },
+          {
+            "q": 90,
+            "ssimulacra2": 89.14,
+            "psnr": 46.78,
+            "bytes": 499043
+          },
+          {
+            "q": 92,
+            "ssimulacra2": 89.4,
+            "psnr": 47.05,
+            "bytes": 547835
+          },
+          {
+            "q": 94,
+            "ssimulacra2": 89.46,
+            "psnr": 47.15,
+            "bytes": 582217
+          },
+          {
+            "q": 96,
+            "ssimulacra2": 90.1,
+            "psnr": 47.55,
+            "bytes": 702804
+          }
+        ]
+      }
+    }
+  },
+  "posters": {
+    "/2024/11/Dia-de-la-Mujer-y-la-Nina-en-la-Ciencia-11_02_2024-Centro-de-Astrobiologia-CAB-CSIC-INTA.mp4": {
+      "ok": true,
+      "q": 80,
+      "ssimulacra2": 92.06,
+      "psnr": 50.49,
+      "bytes": 63715,
+      "tried": [
+        {
+          "q": 80,
+          "ssimulacra2": 92.06,
+          "psnr": 50.49,
+          "bytes": 63715
+        }
+      ],
+      "src": "/media/posters/Dia-de-la-Mujer-y-la-Nina-en-la-Ciencia-11_02_2024-Centro-de-Astrobiologia-CAB-CSIC-INTA.avif",
+      "width": 1920,
+      "height": 1080,
+      "time": 5
+    },
+    "/2026/06/SHORT-FILM-CASA-BEATNIK-1080.mp4": {
+      "ok": true,
+      "q": 88,
+      "ssimulacra2": 90.01,
+      "psnr": 43.3,
+      "bytes": 443432,
+      "tried": [
+        {
+          "q": 80,
+          "ssimulacra2": 88.06,
+          "psnr": 41.5,
+          "bytes": 333512
+        },
+        {
+          "q": 84,
+          "ssimulacra2": 88.99,
+          "psnr": 42.19,
+          "bytes": 373230
+        },
+        {
+          "q": 88,
+          "ssimulacra2": 90.01,
+          "psnr": 43.3,
+          "bytes": 443432
+        }
+      ],
+      "src": "/media/posters/SHORT-FILM-CASA-BEATNIK-1080.avif",
+      "width": 1080,
+      "height": 1920,
+      "time": 0
+    },
+    "/2024/11/Trailer-PhDays2023-Centro-de-Astrobiologia.mp4": {
+      "ok": false,
+      "reason": "ninguna calidad llega a 90",
+      "tried": [
+        {
+          "q": 80,
+          "ssimulacra2": 85.94,
+          "psnr": 45.59,
+          "bytes": 105595
+        },
+        {
+          "q": 84,
+          "ssimulacra2": 86.83,
+          "psnr": 45.99,
+          "bytes": 124560
+        },
+        {
+          "q": 88,
+          "ssimulacra2": 87.71,
+          "psnr": 46.55,
+          "bytes": 159039
+        },
+        {
+          "q": 90,
+          "ssimulacra2": 87.95,
+          "psnr": 46.74,
+          "bytes": 175054
+        },
+        {
+          "q": 92,
+          "ssimulacra2": 88.43,
+          "psnr": 47.2,
+          "bytes": 212867
+        },
+        {
+          "q": 94,
+          "ssimulacra2": 88.63,
+          "psnr": 47.43,
+          "bytes": 237757
+        },
+        {
+          "q": 96,
+          "ssimulacra2": 89.15,
+          "psnr": 48.0,
+          "bytes": 325879
+        },
+        {
+          "q": 98,
+          "ssimulacra2": 89.26,
+          "psnr": 48.26,
+          "bytes": 363743
+        }
+      ]
+    },
+    "/2026/06/Short-Film-San-Lorenzo-1.mp4": {
+      "ok": true,
+      "q": 92,
+      "ssimulacra2": 90.01,
+      "psnr": 45.37,
+      "bytes": 571342,
+      "tried": [
+        {
+          "q": 80,
+          "ssimulacra2": 87.12,
+          "psnr": 41.92,
+          "bytes": 366181
+        },
+        {
+          "q": 84,
+          "ssimulacra2": 87.81,
+          "psnr": 42.71,
+          "bytes": 404449
+        },
+        {
+          "q": 88,
+          "ssimulacra2": 89.05,
+          "psnr": 43.95,
+          "bytes": 472006
+        },
+        {
+          "q": 90,
+          "ssimulacra2": 89.36,
+          "psnr": 44.35,
+          "bytes": 497431
+        },
+        {
+          "q": 92,
+          "ssimulacra2": 90.01,
+          "psnr": 45.37,
+          "bytes": 571342
+        }
+      ],
+      "src": "/media/posters/Short-Film-San-Lorenzo-1.avif",
+      "width": 1080,
+      "height": 1920,
+      "time": 0
+    }
+  }
+}
