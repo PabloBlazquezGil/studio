@@ -1,5 +1,6 @@
 ---
 import PageIntro from '@/components/PageIntro.astro';
+import ProcessSteps from '@/components/ProcessSteps.astro';
 import ContactForm from '@/components/react/ContactForm';
 import { Toaster } from '@/components/react/Toaster';
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -50,6 +51,10 @@ const site = Astro.site ?? new URL(Astro.url.origin);
               ))
           }
         </ul>
+      </div>
+      <div class="border-t border-linen/10 pt-10">
+        <h2 class="text-xs font-medium text-gold">{t.services.process[0]}</h2>
+        <ProcessSteps compact class="mt-5" />
       </div>
     </div>
     <ContactForm client:load lang={lang} />
