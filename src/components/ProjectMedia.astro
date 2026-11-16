@@ -3,6 +3,8 @@ import type { Project } from '@/lib/types';
 import { toLang } from '@/i18n/routes';
 import { coverAlt } from '@/lib/seo';
 import { cn, isVideoFile } from '@/lib/utils';
+import { posterFor } from '@/lib/media';
+import Picture from '@/components/Picture.astro';
 
 interface Props {
   project: Project;
@@ -22,6 +24,7 @@ const { project, sizes, class: className, priority, playing } = Astro.props;
     <video
       data-loop
       data-src={project.cover}
+      poster={posterFor(project.cover)}
       data-eager={priority ? '' : undefined}
       data-playing={playing ? 'true' : undefined}
       class={cn('h-full w-full object-cover', className)}
@@ -32,7 +35,7 @@ const { project, sizes, class: className, priority, playing } = Astro.props;
       aria-hidden="true"
     />
   ) : (
-    <img
+    <Picture
       src={project.cover}
       alt={coverAlt(project, toLang(Astro.currentLocale))}
       sizes={sizes}

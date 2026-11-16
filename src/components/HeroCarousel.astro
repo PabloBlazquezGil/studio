@@ -4,6 +4,7 @@ import { Pause, Play } from '@lucide/astro';
 import { projectPath, toLang } from '@/i18n/routes';
 import { useTranslations } from '@/i18n/ui';
 import { cn } from '@/lib/utils';
+import { posterFor } from '@/lib/media';
 
 interface Props {
   slides: (HeroSlide & { project: Project })[];
@@ -38,6 +39,7 @@ const t = useTranslations(lang);
             data-loop
             data-controlled
             data-src={slide.videoUrl}
+            poster={posterFor(slide.videoUrl)}
             class="h-full w-full object-cover"
             muted
             loop

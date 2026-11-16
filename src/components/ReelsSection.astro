@@ -3,6 +3,7 @@ import { ArrowRight } from '@lucide/astro';
 import { path, projectPath, toLang } from '@/i18n/routes';
 import { useTranslations } from '@/i18n/ui';
 import { getProjects } from '@/lib/content';
+import { posterFor } from '@/lib/media';
 import SplitHeading from './motion/SplitHeading.astro';
 
 /** Reels verticales (9:16) de todos los proyectos en formato vertical, con su llamada a la acción. */
@@ -39,6 +40,7 @@ const reels = getProjects(lang)
             <video
               data-loop
               data-src={video.url}
+              poster={posterFor(video.url)}
               class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               muted
               loop
