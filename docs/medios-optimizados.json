@@ -76,7 +76,7 @@
       },
       "full": {
         "ok": false,
-        "reason": "sin p\u00e9rdida visible solo pesa un 12 % más",
+        "reason": "sin p\u00e9rdida visible pesa un 12 % m\u00e1s que el JPG",
         "tried": [
           {
             "q": 80,
@@ -211,7 +211,7 @@
       },
       "full": {
         "ok": false,
-        "reason": "sin p\u00e9rdida visible solo pesa un 49 % más",
+        "reason": "sin p\u00e9rdida visible pesa un 49 % m\u00e1s que el JPG",
         "tried": [
           {
             "q": 80,
@@ -266,7 +266,7 @@
       },
       "full": {
         "ok": false,
-        "reason": "sin p\u00e9rdida visible solo pesa un 38 % más",
+        "reason": "sin p\u00e9rdida visible pesa un 38 % m\u00e1s que el JPG",
         "tried": [
           {
             "q": 80,
