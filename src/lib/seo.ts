@@ -8,7 +8,7 @@ import { useTranslations } from '@/i18n/ui';
 import { getAuthor, getProjects, getServices } from './content';
 import { contactEmail, socialLinks } from './data';
 import { getDisciplineLabels, getProjectImage, isVideoProject } from './projects';
-import { areaServed, jobTitle, location, siteName } from './site';
+import { areaServed, extraProfiles, jobTitle, location, siteName } from './site';
 import type { MediaItem, Project, Service } from './types';
 import { getYouTubeId, isVideoFile } from './utils';
 
@@ -26,8 +26,13 @@ const ids = (site: URL) => ({
   business: new URL('/#business', site).href,
 });
 
-const sameAs = socialLinks.filter((l) => l.href.startsWith('http')).map((l) => l.href);
-const area = () => areaServed.map((name) => ({ '@type': 'AdministrativeArea', name }));
+const sameAs = [...new Set([...socialLinks.map((l) => l.href), ...extraProfiles].filter((href) => href.startsWith('http')))];
+const area = () =>
+  areaServed.map((name) => ({
+    '@type': 'AdministrativeArea',
+    name,
+    containedInPlace: { '@type': 'Country', name: location.country === 'ES' ? 'España' : location.country },
+  }));
 
 /** Persona, negocio y web: van en todas las páginas y el resto de datos los referencian por su @id. */
 export function siteGraph(site: URL, lang: Lang): Json[] {
@@ -81,6 +86,13 @@ export function siteGraph(site: URL, lang: Lang): Json[] {
       areaServed: area(),
       ...(address && { address }),
       knowsLanguage: ['es', 'en'],
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'customer service',
+        email: contactEmail,
+        areaServed: location.country,
+        availableLanguage: ['es', 'en'],
+      },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
         name: t.catalog,
