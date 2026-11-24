@@ -9,6 +9,7 @@ Qué hace la web por sí sola y qué conviene revisar de vez en cuando.
 - `canonical`, Open Graph y Twitter cards con imagen y texto alternativo. Las redes no muestran AVIF, así que los proyectos que solo tienen fotos AVIF comparten `/og-portfolio.jpg`.
 - Datos estructurados schema.org (`src/lib/seo.ts`): `WebSite`, `Person` y `ProfessionalService` en todas las páginas; `ImageGallery`/`CreativeWork` + `VideoObject` en los proyectos; `Service` en los servicios; migas de pan (`BreadcrumbList`).
 - `sitemap.xml` con todas las páginas y las fotos de cada proyecto (sitemap de imágenes) y `robots.txt`.
+- Visibilidad en asistentes de IA: `robots.txt` permite de forma explícita a los rastreadores de ChatGPT, Claude, Perplexity y Gemini (lista en `src/pages/robots.txt.ts`), y `/llms.txt` (`src/pages/llms.txt.ts`) resume la web en texto plano con los datos de `data.ts`. Se actualiza solo al añadir proyectos o servicios.
 - Textos alternativos generados a partir del proyecto. Para una foto concreta, añade `alt: '...'` a su entrada en `data.ts`.
 
 ## Cómo añadir cosas
@@ -26,3 +27,10 @@ Qué hace la web por sí sola y qué conviene revisar de vez en cuando.
 - https://validator.schema.org — pega la URL de una página.
 - https://search.google.com/test/rich-results — prueba de resultados enriquecidos de Google.
 - Google Search Console (gratis): da de alta el dominio y envía `https://tudominio.com/sitemap.xml`.
+
+## Pendiente (necesita datos tuyos)
+
+- Ciudad en `location.locality` (`src/lib/site.ts`): mejora las búsquedas locales («fotógrafo en A Coruña»).
+- Ficha de Google Business Profile y enlaces a ella en `socialLinks`: los asistentes de IA y Google Maps leen mucho esas fuentes.
+- Preguntas frecuentes por servicio (plazos, qué incluye, cómo se entrega): con tus respuestas reales se pueden publicar con datos estructurados `FAQPage`.
+- Testimonios reales de clientes cuando los tengas.
