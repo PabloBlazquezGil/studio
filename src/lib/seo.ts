@@ -229,7 +229,7 @@ export function serviceGraph(service: Service, site: URL, lang: Lang): Json[] {
 }
 
 /** Lista de servicios (para /servicios). */
-export function serviceListGraph(site: URL, lang: Lang): Json[] {
+export function serviceListGraph(site: URL, lang: Lang, faq: string[][] = []): Json[] {
   const t = useTranslations(lang);
   return [
     {
@@ -239,6 +239,19 @@ export function serviceListGraph(site: URL, lang: Lang): Json[] {
       inLanguage: inLanguage[lang],
       about: { '@id': ids(site).business },
     },
+    ...(faq.length > 0
+      ? [
+          {
+            '@type': 'FAQPage',
+            inLanguage: inLanguage[lang],
+            mainEntity: faq.map(([name, text]) => ({
+              '@type': 'Question',
+              name,
+              acceptedAnswer: { '@type': 'Answer', text },
+            })),
+          },
+        ]
+      : []),
     breadcrumbs(site, lang, [{ name: t.nav.services, path: path('services', lang) }]),
   ];
 }

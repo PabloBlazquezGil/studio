@@ -14,6 +14,7 @@ Qué hace la web por sí sola y qué conviene revisar de vez en cuando.
 
 ## Cómo añadir cosas
 
+- **Preguntas frecuentes:** están en `/servicios` (y `/en/services`) con datos estructurados `FAQPage`. Se editan en `faq` de `services` en `src/i18n/ui.ts` (español e inglés, mismo orden). Deben coincidir con la realidad: Google exige que el texto sea visible.
 - **Proyecto nuevo:** se añade solo al sitemap, a los datos estructurados y a /trabajos. Para que salga como ejemplo en un servicio, añade su `slug` a `projectSlugs` del servicio.
 - **Servicio nuevo:** añade una entrada a `services` en `data.ts` y su traducción, en el mismo orden, en `servicesEn` de `src/i18n/content.en.ts`. Tendrá su página en `/servicios/<slug>` y `/en/services/<slug>`.
 - **Ciudad / zona:** `location` y `areaServed` en `src/lib/site.ts` (base en Pontecesures, atiende toda Galicia).
@@ -31,5 +32,4 @@ Qué hace la web por sí sola y qué conviene revisar de vez en cuando.
 ## Pendiente (necesita datos tuyos)
 
 - Ficha de Google Business Profile (gratis, como negocio sin local que atiende en toda Galicia) y su enlace en `socialLinks`: Google Maps y los asistentes de IA leen mucho esas fuentes.
-- Preguntas frecuentes por servicio (plazos, qué incluye, cómo se entrega): con tus respuestas reales se pueden publicar con datos estructurados `FAQPage`.
 - Testimonios reales de clientes cuando los tengas.
