@@ -4,7 +4,7 @@ import Footer from '@/components/layout/Footer.astro';
 import { langs, ogLocales, toLang, translatePath } from '@/i18n/routes';
 import { useTranslations } from '@/i18n/ui';
 import { siteGraph, toJsonLd } from '@/lib/seo';
-import { siteName } from '@/lib/site';
+import { siteName, verification } from '@/lib/site';
 import '@/styles/global.css';
 // Las tres fuentes que se ven nada más cargar (texto, titulares y botones): se piden a la vez que el CSS
 // en lugar de esperar a que el CSS las descubra. Son las mismas URL que usa global.css.
@@ -79,6 +79,7 @@ const defaultAlternate = alternates.find((a) => a.lang === 'es');
       content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}
     />
     <meta name="author" content={siteName} />
+    {verification.google && <meta name="google-site-verification" content={verification.google} />}
     <meta name="theme-color" content="#1C2826" />
     {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
     {defaultAlternate && <link rel="alternate" hreflang="x-default" href={defaultAlternate.href} />}
