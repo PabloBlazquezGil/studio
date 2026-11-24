@@ -9,7 +9,7 @@ export const jobTitle = { es: 'Fotógrafo y videógrafo', en: 'Photographer and 
  * Añade tu ciudad en `locality` (por ejemplo 'A Coruña') si quieres que también aparezca.
  */
 export const location = {
-  locality: '',
+  locality: 'Pontecesures',
   region: 'Galicia',
   country: 'ES',
 };
