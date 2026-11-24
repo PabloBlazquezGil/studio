@@ -9,13 +9,15 @@ Qué hace la web por sí sola y qué conviene revisar de vez en cuando.
 - `canonical`, Open Graph y Twitter cards con imagen y texto alternativo. Las redes no muestran AVIF, así que los proyectos que solo tienen fotos AVIF comparten `/og-portfolio.jpg`.
 - Datos estructurados schema.org (`src/lib/seo.ts`): `WebSite`, `Person` y `ProfessionalService` en todas las páginas; `ImageGallery`/`CreativeWork` + `VideoObject` en los proyectos; `Service` en los servicios; migas de pan (`BreadcrumbList`).
 - `sitemap.xml` con todas las páginas y las fotos de cada proyecto (sitemap de imágenes) y `robots.txt`.
+- Visibilidad en asistentes de IA: `robots.txt` permite de forma explícita a los rastreadores de ChatGPT, Claude, Perplexity y Gemini (lista en `src/pages/robots.txt.ts`), y `/llms.txt` (`src/pages/llms.txt.ts`) resume la web en texto plano con los datos de `data.ts`. Se actualiza solo al añadir proyectos o servicios.
 - Textos alternativos generados a partir del proyecto. Para una foto concreta, añade `alt: '...'` a su entrada en `data.ts`.
 
 ## Cómo añadir cosas
 
+- **Preguntas frecuentes:** están en `/servicios` (y `/en/services`) con datos estructurados `FAQPage`. Se editan en `faq` de `services` en `src/i18n/ui.ts` (español e inglés, mismo orden). Deben coincidir con la realidad: Google exige que el texto sea visible.
 - **Proyecto nuevo:** se añade solo al sitemap, a los datos estructurados y a /trabajos. Para que salga como ejemplo en un servicio, añade su `slug` a `projectSlugs` del servicio.
 - **Servicio nuevo:** añade una entrada a `services` en `data.ts` y su traducción, en el mismo orden, en `servicesEn` de `src/i18n/content.en.ts`. Tendrá su página en `/servicios/<slug>` y `/en/services/<slug>`.
-- **Ciudad / zona:** `location` y `areaServed` en `src/lib/site.ts` (ahora Galicia). Si añades la ciudad en `locality`, sale también en los datos para Google.
+- **Ciudad / zona:** `location` y `areaServed` en `src/lib/site.ts` (base en Pontecesures, atiende toda Galicia).
 
 ## Requisito
 
@@ -26,3 +28,8 @@ Qué hace la web por sí sola y qué conviene revisar de vez en cuando.
 - https://validator.schema.org — pega la URL de una página.
 - https://search.google.com/test/rich-results — prueba de resultados enriquecidos de Google.
 - Google Search Console (gratis): da de alta el dominio y envía `https://tudominio.com/sitemap.xml`.
+
+## Pendiente (necesita datos tuyos)
+
+- Ficha de Google Business Profile (gratis, como negocio sin local que atiende en toda Galicia) y su enlace en `socialLinks`: Google Maps y los asistentes de IA leen mucho esas fuentes.
+- Testimonios reales de clientes cuando los tengas.

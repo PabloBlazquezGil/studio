@@ -164,6 +164,53 @@ const es = {
     others: 'Otros servicios',
     cta: 'Pide presupuesto',
     breadcrumb: 'Migas de pan',
+    faqHeading: ['Preguntas *frecuentes*'],
+    faq: [
+      [
+        '¿Cuánto cuesta una sesión de foto o un vídeo?',
+        'No trabajo con precios fijos: cada proyecto es distinto, así que preparo un presupuesto individualizado para ofrecerte la mejor opción en tu caso.',
+      ],
+      [
+        '¿Te desplazas por toda Galicia?',
+        'Sí. Mi base está en Pontecesures, pero me desplazo por toda Galicia. El desplazamiento va incluido en el presupuesto.',
+      ],
+      [
+        '¿Cuánto tardas en entregar el material?',
+        'Depende de la complejidad del trabajo y de la demanda que tenga en ese momento. Lo hablamos al preparar el presupuesto.',
+      ],
+      [
+        '¿Qué recibo y en qué formato?',
+        'Recibes los archivos finales en la máxima calidad. Si el destino lo necesita (web, redes sociales, correo), te los entrego también comprimidos.',
+      ],
+      [
+        '¿Cómo se reserva y se paga?',
+        'El 50 % se abona por adelantado, antes de empezar el trabajo, y el otro 50 % al entregar el material.',
+      ],
+      [
+        '¿Cómo sé si estás disponible en la fecha de mi evento?',
+        'Escríbeme primero por correo con la fecha y el tipo de evento, y te confirmo si puedo asistir.',
+      ],
+      [
+        '¿Y si hay que cambiar la fecha?',
+        'No hay problema: buscamos juntos una nueva fecha que nos venga bien a los dos.',
+      ],
+      [
+        '¿Puedo usar las fotos y los vídeos en mis redes y mi web?',
+        'Sí, puedes usarlos en tus redes. No entrego los archivos originales sin editar. Una mención en tus redes siempre se agradece.',
+      ],
+      [
+        '¿Trabajas con dron?',
+        'Sí, y cuento con las licencias necesarias. Solo puedo volar si la normativa aérea del lugar y de la fecha lo permite.',
+      ],
+      [
+        '¿Qué incluye el servicio de edición y puedo enviarte material mío?',
+        'Hago edición completa, de cualquier temática. Puedo editar tanto mi propio material como el de otras personas.',
+      ],
+      [
+        '¿Haces bodas, bautizos o comuniones?',
+        'Ahora mismo no. Me centro en eventos corporativos y deportivos, contenido para redes sociales y pódcast. Si necesitas otro tipo de servicio, consúltamelo y lo valoramos.',
+      ],
+    ],
   },
   seo: {
     catalog: 'Servicios de fotografía y vídeo',
@@ -409,6 +456,53 @@ const en: UI = {
     others: 'Other services',
     cta: 'Request a quote',
     breadcrumb: 'Breadcrumb',
+    faqHeading: ['Frequently asked *questions*'],
+    faq: [
+      [
+        'How much does a photo session or a video cost?',
+        "I don't work with fixed prices: every project is different, so I put together an individual quote to offer you the best option for your case.",
+      ],
+      [
+        'Do you travel across Galicia?',
+        'Yes. I am based in Pontecesures, but I travel all over Galicia. Travel is included in the quote.',
+      ],
+      [
+        'How long does delivery take?',
+        'It depends on how complex the job is and how busy I am at the time. We will talk it through when I prepare your quote.',
+      ],
+      [
+        'What do I receive, and in what format?',
+        'You receive the final files in the highest quality. If where they will be used requires it (web, social media, email), I also deliver compressed versions.',
+      ],
+      [
+        'How do I book and pay?',
+        '50% is paid in advance, before the work starts, and the other 50% when the material is delivered.',
+      ],
+      [
+        'How do I know if you are available on the date of my event?',
+        'Email me first with the date and the type of event, and I will confirm whether I can attend.',
+      ],
+      [
+        'What if the date needs to change?',
+        "No problem: we'll find a new date that works for both of us.",
+      ],
+      [
+        'Can I use the photos and videos on my social media and website?',
+        'Yes, you can use them on your social media. I do not hand over the original, unedited files. A mention on your social media is always appreciated.',
+      ],
+      [
+        'Do you work with a drone?',
+        'Yes, and I hold the necessary licences. I can only fly if the aviation rules for the place and date allow it.',
+      ],
+      [
+        'What does editing include, and can I send you my own footage?',
+        "I offer complete editing on any subject. I can edit my own material as well as other people's.",
+      ],
+      [
+        'Do you shoot weddings, christenings or communions?',
+        "Not at the moment. I focus on corporate and sports events, social media content and podcasts. If you need another kind of service, just ask and we'll see.",
+      ],
+    ],
   },
   seo: {
     catalog: 'Photography and video services',
