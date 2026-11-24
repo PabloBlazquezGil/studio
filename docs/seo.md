@@ -31,10 +31,10 @@ Qué hace la web por sí sola y qué conviene revisar de vez en cuando.
 
 ## Buscadores y perfiles
 
-Verificación en Search Console y Bing, sitemap, perfiles y directorios, e ideas de contenido: ver `docs/buscadores.md`, `docs/perfiles-y-directorios.md` y `docs/ideas-de-contenido.md`.
+Verificación en Search Console, sitemap, perfiles y directorios, e ideas de contenido: ver `docs/buscadores.md`, `docs/perfiles-y-directorios.md` y `docs/ideas-de-contenido.md`.
 
 ## Pendiente (necesita datos tuyos)
 
-- Códigos de verificación de Search Console y Bing (variables `GOOGLE_SITE_VERIFICATION` y `BING_SITE_VERIFICATION`).
+- Código de verificación de Search Console (variable `GOOGLE_SITE_VERIFICATION`).
 - Sin ficha de Google Business Profile (no se puede verificar sin local): se compensa con perfiles y directorios, ver `docs/perfiles-y-directorios.md`.
 - Testimonios reales de clientes cuando los tengas.

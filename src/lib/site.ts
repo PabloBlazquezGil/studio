@@ -18,16 +18,14 @@ export const location = {
 export const areaServed = ['Galicia'];
 
 /**
- * Verificación de propiedad en Google Search Console y Bing Webmaster Tools (gratis, sin ficha de negocio).
+ * Verificación de propiedad en Google Search Console (gratis, sin ficha de negocio).
  * Se leen de variables de entorno del alojamiento (así no hay que tocar el código ni inventar nada):
  *   GOOGLE_SITE_VERIFICATION = el valor de `content` de la metaetiqueta que da Search Console
- *   BING_SITE_VERIFICATION   = el valor de `content` de la metaetiqueta que da Bing Webmaster Tools
  * Si están vacías, no se añade nada a la web. Pasos completos en docs/buscadores.md.
  * (Alternativa sin variables: pega aquí el código entre las comillas.)
  */
 export const verification = {
   google: process.env.GOOGLE_SITE_VERIFICATION || '', // ← PEGAR AQUÍ o en la variable de entorno
-  bing: process.env.BING_SITE_VERIFICATION || '', // ← PEGAR AQUÍ o en la variable de entorno
 };
 
 /**

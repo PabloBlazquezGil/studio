@@ -80,7 +80,6 @@ const defaultAlternate = alternates.find((a) => a.lang === 'es');
     />
     <meta name="author" content={siteName} />
     {verification.google && <meta name="google-site-verification" content={verification.google} />}
-    {verification.bing && <meta name="msvalidate.01" content={verification.bing} />}
     <meta name="theme-color" content="#1C2826" />
     {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
     {defaultAlternate && <link rel="alternate" hreflang="x-default" href={defaultAlternate.href} />}

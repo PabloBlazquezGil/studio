@@ -62,7 +62,6 @@ Ninguno exige local físico *si* lo rellenas como «negocio que se desplaza / si
 | Perfil de portfolio fotográfico | 500px, Flickr, Behance | Enlazan a tu web y rankean por tus fotos |
 | Vídeo | Vimeo, YouTube | Descripción con enlace a la web |
 | Apple Maps | Apple Business Connect (gratis) | Admite negocios sin local; verificación por teléfono |
-| Bing / Microsoft | Bing Places | Admite «negocio de servicios sin dirección visible»; puede pedir verificación |
 | Directorios generales | Páginas Amarillas (alta gratuita básica), Cylex, Hotfrog, Foursquare | NAP idéntico en todos: nombre, zona y web (el teléfono solo si quieres publicarlo) |
 | Audiovisual gallego | Directorio de profesionales / Galicia Film Office (Agadic) y asociaciones audiovisuales gallegas | Comprueba requisitos de alta; suelen aceptar freelance |
 | Fotógrafos | Asociaciones y colectivos de fotógrafos de Galicia | Mira si hay listado de socios con enlace |
