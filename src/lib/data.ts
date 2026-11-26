@@ -42,11 +42,12 @@ export const projects: Project[] = [
     slug: 'dia-de-la-mujer-y-la-nina-en-la-ciencia',
     title: 'Día de la Mujer y la Niña en la Ciencia',
     client: 'Centro de Astrobiología (CAB, CSIC-INTA)',
+    madeAsEmployee: true,
     category: 'Evento de divulgación',
     discipline: 'eventos',
     year: 2024,
     description:
-      'Vídeo conmemorativo para el Día Internacional de la Mujer y la Niña en la Ciencia, destacando el crucial papel de las mujeres en la astrobiología y la investigación espacial. Creado para el Centro de Astrobiología (CAB, CSIC-INTA).',
+      'Vídeo conmemorativo para el Día Internacional de la Mujer y la Niña en la Ciencia, destacando el crucial papel de las mujeres en la astrobiología y la investigación espacial. Realizado durante mi etapa en el Centro de Astrobiología (CAB, CSIC-INTA).',
     cover: `${WP}/2024/11/Dia-de-la-Mujer-y-la-Nina-en-la-Ciencia-11_02_2024-Centro-de-Astrobiologia-CAB-CSIC-INTA.mp4#t=5`,
     media: [
       {
@@ -153,6 +154,7 @@ export const projects: Project[] = [
     slug: 'phdays',
     title: 'PhDays',
     client: 'Centro de Astrobiología (CAB, CSIC-INTA)',
+    madeAsEmployee: true,
     category: 'Evento científico',
     discipline: 'eventos',
     description:
@@ -285,7 +287,7 @@ export const services: Service[] = [
     headline: 'Eventos y divulgación',
     intro: [
       'Un evento dura unas horas, pero lo que se cuenta de él puede seguir trabajando para ti durante meses. Cubro congresos, jornadas y actos institucionales pensando desde el principio en cómo se van a usar las imágenes.',
-      'He trabajado con el Centro de Astrobiología (CAB, CSIC-INTA) en el tráiler del congreso PhDays y en el vídeo del Día Internacional de la Mujer y la Niña en la Ciencia. Sé moverme en un evento sin molestar y sacar las historias que hay detrás de cada ponencia.',
+      'Durante mi etapa en el Centro de Astrobiología (CAB, CSIC-INTA) hice, entre otras piezas, el tráiler del congreso PhDays y el vídeo del Día Internacional de la Mujer y la Niña en la Ciencia. Sé moverme en un evento sin molestar y sacar las historias que hay detrás de cada ponencia.',
     ],
     includes: [
       'Fotografía del evento, ponentes y asistentes',

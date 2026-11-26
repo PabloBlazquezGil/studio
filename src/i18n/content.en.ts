@@ -22,7 +22,7 @@ export const projectsEn: Record<string, ProjectTranslation> = {
     title: 'International Day of Women and Girls in Science',
     category: 'Science outreach event',
     description:
-      'A commemorative film for the International Day of Women and Girls in Science, highlighting the vital role women play in astrobiology and space research. Made for the Centro de Astrobiología (CAB, CSIC-INTA).',
+      'A commemorative film for the International Day of Women and Girls in Science, highlighting the vital role women play in astrobiology and space research. Made during my time at the Centro de Astrobiología (CAB, CSIC-INTA).',
   },
   'photobook-actriz': {
     title: 'Actress Photobook',
@@ -132,7 +132,7 @@ export const servicesEn: ServiceTranslation[] = [
     headline: 'Events & science outreach',
     intro: [
       'An event lasts a few hours, but the story told about it can keep working for you for months. I cover conferences, open days and institutional events with a clear idea from the start of how the images will be used.',
-      "I've worked with the Centro de Astrobiología (CAB, CSIC-INTA) on the trailer for the PhDays conference and on the film for the International Day of Women and Girls in Science. I know how to move around an event without getting in the way and find the stories behind each talk.",
+      "During my time at the Centro de Astrobiología (CAB, CSIC-INTA) I made, among other pieces, the trailer for the PhDays conference and the film for the International Day of Women and Girls in Science. I know how to move around an event without getting in the way and find the stories behind each talk.",
     ],
     includes: [
       'Photography of the event, speakers and attendees',
