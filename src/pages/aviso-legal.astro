@@ -1,40 +1,45 @@
 ---
 import LegalPage from '@/components/LegalPage.astro';
+import { legalHolder as h } from '@/lib/data';
 ---
 
 <LegalPage title="Aviso Legal" description="Aviso legal del portfolio de Pablo Blázquez Gil — Fotografía y Filmmaking.">
+  <p>Última revisión: {h.updated.es}.</p>
+
   <section>
-    <h2>1. Identificación del titular</h2>
-    <p>
-      En cumplimiento de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico, le informamos que el titular de este sitio web es <strong>Pablo Blázquez Gil</strong>.
-    </p>
+    <h2>1. Titular del sitio web</h2>
+    <p>En cumplimiento del artículo 10 de la Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI), te informamos de que el titular de este sitio web es:</p>
+    <ul>
+      <li>Titular: <strong>{h.name}</strong></li>
+      <li>NIF: {h.nif}</li>
+      <li>Email: <a href={`mailto:${h.email}`}>{h.email}</a></li>
+      <li>Actividad: {h.activity}</li>
+    </ul>
   </section>
 
   <section>
-    <h2>2. Condiciones de uso</h2>
-    <p>
-      El acceso y/o uso de este portal le atribuye la condición de USUARIO, que acepta, desde dicho acceso y/o uso, las Condiciones Generales de Uso aquí reflejadas.
-    </p>
+    <h2>2. Objeto</h2>
+    <p>Esta web presenta el trabajo de fotografía y vídeo de {h.name} y sirve como canal de contacto. La información tiene carácter informativo y no constituye una oferta contractual: los servicios se contratan mediante presupuesto o contrato específico.</p>
   </section>
 
   <section>
-    <h2>3. Propiedad Intelectual e Industrial</h2>
-    <p>
-      Todos los contenidos de este sitio web (textos, fotografías, vídeos, logotipos, etc.) son propiedad de Pablo Blázquez Gil o de terceros que han autorizado su uso, y están protegidos por la legislación de propiedad intelectual e industrial. Queda prohibida la reproducción, distribución y comunicación pública, incluida su modalidad de puesta a disposición, de la totalidad o parte de los contenidos de esta página web, con fines comerciales, en cualquier soporte y por cualquier medio técnico, sin la autorización del titular.
-    </p>
+    <h2>3. Propiedad intelectual e industrial</h2>
+    <p>Las fotografías, los vídeos, los textos, el diseño y demás contenidos de esta web son obra de {h.name} o de terceros que han autorizado su uso, y están protegidos por la normativa de propiedad intelectual e industrial. Las marcas y logotipos de clientes pertenecen a sus titulares y se muestran solo como referencia de trabajos realizados.</p>
+    <p class="mt-4">No está permitido reproducir, distribuir, comunicar públicamente ni transformar los contenidos sin autorización previa y por escrito, salvo en los casos que permita la ley.</p>
   </section>
 
   <section>
-    <h2>4. Exclusión de garantías y responsabilidad</h2>
-    <p>
-      El titular no se hace responsable, en ningún caso, de los daños y perjuicios de cualquier naturaleza que pudieran ocasionar, a título enunciativo: errores u omisiones en los contenidos, falta de disponibilidad del portal o la transmisión de virus o programas maliciosos o lesivos en los contenidos, a pesar de haber adoptado todas las medidas tecnológicas necesarias para evitarlo.
-    </p>
+    <h2>4. Responsabilidad</h2>
+    <p>El titular procura que la web esté disponible y que la información sea correcta, pero no garantiza que esté libre de errores o interrupciones, ni responde de los daños derivados de un uso indebido de la web o de fallos ajenos a su control. Los enlaces a sitios de terceros (por ejemplo, redes sociales o YouTube) se rigen por las condiciones de esos sitios.</p>
   </section>
 
   <section>
-    <h2>5. Legislación aplicable y jurisdicción</h2>
-    <p>
-      La relación entre el titular y el USUARIO se regirá por la normativa española vigente y cualquier controversia se someterá a los Juzgados y tribunales de la ciudad que corresponda.
-    </p>
+    <h2>5. Protección de datos</h2>
+    <p>El tratamiento de datos personales se explica en la <a href="/politica-de-privacidad">política de privacidad</a>.</p>
+  </section>
+
+  <section>
+    <h2>6. Legislación y jurisdicción</h2>
+    <p>Estas condiciones se rigen por la legislación española. Para cualquier controversia, y salvo que la ley atribuya otro fuero a los consumidores, las partes se someten a los juzgados y tribunales que correspondan conforme a la ley.</p>
   </section>
 </LegalPage>

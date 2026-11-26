@@ -384,7 +384,7 @@ export const budgetRanges = ['Menos de 300 €', '300 – 800 €', '800 – 1.5
 /** Palabras del texto en movimiento de la home. */
 export const marqueeWords = ['Surf', 'Deporte', 'Retrato', 'Eventos', 'Cine', 'Reels'];
 
-export const contactEmail = 'pabloblazquezgil@gmail.com';
+export const contactEmail = 'pablo.blazquez@thundershoot.com';
 
 export const socialLinks: SocialLink[] = [
   { label: 'Instagram', href: 'https://instagram.com/pabloblazquezgil' },
@@ -392,3 +392,12 @@ export const socialLinks: SocialLink[] = [
   { label: 'Email', href: `mailto:${contactEmail}` },
 ];
 
+
+/** Titular de la web para el aviso legal (art. 10 LSSI). Sin domicilio por ahora, a petición del titular. */
+export const legalHolder = {
+  name: 'Pablo Blázquez Gil',
+  nif: '45879019E',
+  email: contactEmail,
+  activity: 'Fotografía y vídeo profesional',
+  updated: { es: '26 de noviembre de 2026', en: '26 November 2026' },
+};
