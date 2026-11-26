@@ -1,55 +1,60 @@
 ---
 import LegalPage from '@/components/LegalPage.astro';
+import { legalHolder as h } from '@/lib/data';
 ---
 
 <LegalPage title="Privacy Policy" description="Privacy policy for the portfolio of Pablo Blázquez Gil — Photography and Filmmaking.">
   <p>
-    This Privacy Policy describes how your personal information is collected, used and shared when you visit this website or send an enquiry through it. This English version is provided for convenience; in the event of any discrepancy, the <a href="/politica-de-privacidad" hreflang="es">Spanish version</a> shall prevail.
+    This policy explains how the personal data of visitors and of people who get in touch through this website is processed, under Regulation (EU) 2016/679 (GDPR) and Spanish Organic Law 3/2018. This English version is provided for convenience; in the event of any discrepancy, the <a href="/politica-de-privacidad" hreflang="es">Spanish version</a> shall prevail. Last updated: {h.updated.en}.
   </p>
 
   <section>
-    <h2>Personal information we collect</h2>
-    <p>
-      When you visit the Site, we automatically collect certain information about your device, including information about your web browser, IP address, time zone and some of the cookies installed on your device.
-    </p>
-    <p class="mt-4">
-      In addition, when you use the contact form, we collect the information you provide, including your name and email address.
-    </p>
+    <h2>1. Data controller</h2>
+    <ul>
+      <li>Controller: {h.name}</li>
+      <li>Tax ID (NIF): {h.nif}</li>
+      <li>Email: <a href={`mailto:${h.email}`}>{h.email}</a></li>
+    </ul>
   </section>
 
   <section>
-    <h2>How do we use your personal information?</h2>
-    <p>
-      We use the contact information we collect to communicate with you in response to your enquiries. We do not use this information for any other purpose, nor do we share it with third parties for marketing purposes.
-    </p>
+    <h2>2. What data we process and why</h2>
+    <p>This website has no user accounts, shop, analytics or advertising tools. We only process data you give us:</p>
+    <ul>
+      <li>Contact form: the form does not send data to any server. When you finish it, it opens your email program with a ready-made message (name, email, type of work, dates, location, approximate budget and description). We only receive the data if you send that email.</li>
+      <li>Email: if you write to us, we process your address and the content of your message.</li>
+    </ul>
+    <p class="mt-4">The purpose is to answer your enquiry, prepare a quote and, if it goes ahead, manage the job.</p>
   </section>
 
   <section>
-    <h2>Your rights</h2>
-    <p>
-      If you are a resident of the European Economic Area, you have the right to access the personal information we hold about you and to ask that it be corrected, updated or deleted. If you would like to exercise this right, please contact us through the form available on this site.
-    </p>
+    <h2>3. Legal basis</h2>
+    <p>Your consent, given when you choose to write to us, and taking pre-contractual steps at your request (for example, a quote). If we work together, the basis becomes the performance of the contract.</p>
   </section>
 
   <section>
-    <h2>Data retention</h2>
-    <p>
-      When you contact us through the Site, we will keep your contact information for our records unless and until you ask us to delete it.
-    </p>
+    <h2>4. How long we keep data</h2>
+    <p>For as long as the conversation lasts and then for as long as needed to meet possible liabilities: as a rule up to 3 years if there is no business relationship, and the applicable legal periods (for example, tax) if there is. After that, the data is deleted.</p>
   </section>
 
   <section>
-    <h2>Changes</h2>
-    <p>
-      We may update this privacy policy from time to time to reflect, for example, changes to our practices or for other operational, legal or regulatory reasons.
-    </p>
+    <h2>5. Who receives the data</h2>
+    <p>We do not sell or share your data. The providers needed to run the service, such as the website host (Vercel Inc.) and the email provider, may access it as data processors. Some may process data outside the European Economic Area with the safeguards set out in the GDPR (for example, the EU-US Data Privacy Framework or standard contractual clauses). We would only disclose data to third parties if required by law.</p>
   </section>
 
   <section>
-    <h2>Contact us</h2>
-    <p>
-      For more information about our privacy practices, or if you have any questions, please get in touch through the{' '}
-      <a href="/en/contact">contact form</a>{' '}on this site.
-    </p>
+    <h2>6. Cookies and third-party content</h2>
+    <p>This website does not set its own cookies. Like any server, the host may log technical data about visits (IP address, date and time, page and browser) for security and operation.</p>
+    <p class="mt-4">Some projects include YouTube videos in privacy-enhanced mode (youtube-nocookie.com). When you play them, Google may store information in your browser under its own privacy policy. Links to Instagram or LinkedIn take you to third-party sites with their own policies.</p>
+  </section>
+
+  <section>
+    <h2>7. Your rights</h2>
+    <p>You can exercise your rights of access, rectification, erasure, objection, restriction and portability by writing to <a href={`mailto:${h.email}`}>{h.email}</a>, and withdraw your consent at any time. If you believe your data has not been handled properly, you can complain to the Spanish Data Protection Agency (<a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>).</p>
+  </section>
+
+  <section>
+    <h2>8. Minors and changes</h2>
+    <p>This website is not aimed at children under 14. We may update this policy if the website or the law changes; the current version is the one published here.</p>
   </section>
 </LegalPage>

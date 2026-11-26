@@ -1,58 +1,61 @@
 ---
 import LegalPage from '@/components/LegalPage.astro';
+import { legalHolder as h } from '@/lib/data';
 ---
 
 <LegalPage
   title="Política de Privacidad"
   description="Política de privacidad del portfolio de Pablo Blázquez Gil — Fotografía y Filmmaking."
 >
-  <p>
-    Esta Política de Privacidad describe cómo se recopila, utiliza y comparte su información personal cuando visita o realiza una consulta a través de este sitio web.
-  </p>
+  <p>Esta política explica cómo se tratan los datos personales de quienes visitan esta web o se ponen en contacto a través de ella, conforme al Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD). Última revisión: {h.updated.es}.</p>
 
   <section>
-    <h2>Información Personal que Recopilamos</h2>
-    <p>
-      Cuando visita el Sitio, recopilamos automáticamente cierta información sobre su dispositivo, incluida información sobre su navegador web, dirección IP, zona horaria y algunas de las cookies que están instaladas en su dispositivo.
-    </p>
-    <p class="mt-4">
-      Además, cuando utiliza el formulario de contacto, recopilamos la información que nos proporciona, incluyendo su nombre y dirección de correo electrónico.
-    </p>
+    <h2>1. Responsable del tratamiento</h2>
+    <ul>
+      <li>Responsable: {h.name}</li>
+      <li>NIF: {h.nif}</li>
+      <li>Email: <a href={`mailto:${h.email}`}>{h.email}</a></li>
+    </ul>
   </section>
 
   <section>
-    <h2>¿Cómo utilizamos su Información Personal?</h2>
-    <p>
-      Utilizamos la Información de Contacto que recopilamos para comunicarnos con usted en respuesta a sus consultas. No utilizamos esta información para ningún otro propósito ni la compartimos con terceros con fines de marketing.
-    </p>
+    <h2>2. Qué datos tratamos y para qué</h2>
+    <p>Esta web no tiene cuentas de usuario, ni tienda, ni herramientas de analítica o publicidad. Solo tratamos datos cuando nos los facilitas tú:</p>
+    <ul>
+      <li>Formulario de contacto: el formulario no envía datos a ningún servidor. Al terminarlo abre tu programa de correo con un mensaje ya redactado (nombre, email, tipo de trabajo, fechas, lugar, presupuesto orientativo y descripción). Los datos solo nos llegan si envías ese correo.</li>
+      <li>Correo electrónico: si nos escribes, tratamos tu dirección y el contenido del mensaje.</li>
+    </ul>
+    <p class="mt-4">La finalidad es atender tu consulta, preparar un presupuesto y, si se concreta, gestionar el encargo.</p>
   </section>
 
   <section>
-    <h2>Sus Derechos</h2>
-    <p>
-      Si usted es residente del Espacio Económico Europeo, tiene derecho a acceder a la información personal que tenemos sobre usted y a solicitar que su información personal sea corregida, actualizada o eliminada. Si desea ejercer este derecho, póngase en contacto con nosotros a través del formulario disponible en este sitio.
-    </p>
+    <h2>3. Base jurídica</h2>
+    <p>Tu consentimiento, que das al escribirnos voluntariamente, y la aplicación de medidas precontractuales a petición tuya (por ejemplo, un presupuesto). Si llegamos a trabajar juntos, la base pasa a ser la ejecución del contrato.</p>
   </section>
 
   <section>
-    <h2>Retención de Datos</h2>
-    <p>
-      Cuando nos contacte a través del Sitio, mantendremos su Información de Contacto para nuestros registros a menos que y hasta que nos pida que eliminemos esta información.
-    </p>
+    <h2>4. Cuánto tiempo conservamos los datos</h2>
+    <p>Mientras dure la conversación y, después, el tiempo necesario para atender posibles responsabilidades: por regla general, hasta 3 años si no hay relación comercial, y los plazos legales aplicables (por ejemplo, fiscales) si la hay. Pasado ese tiempo se eliminan.</p>
   </section>
 
   <section>
-    <h2>Cambios</h2>
-    <p>
-      Podemos actualizar esta política de privacidad de vez en cuando para reflejar, por ejemplo, cambios en nuestras prácticas o por otras razones operativas, legales o reglamentarias.
-    </p>
+    <h2>5. A quién se comunican</h2>
+    <p>No vendemos ni cedemos tus datos. Pueden acceder a ellos los proveedores necesarios para prestar el servicio, como el alojamiento de la web (Vercel Inc.) y el proveedor de correo electrónico, que actúan como encargados del tratamiento. Algunos pueden tratar datos fuera del Espacio Económico Europeo con las garantías previstas en el RGPD (por ejemplo, el Marco de Privacidad de Datos UE-EE. UU. o cláusulas contractuales tipo). Solo comunicaríamos datos a terceros si una ley nos obligara.</p>
   </section>
 
   <section>
-    <h2>Contáctenos</h2>
-    <p>
-      Para obtener más información sobre nuestras prácticas de privacidad o si tiene alguna pregunta, contáctenos a través del{' '}
-      <a href="/contacto">formulario de contacto</a>{' '}disponible en este sitio.
-    </p>
+    <h2>6. Cookies y contenidos de terceros</h2>
+    <p>Esta web no instala cookies propias. Como cualquier servidor, el alojamiento puede registrar datos técnicos de la visita (dirección IP, fecha y hora, página y navegador) por seguridad y funcionamiento.</p>
+    <p class="mt-4">Algunos proyectos incluyen vídeos de YouTube en su modo de privacidad mejorada (youtube-nocookie.com). Al reproducirlos, Google puede guardar información en tu navegador según su propia política de privacidad. Los enlaces a Instagram o LinkedIn te llevan a sitios de terceros con sus propias políticas.</p>
+  </section>
+
+  <section>
+    <h2>7. Tus derechos</h2>
+    <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad escribiendo a <a href={`mailto:${h.email}`}>{h.email}</a>, y retirar tu consentimiento en cualquier momento. Si crees que no hemos tratado tus datos correctamente, puedes reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>).</p>
+  </section>
+
+  <section>
+    <h2>8. Menores y cambios</h2>
+    <p>Esta web no está dirigida a menores de 14 años. Podemos actualizar esta política si cambia el funcionamiento de la web o la normativa; la versión vigente es la publicada aquí.</p>
   </section>
 </LegalPage>
