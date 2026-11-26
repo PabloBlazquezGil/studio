@@ -34,7 +34,7 @@ const portrait = project.orientation === 'portrait';
 const related = getRelatedProjects(project, lang);
 
 const credits = [
-  [t.project.client, project.client],
+  [project.madeAsEmployee ? t.project.madeAt : t.project.client, project.client],
   [t.project.year, project.year?.toString()],
   [t.project.category, project.category],
   [t.project.discipline, getDisciplineLabels(lang)[project.discipline]],

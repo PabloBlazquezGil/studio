@@ -12,6 +12,8 @@ export type Project = {
   slug: string;
   title: string;
   client: string;
+  /** true si se hizo como empleado de `client` (no fue un encargo): la ficha dice «Realizado en» en vez de «Cliente». */
+  madeAsEmployee?: boolean;
   category: string;
   discipline: Discipline;
   year?: number;
